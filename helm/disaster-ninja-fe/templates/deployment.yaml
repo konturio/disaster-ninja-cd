@@ -39,60 +39,28 @@ spec:
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
     spec:
       containers:
-      - name: nginx
-        imagePullPolicy: Always #don't use Always for local minikube - otherwise it reloads from remote each time
-        image: nginx:latest #TODO replace with FE container
-        #TODO image version? latest?
-        ports:
-          - containerPort: 80
-        volumeMounts:
-          - name: config-volume-name
-            mountPath: /etc/dn/config
-          - name: dist-volume-name
-            mountPath: /usr/share/dist
-          - name: workdir
-            mountPath: /usr/share/nginx/html
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 80
-          failureThreshold: 1
-          periodSeconds: 60
-          initialDelaySeconds: 10
-          timeoutSeconds: 1 #(default)
-      initContainers:
-        - name: install
-          image: busybox:1.34.1
-          command:
-            #        #TODO now this archive contains sources rather than dist
-            #        - https://github.com/Akiyamka/node-js-ci-cd-experement/archive/refs/tags/latest.tar.gz;
-            #        - tar -xzf latest.tar.gz -C dir123;
-
-            - sh
-            - -c
-            #copy dist, config
-            - "cp /etc/dn/config/appconfig.js /workdir/; cp /usr/share/dist/index.html /workdir/"
+        - name: nginx
+          imagePullPolicy: Always #don't use Always for local minikube - otherwise it reloads from remote each time
+          image: ghcr.io/akiyamka/myimage:latest #TODO image version? latest?
+          ports:
+            - containerPort: 80
           volumeMounts:
             - name: config-volume-name
-              mountPath: /etc/dn/config/
-            - name: dist-volume-name
-              mountPath: /usr/share/dist/
-            - name: workdir
-              mountPath: /workdir/
+              mountPath: /usr/share/nginx/html/config
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            failureThreshold: 1
+            periodSeconds: 60
+            initialDelaySeconds: 10
+            timeoutSeconds: 1 #(default)
       dnsPolicy: Default
       volumes:
-        - name: workdir
-          emptyDir: {}
         - name: config-volume-name
           configMap:
             name: {{ .Values.envName }}-disaster-ninja-fe
             items:
               - key: appconfig-cfgmap-data-name
                 path: "appconfig.js"
-        - name: dist-volume-name
-          configMap: #TODO remove when FE container image is used
-            name: test-dist
-            items:
-              - key: index
-                path: "index.html"
 ---

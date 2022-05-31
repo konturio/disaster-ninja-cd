@@ -17,13 +17,3 @@ data:
   appconfig-cfgmap-data-name: |
     {{ printf "%s%s%s" "values/appconfig/" .Values.envName ".js" | .Files.Get | indent 4 | trim }}
 ---
-#TODO replace with FE container
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: test-dist
-  namespace: {{ .Values.envName }}-disaster-ninja-fe
-data:
-  index: |
-    <html><body><h1>hello</h1></body></html>
----
