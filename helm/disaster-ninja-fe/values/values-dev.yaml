@@ -1,0 +1,8 @@
+# Default values for disaster-ninja-fe.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+envName: dev
+
+dnsName1: dev-disaster-ninja-fe.k8s-01.konturlabs.com

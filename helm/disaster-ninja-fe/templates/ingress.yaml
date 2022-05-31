@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.envName }}-disaster-ninja-fe
+  namespace: {{ .Values.envName }}-disaster-ninja-fe
+  labels:
+    app.kubernetes.io/name: disaster-ninja-fe
+    app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-fe
+    app.kubernetes.io/version: {{ .Chart.Version }}
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    cert-manager.io/issuer: letsencrypt-production #use letsencrypt-staging for testing
+spec:
+  tls:
+    - hosts:
+        - {{ .Values.dnsName1 }}
+        #TODO add dnsName2 like 'test-apps02.konturlabs.com/insights-api/'
+      secretName: {{ .Values.envName }}-disaster-ninja-fe-tls
+  ingressClassName: nginx
+  rules:
+    - host: {{ .Values.dnsName1 }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.envName }}-disaster-ninja-fe
+                port:
+                  number: 80
+    #TODO add dnsName2 like 'test-apps02.konturlabs.com/insights-api/'
+---
