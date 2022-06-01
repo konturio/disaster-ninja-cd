@@ -12,7 +12,7 @@ metadata:
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
-    cert-manager.io/issuer: letsencrypt-production #use letsencrypt-staging for testing
+    cert-manager.io/cluster-issuer: letsencrypt-staging #use letsencrypt-staging for testing
 spec:
   tls:
     - hosts:
