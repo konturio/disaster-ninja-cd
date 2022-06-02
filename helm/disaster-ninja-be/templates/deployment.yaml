@@ -42,11 +42,6 @@ spec:
       - name: disaster-ninja-be
         image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        env:
-        - name: MY_NODE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
         envFrom:
         - configMapRef:
             name: {{ .Values.envName }}-disaster-ninja-be
