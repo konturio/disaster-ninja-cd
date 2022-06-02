@@ -1,0 +1,18 @@
+# TEST values for disaster-ninja-be.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+envName: test
+
+keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
+keycloakRealm: 'test'
+eventApiUrl: 'https://test-apps.konturlabs.com/events'
+kcApiUrl: 'https://test-api.konturlabs.com/layers'
+layersApiUrl: 'https://test-api.konturlabs.com/layers/v2'
+insightsApiUrl: 'https://test-apps.konturlabs.com/insights-api'
+userProfileApiUrl: 'https://test-apps.konturlabs.com/userprofile'
+tilesHost: 'https://sonic.kontur.io'
+
+notificationsEnabled: true
+notificationsFeed: 'kontur-public'
+notificationsAlertUrlPattern: 'https://test-apps-ninja01.konturlabs.com/active/?event=%s'
+***REMOVED***
