@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.envName }}-disaster-ninja-fe
+  namespace: {{ .Values.envName }}-disaster-ninja-fe
+  labels:
+    app.kubernetes.io/name: disaster-ninja-fe
+    app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-fe
+    app.kubernetes.io/version: {{ .Chart.Version }}
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: disaster-ninja-fe
+      app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-fe
+      #don't add app.kubernetes.io/version
+      app.kubernetes.io/managed-by: "Helm"
+      stage: {{ .Values.envName }}
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: disaster-ninja-fe
+        app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-fe
+        app.kubernetes.io/version: {{ .Chart.Version }}
+        app.kubernetes.io/managed-by: "Helm"
+        stage: {{ .Values.envName }}
+      annotations:
+        meta.helm.sh/release-name: {{ .Release.Name }}
+        meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    spec:
+      containers:
+        - name: nginx
+          imagePullPolicy: Always #don't use Always for local minikube - otherwise it reloads from remote each time
+          image: ghcr.io/akiyamka/myimage:latest #TODO image version? latest?
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: config-volume-name
+              mountPath: /usr/share/nginx/html/config
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            failureThreshold: 1
+            periodSeconds: 60
+            initialDelaySeconds: 10
+            timeoutSeconds: 1 #(default)
+      dnsPolicy: Default
+      volumes:
+        - name: config-volume-name
+          configMap:
+            name: {{ .Values.envName }}-disaster-ninja-fe
+            items:
+              - key: appconfig-cfgmap-data-name
+                path: "appconfig.js"
+---
