@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.envName }}-disaster-ninja-be
+  namespace: {{ .Values.envName }}-disaster-ninja-be
+  labels:
+    app.kubernetes.io/name: disaster-ninja-be
+    app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-be
+    app.kubernetes.io/version: {{ .Chart.Version }}
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
+    acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
+spec:
+  tls:
+  - hosts:
+    - {{ .Values.envName }}-disaster-ninja-be.k8s-01.konturlabs.com
+    secretName: {{ .Values.envName }}-disaster-ninja-be-tls # < cert-manager will store the created certificate in this secret.
+  ingressClassName: nginx
+  rules:
+  - host: {{ .Values.envName }}-disaster-ninja-be.k8s-01.konturlabs.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.envName }}-disaster-ninja-be
+            port:
+              number: {{ .Values.service.port }}
+---
