@@ -1,0 +1,18 @@
+# PROD values for disaster-ninja-be.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+envName: prod
+
+keycloakUrl: 'https://keycloak01.kontur.io/auth'
+keycloakRealm: 'kontur'
+eventApiUrl: 'https://apps.kontur.io/events/'
+kcApiUrl: 'https://api.kontur.io/layers'
+layersApiUrl: 'https://api.kontur.io/layers/v2'
+insightsApiUrl: 'https://apps.kontur.io/insights-api'
+userProfileApiUrl: 'https://apps.kontur.io/userprofile/'
+tilesHost: 'https://disaster.ninja'
+
+notificationsEnabled: true
+notificationsFeed: 'kontur-public'
+notificationsAlertUrlPattern: 'https://disaster.ninja/active/?event=%s'
+***REMOVED***
