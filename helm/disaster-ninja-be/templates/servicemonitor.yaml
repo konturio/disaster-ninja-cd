@@ -1,0 +1,28 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ .Values.envName }}-disaster-ninja-be
+  namespace: {{ .Values.envName }}-disaster-ninja-be
+  labels:
+    app.kubernetes.io/name: disaster-ninja-be
+    app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-be
+    app.kubernetes.io/version: {{ .Chart.Version }}
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  endpoints:
+  - interval: 30s
+    port: main
+    path: /metrics
+    scheme: http
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: disaster-ninja-be
+      app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-be
+      #don't add app.kubernetes.io/version
+      app.kubernetes.io/managed-by: "Helm"
+      stage: {{ .Values.envName }}
+---

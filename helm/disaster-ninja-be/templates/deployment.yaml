@@ -42,6 +42,15 @@ spec:
       - name: disaster-ninja-be
         image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        resources:
+          requests:
+            cpu: "10"
+            memory: "2G"
+          limits:
+            memory: "4G"
+        env:
+          - name: JAVA_TOOL_OPTIONS
+            value: "-XX:MaxRAMPercentage=50"
         envFrom:
         - configMapRef:
             name: {{ .Values.envName }}-disaster-ninja-be
