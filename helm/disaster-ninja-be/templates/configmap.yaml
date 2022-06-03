@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.envName }}-disaster-ninja-be
+  namespace: {{ .Values.envName }}-disaster-ninja-be
+  labels:
+    app.kubernetes.io/name: disaster-ninja-be
+    app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-be
+    app.kubernetes.io/version: {{ .Chart.Version }}
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+data:
+  server.servlet.context-path: /
+  management.endpoints.web.base-path: /
+  management.endpoints.web.path-mapping.prometheus: metrics
+  server.forward-headers-strategy: framework
+  spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.keycloakUrl }}/realms/{{ .Values.keycloakRealm }}
+  spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.keycloakUrl }}/realms/{{ .Values.keycloakRealm }}/protocol/openid-connect/certs
+  kontur.platform.event-api.url: {{ .Values.eventApiUrl }}
+  kontur.platform.keycloak.url: {{ .Values.keycloakUrl }}
+  kontur.platform.keycloak.realm: {{ .Values.keycloakRealm }}
+  kontur.platform.kcApi.url: {{ .Values.kcApiUrl }}
+  kontur.platform.layersApi.url: {{ .Values.kcApiUrl }}
+  kontur.platform.insightsApi.url: {{ .Values.insightsApiUrl }}
+  kontur.platform.userProfileApi.url: {{ .Values.userProfileApiUrl }}
+  kontur.platform.tiles.host: {{ .Values.tilesHost }}
+  notifications.enabled: "{{ .Values.notificationsEnabled }}"
+  notifications.feed: {{ .Values.notificationsFeed }}
+  notifications.alertUrlPattern: {{ .Values.notificationsAlertUrlPattern }}
+***REMOVED***
+
+
+---
+#TODO: create manually, not managed by Helm as it's a secret
+#apiVersion: v1
+#kind: Secret
+#metadata:
+#  name: {{ .Values.envName }}-disaster-ninja-be
+#  namespace: {{ .Values.envName }}-disaster-ninja-be
+#labels:
+#  app.kubernetes.io/name: disaster-ninja-be
+#  app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-be
+#  stage: {{ .Values.envName }}
+#data:
+#  kontur.platform.keycloak.username: 'username'
+***REMOVED***
+---
