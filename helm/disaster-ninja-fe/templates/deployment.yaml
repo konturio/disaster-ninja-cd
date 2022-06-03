@@ -41,18 +41,18 @@ spec:
       containers:
         - name: nginx
           imagePullPolicy: Always #don't use Always for local minikube - otherwise it reloads from remote each time
-          image: ghcr.io/akiyamka/myimage:latest #TODO image version? latest?
+          image: ghcr.io/konturio/disaster-ninja-fe:latest #TODO image version? latest?
           ports:
             - containerPort: 80
           volumeMounts:
             - name: config-volume-name
-              mountPath: /usr/share/nginx/html/config
+              mountPath: /usr/share/nginx/html/active/config
           readinessProbe:
             httpGet:
               path: /
               port: 80
             failureThreshold: 1
-            periodSeconds: 60
+            periodSeconds: 30
             initialDelaySeconds: 10
             timeoutSeconds: 1 #(default)
       dnsPolicy: Default
