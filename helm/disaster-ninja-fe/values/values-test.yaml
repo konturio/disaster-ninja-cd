@@ -6,3 +6,4 @@ replicaCount: 1
 envName: test
 
 dnsName1: test-disaster-ninja-fe.k8s-01.konturlabs.com
+dnsName2: test-disaster-ninja.k8s-01.konturlabs.com
