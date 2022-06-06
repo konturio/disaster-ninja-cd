@@ -22,7 +22,7 @@ spec:
   tls:
     - hosts:
         - {{ .Values.dnsName1 }}
-        #TODO add dnsName2 like 'test-ninja02.konturlabs.com'
+        - {{ .Values.dnsName2 }}
       secretName: {{ .Values.envName }}-disaster-ninja-fe-tls
   ingressClassName: nginx
   rules:
@@ -36,5 +36,28 @@ spec:
                 name: {{ .Values.envName }}-disaster-ninja-fe
                 port:
                   number: 80
-    #TODO add dnsName2 like 'test-ninja02.konturlabs.com'
+          - path: /active/api/
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.envName }}-disaster-ninja-be #TODO #10606
+                port:
+                  number: 80
+    - host: {{ .Values.dnsName2 }}
+      http:
+        paths:
+          - path: /active/
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.envName }}-disaster-ninja-fe
+                port:
+                  number: 80
+          - path: /active/api/
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.envName }}-disaster-ninja-be #TODO #10606
+                port:
+                  number: 80
 ---
