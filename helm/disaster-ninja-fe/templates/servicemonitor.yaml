@@ -1,6 +1,5 @@
----
-apiVersion: v1
-kind: Service
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
 metadata:
   name: {{ .Values.envName }}-disaster-ninja-fe
   namespace: {{ .Values.envName }}-disaster-ninja-fe
@@ -14,20 +13,16 @@ metadata:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
 spec:
-  type: ClusterIP
+  endpoints:
+    - interval: 30s
+      port: metrics
+      path: /metrics
+      scheme: http
   selector:
-    app.kubernetes.io/name: disaster-ninja-fe
-    app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-fe
-    #don't add app.kubernetes.io/version
-    app.kubernetes.io/managed-by: "Helm"
-    stage: {{ .Values.envName }}
-  ports:
-    - name: main
-      port: 80
-      targetPort: 80
-      protocol: TCP
-    - name: metrics
-      port: 9113
-      targetPort: 9113
-      protocol: TCP
+    matchLabels:
+      app.kubernetes.io/name: disaster-ninja-fe
+      app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-fe
+      #don't add app.kubernetes.io/version
+      app.kubernetes.io/managed-by: "Helm"
+      stage: {{ .Values.envName }}
 ---
