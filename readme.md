@@ -54,3 +54,12 @@ After that back-end will be available by
 http://localhost:8627/swagger-ui/index.html
 ```
 
+For stop
+```
+minikube stop
+```
+
+For remove
+```
+helm uninstall dev-disaster-ninja-be
+```
