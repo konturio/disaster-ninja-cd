@@ -17,6 +17,21 @@ Then you must create namespace
 ```
 kubectl create namespace dev-disaster-ninja-be
 ```
+Remove strict requirements for CPUs
+from `./helm/disaster-ninja-be/templates/deployment.yaml`
+```diff
+- spec:
+-   containers:
+-   - name: disaster-ninja-be
+-     image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
+-     imagePullPolicy: {{ .Values.image.pullPolicy }}
+-     resources:
+-       requests:
+-         cpu: "10"
+-         memory: "2G"
+-       limits:
+-         memory: "4G"
+```
 
 Create secrets:
 ```
