@@ -1,5 +1,5 @@
 window.konturAppConfig = {
-  API_GATEWAY: 'https://disaster.ninja/active/api',
+  API_GATEWAY: 'https://prod-disaster-ninja-be.k8s-01.konturlabs.com',
   FEATURES_API: 'https://apps.kontur.io/userprofile/features',
   GRAPHQL_API: 'https://apps.kontur.io/insights-api/graphql',
   BOUNDARIES_API: 'https://api.kontur.io',
