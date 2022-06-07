@@ -21,7 +21,7 @@ metadata:
           add_header Access-Control-Allow-Credentials 'true';
           add_header Access-Control-Allow-Methods *;
 
-          add_header Access-Control-Allow-Headers 'Keep-Alive,User-Agent,If-Modified-Since,Cache-Control,Content-Type';
+          add_header Access-Control-Allow-Headers 'Authorization,Keep-Alive,User-Agent,If-Modified-Since,Cache-Control,Content-Type';
 
           add_header Access-Control-Max-Age 86400;
           add_header Content-Type 'text/plain charset=UTF-8';
@@ -32,7 +32,7 @@ metadata:
         add_header Access-Control-Allow-Origin 'https://{{ .Values.envName }}-disaster-ninja-fe.k8s-01.konturlabs.com';
         add_header Access-Control-Allow-Credentials 'true';
         add_header Access-Control-Allow-Methods *;
-        add_header Access-Control-Allow-Headers 'Keep-Alive,User-Agent,If-Modified-Since,Cache-Control,Content-Type';
+        add_header Access-Control-Allow-Headers 'Authorization,Keep-Alive,User-Agent,If-Modified-Since,Cache-Control,Content-Type';
 spec:
   tls:
   - hosts:
