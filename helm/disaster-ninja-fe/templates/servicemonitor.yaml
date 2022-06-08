@@ -1,3 +1,4 @@
+{{ if ne .Values.envName "local" }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -26,3 +27,4 @@ spec:
       app.kubernetes.io/managed-by: "Helm"
       stage: {{ .Values.envName }}
 ---
+{{ end }}

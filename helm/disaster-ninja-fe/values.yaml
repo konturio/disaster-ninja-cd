@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-envName: dev
+envName: local
 
-dnsName1: dev-disaster-ninja-fe.k8s-01.konturlabs.com
-dnsName2: dev-disaster-ninja.k8s-01.konturlabs.com
+dnsName1: localhost
+dnsName2: localhost
