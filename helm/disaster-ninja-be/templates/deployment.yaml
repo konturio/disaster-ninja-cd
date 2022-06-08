@@ -42,15 +42,15 @@ spec:
       - name: disaster-ninja-be
         image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        {{ if eq .Values.envName "prod" }}
         resources:
           requests:
             cpu: "1"
             memory: "2G"
+        {{ if eq .Values.envName "prod" }}
           limits:
             memory: "4G"
         {{ else }}
-        #resources are not specified for non-prod stages so that they have lower priority
+        #resource limits are not specified for non-prod stages so that they have lower priority
         {{ end }}
         env:
           - name: JAVA_TOOL_OPTIONS
