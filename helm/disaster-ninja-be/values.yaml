@@ -21,7 +21,4 @@ insightsApiUrl: 'https://test-apps02.konturlabs.com/insights-api'
 userProfileApiUrl: 'https://test-apps02.konturlabs.com/userprofile'
 tilesHost: 'https://zigzag.kontur.io'
 
-notificationsEnabled: true
-notificationsFeed: 'kontur-public'
-notificationsAlertUrlPattern: 'https://test-apps-ninja02.konturlabs.com/active/?event=%s'
-notificationsSlackWebHook: 'https://hooks.slack.com/services/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'
+notificationsEnabled: false
