@@ -10,7 +10,7 @@ image:
 service:
   port: 8627
 
-envName: dev
+envName: local
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: 'dev'
@@ -22,3 +22,6 @@ userProfileApiUrl: 'https://test-apps02.konturlabs.com/userprofile'
 tilesHost: 'https://zigzag.kontur.io'
 
 notificationsEnabled: false
+notificationsFeed: 'disabled'
+notificationsAlertUrlPattern: 'disabled'
+***REMOVED***
