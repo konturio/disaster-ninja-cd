@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Values.envName }}-disaster-ninja-be
-  namespace: {{ .Values.envName }}-disaster-ninja-be
+  namespace: {{ .Release.Namespace }}
   labels:
     app.kubernetes.io/name: disaster-ninja-be
     app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-be
@@ -13,7 +13,7 @@ metadata:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
 data:
-  server.servlet.context-path: /
+  server.servlet.context-path: /active/api
   management.endpoints.web.base-path: /
   management.endpoints.web.path-mapping.prometheus: metrics
   server.forward-headers-strategy: framework
@@ -23,7 +23,7 @@ data:
   kontur.platform.keycloak.url: {{ .Values.keycloakUrl }}
   kontur.platform.keycloak.realm: {{ .Values.keycloakRealm }}
   kontur.platform.kcApi.url: {{ .Values.kcApiUrl }}
-  kontur.platform.layersApi.url: {{ .Values.kcApiUrl }}
+  kontur.platform.layersApi.url: {{ .Values.layersApiUrl }}
   kontur.platform.insightsApi.url: {{ .Values.insightsApiUrl }}
   kontur.platform.userProfileApi.url: {{ .Values.userProfileApiUrl }}
   kontur.platform.tiles.host: {{ .Values.tilesHost }}
@@ -39,7 +39,7 @@ data:
 #kind: Secret
 #metadata:
 #  name: {{ .Values.envName }}-disaster-ninja-be
-#  namespace: {{ .Values.envName }}-disaster-ninja-be
+#  namespace: {{ .Release.Namespace }} (effectively {{ .Values.envName }}-disaster-ninja)
 #labels:
 #  app.kubernetes.io/name: disaster-ninja-be
 #  app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-be
