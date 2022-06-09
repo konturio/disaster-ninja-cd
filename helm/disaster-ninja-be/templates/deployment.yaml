@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.envName }}-disaster-ninja-be
-  namespace: {{ .Values.envName }}-disaster-ninja-be
+  namespace: {{ .Release.Namespace }}
   labels:
     app.kubernetes.io/name: disaster-ninja-be
     app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-be
@@ -42,6 +42,8 @@ spec:
       - name: disaster-ninja-be
         image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+          - containerPort: 8627
         resources:
           requests:
             cpu: "1"
@@ -62,7 +64,7 @@ spec:
             name: {{ .Values.envName }}-disaster-ninja-be
         readinessProbe:
           httpGet:
-            path: /health/readiness
+            path: /active/api/health/readiness
             port: {{ .Values.service.port }}
           failureThreshold: 1
           periodSeconds: 30

@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Values.envName }}-disaster-ninja-fe
-  namespace: {{ .Values.envName }}-disaster-ninja-fe
+  namespace: {{ .Release.Namespace }}
   labels:
     app.kubernetes.io/name: disaster-ninja-fe
     app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-fe

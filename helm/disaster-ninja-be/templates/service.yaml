@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Values.envName }}-disaster-ninja-be
-  namespace: {{ .Values.envName }}-disaster-ninja-be
+  namespace: {{ .Release.Namespace }}
   labels:
     app.kubernetes.io/name: disaster-ninja-be
     app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-be
