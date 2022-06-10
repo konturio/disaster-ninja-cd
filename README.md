@@ -16,7 +16,7 @@ rm ./helm/disaster-ninja-be/templates/servicemonitor.yaml
 ```
 Then you must create namespace
 ```
-kubectl create namespace dev-disaster-ninja-be
+kubectl create namespace local-disaster-ninja
 ```
 Remove strict requirements for CPUs
 from `./helm/disaster-ninja-be/templates/deployment.yaml`
@@ -44,11 +44,11 @@ data:
 kind: Secret
 metadata:
   labels:
-    app.kubernetes.io/instance: dev-disaster-ninja-be
+    app.kubernetes.io/instance: local-disaster-ninja-be
     app.kubernetes.io/name: disaster-ninja-be
-    stage: dev
-  name: dev-disaster-ninja-be
-  namespace: dev-disaster-ninja-be
+    stage: local
+  name: local-disaster-ninja-be
+  namespace: local-disaster-ninja
 EOT
 
 kubectl apply -f secret.yaml 
@@ -56,14 +56,14 @@ kubectl apply -f secret.yaml
 
 Then you can run cluster
 ```
-helm --kube-context minikube -n dev-disaster-ninja-be upgrade --install dev-disaster-ninja-be ./helm/disaster-ninja-be/ -f ./helm/disaster-ninja-be/values/values-dev.yaml
+helm --kube-context minikube -n local-disaster-ninja upgrade --install local-disaster-ninja-be ./helm/disaster-ninja-be
 ```
 
 Now you need to make back-end available outside of cluster.
 You can use [Lens](https://github.com/lensapp/lens) for that, 
 or next command
 ```
-kubectl -n dev-disaster-ninja-be port-forward svc/dev-disaster-ninja-be 8627:8627
+kubectl -n local-disaster-ninja port-forward svc/local-disaster-ninja-be 8627:8627
 ```
 After that back-end will be available by
 ```
@@ -77,5 +77,5 @@ minikube stop
 
 For remove
 ```
-helm uninstall dev-disaster-ninja-be
+helm uninstall local-disaster-ninja-be
 ```

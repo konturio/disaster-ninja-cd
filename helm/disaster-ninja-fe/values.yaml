@@ -6,3 +6,6 @@ replicaCount: 1
 envName: local
 
 dnsName1: localhost
+dnsNameOuter: localhost
+
+backendPort: 8627
