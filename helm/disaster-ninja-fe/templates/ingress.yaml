@@ -2,11 +2,11 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.envName }}-disaster-ninja-fe
-  namespace: {{ .Values.envName }}-disaster-ninja-fe
+  name: {{ .Values.envName }}-disaster-ninja
+  namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: disaster-ninja-fe
-    app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-fe
+    app.kubernetes.io/name: disaster-ninja
+    app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja
     app.kubernetes.io/version: {{ .Chart.Version }}
     app.kubernetes.io/managed-by: "Helm"
     stage: {{ .Values.envName }}
@@ -23,8 +23,7 @@ spec:
   tls:
     - hosts:
         - {{ .Values.dnsName1 }}
-        #TODO add dnsName2 like 'test-ninja02.konturlabs.com'
-      secretName: {{ .Values.envName }}-disaster-ninja-fe-tls
+      secretName: {{ .Values.envName }}-disaster-ninja-tls
   ingressClassName: nginx
   rules:
     - host: {{ .Values.dnsName1 }}
@@ -37,6 +36,12 @@ spec:
                 name: {{ .Values.envName }}-disaster-ninja-fe
                 port:
                   number: 80
-    #TODO add dnsName2 like 'test-ninja02.konturlabs.com'
+          - path: /active/api/
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.envName }}-disaster-ninja-be
+                port:
+                  number: {{ .Values.backendPort }}
 ---
 {{ end }}

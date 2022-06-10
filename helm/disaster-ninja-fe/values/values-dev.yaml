@@ -5,4 +5,7 @@
 replicaCount: 1
 envName: dev
 
-dnsName1: dev-disaster-ninja-fe.k8s-01.konturlabs.com
+dnsName1: dev-disaster-ninja.k8s-01.konturlabs.com
+dnsNameOuter: dev-disaster-ninja.konturlabs.com
+
+backendPort: 8627
