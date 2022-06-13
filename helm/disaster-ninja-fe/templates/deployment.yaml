@@ -37,6 +37,7 @@ spec:
       annotations:
         meta.helm.sh/release-name: {{ .Release.Name }}
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+        rollme: {{ randAlphaNum 5 | quote }} #random value that makes Helm restart pods on any upgrade
     spec:
       containers:
         - name: nginx
