@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: ghcr.io/azapasnik/test-dn2-be-4
+  repository: ghcr.io/konturio/disaster-ninja-be
   pullPolicy: Always
   tag: ""
 
