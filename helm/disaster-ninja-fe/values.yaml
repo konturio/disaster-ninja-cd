@@ -4,7 +4,6 @@
 
 replicaCount: 1
 envName: local
-
+clientImg: 'latest'
 dnsName1: localhost
-
 backendPort: 8627
