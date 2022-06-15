@@ -49,12 +49,8 @@ spec:
           requests:
             cpu: "1"
             memory: "2G"
-        {{ if eq .Values.envName "prod" }}
           limits:
             memory: "4G"
-        {{ else }}
-        #resource limits are not specified for non-prod stages so that they have lower priority
-        {{ end }}
         env:
           - name: JAVA_TOOL_OPTIONS
             value: "-XX:MaxRAMPercentage=50"
