@@ -42,7 +42,7 @@ spec:
       containers:
         - name: nginx
           imagePullPolicy: Always #don't use Always for local minikube - otherwise it reloads from remote each time
-          image: {{ .Values.clientImg }}
+          image: {{ .Values.clientImgRepository }}:{{ .Values.clientImgTag }}
           ports:
             - containerPort: 80
           volumeMounts:
