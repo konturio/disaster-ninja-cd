@@ -4,8 +4,10 @@ window.konturAppConfig = {
   GRAPHQL_API: 'https://test-apps.konturlabs.com/insights-api/graphql',
   BOUNDARIES_API: 'https://test-api.konturlabs.com',
   REPORTS_API: 'https://test-apps-ninja01.konturlabs.com/active/reports',
+  BIVARIATE_TILES_RELATIVE_URL: 'api/tiles/bivariate/v1/',
   // use param BIVARIATE_TILES_SERVER if you need to setup external server for bivariate tiles
   // BIVARIATE_TILES_SERVER: 'http://localhost:3000/',
+  BIVARIATE_TILES_INDICATORS_CLASS: 'all',
   REFRESH_INTERVAL_SEC: 300,
   MAP_ACCESS_TOKEN: '',
   MAP_BASE_STYLE: 'https://sonic.kontur.io/tiles/basemap/style_ninja.json',
