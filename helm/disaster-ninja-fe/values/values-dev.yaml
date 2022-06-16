@@ -4,6 +4,5 @@
 
 replicaCount: 1
 envName: dev
-clientImg: 'latest'
 dnsName1: dev-disaster-ninja.k8s-01.konturlabs.com
 backendPort: 8627
