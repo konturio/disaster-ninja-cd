@@ -4,7 +4,8 @@
 envName: local
 
 image:
-  pullPolicy: IfNotPresent
+  be:
+    pullPolicy: IfNotPresent
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: 'dev'

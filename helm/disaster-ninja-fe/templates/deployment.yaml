@@ -42,7 +42,7 @@ spec:
       containers:
         - name: nginx
           imagePullPolicy: Always #don't use Always for local minikube - otherwise it reloads from remote each time
-          image: {{ .Values.clientImgRepository }}:{{ .Values.clientImgTag }}
+          image: {{ .Values.image.fe.repository }}:{{ .Values.image.fe.tag | default .Chart.AppVersion }}
           ports:
             - containerPort: 80
           volumeMounts:

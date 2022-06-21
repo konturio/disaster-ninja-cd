@@ -24,7 +24,7 @@ from `./helm/disaster-ninja-be/templates/deployment.yaml`
 - spec:
 -   containers:
 -   - name: disaster-ninja-be
--     image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
+-     image: {{ .Values.image.be.repository }}:{{ .Values.image.be.tag | default .Chart.AppVersion }}
 -     imagePullPolicy: {{ .Values.image.pullPolicy }}
 -     resources:
 -       requests:
