@@ -3,6 +3,10 @@
 # Declare variables to be passed into your templates.
 envName: prod
 
+image:
+  be:
+    tag: ""
+
 keycloakUrl: 'https://keycloak01.kontur.io/auth'
 keycloakRealm: 'kontur'
 eventApiUrl: 'https://apps.kontur.io/events/'

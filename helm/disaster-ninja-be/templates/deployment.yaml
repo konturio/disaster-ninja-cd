@@ -41,8 +41,8 @@ spec:
     spec:
       containers:
       - name: disaster-ninja-be
-        image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        image: {{ .Values.image.be.repository }}:{{ .Values.image.be.tag | default .Chart.AppVersion }}
+        imagePullPolicy: {{ .Values.image.be.pullPolicy }}
         ports:
           - containerPort: 8627
         resources:
