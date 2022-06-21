@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ .Values.envName }}-disaster-ninja-fe-helmtest
+  namespace: {{ .Release.Namespace }}
+  labels:
+      app.kubernetes.io/name: disaster-ninja-fe-helmtest
+      app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-fe-helmtest
+      app.kubernetes.io/version: {{ .Chart.Version }}
+      app.kubernetes.io/managed-by: "Helm"
+      stage: {{ .Values.envName }}
+  annotations:
+    helm.sh/hook: test
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ["/bin/sh","-c"]
+      args: ["sleep 30; wget {{ .Values.envName }}-disaster-ninja-fe:80/active"]
+  restartPolicy: Never
+---
