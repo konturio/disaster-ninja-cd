@@ -2,8 +2,11 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-clientImgRepository: ghcr.io/konturio/disaster-ninja-fe
-clientImgTag: 'latest'
+image:
+  fe:
+    repository: ghcr.io/konturio/disaster-ninja-fe
+    tag: "latest"
+
 replicaCount: 1
 envName: local
 dnsName1: localhost
