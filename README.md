@@ -1,3 +1,9 @@
+How to deploy specific version
+---
+You must set  
+`FE_IMG_TAG` for front-end deploy, and   
+`BE_IMG_TAG` for back-end
+In case you not set this variables - version from Chart.yaml will be used
 
 How to run disaster-ninja-be locally
 ---
