@@ -3,6 +3,8 @@
 # Declare variables to be passed into your templates.
 envName: prod
 
+replicas: 2
+
 image:
   be:
     tag: ""
