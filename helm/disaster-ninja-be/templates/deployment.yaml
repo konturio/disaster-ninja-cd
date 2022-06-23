@@ -64,6 +64,13 @@ spec:
             path: /active/api/health/readiness
             port: {{ .Values.service.port }}
           failureThreshold: 1
-          periodSeconds: 30
+          periodSeconds: 10
+          initialDelaySeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /active/api/health/readiness
+            port: {{ .Values.service.port }}
+          failureThreshold: 10
+          periodSeconds: 10
           initialDelaySeconds: 5
 ---
