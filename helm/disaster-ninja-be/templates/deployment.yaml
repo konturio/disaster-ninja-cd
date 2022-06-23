@@ -20,7 +20,7 @@ spec:
       #don't add app.kubernetes.io/version
       app.kubernetes.io/managed-by: "Helm"
       stage: {{ .Values.envName }}
-  replicas: 1
+  replicas: {{ .Values.replicas }}
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -64,6 +64,13 @@ spec:
             path: /active/api/health/readiness
             port: {{ .Values.service.port }}
           failureThreshold: 1
-          periodSeconds: 30
+          periodSeconds: 10
+          initialDelaySeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /active/api/health/readiness
+            port: {{ .Values.service.port }}
+          failureThreshold: 10
+          periodSeconds: 10
           initialDelaySeconds: 5
 ---

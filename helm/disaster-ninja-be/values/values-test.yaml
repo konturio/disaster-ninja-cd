@@ -3,6 +3,8 @@
 # Declare variables to be passed into your templates.
 envName: test
 
+replicas: 1
+
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: 'test'
 eventApiUrl: 'https://test-apps.konturlabs.com/events'

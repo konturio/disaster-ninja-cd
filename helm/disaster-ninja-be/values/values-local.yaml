@@ -3,6 +3,8 @@
 # Declare variables to be passed into your templates.
 envName: local
 
+replicas: 1
+
 image:
   be:
     pullPolicy: IfNotPresent
