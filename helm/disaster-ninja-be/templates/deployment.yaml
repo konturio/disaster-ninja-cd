@@ -20,7 +20,7 @@ spec:
       #don't add app.kubernetes.io/version
       app.kubernetes.io/managed-by: "Helm"
       stage: {{ .Values.envName }}
-  replicas: 1
+  replicas: {{ .Values.replicas }}
   strategy:
     type: RollingUpdate
     rollingUpdate:
