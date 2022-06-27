@@ -22,8 +22,13 @@ metadata:
       location /active/reports/ {
         proxy_pass  https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazonaws.com/kontur_reports/{{ .Values.envName }}/;
       }
-      location ~/active/[^.]+$ {
-        rewrite "^/active/[^.]+$" /active/ last;
+      location ~/active/reports[/]?[^/.]+$ {
+        rewrite "^/active(?=/).*/[^/.]+/{0,1}$" /active/ last;
+        return 404;
+      }
+      location /active/reports {
+        rewrite "^/active(?=/).*/[^/.]+/{0,1}$" /active/ last;
+        return 404;
       }
 spec:
   tls:
