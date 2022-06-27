@@ -7,7 +7,7 @@ window.konturAppConfig = {
   TILES_API: 'https://disaster.ninja/tiles/stats/',
   REFRESH_INTERVAL_SEC: 300,
   MAP_ACCESS_TOKEN: '',
-  MAP_BASE_STYLE: 'https://disaster.ninja/tiles/basemap/style_ninja.json',
+  MAP_BASE_STYLE: 'https://api.kontur.io/layers/tiles/basemap/style_ninja.json',
   LAYERS_BY_DEFAULT: [
     'BIV__Kontur OpenStreetMap Quantity',
     'activeContributors',
