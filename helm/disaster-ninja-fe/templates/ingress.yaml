@@ -19,6 +19,12 @@ metadata:
       location / {
         return 302 /active/;
       }
+      location /active/reports/ {
+        proxy_pass  https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazonaws.com/kontur_reports/{{ .Values.envName }}/;
+      }
+      location ~/active/[^.]+$ {
+        rewrite "^/active/[^.]+$" /active/ last;
+      }
 spec:
   tls:
     - hosts:
