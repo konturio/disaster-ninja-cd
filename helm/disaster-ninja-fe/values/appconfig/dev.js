@@ -10,7 +10,7 @@ window.konturAppConfig = {
   BIVARIATE_TILES_INDICATORS_CLASS: 'all',
   REFRESH_INTERVAL_SEC: 300,
   MAP_ACCESS_TOKEN: '',
-  MAP_BASE_STYLE: 'https://zigzag.kontur.io/tiles/basemap/style_ninja.json',
+  MAP_BASE_STYLE: 'https://test-api02.konturlabs.com/layers/tiles/basemap/style_ninja.json',
   LAYERS_BY_DEFAULT: [
     'BIV__Kontur OpenStreetMap Quantity',
     'activeContributors',
