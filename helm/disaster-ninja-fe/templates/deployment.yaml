@@ -75,7 +75,7 @@ spec:
             name: {{ .Values.envName }}-disaster-ninja-fe
             items:
               - key: appconfig-cfgmap-data
-                path: "appconfig.js"
+                path: "appconfig.json"
         - name: nginx-config-volume
           configMap:
             name: {{ .Values.envName }}-disaster-ninja-fe
