@@ -12,10 +12,9 @@ metadata:
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
-# TODO: copying external JS file into the container is not safe - replace with JSON
 data:
   appconfig-cfgmap-data: |
-    {{ printf "%s%s%s" "values/appconfig/" .Values.envName ".js" | .Files.Get | indent 4 | trim }}
+    {{ printf "%s%s%s" "values/appconfig/" .Values.envName ".json" | .Files.Get | indent 4 | trim }}
   nginx-config: |
     {{ "values/nginx/nginx.conf" | .Files.Get | indent 4 | trim }}
 ---
