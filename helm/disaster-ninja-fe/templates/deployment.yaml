@@ -74,6 +74,8 @@ spec:
           configMap:
             name: {{ .Values.envName }}-disaster-ninja-fe
             items:
+              - key: appconfig-cfgmap-data-legacy
+                path: "appconfig.js"
               - key: appconfig-cfgmap-data
                 path: "appconfig.json"
         - name: nginx-config-volume
