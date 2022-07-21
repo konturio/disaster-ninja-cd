@@ -19,8 +19,8 @@ metadata:
       location / {
         return 302 /active/;
       }
-      location /active/reports/ {
-        proxy_pass  {{ .Values.reportsBucket }};
+      location ~^/active/reports/(.*\..*)$ {
+        proxy_pass  {{ .Values.reportsBucket }}$1;
       }
       location ~/active/reports[/]?[^/.]+$ {
         rewrite "^/active(?=/).*/[^/.]+/{0,1}$" /active/ last;
