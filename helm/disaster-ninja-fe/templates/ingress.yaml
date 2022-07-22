@@ -20,6 +20,7 @@ metadata:
         return 302 /active/;
       }
       location ~^/active/reports/(.*\..*)$ {
+        resolver 1.1.1.1 1.0.0.1;
         proxy_pass  {{ .Values.reportsBucket }}$1;
       }
       location ~/active/reports[/]?[^/.]+$ {
