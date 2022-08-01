@@ -26,7 +26,7 @@ data:
   kontur.platform.insightsApi.url: {{ .Values.insightsApiUrl }}
   kontur.platform.userProfileApi.url: {{ .Values.userProfileApiUrl }}
   kontur.platform.tiles.host: {{ .Values.tilesHost }}
-  notifications.enabled: "{{ .Values.notificationsEnabled }}"
+  #notifications.enabled: "false" #overridden by env var
   notifications.feed: {{ .Values.notificationsFeed }}
   notifications.alertUrlPattern: {{ .Values.notificationsAlertUrlPattern }}
 ***REMOVED***
