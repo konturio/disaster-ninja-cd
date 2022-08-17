@@ -22,8 +22,12 @@ spec:
     app.kubernetes.io/managed-by: "Helm"
     stage: {{ .Values.envName }}
   ports:
-  - name: main
-    port: 80
-    targetPort: 80
-    protocol: TCP
+    - name: main
+      port: 80
+      targetPort: 80
+      protocol: TCP
+    - name: metrics
+      port: 9113
+      targetPort: 9113
+      protocol: TCP
 ---
