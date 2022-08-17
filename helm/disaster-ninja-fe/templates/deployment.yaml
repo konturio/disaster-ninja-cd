@@ -47,7 +47,7 @@ spec:
             - containerPort: 80
           volumeMounts:
             - name: config-volume
-              mountPath: /usr/share/nginx/html/active/config
+              mountPath: /usr/src/app/static/config
               readOnly: true
             - name: nginx-config-volume
               mountPath: /etc/nginx/conf.d
@@ -74,14 +74,6 @@ spec:
           configMap:
             name: {{ .Values.envName }}-disaster-ninja-fe
             items:
-              - key: appconfig-cfgmap-data-legacy
-                path: "appconfig.js"
               - key: appconfig-cfgmap-data
                 path: "appconfig.json"
-        - name: nginx-config-volume
-          configMap:
-            name: {{ .Values.envName }}-disaster-ninja-fe
-            items:
-              - key: nginx-config
-                path: "nginx.conf"
 ---
