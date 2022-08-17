@@ -15,10 +15,10 @@ metadata:
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
 spec:
   endpoints:
-    - interval: 30s
-      port: main
-      path: /metrics
-      scheme: http
+  - interval: 30s
+    port: metrics
+    path: /metrics
+    scheme: http
   selector:
     matchLabels:
       app.kubernetes.io/name: disaster-ninja-fe
