@@ -15,4 +15,3 @@ metadata:
 data:
   appconfig-cfgmap-data: |
     {{ printf "%s%s%s" "values/appconfig/" .Values.envName ".json" | .Files.Get | indent 4 | trim }}
----

@@ -20,4 +20,3 @@ spec:
       command: ["/bin/sh","-c"]
       args: ["sleep 30; wget {{ .Values.envName }}-disaster-ninja-fe:80/active"]
   restartPolicy: Never
----
