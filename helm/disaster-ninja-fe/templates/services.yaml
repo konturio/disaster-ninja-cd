@@ -24,10 +24,6 @@ spec:
   ports:
     - name: main
       port: 80
-      targetPort: 80
-      protocol: TCP
-    - name: metrics
-      port: 80
-      targetPort: 80
+      targetPort: main
       protocol: TCP
 ---
