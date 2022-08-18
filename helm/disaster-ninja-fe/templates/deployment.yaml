@@ -45,6 +45,7 @@ spec:
           image: {{ .Values.image.fe.repository }}:{{ .Values.image.fe.tag | default .Chart.AppVersion }}
           ports:
             - containerPort: 80
+              name: main
           volumeMounts:
             - name: config-volume
               mountPath: /usr/src/app/static/config
