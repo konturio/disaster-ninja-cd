@@ -19,6 +19,10 @@ metadata:
       location / {
         return 302 /active/;
       }
+      location ^~ /active/preview.png {
+        resolver 1.1.1.1 1.0.0.1;
+        proxy_pass  {{ .Values.epigHost }}/active/preview.png;
+      }
       location ~^/active/reports/(.*\..*)$ {
         resolver 1.1.1.1 1.0.0.1;
         proxy_pass  {{ .Values.reportsBucket }}$1;
