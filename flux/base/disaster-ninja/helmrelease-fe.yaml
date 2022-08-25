@@ -4,6 +4,7 @@ kind: HelmRelease
 metadata:
   name: disaster-ninja-fe
 spec:
+  suspend: false
   interval: 5m
   chart:
     spec:
@@ -14,7 +15,7 @@ spec:
       sourceRef:
         kind: GitRepository
         name: kontur-platform
-        namespace: kontur-platform #TODO check
+        namespace: flux-system
       interval: 1m
   upgrade:
     remediation:
