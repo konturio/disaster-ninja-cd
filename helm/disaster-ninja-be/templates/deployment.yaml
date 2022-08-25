@@ -45,7 +45,7 @@ spec:
         imagePullPolicy: {{ .Values.image.be.pullPolicy }}
         ports:
           - containerPort: {{ .Values.service.port }}
-            name: main
+            name: be-main
         resources:
           requests:
             cpu: "1"
@@ -125,7 +125,7 @@ spec:
         imagePullPolicy: {{ .Values.image.be.pullPolicy }}
         ports:
           - containerPort: {{ .Values.service.port }}
-            name: main
+            name: be-main
         resources:
           requests:
             cpu: "1"
