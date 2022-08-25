@@ -22,8 +22,8 @@ spec:
     app.kubernetes.io/managed-by: "Helm"
     stage: {{ .Values.envName }}
   ports:
-    - name: main
+    - name: fe-main
       port: 80
-      targetPort: main
+      targetPort: fe-main
       protocol: TCP
 ---

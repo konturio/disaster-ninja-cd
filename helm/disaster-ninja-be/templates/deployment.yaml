@@ -44,7 +44,8 @@ spec:
         image: {{ .Values.image.be.repository }}:{{ .Values.image.be.tag | default .Chart.AppVersion }}
         imagePullPolicy: {{ .Values.image.be.pullPolicy }}
         ports:
-          - containerPort: 8627
+          - containerPort: {{ .Values.service.port }}
+            name: be-main
         resources:
           requests:
             cpu: "1"
@@ -123,7 +124,8 @@ spec:
         image: {{ .Values.image.be.repository }}:{{ .Values.image.be.tag | default .Chart.AppVersion }}
         imagePullPolicy: {{ .Values.image.be.pullPolicy }}
         ports:
-          - containerPort: 8627
+          - containerPort: {{ .Values.service.port }}
+            name: be-main
         resources:
           requests:
             cpu: "1"
