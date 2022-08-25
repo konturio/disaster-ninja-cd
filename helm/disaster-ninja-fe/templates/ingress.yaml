@@ -47,13 +47,13 @@ spec:
               service:
                 name: {{ .Values.envName }}-disaster-ninja-fe
                 port:
-                  name: main
+                  name: fe-main
           - path: /active/api/
             pathType: Prefix
             backend:
               service:
                 name: {{ .Values.envName }}-disaster-ninja-be
                 port:
-                  name: main
+                  name: be-main
 ---
 {{ end }}

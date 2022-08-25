@@ -22,9 +22,9 @@ spec:
     app.kubernetes.io/managed-by: "Helm"
     stage: {{ .Values.envName }}
   ports:
-  - name: main
+  - name: be-main
     port: {{ .Values.service.port }}
-    targetPort: main
+    targetPort: be-main
     protocol: TCP
 ---
 
