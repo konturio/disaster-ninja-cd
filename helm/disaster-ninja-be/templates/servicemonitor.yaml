@@ -16,7 +16,7 @@ metadata:
 spec:
   endpoints:
   - interval: 30s
-    port: main
+    port: be-main
     path: /active/api/metrics
     scheme: http
   selector:

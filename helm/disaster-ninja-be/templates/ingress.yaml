@@ -31,6 +31,6 @@ spec:
           service:
             name: {{ .Values.envName }}-disaster-ninja-be
             port:
-              number: {{ .Values.service.port }}
+              name: be-main
 ---
 {{ end }}
