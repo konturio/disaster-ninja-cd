@@ -2,12 +2,12 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: disaster-ninja-fe
+  name: disaster-ninja-be
 spec:
   interval: 5m
   chart:
     spec:
-      chart: ./helm/disaster-ninja-fe
+      chart: ./helm/disaster-ninja-be
       valuesFiles:
         - values.yaml
       reconcileStrategy: ChartVersion
