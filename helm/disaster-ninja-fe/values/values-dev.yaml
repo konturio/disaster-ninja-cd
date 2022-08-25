@@ -2,6 +2,11 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+image:
+  fe:
+    repository: ghcr.io/konturio/disaster-ninja-fe
+    tag: "latest" #this version will be automatically deployed by Flux
+
 replicaCount: 1
 envName: dev
 dnsName1: dev-disaster-ninja.k8s-01.konturlabs.com

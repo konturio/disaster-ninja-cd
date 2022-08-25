@@ -6,7 +6,7 @@ image:
   be:
     repository: ghcr.io/konturio/disaster-ninja-be
     pullPolicy: Always
-    tag: ""
+    tag: "latest"
 
 service:
   port: 8627
