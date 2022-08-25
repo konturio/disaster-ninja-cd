@@ -1,0 +1,10 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: disaster-ninja-be
+spec:
+  chart:
+    spec:
+      valuesFiles:
+      - values.yaml
+      - values/values-test.yaml
