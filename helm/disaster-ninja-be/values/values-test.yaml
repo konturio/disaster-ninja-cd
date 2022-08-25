@@ -5,6 +5,10 @@ envName: test
 
 replicas: 1
 
+image:
+  be:
+    tag: "latest" #this version will be automatically deployed by Flux
+
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: 'test'
 eventApiUrl: 'https://test-apps.konturlabs.com/events'

@@ -17,8 +17,5 @@ type: application
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
 version: 0.1.5
 
-# This is the version number of the application being deployed. This version number should be
-# incremented each time you make changes to the application. Versions are not expected to
-# follow Semantic Versioning. They should reflect the version the application is using.
-# It is recommended to use it with quotes.
-appVersion: "release-2.0.31-beta"
+#Don't use appVersion, use {{ .Values.image.fe.tag }} instead. That's required for Flux automation - so that different
+# stages can have different versions within the same branch watched by Flux.
