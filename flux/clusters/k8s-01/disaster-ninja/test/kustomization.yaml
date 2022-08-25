@@ -4,7 +4,16 @@ resources:
   - ../../../../base/disaster-ninja
 namePrefix: test-
 namespace: test-disaster-ninja
-patchesStrategicMerge:
-  - helmrelease-be.yaml
-  - helmrelease-fe.yaml
+patches:
+  - target:
+      kind: HelmRelease
+      name: disaster-ninja-.*
+      group: helm.toolkit.fluxcd.io
+      version: v2beta1
+    patch: |-
+      - op: replace
+        path: /spec/chart/spec/valuesFiles
+        value:
+          - values.yaml
+          - values/values-test.yaml
 ---
