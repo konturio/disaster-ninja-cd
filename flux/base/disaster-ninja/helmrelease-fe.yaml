@@ -1,0 +1,26 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: disaster-ninja-fe
+#  namespace: disaster-ninja #TODO check
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ./helm/disaster-ninja-fe
+      valuesFiles:
+        - values.yaml
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: GitRepository
+        name: kontur-platform
+        namespace: kontur-platform #TODO check
+      interval: 1m
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+  test:
+    enable: true
+---
+###TODO add disaster-ninja-be
