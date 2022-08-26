@@ -17,7 +17,7 @@ spec:
           expr: |
             kube_deployment_status_replicas_ready{deployment="{{ .Values.envName }}-disaster-ninja-be"}
             < 1
-          for: 2m
+          for: {{ .Values.alertingTime }}
           labels:
             severity: critical
           #TODO OnCall route to a separate slack channel

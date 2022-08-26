@@ -22,3 +22,5 @@ notificationsEnabled: true
 notificationsFeed: 'kontur-public'
 notificationsAlertUrlPattern: 'https://test-apps-ninja02.konturlabs.com/active/?event=%s'
 ***REMOVED***
+
+alertingTime: 10m

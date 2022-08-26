@@ -14,3 +14,5 @@ dnsName1: dev-disaster-ninja.k8s-01.konturlabs.com
 reportsBucket: https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazonaws.com/kontur_reports/dev/
 
 epigHost: https://dev-epig.k8s-01.konturlabs.com
+
+alertingTime: 10m

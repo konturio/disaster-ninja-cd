@@ -26,3 +26,5 @@ notificationsEnabled: false
 notificationsFeed: 'disabled'
 notificationsAlertUrlPattern: 'disabled'
 ***REMOVED***
+
+alertingTime: 10m
