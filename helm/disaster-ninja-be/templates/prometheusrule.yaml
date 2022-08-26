@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    prometheus: k8s
+    role: alert-rules
+  name: PlatformPods
+  namespace: {{ .Release.Namespace }}
+spec:
+  groups:
+    - name: PlatformPodsUnavailable
+      rules:
+        - alert: PlatformPodsUnavailable-{{ camelcase .Values.envName }}Dn2Api
+          annotations:
+            message: 'There are {{ "{{$value}}" }} Ready pods in {{ .Values.envName }} DN2 API'
+            summary: There are less Ready pods than required
+          expr: |
+            kube_deployment_status_replicas_ready{deployment="{{ .Values.envName }}-disaster-ninja-be"}
+            < 1
+          for: 2m
+          labels:
+            severity: critical
+          #TODO OnCall route to a separate slack channel
