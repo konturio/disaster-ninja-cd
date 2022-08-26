@@ -22,3 +22,5 @@ notificationsEnabled: true
 notificationsFeed: 'kontur-public'
 notificationsAlertUrlPattern: 'https://test-apps-ninja01.konturlabs.com/active/?event=%s'
 notificationsSlackWebHook: 'https://hooks.slack.com/services/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'
+
+alertingTime: 5m

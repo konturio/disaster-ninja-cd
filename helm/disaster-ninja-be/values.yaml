@@ -26,3 +26,5 @@ notificationsEnabled: false
 notificationsFeed: 'disabled'
 notificationsAlertUrlPattern: 'disabled'
 notificationsSlackWebHook: 'disabled'
+
+alertingTime: 10m
