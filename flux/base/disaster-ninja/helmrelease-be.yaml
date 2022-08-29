@@ -10,7 +10,7 @@ spec:
     spec:
       chart: ./helm/disaster-ninja-be
       valuesFiles:
-        - values.yaml
+        - ./helm/disaster-ninja-be/values.yaml
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: GitRepository
