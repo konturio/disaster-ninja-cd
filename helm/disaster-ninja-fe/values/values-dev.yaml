@@ -5,7 +5,7 @@
 image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
-    tag: "latest" #this version will be automatically deployed by Flux
+    tag: "release-2.0.31-beta" #this version will be automatically deployed by Flux
 
 replicaCount: 1
 envName: dev
