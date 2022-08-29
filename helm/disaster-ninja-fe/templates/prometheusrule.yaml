@@ -4,7 +4,7 @@ metadata:
   labels:
     prometheus: k8s
     role: alert-rules
-  name: PlatformPods
+  name: {{ .Values.envName}}-platform-pods-fe
   namespace: {{ .Release.Namespace }}
 spec:
   groups:

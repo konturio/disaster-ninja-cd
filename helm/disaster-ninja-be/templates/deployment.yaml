@@ -6,7 +6,6 @@ metadata:
   labels:
     app.kubernetes.io/name: disaster-ninja-be
     app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-be
-    app.kubernetes.io/version: {{ .Chart.Version }}
     app.kubernetes.io/managed-by: "Helm"
     stage: {{ .Values.envName }}
   annotations:
@@ -31,7 +30,6 @@ spec:
       labels:
         app.kubernetes.io/name: disaster-ninja-be
         app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-be
-        app.kubernetes.io/version: {{ .Chart.Version }}
         app.kubernetes.io/managed-by: "Helm"
         stage: {{ .Values.envName }}
       annotations:
@@ -85,7 +83,6 @@ metadata:
   labels:
     app.kubernetes.io/name: disaster-ninja-be-notifier
     app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-be-notifier
-    app.kubernetes.io/version: {{ .Chart.Version }}
     app.kubernetes.io/managed-by: "Helm"
     stage: {{ .Values.envName }}
   annotations:
@@ -111,7 +108,6 @@ spec:
       labels:
         app.kubernetes.io/name: disaster-ninja-be-notifier
         app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-be-notifier
-        app.kubernetes.io/version: {{ .Chart.Version }}
         app.kubernetes.io/managed-by: "Helm"
         stage: {{ .Values.envName }}
       annotations:

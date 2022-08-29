@@ -7,13 +7,24 @@ namespace: dev-disaster-ninja
 patches:
   - target:
       kind: HelmRelease
-      name: disaster-ninja-.*
+      name: disaster-ninja-be
       group: helm.toolkit.fluxcd.io
       version: v2beta1
     patch: |-
       - op: replace
         path: /spec/chart/spec/valuesFiles
         value:
-          - values.yaml
-          - values/values-dev.yaml
+          - ./helm/disaster-ninja-be/values.yaml
+          - ./helm/disaster-ninja-be/values/values-dev.yaml
+  - target:
+      kind: HelmRelease
+      name: disaster-ninja-fe
+      group: helm.toolkit.fluxcd.io
+      version: v2beta1
+    patch: |-
+      - op: replace
+        path: /spec/chart/spec/valuesFiles
+        value:
+          - ./helm/disaster-ninja-fe/values.yaml
+          - ./helm/disaster-ninja-fe/values/values-dev.yaml
 ---
