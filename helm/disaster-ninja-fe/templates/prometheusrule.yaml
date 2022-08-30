@@ -4,13 +4,13 @@ metadata:
   labels:
     prometheus: k8s
     role: alert-rules
-  name: {{ .Values.envName}}-platform-pods-fe
+  name: {{ .Values.envName}}-disaster-ninja-fe-platform-pods
   namespace: {{ .Release.Namespace }}
 spec:
   groups:
     - name: PlatformPodsUnavailable
       rules:
-        - alert: PlatformPodsUnavailable-{{ camelcase .Values.envName }}Dn2AFrontEnd
+        - alert: {{ camelcase .Values.envName }}-PlatformPodsUnavailable-Dn2FrontEnd
           annotations:
             message: 'There are {{ "{{$value}}" }} Ready pods in {{ .Values.envName }} DN2 FE'
             summary: There are less Ready pods than required
