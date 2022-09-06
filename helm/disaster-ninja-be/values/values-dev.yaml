@@ -7,7 +7,7 @@ replicas: 1
 
 image:
   be:
-    tag: "11555-move-active-contributors-layer-higher-into-the-layers-tree-out-of-other.b85be79.1" #this version will be automatically deployed by Flux
+    tag: "11908-get-episodes-on-dn-backend.8efa71f.1" #this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: 'dev'
