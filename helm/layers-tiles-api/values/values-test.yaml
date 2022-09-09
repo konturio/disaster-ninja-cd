@@ -1,0 +1,16 @@
+# TEST values for layers-tiles-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+envName: test
+
+replicas: 1
+
+image:
+  tag: "20220815" #this version will be automatically deployed by Flux
+
+DbPoolMaxConnLifeTime: 10m
+DbPoolMaxConns: 10
+DbTimeout: 10
+CacheTTL: 10
+EnableMetrics: true
+Debug: true

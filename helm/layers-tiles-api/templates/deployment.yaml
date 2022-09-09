@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.envName }}-layers-tiles-api
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: layers-tiles-api
+    app.kubernetes.io/instance: {{ .Values.envName }}-layers-tiles-api
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: layers-tiles-api
+      app.kubernetes.io/instance: {{ .Values.envName }}-layers-tiles-api
+      #don't add app.kubernetes.io/version
+      app.kubernetes.io/managed-by: "Helm"
+      stage: {{ .Values.envName }}
+  replicas: {{ .Values.replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: layers-tiles-api
+        app.kubernetes.io/instance: {{ .Values.envName }}-layers-tiles-api
+        app.kubernetes.io/managed-by: "Helm"
+        stage: {{ .Values.envName }}
+      annotations:
+        meta.helm.sh/release-name: {{ .Release.Name }}
+        meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+        rollme: {{ randAlphaNum 5 | quote }} #random value that makes Helm restart pods on any upgrade
+    spec:
+      containers:
+      - name: layers-tiles-api
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+          - containerPort: {{ .Values.HttpPort }}
+            name: lrs-tiles-api
+        resources:
+          requests:
+            cpu: "1"
+            memory: "1G"
+          limits:
+            memory: "2G"
+        envFrom:
+        - configMapRef:
+            name: {{ .Values.envName }}-layers-tiles-api
+        - secretRef:
+            name: {{ .Values.envName }}-layers-tiles-api
+        readinessProbe:
+          httpGet:
+            path: /tiles/metrics
+            port: {{ .Values.HttpPort }}
+          failureThreshold: 1
+          periodSeconds: 10
+          initialDelaySeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /tiles/metrics
+            port: {{ .Values.HttpPort }}
+          failureThreshold: 10
+          periodSeconds: 10
+          initialDelaySeconds: 5
