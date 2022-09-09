@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.envName }}-layers-tiles-api
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: layers-tiles-api
+    app.kubernetes.io/instance: {{ .Values.envName }}-layers-tiles-api
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+data:
+  TS_DBPOOLMAXCONNLIFETIME: {{ .Values.DbPoolMaxConnLifeTime }}
+  TS_DBPOOLMAXCONNS: "{{ .Values.DbPoolMaxConns }}"
+  TS_DBTIMEOUT: "{{ .Values.DbTimeout }}"
+  TS_HTTPPORT: "{{ .Values.HttpPort }}"
+  TS_CACHETTL: "{{ .Values.CacheTTL }}"
+  TS_BASEPATH: {{ .Values.BasePath }}
+  TS_ENABLEMETRICS: "{{ .Values.EnableMetrics }}"
+  TS_DEBUG: "{{ .Values.Debug }}"
+
+
+
+---
+#TODO: create manually, not managed by Helm as it's a secret
+#apiVersion: v1
+#kind: Secret
+#metadata:
+#  name: {{ .Values.envName }}-layers-tiles-api
+#  namespace: {{ .Release.Namespace }} (effectively {{ .Values.envName }}-layers-tiles-api)
+#  labels:
+#    app.kubernetes.io/name: layers-tiles-api
+#    app.kubernetes.io/instance: {{ .Values.envName }}-layers-tiles-api
+#    stage: {{ .Values.envName }}
+#data:
+#  DATABASE_URL: 'postgresql://username:password@host/dbname'
+---
