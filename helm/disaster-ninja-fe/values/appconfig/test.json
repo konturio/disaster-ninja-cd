@@ -1,6 +1,5 @@
 {
   "API_GATEWAY": "https://test-apps-ninja01.konturlabs.com/active/api",
-  "GRAPHQL_API": "https://test-apps.konturlabs.com/insights-api/graphql",
   "BOUNDARIES_API": "https://test-api.konturlabs.com",
   "REPORTS_API": "https://test-apps-ninja01.konturlabs.com/active/reports",
   "BIVARIATE_TILES_RELATIVE_URL": "api/tiles/bivariate/v1/",
