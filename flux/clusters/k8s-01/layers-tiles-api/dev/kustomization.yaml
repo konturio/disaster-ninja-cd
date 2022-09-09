@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ../../../../base/layers-tiles-api
 namePrefix: dev-
-namespace: layers-tiles-api
+namespace: dev-layers-tiles-api
 patches:
   - target:
       kind: HelmRelease
