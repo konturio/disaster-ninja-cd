@@ -6,7 +6,6 @@ metadata:
   labels:
     app.kubernetes.io/name: user-profile-api
     app.kubernetes.io/instance: {{ .Values.envName }}-user-profile-api
-    app.kubernetes.io/version: {{ .Chart.Version }}
     app.kubernetes.io/managed-by: "Helm"
     stage: {{ .Values.envName }}
   annotations:
@@ -32,7 +31,6 @@ spec:
       labels:
         app.kubernetes.io/name: user-profile-api
         app.kubernetes.io/instance: {{ .Values.envName }}-user-profile-api
-        app.kubernetes.io/version: {{ .Chart.Version }}
         app.kubernetes.io/managed-by: "Helm"
         stage: {{ .Values.envName }}
       annotations:
