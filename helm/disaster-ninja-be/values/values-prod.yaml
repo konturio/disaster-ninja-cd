@@ -20,7 +20,7 @@ tilesHost: 'https://disaster.ninja'
 
 notificationsEnabled: true
 notificationsFeed: 'kontur-public'
-notificationsAlertUrlPattern: 'https://disaster.ninja/active/?event=%s'
+notificationsAlertUrlPattern: 'https://disaster.ninja/active/?event=%s&utm_source=slack'
 notificationsSlackWebHook: 'https://hooks.slack.com/services/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'
 
 alertingTime: 2m
