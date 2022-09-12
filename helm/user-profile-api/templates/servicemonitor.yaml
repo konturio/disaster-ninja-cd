@@ -16,7 +16,7 @@ spec:
   endpoints:
     - interval: 30s
       port: main
-      path: /user-profile-api/metrics
+      path: /userprofile/metrics
       scheme: http
   selector:
     matchLabels:
