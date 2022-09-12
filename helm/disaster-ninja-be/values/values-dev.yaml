@@ -7,7 +7,7 @@ replicas: 1
 
 image:
   be:
-    tag: "11908-get-episodes-on-dn-backend.8efa71f.1" #this version will be automatically deployed by Flux
+    tag: "11777-application-is-not-found-count-as-an-error.79a24ed.1" #this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: 'dev'
@@ -20,7 +20,7 @@ tilesHost: 'https://zigzag.kontur.io'
 
 notificationsEnabled: true
 notificationsFeed: 'kontur-public'
-notificationsAlertUrlPattern: 'https://test-apps-ninja02.konturlabs.com/active/?event=%s'
+notificationsAlertUrlPattern: 'https://test-apps-ninja02.konturlabs.com/active/?event=%s&utm_source=slack'
 notificationsSlackWebHook: 'https://hooks.slack.com/services/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'
 
 alertingTime: 10m
