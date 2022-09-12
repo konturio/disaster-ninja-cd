@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.envName }}-user-profile-api
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: user-profile-api
+    app.kubernetes.io/instance: {{ .Values.envName }}-user-profile-api
+    app.kubernetes.io/version: {{ .Chart.Version }}
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: user-profile-api
+      app.kubernetes.io/instance: {{ .Values.envName }}-user-profile-api
+      #don't add app.kubernetes.io/version
+      app.kubernetes.io/managed-by: "Helm"
+      stage: {{ .Values.envName }}
+  replicas: {{ .Values.replicas }}
+  #TODO affinity/antiAffinity?
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: user-profile-api
+        app.kubernetes.io/instance: {{ .Values.envName }}-user-profile-api
+        app.kubernetes.io/version: {{ .Chart.Version }}
+        app.kubernetes.io/managed-by: "Helm"
+        stage: {{ .Values.envName }}
+      annotations:
+        meta.helm.sh/release-name: {{ .Release.Name }}
+        meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+        rollme: {{ randAlphaNum 5 | quote }} #random value that makes Helm restart pods on any upgrade
+    spec:{{ if eq .Values.envName "local" }}
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecretName }}{{ end }}
+      containers:
+        - name: user-profile-api
+          image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+          imagePullPolicy: Always #don't use Always for local minikube - otherwise it tries reloading from remote
+          ports:
+            - containerPort: {{ .Values.port }}
+              name: main
+          resources:
+            requests:
+              cpu: "1"
+              memory: "4700Mi"
+            limits:
+              memory: "9Gi"
+          env:
+            - name: OTEL_SERVICE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['app.kubernetes.io/instance']
+            - name: MY_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
+              value: http://$(MY_NODE_NAME):4317
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.envName }}-user-profile-api
+            - secretRef:
+                name: {{ .Values.envName }}-user-profile-api #TODO must contain SPRING_DATASOURCE_PASSWORD
+          readinessProbe:
+            httpGet:
+              path: /user-profile-api/health/readiness
+              port: {{ .Values.port }}
+            failureThreshold: 1
+            periodSeconds: 30
+            initialDelaySeconds: 30
+          {{ if eq .Values.envName "prod" }}livenessProbe:
+            httpGet:
+              path: /user-profile-api/health/readiness
+              port: {{ .Values.port }}
+            failureThreshold: 10
+            periodSeconds: 30
+            initialDelaySeconds: 30
+          {{ end }}
+---

@@ -1,0 +1,12 @@
+# TEST values for user-profile-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+image:
+  tag: latest
+
+replicas: 2
+envName: test
+databaseHost: london.k8s-01.kontur.io.
+
+dnsNameOuter: test-apps.konturlabs.com
+alertingTime: 5m
