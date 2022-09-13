@@ -7,7 +7,7 @@ replicas: 1
 
 image:
   be:
-    tag: "11777-application-is-not-found-count-as-an-error.79a24ed.1" #this version will be automatically deployed by Flux
+    tag: "main.5e163fb.1" #this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: 'dev'
