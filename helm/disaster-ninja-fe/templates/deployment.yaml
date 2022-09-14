@@ -40,7 +40,7 @@ spec:
       containers:
         - name: static-server
           imagePullPolicy: Always #don't use Always for local minikube - otherwise it reloads from remote each time
-          image: {{ .Values.image.fe.repository }}:{{ .Values.image.fe.tag }}
+          image: {{ .Values.image.fe.repository }}{{ .Values.image.fe.algorithm }}:{{ .Values.image.fe.tag }}
           ports:
             - containerPort: 80
               name: fe-main
