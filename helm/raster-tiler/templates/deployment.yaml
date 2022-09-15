@@ -65,7 +65,7 @@ spec:
             - name: TILES_CACHE_DIR_PATH
               value: /tiles
             - name: PORT
-              value: {{ .Values.port }}
+              value: {{ .Values.port | quote }}
             - name: PGDATABASE
               value: {{ .Values.pg_database }}
             - name: PGHOST
