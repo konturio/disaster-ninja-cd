@@ -73,12 +73,12 @@ spec:
             - name: PGUSER
               valueFrom:
                 secretKeyRef:
-                  name: raster-tiler
+                  name: {{ .Values.envName }}-raster-tiler
                   key: username
             - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: raster-tiler
+                  name: {{ .Values.envName }}-raster-tiler
                   key: password
           readinessProbe:
             httpGet:
@@ -101,7 +101,7 @@ spec:
       volumes:
         - name: raster-tiler-storage-vol
           persistentVolumeClaim:
-            claimName: raster-tiler
+            claimName: {{ .Values.envName }}-raster-tiler
       dnsConfig:
         options:
           - name: ndots
