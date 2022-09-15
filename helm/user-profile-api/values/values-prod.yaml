@@ -8,5 +8,8 @@ replicas: 2
 envName: prod
 databaseHost: paris.k8s-01.kontur.io.
 
+jwtIssuerUri: https://keycloak01.kontur.io/auth/realms/kontur
+jwtJwkSetUri: https://keycloak01.kontur.io/auth/realms/kontur/protocol/openid-connect/certs
+
 dnsNameOuter: apps.kontur.io
 alertingTime: 2m

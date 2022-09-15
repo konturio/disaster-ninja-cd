@@ -19,6 +19,8 @@ data: #TODO check which properties are different between envs
   OTEL_TRACES_EXPORTER: none #TODO change to 'otlp' once OpenTelemetry collector daemon is available
   OTEL_METRICS_EXPORTER: none
   OTEL_LOGS_EXPORTER: none
+  spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.jwtIssuerUri }}
+  spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.jwtJwkSetUri }}
 ---
 #TODO: create manually, not managed by Helm as it's a secret
 #apiVersion: v1
