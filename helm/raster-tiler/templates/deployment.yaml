@@ -1,0 +1,108 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.envName }}-raster-tiler
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: raster-tiler
+    app.kubernetes.io/instance: {{ .Values.envName }}-raster-tiler
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/part-of: backend
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      #don't add app.kubernetes.io/version
+      app.kubernetes.io/name: raster-tiler
+      app.kubernetes.io/instance: {{ .Values.envName }}-raster-tiler
+      app.kubernetes.io/component: backend
+      stage: {{ .Values.envName }}
+  replicas: {{ .Values.replicas }}
+  #TODO affinity/antiAffinity?
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: raster-tiler
+        app.kubernetes.io/instance: {{ .Values.envName }}-raster-tiler
+        app.kubernetes.io/managed-by: "Helm"
+        app.kubernetes.io/component: backend
+        app.kubernetes.io/part-of: backend
+        stage: {{ .Values.envName }}
+      annotations:
+        meta.helm.sh/release-name: {{ .Release.Name }}
+        meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+        # rollme: {{ randAlphaNum 5 | quote }} #random value that makes Helm restart pods on any upgrade
+    spec:{{ if eq .Values.envName "local" }}
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecretName }}{{ end }}
+      containers:
+        - name: raster-tiler-server
+          image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+          imagePullPolicy: Always #don't use Always for local minikube - otherwise it tries reloading from remote
+          ports:
+            - containerPort: {{ .Values.port }}
+              name: http
+              protocol: TCP
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "8Gi"
+            limits:
+              memory: "16Gi"
+              cpu: "500m"
+          env:
+            - name: BASE_URL
+              value: {{ .Values.base_url }}
+            - name: TILES_CACHE_DIR_PATH
+              value: /tiles
+            - name: PORT
+              value: {{ .Values.port }}
+            - name: PGDATABASE
+              value: {{ .Values.pg_database }}
+            - name: PGHOST
+              value: {{ .Values.pg_host }}
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: raster-tiler
+                  key: username
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: raster-tiler
+                  key: password
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            failureThreshold: 3
+            periodSeconds: 30
+            initialDelaySeconds: 30
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            failureThreshold: 10
+            periodSeconds: 30
+            initialDelaySeconds: 30
+          volumeMounts:
+            - mountPath: /tiles
+              name: raster-tiler-storage-vol
+              readOnly: false
+      volumes:
+        - name: raster-tiler-storage-vol
+          persistentVolumeClaim:
+            claimName: raster-tiler
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "0"
