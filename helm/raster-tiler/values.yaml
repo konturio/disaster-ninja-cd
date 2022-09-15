@@ -5,7 +5,7 @@ image:
   tag: latest
   name: nexus.kontur.io:8084/konturdev/raster-tiler
 
-port: "80"
+port: 80
 replicas: 1
 envName: local
 imagePullSecretName: nexus8085
