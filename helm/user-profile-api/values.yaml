@@ -12,4 +12,7 @@ databaseHost: docker.for.mac.host.internal
 databasePort: 5432
 alertingTime: 10m
 
+jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/dev
+jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/dev/protocol/openid-connect/certs
+
 imagePullSecretName: nexus8085
