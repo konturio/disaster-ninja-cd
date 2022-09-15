@@ -4,3 +4,4 @@ resources:
   - disaster-ninja
   - layers-tiles-api
   - user-profile-api
+  - raster-tiler
