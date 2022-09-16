@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - dev
   - test
-  #TODO prod
+  - prod
