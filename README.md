@@ -14,10 +14,10 @@ Kontur platform
 Set image tag in corresponding stage's ```values.yaml``` file under your app's Helm Chart.
 Example:
 
-To deploy user-profile-api v.0.1.2 to TEST, set in ```helm/user-profile-api/values/values-test.yaml```:
+To deploy ```user-profile-api``` v ```0.1.2``` to ```TEST```, set in ```helm/user-profile-api/values/values-test.yaml```:
 ```
 image:
-  tag: 0.0.1-SNAPSHOT
+  tag: 0.1.2
 ```
 Particular property name may depend on particular application.
 
