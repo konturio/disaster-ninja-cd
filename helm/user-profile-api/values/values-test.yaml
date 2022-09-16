@@ -8,5 +8,8 @@ replicas: 2
 envName: test
 databaseHost: london.k8s-01.kontur.io.
 
+jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/test
+jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/test/protocol/openid-connect/certs
+
 dnsNameOuter: test-apps.konturlabs.com
 alertingTime: 5m
