@@ -11,7 +11,7 @@ spec:
       chart: ./helm/user-profile-api
       valuesFiles:
         - ./helm/user-profile-api/values.yaml
-      reconcileStrategy: Revision
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: GitRepository
         name: kontur-platform

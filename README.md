@@ -11,7 +11,7 @@ Kontur platform
 ---
 <a name="deploy-specific"></a>How to deploy specific version
 ---
-Set image tag in corresponding stage's ```values.yaml``` file under your app's Helm Chart.
+1. Set image tag in corresponding stage's ```values.yaml``` file under your app's Helm Chart.
 Example:
 
 To deploy ```user-profile-api``` v ```0.1.2``` to ```TEST```, set in ```helm/user-profile-api/values/values-test.yaml```:
@@ -21,7 +21,16 @@ image:
 ```
 Particular property name may depend on particular application.
 
-Create MR to ```main``` branch and get it merged.
+2. Bump corresponding helm chart version.
+Example:
+
+To trigger ```user-profile-api``` deployment, bump chart version in ```helm/user-profile-api/Chart.yaml```:
+```diff
+- version: 0.0.2
++ version: 0.0.3
+```
+
+3. Create MR to ```main``` branch and get it merged.
 
 ---
 <a name="constant-tags"></a>Problem with constant image tags like "latest"
