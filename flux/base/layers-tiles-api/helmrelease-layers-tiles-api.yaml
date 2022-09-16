@@ -11,7 +11,7 @@ spec:
       chart: ./helm/layers-tiles-api
       valuesFiles:
         - ./helm/layers-tiles-api/values.yaml
-      reconcileStrategy: ChartVersion
+      reconcileStrategy: Revision
       sourceRef:
         kind: GitRepository
         name: kontur-platform
