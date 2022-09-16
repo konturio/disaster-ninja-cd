@@ -1,11 +1,49 @@
-How to deploy specific version
----
-You must set  
-`FE_IMG_TAG` for front-end deploy, and   
-`BE_IMG_TAG` for back-end
-In case you not set this variables - version from Chart.yaml will be used
+Kontur platform
+======================
 
-How to run disaster-ninja-be locally
+---
+<a name="structure"></a>Repository structure
+---
+```flux``` folder contains configurations for Flux
+
+```helm``` contains Helm Charts for kontur platform apps
+
+---
+<a name="deploy-specific"></a>How to deploy specific version
+---
+Set image tag in corresponding stage's ```values.yaml``` file under your app's Helm Chart.
+Example:
+
+To deploy user-profile-api v.0.1.2 to TEST, set in ```helm/user-profile-api/values/values-test.yaml```:
+```
+image:
+  tag: 0.0.1-SNAPSHOT
+```
+Particular property name may depend on particular application.
+
+Create MR to ```main``` branch and get it merged.
+
+---
+<a name="constant-tags"></a>Problem with constant image tags like "latest"
+---
+Container image version should be explicitly changed in new commit in order to trigger a redeploy. This means you can't normally use constant tags like "latest".
+Either use some variable tags in your CI when building an image or use image digest instead of tags.
+Example of variable tag containing a commit ref slug: ```disaster-ninja-be``` deployment:
+```
+containers:
+- name: disaster-ninja-be
+  image: ghcr.io/konturio/disaster-ninja-be:main.5e163fb.1
+```
+Example of using image digest instead of tags ```disaster-ninja-fe``` deployment:
+```
+containers:
+- name: disaster-ninja-fe
+  image: ghcr.io/konturio/disaster-ninja-fe@sha256:40f6c7ffab4710d585035a2ce5c9b24307bf20f8cd85cab88e1a119345d93ef5
+```
+**Note that in case of using image digest - it's specified with @ between image name and digest** - so if you use this approach, please change your helm chart accordingly. See ```disaster-ninja-fe``` for sample.
+
+
+<a name="minikube"></a>How to run a platform app in local minikube, example for disaster-ninja-be
 ---
 
 Requirements:
@@ -13,18 +51,11 @@ Requirements:
  - kubernetes-client (kubectl)
  - [minikube](https://minikube.sigs.k8s.io/docs/start/)
 
-In case you don’t use Prometheus Operator in your cluster - which is probably the case for minikube, remove the servicemonitor.yaml file.
-Also you don’t need ingress.yaml in local minikube environment.
-
-```bash
-rm ./helm/disaster-ninja-be/templates/ingress.yaml
-rm ./helm/disaster-ninja-be/templates/servicemonitor.yaml
-```
-Then you must create namespace
+Create namespace
 ```
 kubectl create namespace local-disaster-ninja
 ```
-Remove strict requirements for CPUs
+Remove strict requirements for CPUs / memory
 from `./helm/disaster-ninja-be/templates/deployment.yaml`
 ```diff
 - spec:
@@ -40,7 +71,7 @@ from `./helm/disaster-ninja-be/templates/deployment.yaml`
 -         memory: "4G"
 ```
 
-Create secrets:
+Create secrets (values are encoded with base64, use ```echo -n mypassword | base64```):
 ```
 cat << EOT >> secret.yaml
 apiVersion: v1
@@ -60,12 +91,12 @@ EOT
 kubectl apply -f secret.yaml 
 ```
 
-Then you can run cluster
+Then you can install helm release
 ```
 helm --kube-context minikube -n local-disaster-ninja upgrade --install local-disaster-ninja-be ./helm/disaster-ninja-be
 ```
 
-Now you need to make back-end available outside of cluster.
+In order to connect to the application running within the cluster, you might need to setup port forwarding:
 You can use [Lens](https://github.com/lensapp/lens) for that, 
 or next command
 ```
@@ -76,12 +107,12 @@ After that back-end will be available by
 http://localhost:8627/swagger-ui/index.html
 ```
 
-For stop
+Stop minikube
 ```
 minikube stop
 ```
 
-For remove
+Uninstall helm release
 ```
 helm uninstall local-disaster-ninja-be
 ```
