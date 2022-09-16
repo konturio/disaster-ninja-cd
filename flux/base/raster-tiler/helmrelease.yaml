@@ -11,7 +11,7 @@ spec:
       chart: ./helm/raster-tiler
       valuesFiles:
         - ./helm/raster-tiler/values.yaml
-      reconcileStrategy: Revision
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: GitRepository
         name: kontur-platform

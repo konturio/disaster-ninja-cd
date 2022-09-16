@@ -11,7 +11,7 @@ spec:
       chart: ./helm/disaster-ninja-be
       valuesFiles:
         - ./helm/disaster-ninja-be/values.yaml
-      reconcileStrategy: Revision
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: GitRepository
         name: kontur-platform
