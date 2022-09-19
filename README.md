@@ -9,6 +9,19 @@ Kontur platform
 ```helm``` contains Helm Charts for kontur platform apps
 
 ---
+Impact of helm upgrade on different stages
+---
+***Changes to helm charts themselves will be applied to all helm releases (stages) sharing a single helm chart once merged to main.*** This is the price for maintaining just a single branch for multiple stages.
+
+There is still room for a workaround to use separate branches for different stages - this can be configured on per-HelmRelease basis - but it seems to be an overcomplication for now taking into account the following note.
+
+Pods will not get rolled (restarted) until an actual ```deployment/configmap``` changes in particular stage during a helm upgrade. There is no need to to that otherwise. ```Secrets``` are managed manually in our setup and so are the related restarts. All other resources (```ingresses/servicemonitors```/etc) are customised per stage in our setup (using separate values files) - so small env-level changes in ```values.yaml``` can still be applied without any impact to other stages.
+
+We normally don’t make lots of generic changes to our templates for apps already reached k8s prod. If we need to make/test one - there is a property which stops Flux from reconciling a particular ```helm release``` - which can be used to protect stages when testing such changes: ```suspend: true```
+
+One should take into account that this repository is the storage for the cluster state - and it should only contain resources that should actually exist in the cluster.
+
+---
 <a name="deploy-specific"></a>How to deploy specific version
 ---
 1. Set image tag in corresponding stage's ```values.yaml``` file under your app's Helm Chart.
