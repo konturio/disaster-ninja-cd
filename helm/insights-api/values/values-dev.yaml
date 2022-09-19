@@ -1,0 +1,15 @@
+# DEV values for insights-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+image:
+  tag: "4e8f2fa455a3d762eed867aca2b2d7f758bfc663a1ada489e0de0c8312b0f222"
+  tagType: "@sha256"
+
+replicas: 2
+envName: dev
+databaseHost: milan.k8s-01.kontur.io.
+databasePort: 5432
+jmxEnabled: true
+
+dnsNameOuter: test-apps02.konturlabs.com
+alertingTime: 10m
