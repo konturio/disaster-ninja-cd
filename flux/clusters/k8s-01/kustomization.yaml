@@ -5,3 +5,4 @@ resources:
   - layers-tiles-api
   - user-profile-api
   - raster-tiler
+  - insights-api

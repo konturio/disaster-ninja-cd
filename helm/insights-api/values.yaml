@@ -1,0 +1,15 @@
+# Default values for insights-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+image:
+  tag: latest
+  tagType: ""
+  name: nexus.kontur.io:8085/konturdev/insights-api
+
+port: 8625
+replicas: 1
+envName: local
+databaseHost: docker.for.mac.host.internal
+databasePort: 8900
+jmxEnabled: true
+alertingTime: 10m
