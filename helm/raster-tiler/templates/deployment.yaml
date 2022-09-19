@@ -40,7 +40,7 @@ spec:
       annotations:
         meta.helm.sh/release-name: {{ .Release.Name }}
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
-        # rollme: {{ randAlphaNum 5 | quote }} #random value that makes Helm restart pods on any upgrade
+        # checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
     spec:{{ if eq .Values.envName "local" }}
       imagePullSecrets:
         - name: {{ .Values.imagePullSecretName }}{{ end }}
