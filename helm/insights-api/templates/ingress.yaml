@@ -49,6 +49,6 @@ spec:
               service:
                 name: {{ .Values.envName }}-insights-api
                 port:
-                  number: main
+                  name: main
 ---
 {{ end }}
