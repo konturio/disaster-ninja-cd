@@ -13,7 +13,7 @@ metadata:
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
 data:
   server.port: '{{ .Values.port }}'
-  SPRING_DATASOURCE_URL: jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/isochrone-api
+  SPRING_DATASOURCE_URL: jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/gis
   SPRING_DATASOURCE_USERNAME: isochrone-api
   isochroneAPI.populationAPI: {{ .Values.populationApiUrl }}
   isochroneAPI.calculationWorkersNumber: '{{ .Values.calculationWorkersNumber }}'
