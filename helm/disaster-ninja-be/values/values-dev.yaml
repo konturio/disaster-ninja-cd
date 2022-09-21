@@ -7,7 +7,7 @@ replicas: 1
 
 image:
   be:
-    tag: "10685-divide-into-three-requests-get-user-layers-get-global-layers-and-get-selected-area-layers.d792d6c.1" #this version will be automatically deployed by Flux
+    tag: "main.fc36e89.1" #this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: 'dev'
