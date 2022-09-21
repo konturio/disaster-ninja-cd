@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 0.0.1-SNAPSHOT
+  tag: 12361-revisit-ups-integration-with-keycloak.aea653f6f5
 
 replicas: 2
 envName: dev
