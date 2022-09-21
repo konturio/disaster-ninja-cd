@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.envName }}-isochrone-api
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: isochrone-api
+    app.kubernetes.io/instance: {{ .Values.envName }}-isochrone-api
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+data:
+  server.port: '{{ .Values.port }}'
+  SPRING_DATASOURCE_URL: jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/isochrone-api
+  SPRING_DATASOURCE_USERNAME: isochrone-api
+  isochroneAPI.populationAPI: {{ .Values.populationApiUrl }}
+  isochroneAPI.calculationWorkersNumber: '{{ .Values.calculationWorkersNumber }}'
+  isochroneAPI.isochroneTimeLimitSeconds: '{{ .Values.isochroneTimeLimitSeconds }}'
+  isochroneAPI.isochroneIntervalSeconds: '{{ .Values.isochroneIntervalSeconds }}'
+  isochroneAPI.enabledIsochroneProfiles: {{ .Values.enabledIsochroneProfiles }}
+  OTEL_TRACES_EXPORTER: none #TODO change to 'otlp' once OpenTelemetry collector daemon is available
+  OTEL_METRICS_EXPORTER: none
+  OTEL_LOGS_EXPORTER: none
+  #do not use uppercase var names for hikari properties otherwise startup fails with smth like 'The configuration of the pool is sealed once started.'
+  spring.datasource.hikari.maximum-pool-size: '{{ .Values.hikari.maximumPoolSize }}'
+  spring.datasource.hikari.minimum-idle: '{{ .Values.hikari.minimumIdle }}'
+---
+#TODO: create manually, not managed by Helm as it's a secret
+#apiVersion: v1
+#kind: Secret
+#metadata:
+#  name: {{ .Values.envName }}-isochrone-api
+#  namespace: {{ .Release.Namespace }} (effectively {{ .Values.envName }}-isochrone-api)
+#labels:
+#  app.kubernetes.io/name: isochrone-api
+#  app.kubernetes.io/instance: {{ .Values.envName }}-isochrone-api
+#  stage: {{ .Values.envName }}
+#data:
+#  SPRING_DATASOURCE_PASSWORD: base64 encoded password
+---
