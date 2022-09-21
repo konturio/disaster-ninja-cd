@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.envName }}-isochrone-api
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: isochrone-api
+    app.kubernetes.io/instance: {{ .Values.envName }}-isochrone-api
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: isochrone-api
+      app.kubernetes.io/instance: {{ .Values.envName }}-isochrone-api
+      #don't add app.kubernetes.io/version
+      app.kubernetes.io/managed-by: "Helm"
+      stage: {{ .Values.envName }}
+  replicas: {{ .Values.replicas }}
+  #TODO affinity/antiAffinity?
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: isochrone-api
+        app.kubernetes.io/instance: {{ .Values.envName }}-isochrone-api
+        app.kubernetes.io/managed-by: "Helm"
+        stage: {{ .Values.envName }}
+      annotations:
+        meta.helm.sh/release-name: {{ .Release.Name }}
+        meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+        checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
+    spec:{{ if eq .Values.envName "local" }}
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecretName }}{{ end }}
+      containers:
+        - name: isochrone-api
+          image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+          imagePullPolicy: IfNotPresent #don't use Always for local minikube - otherwise it tries reloading from remote
+          ports:
+            - containerPort: {{ .Values.port }}
+              name: main
+          resources: #TODO
+            requests:
+              cpu: "100m"
+              memory: "1Gi"
+            limits:
+              memory: "1Gi"
+          env:
+            - name: OTEL_SERVICE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['app.kubernetes.io/instance']
+            - name: MY_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
+              value: http://$(MY_NODE_NAME):4317
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.envName }}-isochrone-api
+            - secretRef:
+                name: {{ .Values.envName }}-isochrone-api #must contain SPRING_DATASOURCE_PASSWORD
+          readinessProbe:
+            httpGet:
+              path: /isochrone/health
+              port: {{ .Values.port }}
+            failureThreshold: 1
+            periodSeconds: 30
+            initialDelaySeconds: 30
+          {{ if eq .Values.envName "prod" }}livenessProbe:
+            httpGet:
+              path: /isochrone/health
+              port: {{ .Values.port }}
+            failureThreshold: 10
+            periodSeconds: 30
+            initialDelaySeconds: 30
+          {{ end }}
+---

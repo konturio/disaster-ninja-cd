@@ -1,0 +1,29 @@
+{{ if ne .Values.envName "local" }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ .Values.envName }}-isochrone-api
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: isochrone-api
+    app.kubernetes.io/instance: {{ .Values.envName }}-isochrone-api
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  endpoints:
+    - interval: 30s
+      port: main
+      path: /isochrone/metrics
+      scheme: http
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: isochrone-api
+      app.kubernetes.io/instance: {{ .Values.envName }}-isochrone-api
+      #don't add app.kubernetes.io/version
+      app.kubernetes.io/managed-by: "Helm"
+      stage: {{ .Values.envName }}
+---
+{{ end }}
