@@ -68,7 +68,7 @@ spec:
             - configMapRef:
                 name: {{ .Values.envName }}-user-profile-api
             - secretRef:
-                name: {{ .Values.envName }}-user-profile-api #TODO must contain SPRING_DATASOURCE_PASSWORD
+                name: {{ .Values.envName }}-user-profile-api #must contain SPRING_DATASOURCE_PASSWORD
           readinessProbe:
             httpGet:
               path: /userprofile/health

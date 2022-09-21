@@ -27,7 +27,7 @@ data:
   spring.datasource.hikari.maximum-pool-size: '{{ .Values.hikari.maximumPoolSize }}'
   spring.datasource.hikari.minimum-idle: '{{ .Values.hikari.minimumIdle }}'
 ---
-#TODO: create manually, not managed by Helm as it's a secret
+#create manually, not managed by Helm as it's a secret
 #apiVersion: v1
 #kind: Secret
 #metadata:
