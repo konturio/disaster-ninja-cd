@@ -32,7 +32,7 @@ data:
 
 
 ---
-#TODO: create manually, not managed by Helm as it's a secret
+#create manually, not managed by Helm as it's a secret
 #apiVersion: v1
 #kind: Secret
 #metadata:

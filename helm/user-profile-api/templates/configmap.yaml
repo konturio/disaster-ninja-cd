@@ -11,7 +11,7 @@ metadata:
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
-data: #TODO check which properties are different between envs
+data:
   SPRING_DATASOURCE_URL: 'jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/user-profile-api'
   SPRING_DATASOURCE_USERNAME: user-profile-api
   #do not use uppercase var names for hikari properties otherwise startup fails with smth like 'The configuration of the pool is sealed once started.'
@@ -22,7 +22,7 @@ data: #TODO check which properties are different between envs
   spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.jwtIssuerUri }}
   spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.jwtJwkSetUri }}
 ---
-#TODO: create manually, not managed by Helm as it's a secret
+#create manually, not managed by Helm as it's a secret
 #apiVersion: v1
 #kind: Secret
 #metadata:

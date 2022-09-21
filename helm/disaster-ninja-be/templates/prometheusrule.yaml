@@ -20,4 +20,3 @@ spec:
           for: {{ .Values.alertingTime }}
           labels:
             severity: critical
-          #TODO OnCall route to a separate slack channel
