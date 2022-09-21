@@ -2,7 +2,9 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: main.f0769f448f
+  tag: 43ed5b60ccf0863de5447f3043f43088abee6ccc69486d852bbf1ca8b5a4adbc
+  name: nexus.kontur.io:8085/konturdev/user-profile-api@sha256
+# TODO remove image.name after first deploy
 
 replicas: 2
 envName: prod
