@@ -1,7 +1,7 @@
 Platform Helm Charts
 ======================
 
-This folder contains all platform apps helm charts
+This folder contains helm charts for all Platform apps
 ---
 
 Helm Charts:
