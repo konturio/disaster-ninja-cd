@@ -6,23 +6,23 @@ Kontur platform
 ---
 ```flux``` folder contains configurations for Flux
 
-```helm``` contains Helm Charts for kontur platform apps
+```helm``` folder contains Helm Charts for Kontur platform apps
 
 ---
 Impact of helm upgrade on different stages
 ---
-***Changes to helm charts themselves will be applied to all helm releases (stages) sharing a single helm chart once merged to main.*** This is the price for maintaining just a single branch for multiple stages.
+***Changes to helm charts will be applied to all helm releases (stages) sharing a single helm chart once merged to main.*** This is the price for maintaining just a single branch for multiple stages.
 
-There is still room for a workaround to use separate branches for different stages - this can be configured on per-HelmRelease basis - but it seems to be an overcomplication for now taking into account the following note.
+There is still room for a workaround to use separate branches for different stages - this can be configured on per-HelmRelease basis - but it seems to be an overcomplication now, taking into account the following note.
 
-Pods will not get rolled (restarted) until an actual ```deployment/configmap``` changes in particular stage during a helm upgrade. There is no need to to that otherwise. ```Secrets``` are managed manually in our setup and so are the related restarts. All other resources (```ingresses/servicemonitors```/etc) are customised per stage in our setup (using separate values files) - so small env-level changes in ```values.yaml``` can still be applied without any impact to other stages.
+Pods will not get rolled (restarted) until actual ```deployment/configmap``` changes in a particular stage occur during a helm upgrade. There is no need to to that otherwise. ```Secrets``` are managed manually in our setup and so are the related restarts. All other resources (```ingresses/servicemonitors```/etc) are customised per stage in our setup (using separate values files) - so there are small env-level changes in ```values.yaml``` that you can apply without any impact on other stages.
 
-We normally don’t make lots of generic changes to our templates for apps already reached k8s prod. If we need to make/test one - there is a property which stops Flux from reconciling a particular ```helm release``` - which can be used to protect stages when testing such changes: ```suspend: true```
+We usually do not make many significant changes to our templates for apps that have already reached k8s prod. If we need to make/test one - there is a property that stops Flux from reconciling a particular ```helm release``` - which you can use to protect stages when testing such changes: ```suspend: true```.
 
-One should take into account that this repository is the storage for the cluster state - and it should only contain resources that should actually exist in the cluster.
+One should consider that this repository is the storage for the cluster state and should only contain resources that should exist in the cluster.
 
 ---
-<a name="deploy-specific"></a>How to deploy specific version
+<a name="deploy-specific"></a>How to deploy a specific version
 ---
 1. Set image tag in corresponding stage's ```values.yaml``` file under your app's Helm Chart.
 Example:
@@ -32,12 +32,12 @@ To deploy ```user-profile-api``` v ```0.1.2``` to ```TEST```, set in ```helm/use
 image:
   tag: 0.1.2
 ```
-Particular property name may depend on particular application.
+Particular property names may depend on a particular application.
 
-2. Bump corresponding helm chart version.
-Example:
+2. Bump the corresponding helm chart version.
+For example:
 
-To trigger ```user-profile-api``` deployment, bump chart version in ```helm/user-profile-api/Chart.yaml```:
+To trigger ```user-profile-api``` deployment, bump the chart version in ```helm/user-profile-api/Chart.yaml```:
 ```diff
 - version: 0.0.2
 + version: 0.0.3
@@ -46,11 +46,11 @@ To trigger ```user-profile-api``` deployment, bump chart version in ```helm/user
 3. Create MR to ```main``` branch and get it merged.
 
 ---
-<a name="constant-tags"></a>Problem with constant image tags like "latest"
+<a name="constant-tags"></a>Problem with stable image tags like "latest"
 ---
-Container image version should be explicitly changed in new commit in order to trigger a redeploy. This means you can't normally use constant tags like "latest".
-Either use some variable tags in your CI when building an image or use image digest instead of tags.
-Example of variable tag containing a commit ref slug: ```disaster-ninja-be``` deployment:
+You must explicitly change the container image version in a new commit to trigger a redeploy. Therefore you cannot usually use stable tags like "latest".
+Either use variable tags in your CI when building an image or use image digest instead of image tags.
+Example of the variable image tag containing a commit ref slug: ```disaster-ninja-be``` deployment:
 ```
 containers:
 - name: disaster-ninja-be
@@ -62,10 +62,10 @@ containers:
 - name: disaster-ninja-fe
   image: ghcr.io/konturio/disaster-ninja-fe@sha256:40f6c7ffab4710d585035a2ce5c9b24307bf20f8cd85cab88e1a119345d93ef5
 ```
-**Note that in case of using image digest - it's specified with @ between image name and digest** - so if you use this approach, please change your helm chart accordingly. See ```disaster-ninja-fe``` for sample.
+**Please note that in the case of using image digest - it's specified with @ between image name and digest** - so if you use this approach, please change your helm chart accordingly. See ```disaster-ninja-fe``` for the example.
 
 
-<a name="minikube"></a>How to run a platform app in local minikube, example for disaster-ninja-be
+<a name="minikube"></a>How to run a platform app in local minikube, the example for disaster-ninja-be
 ---
 
 Requirements:
@@ -118,9 +118,9 @@ Then you can install helm release
 helm --kube-context minikube -n local-disaster-ninja upgrade --install local-disaster-ninja-be ./helm/disaster-ninja-be
 ```
 
-In order to connect to the application running within the cluster, you might need to setup port forwarding:
+To connect to the application running within the cluster, you might need to setup port forwarding:
 You can use [Lens](https://github.com/lensapp/lens) for that, 
-or next command
+or the next line:
 ```
 kubectl -n local-disaster-ninja port-forward svc/local-disaster-ninja-be 8627:8627
 ```
