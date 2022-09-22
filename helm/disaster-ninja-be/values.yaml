@@ -1,4 +1,4 @@
-# Default values for insights-api.
+# Default values for disaster-ninja-be.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -6,7 +6,7 @@ image:
   be:
     repository: ghcr.io/konturio/disaster-ninja-be
     pullPolicy: Always
-    tag: "latest"
+    tag: latest
 
 service:
   port: 8627
@@ -14,7 +14,7 @@ service:
 envName: local
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
-keycloakRealm: 'dev'
+keycloakRealm: dev
 eventApiUrl: 'https://test-apps02.konturlabs.com/events'
 kcApiUrl: 'https://test-api02.konturlabs.com/layers'
 layersApiUrl: 'https://test-api02.konturlabs.com/layers/v2'
@@ -23,8 +23,8 @@ userProfileApiUrl: 'https://test-apps02.konturlabs.com/userprofile'
 tilesHost: 'https://zigzag.kontur.io'
 
 notificationsEnabled: false
-notificationsFeed: 'disabled'
-notificationsAlertUrlPattern: 'disabled'
-notificationsSlackWebHook: 'disabled'
+notificationsFeed: disabled
+notificationsAlertUrlPattern: disabled
+notificationsSlackWebHook: disabled
 
 alertingTime: 10m
