@@ -5,8 +5,8 @@
 image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
-    algorithm: ""
-    tag: release-2.1.0 #this version will be automatically deployed by Flux
+    algorithm: "@sha256"
+    tag: a123deb694dc7901baf53f1af90dd5d2177aa3645222ce520642b73a4b6e9c26 #this version will be automatically deployed by Flux
 
 replicaCount: 1
 envName: prod
