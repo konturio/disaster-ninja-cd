@@ -16,6 +16,8 @@ metadata:
     acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
     nginx.org/client-max-body-size: 5m
     nginx.org/server-snippets: |
+      client_max_body_size 5m;
+      
       location / {
         return 302 /active/;
       }
