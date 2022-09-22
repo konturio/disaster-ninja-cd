@@ -1,0 +1,22 @@
+# TEST values for isochrone-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+image:
+  tag: 0.0.1-SNAPSHOT
+
+replicas: 2
+envName: test
+databaseHost: geocint.kontur.io
+
+dnsNameOuter: test-apps.konturlabs.com
+alertingTime: 5m
+
+hikari:
+  maximumPoolSize: 10
+  minimumIdle: 3
+
+populationApiUrl: https://test-apps.konturlabs.com/insights-api/
+calculationWorkersNumber: 7
+isochroneTimeLimitSeconds: 1200
+isochroneIntervalSeconds: 300
+enabledIsochroneProfiles: foot,bicycle,motorbike,car,emergency,
