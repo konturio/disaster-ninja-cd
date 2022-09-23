@@ -18,6 +18,7 @@ metadata:
     nginx.org/proxy-read-timeout: 150s
     nginx.org/server-snippets: |
       client_max_body_size 5m;
+      proxy_read_timeout 150s;
 
       location / {
         return 302 /active/;
