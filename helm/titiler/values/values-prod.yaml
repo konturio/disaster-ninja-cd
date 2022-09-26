@@ -1,0 +1,5 @@
+# Dev values for titiler.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+envName: prod
