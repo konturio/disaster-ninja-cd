@@ -1,0 +1,15 @@
+# Default values for layers-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+image:
+  tag: 1.8.0-SNAPSHOT
+  name: nexus.kontur.io:8085/konturdev/layers-api
+
+port: 8630
+replicas: 1
+envName: local
+databaseHost: docker.for.mac.host.internal
+databasePort: 5432
+jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/dev
+jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/dev/protocol/openid-connect/certs
+alertingTime: 10m

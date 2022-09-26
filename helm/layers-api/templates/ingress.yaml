@@ -1,0 +1,53 @@
+{{ if ne .Values.envName "local" }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.envName }}-layers-api
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: layers-api
+    app.kubernetes.io/instance: {{ .Values.envName }}-layers-api
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
+    acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
+    nginx.org/location-snippets: |
+      if ($request_method = 'OPTIONS') {
+        add_header Access-Control-Allow-Origin 'https://{{ .Values.dnsNameOuter }}';
+
+        add_header Access-Control-Allow-Credentials 'true';
+        add_header Access-Control-Allow-Methods *;
+
+        add_header Access-Control-Allow-Headers 'Authorization,Keep-Alive,User-Agent,If-Modified-Since,Cache-Control,Content-Type';
+
+        add_header Access-Control-Max-Age 86400;
+        add_header Content-Type 'text/plain charset=UTF-8';
+        add_header Content-Length 0;
+        return 204;
+      }
+
+      add_header Access-Control-Allow-Origin 'https://{{ .Values.dnsNameOuter }}';
+      add_header Access-Control-Allow-Credentials 'true';
+      add_header Access-Control-Allow-Methods *;
+      add_header Access-Control-Allow-Headers 'Authorization,Keep-Alive,User-Agent,If-Modified-Since,Cache-Control,Content-Type';
+spec:
+  tls:
+    - hosts:
+        - {{ .Values.envName }}-layers-api.k8s-01.konturlabs.com
+      secretName: {{ .Values.envName }}-layers-api-tls # < cert-manager will store the created certificate in this secret.
+  ingressClassName: nginx
+  rules:
+    - host: {{ .Values.envName }}-layers-api.k8s-01.konturlabs.com
+      http:
+        paths:
+          - path: /layers/v2/
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.envName }}-layers-api
+                port:
+                  name: layers-api
+{{ end }}
