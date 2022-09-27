@@ -7,10 +7,10 @@ replicas: 2
 
 image:
   be:
-    tag: "0.16.1" #this version will be automatically deployed by Flux
+    tag: "0.16.1" # this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.kontur.io/auth'
-keycloakRealm: 'kontur'
+keycloakRealm: kontur
 eventApiUrl: 'https://apps.kontur.io/events/'
 kcApiUrl: 'https://api.kontur.io/layers'
 layersApiUrl: 'https://api.kontur.io/layers/v2'
@@ -19,7 +19,7 @@ userProfileApiUrl: 'https://apps.kontur.io/userprofile/'
 tilesHost: 'https://disaster.ninja'
 
 notificationsEnabled: true
-notificationsFeed: 'kontur-public'
+notificationsFeed: kontur-public
 notificationsAlertUrlPattern: 'https://disaster.ninja/active/?event=%s&utm_source=slack'
 notificationsSlackWebHook: 'https://hooks.slack.com/services/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'
 
