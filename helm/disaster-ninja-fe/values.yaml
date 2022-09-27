@@ -5,15 +5,15 @@
 image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
-    algorithm: ""
-    tag: "latest"
+    algorithm: ''
+    tag: latest
 
 replicaCount: 1
 envName: local
 dnsName1: localhost
 
-reportsBucket: https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazonaws.com/kontur_reports/dev/
+reportsBucket: 'https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazonaws.com/kontur_reports/dev/'
 
-epigHost: https://dev-epig.k8s-01.konturlabs.com
+epigHost: 'https://dev-epig.k8s-01.konturlabs.com'
 
 alertingTime: 10m

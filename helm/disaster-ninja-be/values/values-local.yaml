@@ -1,4 +1,4 @@
-# DEV values for disaster-ninja-be.
+# LOCAL values for disaster-ninja-be.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 envName: local
@@ -8,10 +8,10 @@ replicas: 1
 image:
   be:
     pullPolicy: IfNotPresent
-    tag: "latest"
+    tag: latest
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
-keycloakRealm: 'dev'
+keycloakRealm: dev
 eventApiUrl: 'https://test-apps02.konturlabs.com/events'
 kcApiUrl: 'https://test-api02.konturlabs.com/layers'
 layersApiUrl: 'https://test-api02.konturlabs.com/layers/v2'
@@ -20,7 +20,7 @@ userProfileApiUrl: 'https://test-apps02.konturlabs.com/userprofile'
 tilesHost: 'https://zigzag.kontur.io'
 
 notificationsEnabled: false
-notificationsFeed: 'kontur-public'
+notificationsFeed: kontur-public
 notificationsAlertUrlPattern: 'https://test-apps-ninja02.konturlabs.com/active/?event=%s'
 ***REMOVED***
 
