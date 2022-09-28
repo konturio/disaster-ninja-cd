@@ -7,7 +7,7 @@ image:
 
 replicas: 2
 envName: test
-databaseHost: london.kontur.io
+databaseHost: london.k8s-01.kontur.io
 dnsNameOuter: test-api.konturlabs.com
 
 jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/test
