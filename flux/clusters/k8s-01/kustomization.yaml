@@ -7,3 +7,4 @@ resources:
   - raster-tiler
   - insights-api
   - titiler
+  - layers-api
