@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ../../../../base/titiler
 namePrefix: prod-
-namespace: prod-raster-tiler
+namespace: prod-titiler
 patches:
   - target:
       kind: HelmRelease
