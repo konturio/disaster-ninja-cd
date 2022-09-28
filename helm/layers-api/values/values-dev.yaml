@@ -7,7 +7,7 @@ image:
 
 replicas: 2
 envName: dev
-databaseHost: milan.kontur.io
+databaseHost: milan.k8s-01.kontur.io
 dnsNameOuter: test-api02.konturlabs.com
 
 jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/dev
