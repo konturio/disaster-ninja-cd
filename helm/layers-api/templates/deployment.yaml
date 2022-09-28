@@ -73,7 +73,7 @@ spec:
             failureThreshold: 10
             periodSeconds: 10
             initialDelaySeconds: 5
-          shareProcessNamespace:
+          securityContext:
             capabilities:
               add:
                 - SYS_PTRACE
