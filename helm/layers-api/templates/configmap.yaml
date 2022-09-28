@@ -21,6 +21,10 @@ data:
 #metadata:
 #  name: {{ .Values.envName }}-layers-api
 #  namespace: {{ .Release.Namespace }}
+#labels:
+#  app.kubernetes.io/name: layers-api
+#  app.kubernetes.io/instance: {{ .Values.envName }}-layers-api
+#  stage: {{ .Values.envName }}
 #data:
 ***REMOVED***
 ---
