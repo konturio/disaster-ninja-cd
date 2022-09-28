@@ -37,6 +37,7 @@ spec:
         #only roll pods if config (rendered!) changed
         checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
+      shareProcessNamespace: true
       containers:
         - name: layers-api
           image: {{ .Values.image.name }}:{{ .Values.image.tag }}
@@ -72,3 +73,7 @@ spec:
             failureThreshold: 10
             periodSeconds: 10
             initialDelaySeconds: 5
+          shareProcessNamespace:
+            capabilities:
+              add:
+                - SYS_PTRACE

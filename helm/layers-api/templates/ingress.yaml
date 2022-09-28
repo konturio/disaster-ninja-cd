@@ -17,25 +17,7 @@ metadata:
     nginx.org/client-max-body-size: 5m
     nginx.org/server-snippets: |
       client_max_body_size 5m;
-    nginx.org/location-snippets: |
-      if ($request_method = 'OPTIONS') {
-        add_header Access-Control-Allow-Origin 'https://{{ .Values.dnsNameOuter }}';
 
-        add_header Access-Control-Allow-Credentials 'true';
-        add_header Access-Control-Allow-Methods *;
-
-        add_header Access-Control-Allow-Headers 'Authorization,Keep-Alive,User-Agent,If-Modified-Since,Cache-Control,Content-Type';
-
-        add_header Access-Control-Max-Age 86400;
-        add_header Content-Type 'text/plain charset=UTF-8';
-        add_header Content-Length 0;
-        return 204;
-      }
-
-      add_header Access-Control-Allow-Origin 'https://{{ .Values.dnsNameOuter }}';
-      add_header Access-Control-Allow-Credentials 'true';
-      add_header Access-Control-Allow-Methods *;
-      add_header Access-Control-Allow-Headers 'Authorization,Keep-Alive,User-Agent,If-Modified-Since,Cache-Control,Content-Type';
 spec:
   tls:
     - hosts:
@@ -53,4 +35,5 @@ spec:
                 name: {{ .Values.envName }}-layers-api
                 port:
                   name: layers-api
+---
 {{ end }}
