@@ -1,5 +1,5 @@
 # Default values for titiler.
-replicaCount: 1
+replicaCount: 16
 
 image:
   repository: ghcr.io/developmentseed/titiler
@@ -13,10 +13,7 @@ env:
   CPL_TMPDIR: /tmp
   GDAL_CACHEMAX: 200  # 200 mb
   VSI_CACHE: "TRUE"
-  VSI_CACHE_SIZE: 5000000  # 5 MB (per file-handle)
-  GDAL_DISABLE_READDIR_ON_OPEN: "EMPTY_DIR"
+  VSI_CACHE_SIZE: 25000000  # 5 MB (per file-handle)
   GDAL_HTTP_MERGE_CONSECUTIVE_RANGES: "YES"
   GDAL_HTTP_MULTIPLEX: "YES"
-  GDAL_HTTP_VERSION: 2
-  PYTHONWARNINGS: "ignore"
   WEB_CONCURRENCY: 2
