@@ -1,0 +1,2 @@
+# validate helm installation locally using layers-api as an example:
+helm template --dry-run -n dev-layers-api -f values.yaml -f values/values-dev.yaml dev-layers-api . | kubectl apply --dry-run=client -f -
