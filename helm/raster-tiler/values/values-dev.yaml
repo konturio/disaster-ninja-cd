@@ -8,6 +8,6 @@ image:
 replicas: 1
 envName: dev
 base_url: https://dev-raster-tiler.k8s-01.konturlabs.com
-titiler_url: https://dev-titiler.k8s-01.konturlabs.com
+titiler_url: https://test-apps02.konturlabs.com/titiler/
 pg_host: milan.k8s-01.kontur.io
 storage_size: 100Gi
