@@ -10,7 +10,7 @@
 
 replicas: 2
 envName: prod
-databaseHost: paris.kontur.io
+databaseHost: paris.k8s-01.kontur.io
 dnsNameOuter: api.kontur.io
 
 jwtIssuerUri: https://keycloak01.kontur.io/auth/realms/kontur
