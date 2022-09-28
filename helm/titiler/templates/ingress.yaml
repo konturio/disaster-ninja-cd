@@ -1,0 +1,36 @@
+{{ if ne .Values.envName "local" }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.envName }}-titiler
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: titiler
+    app.kubernetes.io/instance: {{ .Values.envName }}-titiler
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/part-of: backend
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
+    acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
+spec:
+  tls:
+    - hosts:
+        - {{ .Values.envName }}-titiler.k8s-01.konturlabs.com
+      secretName: {{ .Values.envName }}-titiler-tls # < cert-manager will store the created certificate in this secret.
+  ingressClassName: nginx
+  rules:
+    - host: {{ .Values.envName }}-titiler.k8s-01.konturlabs.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.envName }}-titiler
+                port:
+                  name: http
+{{ end }}
