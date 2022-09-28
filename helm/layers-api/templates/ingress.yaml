@@ -34,6 +34,6 @@ spec:
               service:
                 name: {{ .Values.envName }}-layers-api
                 port:
-                  name: layers-api
+                  name: main
 ---
 {{ end }}
