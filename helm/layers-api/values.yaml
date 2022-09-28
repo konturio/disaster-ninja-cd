@@ -10,6 +10,4 @@ replicas: 1
 envName: local
 databaseHost: docker.for.mac.host.internal
 databasePort: 5432
-jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/dev
-jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/dev/protocol/openid-connect/certs
 alertingTime: 10m
