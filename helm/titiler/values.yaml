@@ -1,0 +1,19 @@
+# Default values for titiler.
+replicaCount: 2
+
+image:
+  repository: ghcr.io/developmentseed/titiler
+  tag: latest
+  pullPolicy: IfNotPresent
+
+port: 80
+
+env:
+  PORT: 80
+  CPL_TMPDIR: /tmp
+  GDAL_CACHEMAX: 200  # 200 mb
+  VSI_CACHE: "TRUE"
+  VSI_CACHE_SIZE: 25000000  # 25 MB (per file-handle)
+  GDAL_HTTP_MERGE_CONSECUTIVE_RANGES: "YES"
+  GDAL_HTTP_MULTIPLEX: "YES"
+  WEB_CONCURRENCY: 2

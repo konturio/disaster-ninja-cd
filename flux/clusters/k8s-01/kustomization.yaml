@@ -6,3 +6,4 @@ resources:
   - user-profile-api
   - raster-tiler
   - insights-api
+  - titiler
