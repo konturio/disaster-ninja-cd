@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: '@sha256'
-    tag: 24e9a4d1d58c5f2654ef652501e9bdc38b0c27b46dc05e92c6bfe67e57ad7c36 # image id
+    tag: 69f3994d82dec24959db0437693fedc43fea85daec24c160fbfe278939463d57 # image id
 replicaCount: 1
 envName: dev
 dnsName1: dev-disaster-ninja.k8s-01.konturlabs.com
