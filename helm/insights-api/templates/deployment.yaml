@@ -122,7 +122,7 @@ spec:
       annotations:
         meta.helm.sh/release-name: {{ .Release.Name }}
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
-        checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
+        checksum/configmap: {{ include (print $.Template.BasePath "/redis-conf.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
     spec:
       volumes:
         - name: start-scripts
