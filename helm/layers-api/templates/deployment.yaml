@@ -50,6 +50,9 @@ spec:
               memory: "4Gi"
             limits:
               memory: "4Gi"
+          env:
+            - name: JAVA_TOOL_OPTIONS
+              value: "-XX:MaxRAMPercentage=50"
           envFrom:
             - configMapRef:
                 name: {{ .Values.envName }}-layers-api
