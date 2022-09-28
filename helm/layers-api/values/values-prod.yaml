@@ -1,13 +1,15 @@
 # PROD values for layers-api.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-image:
-  tag:
-  name: nexus.kontur.io:8085/konturdev/layers-api@sha256
+
+#image:
+#  tag: latest
+#  name: nexus.kontur.io:8085/konturdev/layers-api@sha256
 # TODO remove image.name after first deploy
 
 replicas: 2
 envName: prod
+# databaseHost:
 dnsNameOuter: api.kontur.io
 jwtIssuerUri: https://keycloak01.kontur.io/auth/realms/kontur
 jwtJwkSetUri: https://keycloak01.kontur.io/auth/realms/kontur/protocol/openid-connect/certs
