@@ -7,7 +7,9 @@ replicas: 2
 
 image:
   be:
-    tag: "0.16.1" # this version will be automatically deployed by Flux
+    repository: ghcr.io/konturio/disaster-ninja-be
+    algorithm: '@sha256'
+    tag: e3c8c08b680800ed88b0016a03a8fa3e4aa7f44622d3353af945aba5fb48a27a # this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.kontur.io/auth'
 keycloakRealm: kontur
