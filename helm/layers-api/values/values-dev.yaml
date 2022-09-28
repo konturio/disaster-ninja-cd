@@ -9,4 +9,8 @@ replicas: 2
 envName: dev
 databaseHost: milan.kontur.io
 dnsNameOuter: test-api02.konturlabs.com
+
+jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/dev
+jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/dev/protocol/openid-connect/certs
+
 alertingTime: 10m
