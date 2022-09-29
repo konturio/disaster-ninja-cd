@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: dd16a7299918592ece5d5b64be2d820bef90eed2
+  tag: e082abd2d8f789902b376d0940b0c1da17225a22
 
 
 replicas: 1
@@ -11,4 +11,4 @@ base_url: https://prod-raster-tiler.k8s-01.konturlabs.com
 pg_host: milan.k8s-01.kontur.io # TODO: replace with paris.k8s-01.kontur.io after layers-db/api moving in k8s is done
 titiler_url: https://apps.kontur.io/titiler/
 storage_size: 500Gi
-db_pool_size: 16
+db_pool_size: "16"
