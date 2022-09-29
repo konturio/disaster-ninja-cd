@@ -40,7 +40,6 @@ spec:
       annotations:
         meta.helm.sh/release-name: {{ .Release.Name }}
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
-        # checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
     spec:{{ if eq .Values.envName "local" }}
       imagePullSecrets:
         - name: {{ .Values.imagePullSecretName }}{{ end }}
