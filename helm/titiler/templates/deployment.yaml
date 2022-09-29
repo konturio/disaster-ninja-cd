@@ -58,14 +58,14 @@ spec:
             httpGet:
               path: /healthz
               port: http
-            failureThreshold: 1
+            failureThreshold: 10
             periodSeconds: 10
             initialDelaySeconds: 5
           readinessProbe:
             httpGet:
               path: /healthz
               port: http
-            failureThreshold: 10
+            failureThreshold: 1
             periodSeconds: 10
             initialDelaySeconds: 5
           resources:
