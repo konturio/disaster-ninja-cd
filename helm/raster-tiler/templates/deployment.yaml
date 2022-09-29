@@ -63,6 +63,8 @@ spec:
               value: {{ .Values.base_url }}
             - name: TITILER_BASE_URL
               value: {{ .Values.titiler_url }}
+            - name: DB_POOL_SIZE
+              value: {{ .Values.db_pool_size }}
             - name: TILES_CACHE_DIR_PATH
               value: /tiles
             - name: PORT
