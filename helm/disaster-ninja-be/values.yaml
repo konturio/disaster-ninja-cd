@@ -28,3 +28,5 @@ notificationsAlertUrlPattern: disabled
 notificationsSlackWebHook: disabled
 
 alertingTime: 10m
+
+java_tool_options: "-XX:MaxRAMPercentage=50"
