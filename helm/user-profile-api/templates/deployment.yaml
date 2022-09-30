@@ -43,7 +43,7 @@ spec:
       containers:
         - name: user-profile-api
           image: {{ .Values.image.name }}:{{ .Values.image.tag }}
-          imagePullPolicy: Always #don't use Always for local minikube - otherwise it tries reloading from remote
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: {{ .Values.port }}
               name: main
