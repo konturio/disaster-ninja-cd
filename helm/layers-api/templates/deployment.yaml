@@ -41,7 +41,7 @@ spec:
       containers:
         - name: layers-api
           image: {{ .Values.image.name }}:{{ .Values.image.tag }}
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: {{ .Values.port }}
               name: main

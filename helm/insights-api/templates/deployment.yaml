@@ -41,7 +41,7 @@ spec:
       containers:
         - name: insights-api
           image: {{ .Values.image.name }}{{ .Values.image.tagType }}:{{ .Values.image.tag }}
-          imagePullPolicy: Always #don't use Always for local minikube - otherwise it tries reloading from remote
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: {{ .Values.port }}
               name: main{{ if eq .Values.jmxEnabled true }}
