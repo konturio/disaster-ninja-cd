@@ -17,3 +17,4 @@ dnsNameOuter: apps.kontur.io
 alertingTime: 2m
 
 otlpTracesExporter: none
+otlpTracesPort: 4317

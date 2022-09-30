@@ -24,3 +24,6 @@ notificationsAlertUrlPattern: 'https://test-apps-ninja01.konturlabs.com/active/?
 notificationsSlackWebHook: 'https://hooks.slack.com/services/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'
 
 alertingTime: 5m
+
+otlpTracesExporter: none
+otlpTracesPort: 4317

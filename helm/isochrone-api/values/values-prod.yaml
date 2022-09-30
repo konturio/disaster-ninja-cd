@@ -20,3 +20,6 @@ calculationWorkersNumber: 7
 isochroneTimeLimitSeconds: 1200
 isochroneIntervalSeconds: 300
 enabledIsochroneProfiles: foot,bicycle,motorbike,car,emergency,
+
+otlpTracesExporter: none
+otlpTracesPort: 4317
