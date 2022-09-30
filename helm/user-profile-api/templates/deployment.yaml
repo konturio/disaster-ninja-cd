@@ -63,7 +63,7 @@ spec:
                 fieldRef:
                   fieldPath: spec.nodeName
             - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-              value: http://$(MY_NODE_NAME):4317
+              value: "http://$(MY_NODE_NAME):{{ .Values.otlpTracesPort }}"
           envFrom:
             - configMapRef:
                 name: {{ .Values.envName }}-user-profile-api

@@ -15,3 +15,4 @@ jmxEnabled: true
 alertingTime: 10m
 
 otlpTracesExporter: none
+otlpTracesPort: 4317
