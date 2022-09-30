@@ -20,7 +20,7 @@ data:
   spring.datasource.hikari.connection-timeout: '600000'
   spring.datasource.hikari.maximum-pool-size: '20'
   SPRING_JDBC_TEMPLATE_QUERY_TIMEOUT: '600'
-  OTEL_TRACES_EXPORTER: none #TODO change to 'otlp' once OpenTelemetry collector daemon is available
+  OTEL_TRACES_EXPORTER: {{ .Values.otlpTracesExporter }}
   OTEL_METRICS_EXPORTER: none
   OTEL_LOGS_EXPORTER: none
   spring.redis.host: '{{ .Values.envName }}-insights-api-redis'

@@ -13,3 +13,5 @@ databaseHost: docker.for.mac.host.internal
 databasePort: 8900
 jmxEnabled: true
 alertingTime: 10m
+
+otlpTracesExporter: none
