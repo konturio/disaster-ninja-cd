@@ -55,6 +55,16 @@ spec:
             value: "-XX:MaxRAMPercentage=50"
           - name: NOTIFICATIONS_ENABLED
             value: "false"
+          - name: OTEL_SERVICE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.labels['app.kubernetes.io/instance']
+          - name: MY_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
+            value: "http://$(MY_NODE_NAME):{{ .Values.otlpTracesPort }}"
         envFrom:
         - configMapRef:
             name: {{ .Values.envName }}-disaster-ninja-be
