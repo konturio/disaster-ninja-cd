@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: "8d9a39a7be93bd98bc67733b69bcb3332492de27313786bccbc718be20792c2b"
+  tag: "5de6ffe3dfd77d6e23040192c7bc3733b6610510b5fe0cac570f9c537f0458f3"
   tagType: "@sha256"
 
 replicas: 2
@@ -13,3 +13,5 @@ jmxEnabled: true
 
 dnsNameOuter: test-apps02.konturlabs.com
 alertingTime: 10m
+
+otlpTracesExporter: otlp
