@@ -52,7 +52,7 @@ spec:
             memory: "6G"
         env:
           - name: JAVA_TOOL_OPTIONS
-            value: "-XX:MaxRAMPercentage=50"
+            value: "-XX:MaxRAMPercentage=50 -javaagent:/opentelemetry/opentelemetry-javaagent.jar"
           - name: NOTIFICATIONS_ENABLED
             value: "false"
           - name: OTEL_SERVICE_NAME
@@ -140,7 +140,7 @@ spec:
             memory: "3G"
         env:
           - name: JAVA_TOOL_OPTIONS
-            value: "-XX:MaxRAMPercentage=50"
+            value: "-XX:MaxRAMPercentage=50 -javaagent:/opentelemetry/opentelemetry-javaagent.jar"
           - name: NOTIFICATIONS_ENABLED
             value: "true"
           - name: OTEL_SERVICE_NAME
