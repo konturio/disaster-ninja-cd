@@ -23,3 +23,6 @@ calculationWorkersNumber: 3
 isochroneTimeLimitSeconds: 1200
 isochroneIntervalSeconds: 300
 enabledIsochroneProfiles: foot
+
+otlpTracesExporter: none
+otlpTracesPort: 4317

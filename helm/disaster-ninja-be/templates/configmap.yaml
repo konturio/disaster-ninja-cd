@@ -12,6 +12,9 @@ metadata:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
 data:
+  OTEL_TRACES_EXPORTER: {{ .Values.otlpTracesExporter }}
+  OTEL_METRICS_EXPORTER: none
+  OTEL_LOGS_EXPORTER: none
   server.servlet.context-path: /active/api
   management.endpoints.web.base-path: /
   management.endpoints.web.path-mapping.prometheus: metrics

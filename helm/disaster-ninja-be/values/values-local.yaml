@@ -25,3 +25,6 @@ notificationsAlertUrlPattern: 'https://test-apps-ninja02.konturlabs.com/active/?
 ***REMOVED***
 
 alertingTime: 10m
+
+otlpTracesExporter: none
+otlpTracesPort: 4317

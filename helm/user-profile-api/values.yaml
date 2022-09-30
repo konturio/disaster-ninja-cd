@@ -18,3 +18,4 @@ jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/dev/protocol/openid-
 imagePullSecretName: nexus8085
 
 otlpTracesExporter: none
+otlpTracesPort: 4317

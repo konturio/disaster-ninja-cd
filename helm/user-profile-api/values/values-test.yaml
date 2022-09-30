@@ -15,3 +15,4 @@ dnsNameOuter: test-apps.konturlabs.com
 alertingTime: 5m
 
 otlpTracesExporter: none
+otlpTracesPort: 4317
