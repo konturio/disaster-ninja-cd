@@ -28,3 +28,5 @@ alertingTime: 10m
 
 otlpTracesExporter: none
 otlpTracesPort: 4317
+
+java_tool_options: "-XX:MaxRAMPercentage=50"
