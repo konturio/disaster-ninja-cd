@@ -24,3 +24,6 @@ notificationsAlertUrlPattern: 'https://disaster.ninja/active/?event=%s&utm_sourc
 ***REMOVED***
 
 alertingTime: 2m
+
+otlpTracesExporter: none
+otlpTracesPort: 4317
