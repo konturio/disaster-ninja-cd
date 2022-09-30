@@ -13,3 +13,5 @@ jmxEnabled: false
 
 dnsNameOuter: apps.kontur.io
 alertingTime: 2m
+
+otlpTracesExporter: none
