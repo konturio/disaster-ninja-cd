@@ -14,7 +14,7 @@ metadata:
 data:
   spring.datasource.url: 'jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/layers-db'
   spring.datasource.username: layers-api
-  OTEL_TRACES_EXPORTER: none #TODO change to 'otlp' once OpenTelemetry collector daemon is available
+  OTEL_TRACES_EXPORTER: {{ .Values.otlpTracesExporter }}
   OTEL_METRICS_EXPORTER: none
   OTEL_LOGS_EXPORTER: none
   spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.jwtIssuerUri }}
