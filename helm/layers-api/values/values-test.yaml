@@ -15,5 +15,5 @@ jwtJwkSetUri: 'https://keycloak01.konturlabs.com/auth/realms/test/protocol/openi
 
 alertingTime: 5m
 
-otlpTracesExporter: none
+otlpTracesExporter: otlp
 otlpTracesPort: 4317
