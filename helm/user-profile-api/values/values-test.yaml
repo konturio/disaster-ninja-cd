@@ -14,5 +14,5 @@ jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/test/protocol/openid
 dnsNameOuter: test-apps.konturlabs.com
 alertingTime: 5m
 
-otlpTracesExporter: none
+otlpTracesExporter: otlp
 otlpTracesPort: 4317
