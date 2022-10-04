@@ -25,7 +25,7 @@ notificationsAlertUrlPattern: 'https://test-apps-ninja01.konturlabs.com/active/?
 
 alertingTime: 5m
 
-otlpTracesExporter: none
+otlpTracesExporter: otlp
 otlpTracesPort: 4317
 
 java_tool_options: "-XX:MaxRAMPercentage=50"
