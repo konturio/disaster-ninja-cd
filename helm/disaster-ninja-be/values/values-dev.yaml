@@ -7,7 +7,7 @@ replicas: 1
 
 image:
   be:
-    tag: "10482-set-up-opentelemetry-traces-in-k8s.69f8e0c.1" # this version will be automatically deployed by Flux
+    tag: "main.6740aec.1" # this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: dev
