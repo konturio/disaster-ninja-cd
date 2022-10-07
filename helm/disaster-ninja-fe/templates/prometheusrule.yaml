@@ -1,3 +1,4 @@
+{{ if ne .Values.envName "local" }}
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
@@ -20,3 +21,4 @@ spec:
           for: {{ .Values.alertingTime }}
           labels:
             severity: critical
+{{ end }}
