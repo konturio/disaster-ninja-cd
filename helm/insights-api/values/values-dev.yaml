@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 image:
   tag: "master.8aeaa9d2dde9d355a366d0d0575586ec0a253f03.1"
-  tagType: "@sha256"
+  tagType: ""
 
 replicas: 2
 envName: dev
