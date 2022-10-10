@@ -8,7 +8,7 @@ image:
 replicas: 1
 envName: test
 base_url: https://test-raster-tiler.k8s-01.konturlabs.com
-pg_host: milan.k8s-01.kontur.io # TODO: replace with london.k8s-01.kontur.io after layers-db/api moving in k8s is done
+pg_host: london.k8s-01.kontur.io
 titiler_url: https://test-apps.konturlabs.com/titiler/
 storage_size: 100Gi
 db_pool_size: 16
