@@ -2,11 +2,8 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# TODO create new layers-api release in advance
-#image:
-#  tag: latest
-#  name: nexus.kontur.io:8085/konturdev/layers-api@sha256
-# TODO remove image.name after first deploy
+image:
+  tag: release-1.8.0.ec5854c8da
 
 replicas: 2
 envName: prod
