@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: main.03d5a432f7
+  tag: 12879-create-index-revert.cd2c693d4e
 
 replicas: 2
 envName: test
