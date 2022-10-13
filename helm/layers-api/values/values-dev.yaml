@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: main.03d5a432f7
+  tag: 12834-mixed-srid-geometries-in-layers.e8ba05fdb8
 
 replicas: 2
 envName: dev
