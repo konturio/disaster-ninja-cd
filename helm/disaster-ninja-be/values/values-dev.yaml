@@ -7,7 +7,7 @@ replicas: 1
 
 image:
   be:
-    tag: "12847-remove-hot-projects-layer.184ad82.1" # this version will be automatically deployed by Flux
+    tag: "main.cff9cde.1" # this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: dev
