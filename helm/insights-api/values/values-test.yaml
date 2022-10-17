@@ -2,8 +2,8 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: "8d9a39a7be93bd98bc67733b69bcb3332492de27313786bccbc718be20792c2b"
-  tagType: "@sha256"
+  tag: "release-0.16.1.f523b7b1d19c8ba8bb58de4fdfe03530a4ecd439.1"
+  tagType: ""
 
 replicas: 2
 envName: test
