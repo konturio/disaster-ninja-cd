@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.envName }}-event-api
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: event-api
+    app.kubernetes.io/instance: {{ .Values.envName }}-event-api
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+data:
+  SPRING_DATASOURCE_URL: 'jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/{{ .Values.databaseName }}'
+  SPRING_DATASOURCE_USERNAME: {{ .Values.databaseUser }}
+  #do not use uppercase var names for hikari properties otherwise startup fails with smth like 'The configuration of the pool is sealed once started.'
+  spring.datasource.hikari.maximum-pool-size: '10'
+  OTEL_TRACES_EXPORTER: {{ .Values.otlpTracesExporter }}
+  OTEL_METRICS_EXPORTER: none
+  OTEL_LOGS_EXPORTER: none
+  server.servlet.context-path: /events
+  management.endpoints.web.base-path: /
+  management.endpoints.web.path-mapping.prometheus: metrics
+  spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.keycloakUrl }}/realms/{{ .Values.keycloakRealm }}
+  spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.keycloakUrl }}/realms/{{ .Values.keycloakRealm }}/protocol/openid-connect/certs
+  konturApi.host: {{ .Values.konturApiUrl }}
+  konturApps.host: {{ .Values.konturAppsUrl }}
+  pdc.host: {{ .Values.pdcUrl }}
+  pdc.mapSrvHost: {{ .Values.pdcMapSrvUrl }}
+  staticdata.s3Folder: {{ .Values.staticdataS3Folder }}
+  humanitarianCrisis.s3Folder: {{ .Values.humanitarianCrisisS3Folder }}
