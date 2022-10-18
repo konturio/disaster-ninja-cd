@@ -1,0 +1,35 @@
+# Default values for event-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+image:
+  tag: latest
+
+replicas: 1
+envName: dev
+databaseHost: docker.for.mac.host.internal # todo set DB url
+databaseUser: event_api_user01
+databaseName: event-api
+databasePort: 5432
+
+alertingTime: 10m
+
+jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/test
+jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/test/protocol/openid-connect/certs
+
+otlpTracesExporter: otlp
+otlpTracesPort: 4317
+
+konturApiUrl: 'https://test-api.konturlabs.com/'
+
+konturAppsUrl: 'https://test-apps.konturlabs.com/'
+
+pdcUrl: 'https://testdisasteraware.pdc.org'
+pdcMapSrvUrl: 'https://testapps.pdc.org'
+
+staticdataS3Folder: 'TEST DEV/'
+
+humanitarianCrisisS3Folder: 'kontur_events/TEST DEV/'
+
+awsSqsEnabled: false
+
+feignUserAgent: 'Event API DEV'
