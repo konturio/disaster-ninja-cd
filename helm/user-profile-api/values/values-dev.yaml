@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: main.c2037f1207
+  tag: main.507005c.1
 
 replicas: 2
 envName: dev
