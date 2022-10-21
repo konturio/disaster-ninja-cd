@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: main.9089e78.1
+  tag: 12935-remove-hardcoded-256-tilesize-in-dn-be-and-allow-to-specify-it-from-layers-db.7dfaaaa.1
 
 replicas: 2
 envName: dev
