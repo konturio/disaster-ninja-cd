@@ -1,0 +1,20 @@
+ENV_NAME: local
+SITE_URL: https://test-apps-ninja02.konturlabs.com/active/
+APP_ID: 'f29339bd-8049-41ae-9d6b-f726d8451894'
+TIMEOUT: 60000
+CACHE_TTL: 1
+DEBUG: TRUE
+
+containers:
+  chromium_headless:
+    replicas: 1
+    pullPolicy: IfNotPresent
+    tag: "12893-hot-project-outlines-layer-is-invisible-on-preview"
+  preview_generator:
+    replicas: 1
+    pullPolicy: IfNotPresent
+    tag: "12893-hot-project-outlines-layer-is-invisible-on-preview"
+  redis:
+    replicas: 1
+    pullPolicy: IfNotPresent
+    tag: "7-alpine3.16"
