@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.ENV_NAME }}-chromium-headless
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: chromium-headless
+    app.kubernetes.io/instance: {{ .Values.ENV_NAME }}-chromium-headless
+    app.kubernetes.io/version: {{ .Chart.Version }}
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.ENV_NAME }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: chromium-headless
+      app.kubernetes.io/instance: {{ .Values.ENV_NAME }}-chromium-headless
+      #don't add app.kubernetes.io/version
+      app.kubernetes.io/managed-by: "Helm"
+      stage: {{ .Values.ENV_NAME }}
+  replicas: {{ .Values.containers.chromium_headless.replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: chromium-headless
+        app.kubernetes.io/instance: {{ .Values.ENV_NAME }}-chromium-headless
+        app.kubernetes.io/version: {{ .Chart.Version }}
+        app.kubernetes.io/managed-by: "Helm"
+        stage: {{ .Values.ENV_NAME }}
+      annotations:
+        meta.helm.sh/release-name: {{ .Release.Name }}
+        meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+        rollme: {{ randAlphaNum 5 | quote }} #random value that makes Helm restart pods on any upgrade
+    spec:
+      containers:
+        - name: chromium-headless
+          image: {{ .Values.containers.chromium_headless.repository }}:{{ .Values.containers.chromium_headless.tag }}
+          imagePullPolicy: {{ .Values.containers.chromium_headless.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.ENV_NAME }}-epig
+          ports:
+            - containerPort: {{ .Values.CHROMIUM_PORT }}
+          resources:
+            requests:
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /json
+              port: {{ .Values.CHROMIUM_PORT }}
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /json
+              port: {{ .Values.CHROMIUM_PORT }}
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /app/cache
+              name: chromium-cache
+            - mountPath: /tmp
+              name: tmp
+            - mountPath: /var/run/dbus/
+              name: dbus-socket
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              add:
+              - SYS_ADMIN
+      restartPolicy: Always
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+      volumes:
+        - name: chromium-cache
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}
+        - name: dbus-socket
+          emptyDir: {}

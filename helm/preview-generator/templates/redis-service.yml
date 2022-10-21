@@ -1,0 +1,27 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.ENV_NAME }}-redis
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/instance: {{ .Values.ENV_NAME }}-redis
+    app.kubernetes.io/version: {{ .Chart.Version }}
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.ENV_NAME }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/instance: {{ .Values.ENV_NAME }}-redis
+    #don't add app.kubernetes.io/version
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.ENV_NAME }}
+  ports:
+  - name: main
+    port: 6379
+    targetPort: 6379
+    protocol: TCP
