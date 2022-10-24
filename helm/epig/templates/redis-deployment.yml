@@ -1,0 +1,67 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{ .Values.ENV_NAME }}-redis
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/instance: {{ .Values.ENV_NAME }}-redis
+    app.kubernetes.io/version: {{ .Chart.Version }}
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.ENV_NAME }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: redis
+      app.kubernetes.io/instance: {{ .Values.ENV_NAME }}-redis
+      #don't add app.kubernetes.io/version
+      app.kubernetes.io/managed-by: "Helm"
+      stage: {{ .Values.ENV_NAME }}
+  replicas: {{ .Values.containers.redis.replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: redis
+        app.kubernetes.io/instance: {{ .Values.ENV_NAME }}-redis
+        app.kubernetes.io/version: {{ .Chart.Version }}
+        app.kubernetes.io/managed-by: "Helm"
+        stage: {{ .Values.ENV_NAME }}
+      annotations:
+        meta.helm.sh/release-name: {{ .Release.Name }}
+        meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+        checksum/configmap: {{ include (print $.Template.BasePath "/redis-configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
+    spec:
+      containers:
+        - name: redis
+          image: {{ .Values.containers.redis.repository }}:{{ .Values.containers.redis.tag }}
+          imagePullPolicy: {{ .Values.containers.redis.pullPolicy }}
+          ports:
+            - containerPort: 6379
+          args: [ "/usr/local/etc/redis/redis.conf", "--requirepass", $(CACHE_PASSWORD) ]
+          envFrom:
+            - secretRef:
+                name: {{ .Values.ENV_NAME }}-redis-secret
+          volumeMounts:
+            - mountPath: /data
+              name: data
+            - mountPath: /usr/local/etc/redis
+              name: config
+          securityContext:
+            readOnlyRootFilesystem: true
+      volumes:
+        - name: data
+          emptyDir: { }
+        - name: config
+          configMap:
+            name: {{ .Values.ENV_NAME }}-redis-config
+            items:
+              - key: redis-config
+                path: redis.conf
