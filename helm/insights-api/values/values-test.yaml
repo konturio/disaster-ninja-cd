@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: "release-0.16.1.f523b7b1d19c8ba8bb58de4fdfe03530a4ecd439.1"
+  tag: "12936-possible-memory-leak-in-fasterxml-jackson-databind-before-2-14-0-rc1.91d3f64.1"
   tagType: ""
 
 replicas: 2
