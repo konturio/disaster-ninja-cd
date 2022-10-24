@@ -9,10 +9,10 @@ DEFAULT_IMAGE_URL: "https://test-apps-ninja02.konturlabs.com/active/static/asset
 containers:
   chromium_headless:
     replicas: 1
-    tag: "12893-hot-project-outlines-layer-is-invisible-on-preview.48e1677.1"
+    tag: "main.00d41e5.1"
   preview_generator:
     replicas: 1
-    tag: "12893-hot-project-outlines-layer-is-invisible-on-preview.48e1677.1"
+    tag: "main.00d41e5.1"
   redis:
     replicas: 1
     tag: "7-alpine3.16"
