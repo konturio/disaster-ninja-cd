@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.ENV_NAME }}-epig
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: epig
+    app.kubernetes.io/instance: {{ .Values.ENV_NAME }}-epig
+    app.kubernetes.io/version: {{ .Chart.Version }}
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.ENV_NAME }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+data:
+  CHROMIUM_HOST: "{{ .Values.ENV_NAME }}-{{ .Values.CHROMIUM_HOST }}"
+  CHROMIUM_PORT: "{{ .Values.CHROMIUM_PORT }}"
+  CHROMIUM_CACHE_SIZE: "{{ .Values.CHROMIUM_CACHE_SIZE }}"
+  USE_HEADERS: "FALSE"
+  SITE_URL: "{{ .Values.SITE_URL }}"
+  EVENT_NAME: "{{ .Values.EVENT_NAME }}"
+  WIDTH: "{{ .Values.WIDTH }}"
+  HEIGHT: "{{ .Values.HEIGHT }}"
+  QS: "app={{ .Values.APP_ID }}&feed=kontur-public"
+  TIMEOUT: "{{ .Values.TIMEOUT }}"
+  DEFAULT_IMAGE_URL: "{{ .Values.DEFAULT_IMAGE_URL }}"
+  ALLOW_EMPTY_QS: "FALSE"
+  IMAGE_FORMAT: "{{ .Values.IMAGE_FORMAT }}"
+  CACHE_URL: "redis://{{ .Values.ENV_NAME }}-redis:6379"
+  CACHE_TTL: "{{ .Values.CACHE_TTL }}"
+  DEBUG: "{{ .Values.DEBUG }}"
+  PORT: "{{ .Values.PORT }}"
