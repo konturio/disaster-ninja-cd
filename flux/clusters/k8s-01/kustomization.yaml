@@ -8,4 +8,4 @@ resources:
   - insights-api
   - titiler
   - layers-api
-  - preview-generator
+  - epig

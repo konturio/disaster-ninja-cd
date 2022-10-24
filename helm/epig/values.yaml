@@ -11,15 +11,15 @@ containers:
   chromium_headless:
     replicas: 1
     repository: nexus.kontur.io:8085/konturdev/chromium-headless
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
     tag: "latest"
   preview_generator:
     replicas: 1
     repository: nexus.kontur.io:8085/konturdev/preview-generator
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
     tag: "latest"
   redis:
     replicas: 1
     repository: redis
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
     tag: "7-alpine3.16"
