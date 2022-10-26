@@ -7,7 +7,7 @@ replicas: 1
 
 image:
   be:
-    tag: "main.559f2e3.1" #this version will be automatically deployed by Flux
+    tag: "release-0.19.0.f89cda0.1" #this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: 'test'
