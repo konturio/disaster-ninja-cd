@@ -24,7 +24,7 @@ data:
     maxmemory 768mb
     maxmemory-policy allkeys-lru
     # Enable AOF https://redis.io/topics/persistence#append-only-file
-    appendable yes
+    appendonly yes
     # Disable RDB persistence, AOF persistence already enabled.
     save ""
     # End of common configuration
@@ -55,7 +55,7 @@ data:
     response=$(
       timeout -s 3 $1 \
       redis-cli \
-        -h localhost \
+        -h host.docker.internal \
         -p $REDIS_PORT \
         ping
     )
@@ -83,7 +83,7 @@ data:
     response=$(
       timeout -s 3 $1 \
       redis-cli \
-        -h localhost \
+        -h host.docker.internal \
         -p $REDIS_PORT \
         ping
     )

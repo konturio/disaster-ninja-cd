@@ -1,12 +1,12 @@
-# Default values for event-api.
+# PROD values for event-api.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: release-1.13
+  tag: 'release-1.14'
 
 replicas: 1
 envName: prod
-databaseHost: docker.for.mac.host.internal # todo set DB url
+databaseHost: moral-pgdb01.cskt9jki4yd3.eu-central-1.rds.amazonaws.com
 databaseUser: event_api_user01
 databaseName: event-api
 databasePort: 5432
@@ -15,6 +15,8 @@ alertingTime: 2m
 
 jwtIssuerUri: https://keycloak01.kontur.io/auth/realms/kontur
 jwtJwkSetUri: https://keycloak01.kontur.io/auth/realms/kontur/protocol/openid-connect/certs
+
+profiles: prod
 
 otlpTracesExporter: none
 otlpTracesPort: 4317
@@ -25,11 +27,14 @@ konturAppsUrl: 'https://apps.kontur.io/'
 
 pdcUrl: 'https://emops.pdc.org/'
 pdcMapSrvUrl: 'https://apps.pdc.org'
+pdcUser: 'event-api2'
 
 staticdataS3Folder: 'PROD/'
 
 humanitarianCrisisS3Folder: 'kontur_events/PROD/'
 
+awsSqsUrl: 'https://sqs.us-west-1.amazonaws.com/001426858141/SNS_messages_from_pdc-prod-publiccloud-sns.fifo'
+awsSqsDlqUrl: 'https://sqs.us-west-1.amazonaws.com/001426858141/SNS_messages_from_pdc-prod-publiccloud-sns_DLQ.fifo'
 awsSqsEnabled: true
 
 feignUserAgent: 'Event API PROD'
