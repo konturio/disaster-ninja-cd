@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: "11838-file-uploading-process-controller-service-dao-layer.4d3ac456a3d7b646c7c88404f2231752c1a1cd3c.1"
+  tag: "release-16.0.2.f319387.1"
   tagType: ""
 
 replicas: 2
