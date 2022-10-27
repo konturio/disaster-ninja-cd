@@ -1,4 +1,4 @@
-# Default values for event-api.
+# TEST values for event-api.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
@@ -6,7 +6,7 @@ image:
 
 replicas: 1
 envName: test
-databaseHost: docker.for.mac.host.internal # todo set DB url
+databaseHost: orbit-20210525-01.cskt9jki4yd3.eu-central-1.rds.amazonaws.com
 databaseUser: event_api_user01
 databaseName: event-api
 databasePort: 5432
@@ -15,6 +15,8 @@ alertingTime: 5m
 
 jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/test
 jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/test/protocol/openid-connect/certs
+
+profiles: test
 
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
@@ -25,11 +27,14 @@ konturAppsUrl: 'https://test-apps.konturlabs.com/'
 
 pdcUrl: 'https://testdisasteraware.pdc.org'
 pdcMapSrvUrl: 'https://testapps.pdc.org'
+pdcUser: 'eventapi'
 
 staticdataS3Folder: 'TEST QA/'
 
 humanitarianCrisisS3Folder: 'kontur_events/TEST QA/'
 
-awsSqsEnabled: false
+awsSqsUrl: 'https://sqs.us-west-1.amazonaws.com/001426858141/SNS_messages_from_pdc-test-copy-publiccloud-sns.fifo'
+awsSqsDlqUrl: 'https://sqs.us-west-1.amazonaws.com/001426858141/SNS_messages_from_pdc-test-copy-publiccloud-sns_DLQ.fifo'
+awsSqsEnabled: true
 
 feignUserAgent: 'Event API TEST'
