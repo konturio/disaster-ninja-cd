@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.ENV_NAME }}-preview-generator
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: preview-generator
+    app.kubernetes.io/instance: {{ .Values.ENV_NAME }}-preview-generator
+    #don't add app.kubernetes.io/version
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.ENV_NAME }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: preview-generator
+      app.kubernetes.io/instance: {{ .Values.ENV_NAME }}-preview-generator
+      #don't add app.kubernetes.io/version
+      app.kubernetes.io/managed-by: "Helm"
+      stage: {{ .Values.ENV_NAME }}
+  replicas: {{ .Values.containers.preview_generator.replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: preview-generator
+        app.kubernetes.io/instance: {{ .Values.ENV_NAME }}-preview-generator
+        #don't add app.kubernetes.io/version
+        app.kubernetes.io/managed-by: "Helm"
+        stage: {{ .Values.ENV_NAME }}
+      annotations:
+        meta.helm.sh/release-name: {{ .Release.Name }}
+        meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+        checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
+    spec:
+      containers:
+      - name: preview-generator
+        image: {{ .Values.containers.preview_generator.repository }}:{{ .Values.containers.preview_generator.tag }}
+        imagePullPolicy: {{ .Values.containers.preview_generator.pullPolicy }}
+        envFrom:
+          - configMapRef:
+              name: {{ .Values.ENV_NAME }}-epig
+          - secretRef:
+              name: {{ .Values.ENV_NAME }}-preview-generator-secret
+        ports:
+          - containerPort: {{ .Values.PORT }}
+        resources: { }
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.PORT }}
+          initialDelaySeconds: 10
+          timeoutSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.PORT }}
+          initialDelaySeconds: 10
+          timeoutSeconds: 10
+        securityContext:
+          readOnlyRootFilesystem: true
+      restartPolicy: Always

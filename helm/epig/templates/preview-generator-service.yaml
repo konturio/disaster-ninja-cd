@@ -1,0 +1,28 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.ENV_NAME }}-preview-generator
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: preview-generator
+    app.kubernetes.io/instance: {{ .Values.ENV_NAME }}-preview-generator
+    #don't add app.kubernetes.io/version
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.ENV_NAME }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: preview-generator
+    app.kubernetes.io/instance: {{ .Values.ENV_NAME }}-preview-generator
+    #don't add app.kubernetes.io/version
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.ENV_NAME }}
+  ports:
+    - name: main
+      port: {{ .Values.PORT }}
+      targetPort: {{ .Values.PORT }}
+      protocol: TCP
+
