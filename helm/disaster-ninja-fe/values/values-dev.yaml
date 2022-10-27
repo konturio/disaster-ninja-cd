@@ -5,8 +5,9 @@
 image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
-    algorithm: '@sha256'
-    tag: bb6362a8f9651b381212afabf3c87b7e5c6c01e4341e93c16f55b09eb0d077ad # image id
+    algorithm: ''
+    tag: 13025-dn2-doesn-t-load-after-some-default-layers-are-disabled.7223dc5.1 # image id
+    
 replicaCount: 1
 envName: dev
 dnsName1: dev-disaster-ninja.k8s-01.konturlabs.com
