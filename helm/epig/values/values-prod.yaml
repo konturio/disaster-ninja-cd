@@ -1,0 +1,18 @@
+ENV_NAME: prod
+SITE_URL: https://disaster.ninja/active/
+APP_ID: 'c5ecc65b-1e7e-4e31-92a4-222fadeaeef0'
+TIMEOUT: 9000
+CACHE_TTL: 3600
+DEBUG: FALSE
+DEFAULT_IMAGE_URL: "https://disaster.ninja/active/static/assets/preview_screenshot.png"
+
+containers:
+  chromium_headless:
+    replicas: 1
+    tag: "latest"
+  preview_generator:
+    replicas: 1
+    tag: "latest"
+  redis:
+    replicas: 1
+    tag: "7-alpine3.16"

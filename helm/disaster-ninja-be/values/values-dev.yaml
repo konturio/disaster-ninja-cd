@@ -7,7 +7,7 @@ replicas: 1
 
 image:
   be:
-    tag: "main.53bb0ab.1" # this version will be automatically deployed by Flux
+    tag: "12935-remove-hardcoded-256-tilesize-in-dn-be-and-allow-to-specify-it-from-layers-db.48e090e.1" # this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: dev

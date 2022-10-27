@@ -1,0 +1,19 @@
+ENV_NAME: test
+SITE_URL: https://test-apps-ninja01.konturlabs.com/active/
+APP_ID: '59b3842c-8ac3-4672-a31f-5fc9543edacd'
+TIMEOUT: 9000
+CACHE_TTL: 600
+DEBUG: TRUE
+DEFAULT_IMAGE_URL: "https://test-apps-ninja01.konturlabs.com/active/static/assets/preview_screenshot.png"
+
+containers:
+  chromium_headless:
+    replicas: 1
+    tag: "latest"
+  preview_generator:
+    replicas: 1
+    tag: "latest"
+  redis:
+    replicas: 1
+    tag: "7-alpine3.16"
+

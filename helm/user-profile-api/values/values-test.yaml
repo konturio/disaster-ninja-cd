@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: main.c2037f1207
+  tag: 12627-update-keycloak-spi-plugin-to-use-full-name-instead-of-first-and-last-name.c6a6163.1
 
 replicas: 2
 envName: test
