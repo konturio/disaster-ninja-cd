@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: "11838-add-logger-for-test.66d52d868e4c0f44220d3bada697aa75acbd1d59.1"
+  tag: "11838-file-uploading-process-controller-service-dao-layer.a203d2d5a692e6807ebb8508417156de2ac50a71.1"
   tagType: ""
 
 replicas: 2
