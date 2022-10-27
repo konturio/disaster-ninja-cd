@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 13079-switch-mosaic-layer-to-512-tile-size.a45dd15.1
+  tag: 13079-switch-mosaic-layer-to-512-tile-size.36f8ccf.1
 
 replicas: 2
 envName: dev
