@@ -14,7 +14,7 @@ jmxEnabled: false
 dnsNameOuter: apps.kontur.io
 alertingTime: 2m
 
-otlpTracesExporter: none
+otlpTracesExporter: otlp
 otlpTracesPort: 4317
 
 client_max_body_size: 32m

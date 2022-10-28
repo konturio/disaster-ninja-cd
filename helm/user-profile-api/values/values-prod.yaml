@@ -14,5 +14,5 @@ jwtJwkSetUri: https://keycloak01.kontur.io/auth/realms/kontur/protocol/openid-co
 dnsNameOuter: apps.kontur.io
 alertingTime: 2m
 
-otlpTracesExporter: none
+otlpTracesExporter: otlp
 otlpTracesPort: 4317

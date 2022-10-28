@@ -25,7 +25,7 @@ notificationsSlackWebHook: 'https://hooks.slack.com/services/T042TUWCB/BL9B9GD8X
 
 alertingTime: 2m
 
-otlpTracesExporter: none
+otlpTracesExporter: otlp
 otlpTracesPort: 4317
 
 java_tool_options: "-XX:MaxRAMPercentage=50"
