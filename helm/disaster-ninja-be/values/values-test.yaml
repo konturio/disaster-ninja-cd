@@ -28,4 +28,4 @@ alertingTime: 5m
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
 
-java_tool_options: "-XX:MaxRAMPercentage=50"
+java_tool_options: "-XX:MaxRAMPercentage=50 -javaagent:/opentelemetry/opentelemetry-javaagent.jar"
