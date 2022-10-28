@@ -43,9 +43,9 @@ spec:
           resources:
             requests:
               cpu: "100m"
-              memory: "1Gi"
+              memory: "16Gi"
             limits:
-              memory: "1Gi"
+              memory: "20Gi"
           env:
             - name: OTEL_SERVICE_NAME
               valueFrom:
@@ -165,9 +165,9 @@ spec:
           resources:
             requests:
               cpu: "100m"
-              memory: "512M"
+              memory: "1Gi"
             limits:
-              memory: "1G"
+              memory: "5Gi"
           volumeMounts:
             - name: start-scripts
               mountPath: /opt/bitnami/scripts/start-scripts
