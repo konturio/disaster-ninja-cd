@@ -20,10 +20,7 @@ spec:
       stage: {{ .Values.envName }}
   replicas: {{ .Values.replicas }}
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+    type: Recreate
   template:
     metadata:
       labels:
@@ -46,9 +43,9 @@ spec:
           resources:
             requests:
               cpu: "100m"
-              memory: "1Gi"
+              memory: "16Gi"
             limits:
-              memory: "1Gi"
+              memory: "20Gi"
           env:
             - name: OTEL_SERVICE_NAME
               valueFrom:
@@ -149,7 +146,7 @@ spec:
             - /opt/bitnami/scripts/start-scripts/start-master.sh
           ports:
             - name: redis
-              containerPort: 6379
+              containerPort: {{ .Values.redisPort }}
               protocol: TCP
           env:
             - name: REDIS_REPLICATION_MODE
@@ -164,13 +161,13 @@ spec:
             - name: REDIS_TLS_ENABLED
               value: 'no'
             - name: REDIS_PORT
-              value: '6379'
+              value: '{{ .Values.redisPort }}'
           resources:
             requests:
               cpu: "100m"
-              memory: "512M"
+              memory: "1Gi"
             limits:
-              memory: "1G"
+              memory: "5Gi"
           volumeMounts:
             - name: start-scripts
               mountPath: /opt/bitnami/scripts/start-scripts
@@ -218,10 +215,10 @@ spec:
           ports:
             - name: metrics
               protocol: TCP
-              containerPort: 9121
+              containerPort: {{ .Values.metricsPort }}
           env:
             - name: REDIS_ADDR
-              value: redis://host.docker.internal:6379
+              value: '{{ .Values.redisAddr }}:{{ .Values.redisPort }}'
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:

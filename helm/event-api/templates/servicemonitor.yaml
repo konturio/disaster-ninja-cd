@@ -40,15 +40,15 @@ metadata:
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
 spec:
   endpoints:
-    - interval: 30s
-      port: metrics
-      path: /metrics
-      scheme: http
+  - interval: 30s
+    port: metrics
+    path: /metrics
+    scheme: http
   selector:
     matchLabels:
       app.kubernetes.io/name: event-api-redis
       app.kubernetes.io/instance: {{ .Values.envName }}-event-api-redis
       app.kubernetes.io/managed-by: "Helm"
       stage: {{ .Values.envName }}
-  ---
+---
 {{ end }}

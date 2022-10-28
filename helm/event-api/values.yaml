@@ -23,6 +23,10 @@ profiles: dev
 otlpTracesExporter: none
 otlpTracesPort: 4317
 
+redisAddr: redis://localhost
+redisPort: 6379
+metricsPort: 9121
+
 konturApiUrl: 'https://test-api.konturlabs.com/'
 
 konturAppsUrl: 'https://test-apps.konturlabs.com/'
