@@ -21,9 +21,9 @@ profiles: dev
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
 
-konturApiUrl: 'https://test-api.konturlabs.com/'
+konturApiUrl: 'https://test-api02.konturlabs.com/'
 
-konturAppsUrl: 'https://test-apps.konturlabs.com/'
+konturAppsUrl: 'https://test-apps02.konturlabs.com/'
 
 pdcUrl: 'https://testdisasteraware.pdc.org'
 pdcMapSrvUrl: 'https://testapps.pdc.org'

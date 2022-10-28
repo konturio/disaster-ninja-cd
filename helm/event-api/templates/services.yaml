@@ -47,11 +47,11 @@ spec:
     stage: {{ .Values.envName }}
   ports:
     - name: main
-      port: 6379
-      targetPort: 6379
+      port: {{ .Values.redisPort }}
+      targetPort: redis
       protocol: TCP
     - name: metrics
-      port: 9121
-      targetPort: 9121
+      port: {{ .Values.metricsPort }}
+      targetPort: metrics
       protocol: TCP
 ---
