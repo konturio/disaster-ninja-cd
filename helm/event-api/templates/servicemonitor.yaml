@@ -1,0 +1,54 @@
+{{ if ne .Values.envName "local" }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ .Values.envName }}-event-api
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: event-api
+    app.kubernetes.io/instance: {{ .Values.envName }}-event-api
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  endpoints:
+  - interval: 30s
+    port: main
+    path: /events/metrics
+    scheme: http
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: event-api
+      app.kubernetes.io/instance: {{ .Values.envName }}-event-api
+      app.kubernetes.io/managed-by: "Helm"
+      stage: {{ .Values.envName }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ .Values.envName }}-event-api-redis
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: event-api-redis
+    app.kubernetes.io/instance: {{ .Values.envName }}-event-api-redis
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  endpoints:
+  - interval: 30s
+    port: metrics
+    path: /metrics
+    scheme: http
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: event-api-redis
+      app.kubernetes.io/instance: {{ .Values.envName }}-event-api-redis
+      app.kubernetes.io/managed-by: "Helm"
+      stage: {{ .Values.envName }}
+---
+{{ end }}

@@ -1,0 +1,229 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.envName }}-event-api
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: event-api
+    app.kubernetes.io/instance: {{ .Values.envName }}-event-api
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: event-api
+      app.kubernetes.io/instance: {{ .Values.envName }}-event-api
+      app.kubernetes.io/managed-by: "Helm"
+      stage: {{ .Values.envName }}
+  replicas: {{ .Values.replicas }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: event-api
+        app.kubernetes.io/instance: {{ .Values.envName }}-event-api
+        app.kubernetes.io/managed-by: "Helm"
+        stage: {{ .Values.envName }}
+      annotations:
+        meta.helm.sh/release-name: {{ .Release.Name }}
+        meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+        checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
+    spec:
+      containers:
+        - name: event-api
+          image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: {{ .Values.port }}
+              name: main
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "16Gi"
+            limits:
+              memory: "20Gi"
+          env:
+            - name: OTEL_SERVICE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['app.kubernetes.io/instance']
+            - name: MY_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
+              value: "http://$(MY_NODE_NAME):{{ .Values.otlpTracesPort }}"
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.envName }}-event-api
+            - secretRef:
+                name: {{ .Values.envName }}-event-api
+          readinessProbe:
+            httpGet:
+              path: /events/health
+              port: {{ .Values.port }}
+            failureThreshold: 1
+            periodSeconds: 30
+            initialDelaySeconds: 30
+          {{ if eq .Values.envName "prod" }}
+          livenessProbe:
+            httpGet:
+              path: /events/health
+              port: {{ .Values.port }}
+            failureThreshold: 10
+            periodSeconds: 30
+            initialDelaySeconds: 30
+          {{ end }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.envName }}-event-api-redis
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: event-api-redis
+    app.kubernetes.io/instance: {{ .Values.envName }}-event-api-redis
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: event-api-redis
+      app.kubernetes.io/instance: {{ .Values.envName }}-event-api-redis
+      app.kubernetes.io/managed-by: "Helm"
+      stage: {{ .Values.envName }}
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: event-api-redis
+        app.kubernetes.io/instance: {{ .Values.envName }}-event-api-redis
+        app.kubernetes.io/managed-by: "Helm"
+        stage: {{ .Values.envName }}
+      annotations:
+        meta.helm.sh/release-name: {{ .Release.Name }}
+        meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+        checksum/configmap: {{ include (print $.Template.BasePath "/redis-conf.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
+    spec:
+      volumes:
+        - name: start-scripts
+          configMap:
+            name: {{ .Values.envName }}-event-api-redis-scripts
+            defaultMode: 493
+        - name: health
+          configMap:
+            name: {{ .Values.envName }}-event-api-redis-health
+            defaultMode: 493
+        - name: config
+          configMap:
+            name: {{ .Values.envName }}-event-api-redis-configuration
+            defaultMode: 420
+        - name: redis-tmp-conf
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}
+        - name: redis-data
+          emptyDir: {}
+      containers:
+        - name: redis
+          image: docker.io/bitnami/redis:7.0.3-debian-11-r0
+          command:
+            - /bin/bash
+          args:
+            - '-c'
+            - /opt/bitnami/scripts/start-scripts/start-master.sh
+          ports:
+            - name: redis
+              containerPort: {{ .Values.redisPort }}
+              protocol: TCP
+          env:
+            - name: REDIS_REPLICATION_MODE
+              value: master
+            - name: ALLOW_EMPTY_PASSWORD
+              value: 'no'
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: redis
+                  key: redis-password
+            - name: REDIS_TLS_ENABLED
+              value: 'no'
+            - name: REDIS_PORT
+              value: '{{ .Values.redisPort }}'
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "1Gi"
+            limits:
+              memory: "5Gi"
+          volumeMounts:
+            - name: start-scripts
+              mountPath: /opt/bitnami/scripts/start-scripts
+            - name: health
+              mountPath: /health
+            - name: redis-data
+              mountPath: /data
+            - name: config
+              mountPath: /opt/bitnami/redis/mounted-etc
+            - name: redis-tmp-conf
+              mountPath: /opt/bitnami/redis/etc/
+            - name: tmp
+              mountPath: /tmp
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - '-c'
+                - /health/ping_liveness_local.sh 5
+            initialDelaySeconds: 20
+            timeoutSeconds: 6
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 5
+          readinessProbe:
+            exec:
+              command:
+                - sh
+                - '-c'
+                - /health/ping_readiness_local.sh 1
+            initialDelaySeconds: 20
+            timeoutSeconds: 2
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 5
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+        - name: redis-exporter
+          image: oliver006/redis_exporter:v1.43.0
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          ports:
+            - name: metrics
+              protocol: TCP
+              containerPort: {{ .Values.metricsPort }}
+          env:
+            - name: REDIS_ADDR
+              value: '{{ .Values.redisAddr }}:{{ .Values.redisPort }}'
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: redis
+                  key: redis-password
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+---
