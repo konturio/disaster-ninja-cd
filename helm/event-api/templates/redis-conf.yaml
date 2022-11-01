@@ -1,0 +1,142 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.envName }}-event-api-redis-configuration
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: event-api-redis
+    app.kubernetes.io/instance: {{ .Values.envName }}-event-api-redis
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+data:
+  master.conf: |-
+    dir /data
+    # User-supplied master configuration:
+    rename-command FLUSHDB ""
+    rename-command FLUSHALL ""
+    # End of master configuration
+  redis.conf: |-
+    # User-supplied common configuration:
+    # see https://redis.io/docs/manual/eviction/
+    maxmemory 5gb
+    maxmemory-policy allkeys-lru
+    # Enable AOF https://redis.io/topics/persistence#append-only-file
+    appendonly yes
+    # Disable RDB persistence, AOF persistence already enabled.
+    save ""
+    # End of common configuration
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.envName }}-event-api-redis-health
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: event-api-redis
+    app.kubernetes.io/instance: {{ .Values.envName }}-event-api-redis
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+data:
+  ping_liveness_local.sh: >-
+    #!/bin/bash
+
+
+    [[ -f $REDIS_PASSWORD_FILE ]] && export REDIS_PASSWORD="$(<
+    "${REDIS_PASSWORD_FILE}")"
+
+    [[ -n "$REDIS_PASSWORD" ]] && export REDISCLI_AUTH="$REDIS_PASSWORD"
+
+    response=$(
+      timeout -s 3 $1 \
+      redis-cli \
+        -h host.docker.internal \
+        -p $REDIS_PORT \
+        ping
+    )
+
+    if [ "$?" -eq "124" ]; then
+      echo "Timed out"
+      exit 1
+    fi
+
+    responseFirstWord=$(echo $response | head -n1 | awk '{print $1;}')
+
+    if [ "$response" != "PONG" ] && [ "$responseFirstWord" != "LOADING" ] && [
+    "$responseFirstWord" != "MASTERDOWN" ]; then
+      echo "$response"
+      exit 1
+    fi
+  ping_readiness_local.sh: >-
+    #!/bin/bash
+
+    [[ -f $REDIS_PASSWORD_FILE ]] && export REDIS_PASSWORD="$(<
+    "${REDIS_PASSWORD_FILE}")"
+
+    [[ -n "$REDIS_PASSWORD" ]] && export REDISCLI_AUTH="$REDIS_PASSWORD"
+
+    response=$(
+      timeout -s 3 $1 \
+      redis-cli \
+        -h host.docker.internal \
+        -p $REDIS_PORT \
+        ping
+    )
+
+    if [ "$?" -eq "124" ]; then
+      echo "Timed out"
+      exit 1
+    fi
+
+    if [ "$response" != "PONG" ]; then
+      echo "$response"
+      exit 1
+    fi
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.envName }}-event-api-redis-scripts
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: event-api-redis
+    app.kubernetes.io/instance: {{ .Values.envName }}-event-api-redis
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+data:
+  start-master.sh: >
+    #!/bin/bash
+
+    [[ -f $REDIS_PASSWORD_FILE ]] && export REDIS_PASSWORD="$(<
+    "${REDIS_PASSWORD_FILE}")"
+
+    if [[ ! -f /opt/bitnami/redis/etc/master.conf ]];then
+        cp /opt/bitnami/redis/mounted-etc/master.conf /opt/bitnami/redis/etc/master.conf
+    fi
+
+    if [[ ! -f /opt/bitnami/redis/etc/redis.conf ]];then
+        cp /opt/bitnami/redis/mounted-etc/redis.conf /opt/bitnami/redis/etc/redis.conf
+    fi
+
+    ARGS=("--port" "${REDIS_PORT}")
+
+    ARGS+=("--requirepass" "${REDIS_PASSWORD}")
+
+    ARGS+=("--masterauth" "${REDIS_PASSWORD}")
+
+    ARGS+=("--include" "/opt/bitnami/redis/etc/redis.conf")
+
+    ARGS+=("--include" "/opt/bitnami/redis/etc/master.conf")
+
+    exec redis-server "${ARGS[@]}"
+
+---

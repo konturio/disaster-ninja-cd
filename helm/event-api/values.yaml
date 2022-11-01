@@ -1,0 +1,73 @@
+# Default values for event-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+image:
+  tag: latest
+  name: nexus.kontur.io:8085/konturdev/event-api
+
+port: 8624
+replicas: 1
+envName: local
+databaseHost: host.docker.internal
+databaseUser: event_api_user01
+databaseName: event-api
+databasePort: 5432
+
+alertingTime: 10m
+
+jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/test
+jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/test/protocol/openid-connect/certs
+
+profiles: dev
+
+otlpTracesExporter: none
+otlpTracesPort: 4317
+
+redisAddr: redis://localhost
+redisPort: 6379
+metricsPort: 9121
+
+konturApiUrl: 'https://test-api.konturlabs.com/'
+
+konturAppsUrl: 'https://test-apps.konturlabs.com/'
+
+pdcUrl: 'https://testdisasteraware.pdc.org'
+pdcMapSrvUrl: 'https://testapps.pdc.org'
+
+emdatUser: 'azapasnik@kontur.io'
+
+staticdataS3Folder: 'TEST DEV/'
+
+humanitarianCrisisS3Folder: 'kontur_events/TEST DEV/'
+
+awsSqsEnabled: false
+
+feignUserAgent: 'Event API DEV'
+
+liquibaseEnabled: true
+
+hpSrvImportEnable: false
+hpSrvMagsImportEnable: false
+pdcMapSrvSearchEnable: true
+gdacsImportEnable: true
+firmsModisImportEnable: true
+firmsNoaaImportEnable: true
+firmsSuomiImportEnable: true
+emDatImportEnable: true
+staticImportEnable: true
+stormsNoaaImportEnable: true
+tornadoJapanMaImportEnabled: false
+historicalTornadoJapanMaImportEnabled: false
+calfireSearchEnable: true
+nifcImportEnable: true
+inciwebImportEnable: true
+humanitarianCrisisImportEnable: true
+nhcAtImportEnable: true
+nhcCpImportEnable: true
+nhcEpImportEnable: true
+normalizationEnable: true
+eventCombinationEnable: true
+feedCompositionEnable: true
+enrichmentEnable: true
+reEnrichmentEnable: true
+metricsEnable: true
