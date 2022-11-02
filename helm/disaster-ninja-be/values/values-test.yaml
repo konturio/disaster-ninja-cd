@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 envName: test
 
-replicas: 1
+replicas: 2
 
 image:
   be:
