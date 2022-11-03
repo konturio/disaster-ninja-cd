@@ -55,7 +55,7 @@ data:
     response=$(
       timeout -s 3 $1 \
       redis-cli \
-        -h host.docker.internal \
+        -h localhost \
         -p $REDIS_PORT \
         ping
     )
