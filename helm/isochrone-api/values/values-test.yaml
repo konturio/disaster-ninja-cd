@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 0.0.1-SNAPSHOT
+  tag: develop.f1ce4f86bbc7ad8ed1cfbab87af2cef6b1fb6389.1
 
 replicas: 2
 envName: test
@@ -21,5 +21,5 @@ isochroneTimeLimitSeconds: 1200
 isochroneIntervalSeconds: 300
 enabledIsochroneProfiles: foot,bicycle,motorbike,car,emergency,
 
-otlpTracesExporter: none
+otlpTracesExporter: otlp
 otlpTracesPort: 4317
