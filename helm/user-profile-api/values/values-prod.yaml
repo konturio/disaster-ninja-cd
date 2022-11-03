@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: release-0.2.5.cb299f7.1
+  tag: release-0.3.0.75b47d4.1
 
 replicas: 2
 envName: prod
@@ -14,5 +14,5 @@ jwtJwkSetUri: https://keycloak01.kontur.io/auth/realms/kontur/protocol/openid-co
 dnsNameOuter: apps.kontur.io
 alertingTime: 2m
 
-otlpTracesExporter: none
+otlpTracesExporter: otlp
 otlpTracesPort: 4317

@@ -25,7 +25,7 @@ notificationsAlertUrlPattern: 'https://disaster.ninja/active/?event=%s&utm_sourc
 
 alertingTime: 2m
 
-otlpTracesExporter: none
+otlpTracesExporter: otlp
 otlpTracesPort: 4317
 
-java_tool_options: "-XX:MaxRAMPercentage=50"
+java_tool_options: "-XX:MaxRAMPercentage=50 -javaagent:/opentelemetry/opentelemetry-javaagent.jar"
