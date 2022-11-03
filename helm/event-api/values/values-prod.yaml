@@ -8,7 +8,7 @@ replicas: 1
 envName: prod
 databaseHost: moral-pgdb01.cskt9jki4yd3.eu-central-1.rds.amazonaws.com
 databaseUser: event_api_user01
-databaseName: event-api
+databaseName: event_api
 databasePort: 5432
 
 alertingTime: 2m
