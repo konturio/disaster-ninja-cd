@@ -7,7 +7,7 @@ replicas: 1
 
 image:
   be:
-    tag: "12935-remove-hardcoded-256-tilesize-in-dn-be-and-allow-to-specify-it-from-layers-db.48e090e.1" # this version will be automatically deployed by Flux
+    tag: "13112-create-endpoint-to-post-frontend-metrics-to-grafana.8b86fc6.1" # this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: dev

@@ -8,7 +8,7 @@ replicas: 1
 envName: dev
 databaseHost: marvin-2022081800.cpgzwvbl4mna.eu-central-1.rds.amazonaws.com
 databaseUser: event_api_user01
-databaseName: event-api
+databaseName: event_api
 databasePort: 5432
 
 alertingTime: 10m
