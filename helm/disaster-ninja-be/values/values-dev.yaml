@@ -7,7 +7,7 @@ replicas: 1
 
 image:
   be:
-    tag: "main.8c147c1.1" # this version will be automatically deployed by Flux
+    tag: "13112-create-endpoint-to-post-frontend-metrics-to-grafana.8b86fc6.1" # this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: dev
