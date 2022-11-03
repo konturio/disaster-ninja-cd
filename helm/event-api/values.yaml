@@ -10,7 +10,7 @@ replicas: 1
 envName: local
 databaseHost: host.docker.internal
 databaseUser: event_api_user01
-databaseName: event-api
+databaseName: event_api
 databasePort: 5432
 
 alertingTime: 10m
