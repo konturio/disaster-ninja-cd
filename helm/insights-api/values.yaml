@@ -14,6 +14,9 @@ databasePort: 8900
 jmxEnabled: true
 alertingTime: 10m
 
+keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
+keycloakRealm: dev
+
 otlpTracesExporter: none
 otlpTracesPort: 4317
 
