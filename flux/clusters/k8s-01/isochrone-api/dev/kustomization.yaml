@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../../../../base/isochrone-api
-namePrefix: test-
-namespace: test-isochrone-api
+namePrefix: dev-
+namespace: dev-isochrone-api
 patches:
   - target:
       kind: HelmRelease
@@ -15,7 +15,7 @@ patches:
         path: /spec/chart/spec/valuesFiles
         value:
           - ./helm/isochrone-api/values.yaml
-          - ./helm/isochrone-api/values/values-test.yaml
+          - ./helm/isochrone-api/values/values-dev.yaml
   - target:
       kind: HelmRelease
       name: osrm-pipeline
@@ -26,5 +26,5 @@ patches:
         path: /spec/chart/spec/valuesFiles
         value:
           - ./helm/osrm-pipeline/values.yaml
-          - ./helm/osrm-pipeline/values/values-test.yaml
+          - ./helm/osrm-pipeline/values/values-dev.yaml
 ---

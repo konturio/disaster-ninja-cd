@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.envName }}-pbf-pvc
+  namespace: {{ .Release.Namespace }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.pbfDirSize }}
+    limits: #TODO test
+      storage: {{ .Values.pbfDirSize }}
+  storageClassName: {{ .Values.storageClass }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.envName }}-osrm-preprocessor-data
+  namespace: {{ .Release.Namespace }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.osrmDirSize }}
+    limits: #TODO test
+      storage: {{ .Values.osrmDirSize }}
+  storageClassName: {{ .Values.storageClass }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.envName }}-osrm-backend-data
+  namespace: {{ .Release.Namespace }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.osrmDirSize }}
+    limits: #TODO test
+      storage: {{ .Values.osrmDirSize }}
+  storageClassName: {{ .Values.storageClass }}

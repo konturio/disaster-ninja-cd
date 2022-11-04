@@ -1,0 +1,44 @@
+envName: dev
+
+imagePullPolicy: IfNotPresent
+
+sourcePbfUrl: https://download.geofabrik.de/europe/andorra-latest.osm.pbf
+
+pbfDownloadSchedule: "0/30 * * * *"
+osrmPreprocessingSchedule: "5/30 * * * *"
+osrmBackendRestartSchedule: "10/30 * * * *"
+
+pbfDirSize: 256Mi
+osrmDirSize: 1Gi
+
+storageClass: local-path
+
+images:
+  pbf_downloader:
+    tag: 12589-setup-osrm-building-pipeline-in-k8s.41940b7.1
+  osrm_preprocessor:
+    tag: 12589-setup-osrm-building-pipeline-in-k8s.41940b7.1
+
+resources:
+  pbf_downloader:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 1
+      memory: 1Gi
+  osrm_preprocessor:
+    threads: 2
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 1
+      memory: 1Gi
+  osrm_backend:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 1
+      memory: 1Gi
