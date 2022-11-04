@@ -5,17 +5,17 @@ image:
   tag: develop.f1ce4f86bbc7ad8ed1cfbab87af2cef6b1fb6389.1
 
 replicas: 2
-envName: test
+envName: dev
 databaseHost: geocint.kontur.io
 
-dnsNameOuter: test-apps.konturlabs.com
+dnsNameOuter: test-apps02.konturlabs.com
 alertingTime: 5m
 
 hikari:
   maximumPoolSize: 10
   minimumIdle: 3
 
-populationApiUrl: https://test-apps.konturlabs.com/insights-api/
+populationApiUrl: https://test-apps02.konturlabs.com/insights-api/
 calculationWorkersNumber: 7
 isochroneTimeLimitSeconds: 1200
 isochroneIntervalSeconds: 300

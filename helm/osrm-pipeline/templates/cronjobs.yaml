@@ -1,0 +1,129 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Values.envName }}-pbf-downloader
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: pbf-downloader
+    app.kubernetes.io/instance: {{ .Values.envName }}-pbf-downloader
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  concurrencyPolicy: Forbid
+  schedule: {{ .Values.pbfDownloadSchedule | quote }}
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      template:
+        spec:
+          restartPolicy: Never
+          volumes:
+            - name: {{ .Values.envName }}-pbf-pvc
+              persistentVolumeClaim:
+                claimName: {{ .Values.envName }}-pbf-pvc
+          containers:
+            - name: pbf-downloader
+              image: {{ .Values.images.pbf_downloader.name }}:{{ .Values.images.pbf_downloader.tag }}
+              imagePullPolicy: {{ .Values.imagePullPolicy }}
+              volumeMounts:
+                - mountPath: {{ .Values.pbfDir }}
+                  name: {{ .Values.envName }}-pbf-pvc
+              resources:
+                requests:
+                  cpu: {{ .Values.resources.pbf_downloader.requests.cpu | quote }}
+                  memory: {{ .Values.resources.pbf_downloader.requests.memory | quote }}
+                limits:
+                  cpu: {{ .Values.resources.pbf_downloader.limits.cpu | quote }}
+                  memory: {{ .Values.resources.pbf_downloader.limits.memory | quote }}
+              env:
+                - name: SOURCE_URL
+                  value: {{ .Values.sourcePbfUrl }}
+                - name: PBF_DIR
+                  value: {{ .Values.pbfDir }}
+                - name: PBF_FILE
+                  value: {{ .Values.pbfFile }}
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Values.envName }}-osrm-preprocessor
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: osrm-preprocessor
+    app.kubernetes.io/instance: {{ .Values.envName }}-osrm-preprocessor
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  concurrencyPolicy: Forbid
+  schedule: {{ .Values.osrmPreprocessingSchedule | quote }}
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      template:
+        spec:
+          restartPolicy: Never
+          volumes:
+            - name: {{ .Values.envName }}-pbf-pvc
+              persistentVolumeClaim:
+                claimName: {{ .Values.envName }}-pbf-pvc
+            - name: {{ .Values.envName }}-osrm-preprocessor-data
+              persistentVolumeClaim:
+                claimName: {{ .Values.envName }}-osrm-preprocessor-data
+          containers:
+            - name: osrm-preprocessor
+              image: {{ .Values.images.osrm_preprocessor.name }}:{{ .Values.images.osrm_preprocessor.tag }}
+              imagePullPolicy: {{ .Values.imagePullPolicy }}
+              volumeMounts:
+                - mountPath: {{ .Values.pbfDir }}
+                  name: {{ .Values.envName }}-pbf-pvc
+                  readOnly: false #required for locks
+                - mountPath: {{ .Values.osrmPreprocessorDir }}
+                  name: {{ .Values.envName }}-osrm-preprocessor-data
+                  readOnly: false
+              resources:
+                requests:
+                  cpu: {{ .Values.resources.osrm_preprocessor.requests.cpu | quote }}
+                  memory: {{ .Values.resources.osrm_preprocessor.requests.memory | quote }}
+                limits:
+                  cpu: {{ .Values.resources.osrm_preprocessor.limits.cpu | quote }}
+                  memory: {{ .Values.resources.osrm_preprocessor.limits.memory | quote }}
+              env:
+                - name: PBF_DIR
+                  value: {{ .Values.pbfDir }}
+                - name: PBF_FILE
+                  value: {{ .Values.pbfFile }}
+                - name: OUT_DIR
+                  value: {{ .Values.osrmPreprocessorDir }}
+                - name: THREADS
+                  value: {{ .Values.resources.osrm_preprocessor.threads | quote }}
+                - name: PROFILE
+                  value: {{ .Values.osrmProfile }}
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Values.envName }}-osrm-restarter
+  namespace: {{ .Release.Namespace }}
+spec:
+  concurrencyPolicy: Forbid
+  schedule: {{ .Values.osrmBackendRestartSchedule | quote }}
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      activeDeadlineSeconds: 120
+      template:
+        spec:
+          serviceAccountName: {{ .Values.envName }}-osrm-restarter
+          restartPolicy: Never
+          containers:
+            - name: kubectl
+              image: bitnami/kubectl
+              command: [ "/bin/sh","-c" ]
+              args: [ "kubectl rollout restart deployment/{{ .Values.envName }}-osrm-backend" ]
+---

@@ -1,0 +1,111 @@
+#TODO: helm test via readiness check?
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.envName }}-osrm-backend
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: osrm-backend
+    app.kubernetes.io/instance: {{ .Values.envName }}-osrm-backend
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: osrm-backend
+      app.kubernetes.io/instance: {{ .Values.envName }}-osrm-backend
+      #don't add app.kubernetes.io/version
+      app.kubernetes.io/managed-by: "Helm"
+      stage: {{ .Values.envName }}
+  replicas: {{ .Values.osrmBackendReplicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0 #TODO check
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: osrm-backend
+        app.kubernetes.io/instance: {{ .Values.envName }}-osrm-backend
+        app.kubernetes.io/managed-by: "Helm"
+        stage: {{ .Values.envName }}
+      annotations:
+        meta.helm.sh/release-name: {{ .Release.Name }}
+        meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+{{/*        checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed*/}}
+    spec:
+      {{ if ne .Values.envName "local" }}
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values: #TODO hardcode
+                - hwn02.k8s-01.kontur.io
+      {{ end }}
+      volumes:
+        - name: {{ .Values.envName }}-osrm-preprocessor-data
+          persistentVolumeClaim:
+            claimName: {{ .Values.envName }}-osrm-preprocessor-data
+        - name: {{ .Values.envName }}-osrm-backend-data
+          persistentVolumeClaim:
+            claimName: {{ .Values.envName }}-osrm-backend-data
+      initContainers:
+      - name: init
+        image: debian:stable-slim
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        command: [ "/bin/sh","-c" ]
+        args: [ "set -e; \
+         if [ -f '{{ .Values.osrmPreprocessorDir }}/aoi.pbf.lock' ]; \
+           then echo 'lock file exists (pre-processing did not complete), exiting'; \
+           exit 1; \
+         elif [ ! -f '{{ .Values.osrmPreprocessorDir }}/aoi.osrm.preprocessed' ]; \
+           then echo 'aoi.osrm.preprocessed file does not exist (pre-processing did not complete), exiting'; \
+           exit 1; \
+         else echo 'lock does not exist, proceeding'; \
+         fi; \
+         cp -v '{{ .Values.osrmPreprocessorDir }}'/aoi.osrm.* '{{ .Values.osrmBackendDir }}'/ " ]
+        volumeMounts:
+          - mountPath: {{ .Values.osrmPreprocessorDir }}
+            name: {{ .Values.envName }}-osrm-preprocessor-data
+            readOnly: true
+          - mountPath: {{ .Values.osrmBackendDir }}
+            name: {{ .Values.envName }}-osrm-backend-data
+            readOnly: false
+      containers:
+      - name: osrm-backend
+        image: {{ .Values.images.osrm_backend.name }}:{{ .Values.images.osrm_backend.tag }}
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        command: ["/bin/sh","-c"]
+        args: [ "osrm-routed --port {{ .Values.osrmBackendPort }} --algorithm mld --mmap --max-table-size 10000 {{ .Values.osrmBackendDir }}/aoi.osrm" ]
+        ports:
+          - containerPort: {{ .Values.osrmBackendPort }}
+            name: main
+        resources:
+          requests:
+            cpu: {{ .Values.resources.osrm_backend.requests.cpu | quote }}
+            memory: {{ .Values.resources.osrm_backend.requests.memory | quote }}
+          limits:
+            cpu: {{ .Values.resources.osrm_backend.limits.cpu | quote }}
+            memory: {{ .Values.resources.osrm_backend.limits.memory | quote }}
+        #TODO livenessProbe for prod
+        readinessProbe:
+          httpGet:
+            path: /nearest/v1/healthz/0,0
+            port: {{ .Values.osrmBackendPort }}
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+        volumeMounts:
+          - mountPath: {{ .Values.osrmPreprocessorDir }}
+            name: {{ .Values.envName }}-osrm-preprocessor-data
+            readOnly: true
+          - mountPath: {{ .Values.osrmBackendDir }}
+            name: {{ .Values.envName }}-osrm-backend-data
+            readOnly: true
+---
