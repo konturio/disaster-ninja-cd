@@ -5,7 +5,7 @@ metadata:
   name: {{ .Values.envName }}-event-api
   namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: insights-api
+    app.kubernetes.io/name: event-api
     app.kubernetes.io/instance: {{ .Values.envName }}-event-api
     app.kubernetes.io/managed-by: "Helm"
     stage: {{ .Values.envName }}
