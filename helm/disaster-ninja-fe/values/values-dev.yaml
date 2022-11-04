@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: 13025-dn2-doesn-t-load-after-some-default-layers-are-disabled.6b32ffa.1 # image id
+    tag: main.117612c.1 # image id
     
 replicaCount: 1
 envName: dev
