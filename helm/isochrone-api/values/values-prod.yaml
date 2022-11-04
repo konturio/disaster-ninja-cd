@@ -19,7 +19,7 @@ populationApiUrl: https://apps.kontur.io/insights-api/
 calculationWorkersNumber: 7
 isochroneTimeLimitSeconds: 1200
 isochroneIntervalSeconds: 300
-enabledIsochroneProfiles: foot,bicycle,motorbike,car,emergency,
+enabledIsochroneProfiles: motorbike,car
 
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
