@@ -1,0 +1,46 @@
+envName: local
+
+imagePullPolicy: IfNotPresent
+
+sourcePbfUrl: https://download.geofabrik.de/europe/andorra-latest.osm.pbf
+
+pbfDownloadSchedule: "0/15 * * * *"
+osrmPreprocessingSchedule: "5/15 * * * *"
+osrmBackendRestartSchedule: "10/15 * * * *"
+
+pbfDirSize: 256Mi
+osrmDirSize: 1Gi
+
+storageClass: standard
+
+images:
+  pbf_downloader:
+    name: nexus.kontur.io:8085/konturdev/pbf-downloader
+    tag: latest
+  osrm_preprocessor:
+    name: nexus.kontur.io:8085/konturdev/osrm-preprocessor
+    tag: latest
+
+resources:
+  pbf_downloader:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 1
+      memory: 1Gi
+  osrm_preprocessor:
+    threads: 2
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 1
+      memory: 1Gi
+  osrm_backend:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 1
+      memory: 1Gi

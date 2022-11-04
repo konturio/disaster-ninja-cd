@@ -1,0 +1,59 @@
+envName: dev
+
+imagePullPolicy: Always
+
+sourcePbfUrl: https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf.torrent
+
+pbfDir: /pbf-data
+pbfDirSize: 80Gi
+pbfFile: aoi.osm.pbf
+pbfDownloadSchedule: "0 21 * * *"
+
+osrmBackendDir: /osrm-data
+osrmPreprocessorDir: /osrm-pre-data
+osrmDirSize: 320Gi
+osrmProfile: car.lua
+osrmPreprocessingSchedule: "0 22 * * *"
+
+osrmBackendPort: 5000
+osrmBackendReplicas: 1
+osrmBackendRestartSchedule: "0 5 * * *"
+
+storageClass: local-path
+
+images:
+  pbf_downloader:
+    name: nexus.kontur.io:8084/konturdev/pbf-downloader
+    tag: latest
+  osrm_preprocessor:
+    name: nexus.kontur.io:8084/konturdev/osrm-preprocessor
+    tag: latest
+  osrm_backend:
+    name: osrm/osrm-backend
+    tag: latest
+
+resources:
+  pbf_downloader:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 1
+      memory: 4Gi #TODO check it should be lower
+  osrm_preprocessor:
+    threads: 64
+    requests:
+      cpu: 32
+      memory: 385Gi
+    limits:
+      cpu: 32
+      memory: 450Gi
+  osrm_backend:
+    requests:
+      cpu: 100m
+      memory: 170Gi
+    limits: #TODO test
+      cpu: 2
+      memory: 190Gi
+
+alertingTime: 10m

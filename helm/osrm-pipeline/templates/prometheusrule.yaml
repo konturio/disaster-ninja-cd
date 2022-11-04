@@ -1,0 +1,46 @@
+{{ if ne .Values.envName "local" }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    prometheus: k8s
+    role: alert-rules
+  name: {{ .Values.envName}}-osrm-cronjob
+  namespace: {{ .Release.Namespace }}
+spec:
+  groups:
+    - name: PlatformCronJobFailed
+      rules:
+        - alert: {{ camelcase .Values.envName }}-PlatformCronJobFailed-OSRM
+          annotations:
+            message: '[TESTING] OSRM CronJob {{ "{{$job_name}}" }} failed in namespace {{ "{{$namespace}}" }}' #TODO fix text after test
+            summary: OSRM CronJob Failed
+          expr: |
+            kube_job_failed{condition="true", namespace={{ .Release.Namespace}} }
+            > 0
+          labels:
+            severity: critical
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    prometheus: k8s
+    role: alert-rules
+  name: {{ .Values.envName}}-osrm-platform-pods
+  namespace: {{ .Release.Namespace }}
+spec:
+  groups:
+    - name: PlatformPodsUnavailable
+      rules:
+        - alert: {{ camelcase .Values.envName }}-PlatformPodsUnavailable-OSRM
+          annotations:
+            message: '[TESTING] There are {{ "{{$value}}" }} Ready pods in {{ .Values.envName }} OSRM' #TODO fix text after test
+            summary: There are less Ready pods than required
+          expr: |
+            kube_deployment_status_replicas_ready{deployment="{{ .Values.envName }}-disaster-ninja-be"}
+            < 1
+          for: {{ .Values.alertingTime }}
+          labels:
+            severity: critical
+{{ end }}
