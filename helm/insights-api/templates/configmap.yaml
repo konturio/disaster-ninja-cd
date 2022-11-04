@@ -16,6 +16,8 @@ data:
   SPRING_PROFILES_ACTIVE: {{ .Values.envName }}
   SPRING_DATASOURCE_URL: 'jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/insights-api'
   SPRING_DATASOURCE_USERNAME: insights-api
+  spring.security.oauth2.resourceserver.jwt.issuer-uri: { { .Values.keycloakUrl } }/realms/{{ .Values.keycloakRealm }}
+  spring.security.oauth2.resourceserver.jwt.jwk-set-uri: { { .Values.keycloakUrl } }/realms/{{ .Values.keycloakRealm }}/protocol/openid-connect/certs
   #do not use uppercase var names for hikari properties otherwise startup fails with smth like 'The configuration of the pool is sealed once started.'
   spring.datasource.hikari.connection-timeout: '600000'
   spring.datasource.hikari.maximum-pool-size: '20'
