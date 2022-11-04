@@ -49,7 +49,7 @@ spec:
     - host: {{ .Values.dnsName1 }}
       http:
         paths:
-          - path: /active/
+          - path: /(?:live|active)/
             pathType: Prefix
             backend:
               service:
