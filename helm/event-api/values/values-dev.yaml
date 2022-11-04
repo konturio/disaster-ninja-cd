@@ -13,8 +13,8 @@ databasePort: 5432
 
 alertingTime: 10m
 
-jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/test
-jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/test/protocol/openid-connect/certs
+jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/dev
+jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/dev/protocol/openid-connect/certs
 
 profiles: dev
 
