@@ -28,7 +28,7 @@ kind: HelmRelease
 metadata:
   name: osrm-pipeline
 spec:
-  suspend: false
+  suspend: true #TODO
   interval: 5m
   chart:
     spec:
