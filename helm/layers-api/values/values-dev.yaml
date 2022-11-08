@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: main.5c7269c.1
+  tag: 8571-update-dn2-backend-to-utilize-layers-management-api-for-osm-layers.2c741eb.1
 
 replicas: 2
 envName: dev
