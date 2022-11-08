@@ -20,7 +20,7 @@ metadata:
       client_max_body_size 5m;
       proxy_read_timeout 300s;
 
-      location / {
+      location = / {
         return 302 /active/;
       }
       location ^~ /active/preview.png {
@@ -50,6 +50,13 @@ spec:
       http:
         paths:
           - path: /active/
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.envName }}-disaster-ninja-fe
+                port:
+                  name: fe-main
+          - path: /live/
             pathType: Prefix
             backend:
               service:
