@@ -16,7 +16,7 @@ kcApiUrl: 'https://test-api02.konturlabs.com/layers'
 layersApiUrl: 'https://test-api02.konturlabs.com/layers/v2'
 insightsApiUrl: 'https://test-apps02.konturlabs.com/insights-api'
 userProfileApiUrl: 'https://test-apps02.konturlabs.com/userprofile'
-tilesHost: 'https://zigzag.kontur.io'
+tilesHost: 'https://sonic.kontur.io'
 
 notificationsEnabled: true
 notificationsFeed: kontur-public
