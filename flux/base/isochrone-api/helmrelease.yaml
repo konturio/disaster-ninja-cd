@@ -30,6 +30,8 @@ metadata:
 spec:
   suspend: false
   interval: 5m
+  install:
+    disableWait: true
   chart:
     spec:
       chart: ./helm/osrm-pipeline
