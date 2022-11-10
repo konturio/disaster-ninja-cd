@@ -13,7 +13,7 @@ spec:
       rules:
         - alert: {{ camelcase .Values.envName }}-PlatformCronJobFailed-OSRM
           annotations:
-            message: '[TESTING] OSRM Job {{ "{{$labels.job}}" }} failed in {{ .Release.Namespace }} namespace' #TODO fix text after test
+            message: '[TESTING] OSRM Job {{ "{{$labels.job_name}}" }} failed in {{ .Release.Namespace }} namespace' #TODO fix text after test
             summary: OSRM CronJob Failed
           expr: |
             kube_job_failed{condition="true", namespace="{{ .Release.Namespace }}" }
