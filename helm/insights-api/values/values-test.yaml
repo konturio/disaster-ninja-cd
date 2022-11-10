@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: "release-0.16.3.de955d0.1"
+  tag: "12755-indicators-upload-endpoint-fields-are-not-validated.c1fa2f1.1"
   tagType: ""
 
 replicas: 2
