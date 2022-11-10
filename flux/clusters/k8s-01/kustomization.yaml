@@ -10,3 +10,4 @@ resources:
   - layers-api
   - epig
   - event-api
+  - isochrone-api
