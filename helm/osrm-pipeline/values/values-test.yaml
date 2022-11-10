@@ -42,3 +42,5 @@ resources:
     limits:
       cpu: 1
       memory: 1Gi
+
+alertingTime: 1m #TODO revert after test
