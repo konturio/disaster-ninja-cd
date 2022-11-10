@@ -43,4 +43,4 @@ resources:
       cpu: 1
       memory: 1Gi
 
-alertingTime: 1m #TODO revert after test
+alertingTime: 10m
