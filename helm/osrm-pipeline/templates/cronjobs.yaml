@@ -115,15 +115,39 @@ spec:
   schedule: {{ .Values.osrmBackendRestartSchedule | quote }}
   jobTemplate:
     spec:
-      backoffLimit: 1
+      backoffLimit: 0
       activeDeadlineSeconds: 120
       template:
         spec:
+          volumes:
+            - name: {{ .Values.envName }}-osrm-preprocessor-data
+              persistentVolumeClaim:
+                claimName: {{ .Values.envName }}-osrm-preprocessor-data
           serviceAccountName: {{ .Values.envName }}-osrm-restarter
           restartPolicy: Never
           containers:
             - name: kubectl
               image: bitnami/kubectl
+              volumeMounts:
+                - mountPath: {{ .Values.osrmPreprocessorDir }}
+                  name: {{ .Values.envName }}-osrm-preprocessor-data
+                  readOnly: false
               command: [ "/bin/sh","-c" ]
-              args: [ "kubectl rollout restart deployment/{{ .Values.envName }}-osrm-backend" ]
+              #perform restart only if preprocessing succeeded
+              args: [ "set -e; \
+                 ls -l; \
+                 if [ ! -f '{{ .Values.osrmPreprocessorDir }}/aoi.pbf.lock' ] && \
+                  [ -f '{{ .Values.osrmPreprocessorDir }}/aoi.osrm.preprocessed' ]; \
+                   then echo 'aoi.osrm.preprocessed file exists and aoi.pbf.lock does not - so preprocessing is done, restarting'; \
+                   kubectl rollout restart deployment/{{ .Values.envName }}-osrm-backend ; \
+                 elif [ -f '{{ .Values.osrmPreprocessorDir }}/aoi.pbf.lock' ]; \
+                   then echo 'aoi.pbf.lock file exists - skipping restart'; \
+                   exit 1; \
+                 elif [ ! -f '{{ .Values.osrmPreprocessorDir }}/aoi.osrm.preprocessed' ]; \
+                   then echo 'no aoi.osrm.preprocessed file exists - preprocessing is not complete - skipping restart'; \
+                   exit 1; \
+                 else \
+                   echo should not get here; \
+                   exit 1; \
+                 fi; " ]
 ---
