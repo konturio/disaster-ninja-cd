@@ -10,4 +10,5 @@ resources:
   - layers-api
   - epig
   - event-api
-  - isochrone-api
+#  - isochrone-api
+  - osrm-pipeline

@@ -16,15 +16,4 @@ patches:
         value:
           - ./helm/isochrone-api/values.yaml
           - ./helm/isochrone-api/values/values-dev.yaml
-  - target:
-      kind: HelmRelease
-      name: osrm-pipeline
-      group: helm.toolkit.fluxcd.io
-      version: v2beta1
-    patch: |-
-      - op: replace
-        path: /spec/chart/spec/valuesFiles
-        value:
-          - ./helm/osrm-pipeline/values.yaml
-          - ./helm/osrm-pipeline/values/values-dev.yaml
 ---
