@@ -4,9 +4,9 @@ imagePullPolicy: IfNotPresent
 
 sourcePbfUrl: https://download.geofabrik.de/europe/andorra-latest.osm.pbf
 
-pbfDownloadSchedule: "0/30 * * * *"
-osrmPreprocessingSchedule: "5/30 * * * *"
-osrmBackendRestartSchedule: "10/30 * * * *"
+pbfDownloadSchedule: "0/15 * * * *"
+osrmPreprocessingSchedule: "5/15 * * * *"
+osrmBackendRestartSchedule: "10/15 * * * *"
 
 pbfDirSize: 256Mi
 osrmDirSize: 1Gi
