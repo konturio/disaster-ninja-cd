@@ -24,7 +24,7 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 0 #TODO check
+      maxSurge: 0
       maxUnavailable: 1
   template:
     metadata:
@@ -62,15 +62,19 @@ spec:
         imagePullPolicy: {{ .Values.imagePullPolicy }}
         command: [ "/bin/sh","-c" ]
         args: [ "set -e; \
-         if [ -f '{{ .Values.osrmPreprocessorDir }}/aoi.pbf.lock' ]; \
-           then echo 'lock file exists (pre-processing did not complete), exiting'; \
-           exit 1; \
-         elif [ ! -f '{{ .Values.osrmPreprocessorDir }}/aoi.osrm.preprocessed' ]; \
-           then echo 'aoi.osrm.preprocessed file does not exist (pre-processing did not complete), exiting'; \
-           exit 1; \
-         else echo 'lock does not exist, proceeding'; \
-         fi; \
-         cp -v '{{ .Values.osrmPreprocessorDir }}'/aoi.osrm.* '{{ .Values.osrmBackendDir }}'/ " ]
+         while [ true ]; do \
+           if [ -f '{{ .Values.osrmPreprocessorDir }}/aoi.pbf.lock' ]; \
+             then echo 'lock file exists (pre-processing did not complete), retrying after 10 seconds'; \
+             sleep 10; \
+           elif [ ! -f '{{ .Values.osrmPreprocessorDir }}/aoi.osrm.preprocessed' ]; \
+             then echo 'aoi.osrm.preprocessed file does not exist (pre-processing did not complete), retrying in 10 seconds'; \
+             sleep 10; \
+           else \
+             echo 'lock does not exist, proceeding'; \
+             cp -v '{{ .Values.osrmPreprocessorDir }}'/aoi.osrm.* '{{ .Values.osrmBackendDir }}'/; \
+             break; \
+           fi; \
+         done; " ]
         volumeMounts:
           - mountPath: {{ .Values.osrmPreprocessorDir }}
             name: {{ .Values.envName }}-osrm-preprocessor-data
