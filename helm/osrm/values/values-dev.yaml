@@ -2,14 +2,14 @@ envName: dev
 
 imagePullPolicy: IfNotPresent
 
-sourcePbfUrl: https://download.geofabrik.de/europe/andorra-latest.osm.pbf
+sourcePbfUrl: https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf.torrent
 
-pbfDownloadSchedule: "0/15 * * * *"
-osrmPreprocessingSchedule: "5/15 * * * *"
-osrmBackendRestartSchedule: "10/15 * * * *"
+pbfDownloadSchedule: "35 10 * * *"
+osrmPreprocessingSchedule: "35 11 * * *"
+osrmBackendRestartSchedule: "40 * * * *"
 
-pbfDirSize: 256Mi
-osrmDirSize: 1Gi
+pbfDirSize: 75Gi
+osrmDirSize: 320Gi
 
 storageClass: local-path
 
@@ -26,19 +26,19 @@ resources:
       memory: 256Mi
     limits:
       cpu: 1
-      memory: 1Gi
+      memory: 4Gi
   osrm_preprocessor:
-    threads: 2
+    threads: 64
     requests:
-      cpu: 100m
-      memory: 256Mi
+      cpu: 32
+      memory: 385Gi
     limits:
-      cpu: 1
-      memory: 1Gi
+      cpu: 32
+      memory: 450Gi
   osrm_backend:
     requests:
       cpu: 100m
-      memory: 256Mi
+      memory: 170Gi
     limits:
-      cpu: 1
-      memory: 1Gi
+      cpu: 2
+      memory: 190Gi
