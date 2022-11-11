@@ -11,8 +11,6 @@ osrmBackendRestartSchedule: "10/15 * * * *"
 pbfDirSize: 256Mi
 osrmDirSize: 1Gi
 
-storageClass: local-path
-
 images:
   pbf_downloader:
     tag: 12589-setup-osrm-building-pipeline-in-k8s.41940b7.1

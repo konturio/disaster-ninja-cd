@@ -46,8 +46,8 @@ spec:
             - matchExpressions:
               - key: kubernetes.io/hostname
                 operator: In
-                values: #TODO hardcode
-                - hwn02.k8s-01.kontur.io
+                values:
+                  - {{ .Values.node }}
       {{ end }}
       volumes:
         - name: {{ .Values.envName }}-osrm-preprocessor-data

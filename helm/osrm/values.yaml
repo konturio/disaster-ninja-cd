@@ -1,4 +1,5 @@
 envName: dev
+node: hwn02.k8s-01.kontur.io
 
 imagePullPolicy: Always
 
