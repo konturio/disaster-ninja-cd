@@ -15,9 +15,9 @@ storageClass: local-path
 
 images:
   pbf_downloader:
-    tag: 12589-setup-osrm-building-pipeline-in-k8s.41940b7.1
+    tag: 12589-setup-osrm-building-pipeline-in-k8s.e16d0d1.1
   osrm_preprocessor:
-    tag: 12589-setup-osrm-building-pipeline-in-k8s.41940b7.1
+    tag: 12589-setup-osrm-building-pipeline-in-k8s.e16d0d1.1
 
 resources:
   pbf_downloader:
