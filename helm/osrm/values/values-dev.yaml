@@ -4,8 +4,8 @@ imagePullPolicy: IfNotPresent
 
 sourcePbfUrl: https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf.torrent
 
-pbfDownloadSchedule: "45 11 * * *"
-osrmPreprocessingSchedule: "00 12 * * *"
+pbfDownloadSchedule: "52 12 * * *"
+osrmPreprocessingSchedule: "20 13 * * *"
 osrmBackendRestartSchedule: "40 * * * *"
 
 images:
@@ -13,3 +13,9 @@ images:
     tag: 12589-setup-osrm-building-pipeline-in-k8s.e16d0d1.1
   osrm_preprocessor:
     tag: 12589-setup-osrm-building-pipeline-in-k8s.e16d0d1.1
+
+resources:
+  osrm_preprocessor:
+    limits:
+      cpu: 32
+      memory: 385Gi
