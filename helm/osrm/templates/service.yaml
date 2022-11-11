@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.envName }}-osrm
+  name: {{ .Values.envName }}-osrm-backend
   namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: osrm
-    app.kubernetes.io/instance: {{ .Values.envName }}-osrm
+    app.kubernetes.io/name: osrm-backend
+    app.kubernetes.io/instance: {{ .Values.envName }}-osrm-backend
     app.kubernetes.io/managed-by: "Helm"
     stage: {{ .Values.envName }}
   annotations:
@@ -15,8 +15,8 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app.kubernetes.io/name: osrm
-    app.kubernetes.io/instance: {{ .Values.envName }}-osrm
+    app.kubernetes.io/name: osrm-backend
+    app.kubernetes.io/instance: {{ .Values.envName }}-osrm-backend
     app.kubernetes.io/managed-by: "Helm"
     stage: {{ .Values.envName }}
   ports:
