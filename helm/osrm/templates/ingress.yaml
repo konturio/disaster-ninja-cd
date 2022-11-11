@@ -1,0 +1,39 @@
+{{ if ne .Values.envName "local" }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.envName }}-osrm
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: osrm
+    app.kubernetes.io/instance: {{ .Values.envName }}-osrm
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
+    acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
+    nginx.org/client-max-body-size: 5m #TODO check
+    nginx.org/proxy-read-timeout: 1800s #TODO check
+    nginx.org/server-snippets: |
+      proxy_read_timeout 1800s;
+spec:
+  tls:
+    - hosts:
+        - {{ .Values.envName }}-osrm.k8s-01.konturlabs.com
+      secretName: {{ .Values.envName }}-osrm-tls # < cert-manager will store the created certificate in this secret.
+  ingressClassName: nginx
+  rules:
+    - host: {{ .Values.envName }}-osrm.k8s-01.konturlabs.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.envName }}-osrm
+                port:
+                  name: main
+---
+{{ end }}
