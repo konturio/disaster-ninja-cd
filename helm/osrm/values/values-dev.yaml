@@ -4,8 +4,8 @@ imagePullPolicy: IfNotPresent
 
 sourcePbfUrl: https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf.torrent
 
-pbfDownloadSchedule: "35 10 * * *"
-osrmPreprocessingSchedule: "35 11 * * *"
+pbfDownloadSchedule: "02 11 * * *"
+osrmPreprocessingSchedule: "00 12 * * *"
 osrmBackendRestartSchedule: "40 * * * *"
 
 pbfDirSize: 75Gi
