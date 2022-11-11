@@ -135,7 +135,6 @@ spec:
               command: [ "/bin/sh","-c" ]
               #perform restart only if preprocessing succeeded
               args: [ "set -e; \
-                 ls -l; \
                  if [ ! -f '{{ .Values.osrmPreprocessorDir }}/aoi.pbf.lock' ] && \
                   [ -f '{{ .Values.osrmPreprocessorDir }}/aoi.osrm.preprocessed' ]; \
                    then echo 'aoi.osrm.preprocessed file exists and aoi.pbf.lock does not - so preprocessing is done, restarting'; \
