@@ -20,4 +20,4 @@ keycloakRealm: kontur
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
 
-client_max_body_size: 32m
+client_max_body_size: 5g
