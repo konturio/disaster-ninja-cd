@@ -6,6 +6,7 @@ image:
 
 replicas: 2
 envName: test
+createDefaultSecrets: false
 databaseHost: london.k8s-01.kontur.io.
 
 jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/test

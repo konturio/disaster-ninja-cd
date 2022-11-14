@@ -64,33 +64,3 @@ data:
   scheduler.enrichment.enable: '{{ .Values.enrichmentEnable }}'
   scheduler.reEnrichment.enable: '{{ .Values.reEnrichmentEnable }}'
   scheduler.metrics.enable: '{{ .Values.metricsEnable }}'
----
-#create manually, not managed by Helm as it's a secret
-#apiVersion: v1
-#kind: Secret
-#metadata:
-#  name: {{ .Values.envName }}-event-api
-#  namespace: {{ .Release.Namespace }} (effectively {{ .Values.envName }}-event-api)
-#labels:
-#  app.kubernetes.io/name: event-api
-#  app.kubernetes.io/instance: {{ .Values.envName }}-event-api
-#  stage: {{ .Values.envName }}
-#data:
-#  SPRING_DATASOURCE_PASSWORD: base64 encoded password
-***REMOVED***
-***REMOVED***
-#  AWS_ACCESS_KEY_ID: base64 encoded key id
-#  AWS_SECRET_KEY: base64 encoded key
----
-#create manually, not managed by Helm as it's a secret
-#apiVersion: v1
-#kind: Secret
-#metadata:
-#  name: redis
-#  namespace: {{ .Release.Namespace }} (effectively {{ .Values.envName }}-event-api-redis)
-#labels:
-#  app.kubernetes.io/name: event-api-redis
-#  app.kubernetes.io/instance: {{ .Values.envName }}-event-api-redis
-#  stage: {{ .Values.envName }}
-#data:
-***REMOVED***

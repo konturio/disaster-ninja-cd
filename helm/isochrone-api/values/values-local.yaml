@@ -8,6 +8,7 @@ image:
 port: 8614
 replicas: 1
 envName: local
+createDefaultSecrets: false
 databaseHost: docker.for.mac.host.internal
 databasePort: 5432
 alertingTime: 10m
@@ -25,4 +26,4 @@ isochroneIntervalSeconds: 300
 enabledIsochroneProfiles: car
 
 otlpTracesExporter: none
-otlpTracesPort: none #todo check
+otlpTracesPort: none

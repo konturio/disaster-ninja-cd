@@ -4,7 +4,7 @@ kind: HelmRelease
 metadata:
   name: isochrone-api
 spec:
-  suspend: true #TODO
+  suspend: false
   interval: 5m
   chart:
     spec:

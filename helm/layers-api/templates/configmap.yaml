@@ -19,17 +19,3 @@ data:
   OTEL_LOGS_EXPORTER: none
   spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.jwtIssuerUri }}
   spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.jwtJwkSetUri }}
----
-#create manually, not managed by Helm as it's a secret
-#apiVersion: v1
-#kind: Secret
-#metadata:
-#  name: {{ .Values.envName }}-layers-api
-#  namespace: {{ .Release.Namespace }}
-#labels:
-#  app.kubernetes.io/name: layers-api
-#  app.kubernetes.io/instance: {{ .Values.envName }}-layers-api
-#  stage: {{ .Values.envName }}
-#data:
-***REMOVED***
----

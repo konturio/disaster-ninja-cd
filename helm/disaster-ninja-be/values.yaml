@@ -12,6 +12,7 @@ service:
   port: 8627
 
 envName: local
+createDefaultSecrets: false
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: dev

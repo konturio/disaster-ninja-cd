@@ -7,6 +7,7 @@ image:
 
 replicas: 2
 envName: dev
+createDefaultSecrets: false
 databaseHost: milan.k8s-01.kontur.io
 dnsNameOuter: test-api02.konturlabs.com
 
