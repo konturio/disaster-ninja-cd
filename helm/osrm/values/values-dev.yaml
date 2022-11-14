@@ -1,1 +1,5 @@
 envName: dev
+
+createResource:
+  ingress: true
+  prometheusRule: true

@@ -13,3 +13,6 @@ base_url: https://local-raster-tiler.k8s-01.konturlabs.com
 pg_database: layers-db
 pg_host: milan.k8s-01.kontur.io
 storage_size: 5Gi
+
+createResource:
+  ingress: false

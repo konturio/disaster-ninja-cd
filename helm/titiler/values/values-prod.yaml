@@ -8,3 +8,6 @@ image:
   tag: 0.7.1
 
 envName: prod
+
+createResource:
+  ingress: true

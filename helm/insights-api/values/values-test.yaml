@@ -7,7 +7,13 @@ image:
 
 replicas: 2
 envName: test
-createDefaultSecrets: false
+
+createResource:
+  defaultSecrets: false
+  ingress: true
+  prometheusRule: true
+  serviceMonitor: true
+
 databaseHost: london.k8s-01.kontur.io.
 databasePort: 5432
 jmxEnabled: true

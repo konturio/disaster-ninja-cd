@@ -9,7 +9,13 @@ image:
 port: 8625
 replicas: 1
 envName: local
-createDefaultSecrets: false
+
+createResource:
+  defaultSecrets: false
+  ingress: false
+  prometheusRule: false
+  serviceMonitor: false
+
 databaseHost: docker.for.mac.host.internal
 databasePort: 8900
 jmxEnabled: true

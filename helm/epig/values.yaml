@@ -1,4 +1,4 @@
-createDefaultSecrets: false
+createResource.defaultSecrets: false
 
 EVENT_NAME: "event_ready_for_screenshot"
 IMAGE_FORMAT: png

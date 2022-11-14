@@ -6,7 +6,13 @@ image:
 
 replicas: 2
 envName: prod
-createDefaultSecrets: false
+
+createResource:
+  defaultSecrets: false
+  ingress: true
+  prometheusRule: true
+  serviceMonitor: true
+
 databaseHost: paris.k8s-01.kontur.io.
 
 jwtIssuerUri: https://keycloak01.kontur.io/auth/realms/kontur

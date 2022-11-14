@@ -6,7 +6,13 @@ image:
 
 replicas: 1
 envName: prod
-createDefaultSecrets: false
+
+createResource:
+  defaultSecrets: false
+  ingress: true
+  prometheusRule: true
+  serviceMonitor: true
+
 databaseHost: moral-pgdb01.cskt9jki4yd3.eu-central-1.rds.amazonaws.com
 databaseUser: event_api_user01
 databaseName: event_api

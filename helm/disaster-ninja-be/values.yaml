@@ -12,7 +12,12 @@ service:
   port: 8627
 
 envName: local
-createDefaultSecrets: false
+
+createResource:
+  defaultSecrets: false
+  ingress: false
+  prometheusRule: false
+  serviceMonitor: false
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: dev
@@ -29,5 +34,8 @@ notificationsAlertUrlPattern: disabled
 notificationsSlackWebHook: disabled
 
 alertingTime: 10m
+
+otlpTracesExporter: none
+otlpTracesPort: 4317
 
 java_tool_options: "-XX:MaxRAMPercentage=50"
