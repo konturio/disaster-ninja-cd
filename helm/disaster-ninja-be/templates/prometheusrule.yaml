@@ -30,11 +30,11 @@ metadata:
   labels:
     prometheus: k8s
     role: alert-rules
-  name: MaxRresponseTimeTilesEndpoint
+  name: max-response-time-tiles-endpoint
   namespace: {{ .Release.Namespace }}
 spec:
   groups:
-    - name: Disaster.Ninja
+    - name: DisasterNinja
       rules:
         - alert: {{ camelcase .Values.envName }}-Max response time of tiles_bivariate_v1 endpoint more than 1s
           annotations:
