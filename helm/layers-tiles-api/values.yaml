@@ -11,3 +11,5 @@ HttpPort: 8629
 BasePath: /tiles
 
 alertingTime: 10m
+
+createDefaultSecrets: false

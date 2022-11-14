@@ -6,6 +6,7 @@ image:
 
 replicas: 2
 envName: prod
+createDefaultSecrets: false
 databaseHost: paris.k8s-01.kontur.io.
 
 jwtIssuerUri: https://keycloak01.kontur.io/auth/realms/kontur

@@ -6,6 +6,7 @@ image:
 
 replicas: 2
 envName: prod
+createDefaultSecrets: false
 databaseHost: mustang.kontur.io
 
 dnsNameOuter: apps.kontur.io

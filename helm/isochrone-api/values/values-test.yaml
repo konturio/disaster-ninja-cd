@@ -6,6 +6,7 @@ image:
 
 replicas: 2
 envName: test
+createDefaultSecrets: false
 databaseHost: geocint.kontur.io
 
 dnsNameOuter: test-apps.konturlabs.com

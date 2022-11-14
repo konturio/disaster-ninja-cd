@@ -14,3 +14,5 @@ DbTimeout: 10
 CacheTTL: 10
 EnableMetrics: true
 Debug: false
+
+createDefaultSecrets: false
