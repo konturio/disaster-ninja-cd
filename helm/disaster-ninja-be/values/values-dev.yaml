@@ -7,7 +7,7 @@ replicas: 1
 
 image:
   be:
-    tag: "8571-update-dn2-backend-to-utilize-layers-management-api-for-osm-layers.b019b89.1" # this version will be automatically deployed by Flux
+    tag: "13113-serve-application-name-and-application-logo-on-dn.630631c.1" # this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: dev
