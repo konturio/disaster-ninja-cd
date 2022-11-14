@@ -22,3 +22,28 @@ spec:
           labels:
             severity: critical
 {{ end }}
+---
+{{ if eq .Values.envName "prod" }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    prometheus: k8s
+    role: alert-rules
+  name: MaxRresponseTimeTilesEndpoint
+  namespace: {{ .Release.Namespace }}
+spec:
+  groups:
+    - name: Disaster.Ninja
+      rules:
+        - alert: {{ camelcase .Values.envName }}-Max response time of tiles_bivariate_v1 endpoint more than 1s
+          annotations:
+            message: 'Max response time of tiles_bivariate_v1 endpoint more than 1s'
+            summary: Max response time of tiles_bivariate_v1 endpoint more than 1s
+          expr: |
+            max (sum by (uri, status) (http_server_requests_seconds_max{job=“prod-disaster-ninja-be”, status=~“2..“, uri=“/tiles/bivariate/v1/{z}/{x}/{y}.mvt”}) ) 
+            > 1
+          for: {{ .Values.alertingTime }}
+          labels:
+            app: disaster-ninja
+{{ end }}
