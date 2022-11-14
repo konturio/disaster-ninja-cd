@@ -41,7 +41,7 @@ spec:
             message: 'Max response time of tiles_bivariate_v1 endpoint more than 1s'
             summary: Max response time of tiles_bivariate_v1 endpoint more than 1s
           expr: |
-            max (sum by (uri, status) (http_server_requests_seconds_max{job=“prod-disaster-ninja-be”, status=~“2..“, uri=“/tiles/bivariate/v1/{z}/{x}/{y}.mvt”}) ) 
+            max (sum by (uri, status) (http_server_requests_seconds_max{job="prod-disaster-ninja-be", status=~"2..", uri="/tiles/bivariate/v1/{z}/{x}/{y}.mvt"}) ) 
             > 1
           for: {{ .Values.alertingTime }}
           labels:
