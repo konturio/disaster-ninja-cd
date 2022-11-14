@@ -11,3 +11,9 @@ HttpPort: 8629
 BasePath: /tiles
 
 alertingTime: 10m
+
+createResource:
+  defaultSecrets: false
+  ingress: false
+  prometheusRule: false
+  serviceMonitor: false

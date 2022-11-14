@@ -1,4 +1,3 @@
-#TODO: helm test via readiness check?
 apiVersion: apps/v1
 kind: Deployment
 metadata:

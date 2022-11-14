@@ -22,7 +22,6 @@ spec:
       app.kubernetes.io/component: backend
       stage: {{ .Values.envName }}
   replicas: {{ .Values.replicas }}
-  #TODO affinity/antiAffinity?
   strategy:
     type: RollingUpdate
     rollingUpdate:

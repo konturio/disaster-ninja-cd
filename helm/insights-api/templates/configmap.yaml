@@ -27,31 +27,3 @@ data:
   OTEL_LOGS_EXPORTER: none
   spring.redis.host: '{{ .Values.envName }}-insights-api-redis'
   graphql.servlet.tracing-enabled: 'false' #11653
----
-#create manually, not managed by Helm as it's a secret
-#apiVersion: v1
-#kind: Secret
-#metadata:
-#  name: {{ .Values.envName }}-insights-api
-#  namespace: {{ .Release.Namespace }} (effectively {{ .Values.envName }}-insights-api)
-#labels:
-#  app.kubernetes.io/name: insights-api
-#  app.kubernetes.io/instance: {{ .Values.envName }}-insights-api
-#  stage: {{ .Values.envName }}
-#data:
-#  SPRING_DATASOURCE_PASSWORD: base64 encoded password
-***REMOVED***
----
-#create manually, not managed by Helm as it's a secret
-#apiVersion: v1
-#kind: Secret
-#metadata:
-#  name: redis
-#  namespace: {{ .Release.Namespace }} (effectively {{ .Values.envName }}-insights-api-redis)
-#labels:
-#  app.kubernetes.io/name: insights-api-redis
-#  app.kubernetes.io/instance: {{ .Values.envName }}-insights-api-redis
-#  stage: {{ .Values.envName }}
-#data:
-***REMOVED***
----

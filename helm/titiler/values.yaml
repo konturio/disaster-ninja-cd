@@ -17,3 +17,6 @@ env:
   GDAL_HTTP_MERGE_CONSECUTIVE_RANGES: "YES"
   GDAL_HTTP_MULTIPLEX: "YES"
   WEB_CONCURRENCY: 2
+
+createResource:
+  ingress: false

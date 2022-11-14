@@ -14,3 +14,9 @@ DbTimeout: 10
 CacheTTL: 10
 EnableMetrics: true
 Debug: true
+
+createResource:
+  defaultSecrets: false
+  ingress: true
+  prometheusRule: true
+  serviceMonitor: true

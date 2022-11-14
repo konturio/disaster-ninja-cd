@@ -3,6 +3,12 @@
 # Declare variables to be passed into your templates.
 envName: prod
 
+createResource:
+  defaultSecrets: false
+  ingress: false
+  prometheusRule: true
+  serviceMonitor: true
+
 replicas: 2
 
 image:

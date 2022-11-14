@@ -1,3 +1,5 @@
+createResource.defaultSecrets: false
+
 ENV_NAME: test
 SITE_URL: https://test-apps-ninja01.konturlabs.com/active/
 APP_ID: '59b3842c-8ac3-4672-a31f-5fc9543edacd'

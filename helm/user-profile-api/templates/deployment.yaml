@@ -20,7 +20,6 @@ spec:
       app.kubernetes.io/managed-by: "Helm"
       stage: {{ .Values.envName }}
   replicas: {{ .Values.replicas }}
-  #TODO affinity/antiAffinity?
   strategy:
     type: RollingUpdate
     rollingUpdate:

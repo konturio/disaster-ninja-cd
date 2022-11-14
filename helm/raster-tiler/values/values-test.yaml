@@ -12,3 +12,6 @@ pg_host: london.k8s-01.kontur.io
 titiler_url: https://test-apps.konturlabs.com/titiler/
 storage_size: 100Gi
 db_pool_size: 16
+
+createResource:
+  ingress: true
