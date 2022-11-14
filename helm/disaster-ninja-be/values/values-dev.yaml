@@ -3,6 +3,12 @@
 # Declare variables to be passed into your templates.
 envName: dev
 
+createResource:
+  defaultSecrets: false
+  ingress: false
+  prometheusRule: true
+  serviceMonitor: true
+
 replicas: 1
 
 image:

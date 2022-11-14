@@ -26,17 +26,3 @@ data:
   #do not use uppercase var names for hikari properties otherwise startup fails with smth like 'The configuration of the pool is sealed once started.'
   spring.datasource.hikari.maximum-pool-size: '{{ .Values.hikari.maximumPoolSize }}'
   spring.datasource.hikari.minimum-idle: '{{ .Values.hikari.minimumIdle }}'
----
-#create manually, not managed by Helm as it's a secret
-#apiVersion: v1
-#kind: Secret
-#metadata:
-#  name: {{ .Values.envName }}-isochrone-api
-#  namespace: {{ .Release.Namespace }} (effectively {{ .Values.envName }}-isochrone-api)
-#labels:
-#  app.kubernetes.io/name: isochrone-api
-#  app.kubernetes.io/instance: {{ .Values.envName }}-isochrone-api
-#  stage: {{ .Values.envName }}
-#data:
-#  SPRING_DATASOURCE_PASSWORD: base64 encoded password
----

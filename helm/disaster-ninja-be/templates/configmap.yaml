@@ -32,20 +32,3 @@ data:
   notifications.feed: {{ .Values.notificationsFeed }}
   notifications.alertUrlPattern: {{ .Values.notificationsAlertUrlPattern }}
 ***REMOVED***
-
-
----
-#create manually, not managed by Helm as it's a secret
-#apiVersion: v1
-#kind: Secret
-#metadata:
-#  name: {{ .Values.envName }}-disaster-ninja-be
-#  namespace: {{ .Release.Namespace }} (effectively {{ .Values.envName }}-disaster-ninja)
-#labels:
-#  app.kubernetes.io/name: disaster-ninja-be
-#  app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-be
-#  stage: {{ .Values.envName }}
-#data:
-#  kontur.platform.keycloak.username: 'username'
-***REMOVED***
----

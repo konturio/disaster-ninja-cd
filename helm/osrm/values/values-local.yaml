@@ -2,6 +2,10 @@ envName: local
 
 imagePullPolicy: IfNotPresent
 
+createResource:
+  ingress: false
+  prometheusRule: false
+
 sourcePbfUrl: https://download.geofabrik.de/europe/andorra-latest.osm.pbf
 
 pbfDownloadSchedule: "0/15 * * * *"

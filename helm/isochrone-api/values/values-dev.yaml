@@ -4,8 +4,15 @@
 image:
   tag: develop.f1ce4f86bbc7ad8ed1cfbab87af2cef6b1fb6389.1
 
-replicas: 2
+replicas: 1
 envName: dev
+
+createResource:
+  defaultSecrets: false
+  ingress: true
+  prometheusRule: true
+  serviceMonitor: true
+
 databaseHost: geocint.kontur.io
 
 dnsNameOuter: test-apps02.konturlabs.com
