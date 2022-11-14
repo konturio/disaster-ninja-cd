@@ -12,3 +12,6 @@ titiler_url: https://test-apps02.konturlabs.com/titiler/
 pg_host: milan.k8s-01.kontur.io
 storage_size: 100Gi
 db_pool_size: 16
+
+createResource:
+  ingress: true

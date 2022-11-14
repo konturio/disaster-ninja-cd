@@ -1,4 +1,4 @@
-{{ if eq .Values.envName "local-with-ingress" }} #TODO not used now - as covered by Ingress in FE Chart
+{{ if .Values.createResource.ingress }} #not used - as covered by Ingress in FE Chart
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:

@@ -15,4 +15,8 @@ CacheTTL: 0
 EnableMetrics: true
 Debug: true
 
-createDefaultSecrets: false
+createResource:
+  defaultSecrets: false
+  ingress: false
+  prometheusRule: false
+  serviceMonitor: false

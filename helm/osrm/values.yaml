@@ -3,6 +3,10 @@ node: hwn02.k8s-01.kontur.io
 
 imagePullPolicy: Always
 
+createResource:
+  ingress: false
+  prometheusRule: false
+
 #planet url: https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf.torrent
 sourcePbfUrl: https://download.geofabrik.de/europe-latest.osm.pbf
 

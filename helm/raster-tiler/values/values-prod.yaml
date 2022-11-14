@@ -12,3 +12,6 @@ pg_host: paris.k8s-01.kontur.io
 titiler_url: https://apps.kontur.io/titiler/
 storage_size: 500Gi
 db_pool_size: 16
+
+createResource:
+  ingress: true

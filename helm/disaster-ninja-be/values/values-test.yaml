@@ -2,7 +2,12 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 envName: test
-createDefaultSecrets: false
+
+createResource:
+  defaultSecrets: false
+  ingress: false
+  prometheusRule: true
+  serviceMonitor: true
 
 replicas: 2
 

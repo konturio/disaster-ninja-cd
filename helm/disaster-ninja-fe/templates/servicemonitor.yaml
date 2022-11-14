@@ -1,4 +1,4 @@
-{{ if ne .Values.envName "local" }}
+{{ if .Values.createResource.serviceMonitor }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:

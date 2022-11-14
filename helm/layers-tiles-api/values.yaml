@@ -12,4 +12,8 @@ BasePath: /tiles
 
 alertingTime: 10m
 
-createDefaultSecrets: false
+createResource:
+  defaultSecrets: false
+  ingress: false
+  prometheusRule: false
+  serviceMonitor: false

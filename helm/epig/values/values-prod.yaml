@@ -1,4 +1,4 @@
-createDefaultSecrets: false
+createResource.defaultSecrets: false
 
 ENV_NAME: prod
 SITE_URL: https://disaster.ninja/active/
