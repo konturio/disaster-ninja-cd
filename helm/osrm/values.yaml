@@ -3,32 +3,33 @@ node: hwn02.k8s-01.kontur.io
 
 imagePullPolicy: Always
 
-sourcePbfUrl: https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf.torrent
+#planet url: https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf.torrent
+sourcePbfUrl: https://download.geofabrik.de/europe-latest.osm.pbf
 
 pbfDir: /pbf-data
 pbfDirSize: 80Gi
 pbfFile: aoi.osm.pbf
-pbfDownloadSchedule: "0 21 * * *"
+pbfDownloadSchedule: "05 00 * * *"
 
 osrmBackendDir: /osrm-data
 osrmPreprocessorDir: /osrm-pre-data
 osrmDirSize: 320Gi
 osrmProfile: car.lua
-osrmPreprocessingSchedule: "0 22 * * *"
+osrmPreprocessingSchedule: "30 00 * * *"
 
 osrmBackendPort: 5000
 osrmBackendReplicas: 1
-osrmBackendRestartSchedule: "0 5 * * *"
+osrmBackendRestartSchedule: "10 2-6 * * *"
 
 storageClass: local-path
 
 images:
   pbf_downloader:
     name: nexus.kontur.io:8084/konturdev/pbf-downloader
-    tag: latest
+    tag: develop.4281fde.1
   osrm_preprocessor:
     name: nexus.kontur.io:8084/konturdev/osrm-preprocessor
-    tag: latest
+    tag: develop.4281fde.1
   osrm_backend:
     name: osrm/osrm-backend
     tag: latest
@@ -45,16 +46,16 @@ resources:
     threads: 64
     requests:
       cpu: 32
-      memory: 385Gi
+      memory: 200Gi
     limits:
       cpu: 32
-      memory: 450Gi
+      memory: 200Gi
   osrm_backend:
     requests:
       cpu: 100m
-      memory: 170Gi
+      memory: 1Gi
     limits: #TODO test
       cpu: 2
-      memory: 190Gi
+      memory: 200Gi
 
 alertingTime: 10m
