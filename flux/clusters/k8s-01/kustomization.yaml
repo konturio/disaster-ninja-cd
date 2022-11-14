@@ -11,4 +11,4 @@ resources:
   - epig
   - event-api
 #  - isochrone-api
-#  - osrm
+  - osrm
