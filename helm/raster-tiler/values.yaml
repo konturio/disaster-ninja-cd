@@ -4,11 +4,12 @@
 image:
   tag: latest
   name: nexus.kontur.io:8084/konturdev/raster-tiler
+  pullSecretName: nexus8084
+  usePullSecret: true
 
 port: 80
 replicas: 1
 envName: local
-imagePullSecretName: nexus8085
 base_url: https://local-raster-tiler.k8s-01.konturlabs.com
 pg_database: layers-db
 pg_host: milan.k8s-01.kontur.io

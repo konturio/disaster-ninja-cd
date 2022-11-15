@@ -1,11 +1,17 @@
+.PHONY: insights-api #TODO others
+
 #testing goals
-generate-all: delete-files dev test prod local
+generate-all: delete-files flux dev test prod local
 
 delete-files:
 	rm -f dev.yaml
 	rm -f test.yaml
 	rm -f prod.yaml
 	rm -f local.yaml
+	rm -f ../flux/clusters/k8s-01/flux.yaml
+
+flux:
+	kustomize build ../flux/clusters/k8s-01 > ../flux/clusters/k8s-01/flux.yaml
 
 dev:
 	helm template $@-disaster-ninja-be disaster-ninja-be -f disaster-ninja-be/values.yaml -f disaster-ninja-be/values/values-$@.yaml >> $@.yaml
@@ -67,20 +73,67 @@ local:
 
 #Makefile for local installation
 
-install-local: create-local-secrets create-psql-databases local-all
+install-local: create-psql-databases helm-install-local-all
 
-create-local-secrets:
-	kubectl apply -f blabla.yaml
+##CLEANUP#
+#cleandup-databases:
+#	psql -d postgres -c "DROP DATABASE event_api;";
+#	psql -d postgres -c "DROP DATABASE \"insights-api\";";
+#	psql -d postgres -c "DROP DATABASE gis;";
+#	psql -d postgres -c "DROP DATABASE \"layers-db\";";
+#	psql -d postgres -c "DROP DATABASE \"user-profile-api\";";
+#	psql -d postgres -c "DROP ROLE \"event_api_user01\";";
+#	psql -d postgres -c "DROP ROLE \"insights-api\";";
+#	psql -d postgres -c "DROP ROLE \"isochrone-api\";";
+#	psql -d postgres -c "DROP ROLE \"layers-db\";";
+#	psql -d postgres -c "DROP ROLE \"layers-api\";";
+#	psql -d postgres -c "DROP ROLE \"layers-tiles-api\";";
+#	psql -d postgres -c "DROP ROLE \"mosaic\";";
+#	psql -d postgres -c "DROP ROLE \"user-profile-api\";";
 
-create-psql-databases:
-	#TODO should use passwords the same as in secrets in create-local-secrets
-	psql
+create-psql-databases: create-event-api-db create-insights-api-db create-isochrone-api-db create-layers-db create-layers-api-user create-layers-tiles-api-user create-mosaic-user create-user-profile-api-db
 
-local-all: disaster-ninja-be disaster-ninja-fe epig event-api insights-api isochrone-api layers-api layers-tiles-api osrm raster-tiler titiler user-profile-api keycloak
+create-event-api-db:
+	psql -d postgres -c "CREATE USER event_api_user01 WITH PASSWORD 'password';"
+	psql -d postgres -c "CREATE DATABASE event_api WITH OWNER event_api_user01;";
+
+create-insights-api-db:
+	psql -d postgres -c "CREATE USER \"insights-api\" WITH PASSWORD 'password';"
+	psql -d postgres -c "CREATE DATABASE \"insights-api\" WITH OWNER \"insights-api\";";
+	psql -d "insights-api" -c "CREATE EXTENSION postgis;";
+
+create-isochrone-api-db:
+	psql -d postgres -c "CREATE USER \"isochrone-api\" WITH PASSWORD 'password';"
+	psql -d postgres -c "CREATE DATABASE gis WITH OWNER \"isochrone-api\";";
+
+create-layers-db:
+	psql -d postgres -c "CREATE USER \"layers-db\" WITH PASSWORD 'password';"
+	psql -d postgres -c "CREATE DATABASE \"layers-db\" WITH OWNER \"layers-db\";";
+
+create-layers-api-user: create-layers-db
+	psql -d postgres -c "CREATE USER \"layers-api\" WITH PASSWORD 'password';"
+	psql -d "layers-db" -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"layers-api\";" #TODO other privileges
+	psql -d "layers-db" -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO \"layers-api\";"
+
+create-layers-tiles-api-user: create-layers-db
+	psql -d postgres -c "CREATE USER \"layers-tiles-api\" WITH PASSWORD 'password';"
+	psql -d "layers-db" -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"layers-tiles-api\";"
+	psql -d "layers-db" -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO \"layers-tiles-api\";"
+
+create-mosaic-user: create-layers-db
+	psql -d postgres -c "CREATE USER \"mosaic\" WITH PASSWORD 'password';"
+	psql -d "layers-db" -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"mosaic\";"
+	psql -d "layers-db" -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO \"mosaic\";"
+
+create-user-profile-api-db:
+	psql -d postgres -c "CREATE USER \"user-profile-api\" WITH PASSWORD 'password';"
+	psql -d postgres -c "CREATE DATABASE \"user-profile-api\" WITH OWNER \"user-profile-api\";";
+
+helm-install-local-all: disaster-ninja-be disaster-ninja-fe epig event-api insights-api isochrone-api layers-api layers-tiles-api osrm raster-tiler titiler user-profile-api keycloak
 
 #TODO dependencies below are very rough
 
-disaster-ninja-be: user-profile-api keycloak event-api insights-api layers-api
+disaster-ninja-be: #user-profile-api keycloak event-api insights-api layers-api
 	helm install local-disaster-ninja-be disaster-ninja-be -f disaster-ninja-be/values.yaml -f disaster-ninja-be/values/values-local.yaml
 disaster-ninja-fe: disaster-ninja-be epig
 	helm install local-disaster-ninja-fe disaster-ninja-fe -f disaster-ninja-fe/values.yaml -f disaster-ninja-fe/values/values-local.yaml
@@ -89,7 +142,7 @@ epig:
 event-api:
 	helm install local-event-api event-api -f event-api/values.yaml -f event-api/values/values-local.yaml
 insights-api:
-	helm install local-insights-api insights-api -f insights-api/values.yaml -f insights-api/values/values-local.yaml
+	helm install quickstart-insights-api insights-api -f insights-api/values.yaml -f insights-api/values/values-quickstart.yaml
 layers-api:
 	helm install local-layers-api layers-api -f layers-api/values.yaml -f layers-api/values/values-local.yaml
 

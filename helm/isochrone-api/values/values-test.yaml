@@ -3,6 +3,8 @@
 # Declare variables to be passed into your templates.
 image:
   tag: develop.f1ce4f86bbc7ad8ed1cfbab87af2cef6b1fb6389.1
+  pullSecretName: none
+  usePullSecret: false
 
 replicas: 1
 envName: test

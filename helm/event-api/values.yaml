@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 image:
   tag: latest
-  name: nexus.kontur.io:8085/konturdev/event-api
+  name: nexus.kontur.io:8084/konturdev/event-api
 
 port: 8624
 replicas: 1

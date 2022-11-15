@@ -4,6 +4,8 @@
 image:
   tag: "release-0.16.3.de955d0.1"
   tagType: ""
+  pullSecretName: none
+  usePullSecret: false
 
 replicas: 2
 envName: prod
