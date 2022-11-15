@@ -1,4 +1,6 @@
-createResource.defaultSecrets: false
+createResource:
+  defaultSecrets: false
+  ingress: true
 
 ENV_NAME: test
 SITE_URL: https://test-apps-ninja01.konturlabs.com/active/
