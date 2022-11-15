@@ -16,3 +16,4 @@ storage_size: 5Gi
 
 createResource:
   ingress: false
+  defaultSecrets: false
