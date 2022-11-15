@@ -4,6 +4,8 @@
 
 image:
   tag: release-1.9.1.96f6375.1
+  usePullSecret: false
+  pullSecretName: none
 
 replicas: 2
 envName: prod
