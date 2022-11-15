@@ -3,6 +3,8 @@
 # Declare variables to be passed into your templates.
 image:
   tag: 13113-serve-application-name-and-application-logo-on-dn.4b9a799.1
+  pullSecretName: none
+  usePullSecret: false
 
 replicas: 2
 envName: dev

@@ -4,6 +4,8 @@
 image:
   tag: "12841-add-fields-with-units-and-descriptions-to-indicators-and-formulas-insights.13659a9.1"
   tagType: ""
+  pullSecretName: none
+  usePullSecret: false
 
 replicas: 2
 envName: dev

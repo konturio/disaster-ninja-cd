@@ -23,10 +23,10 @@ storageClass: standard
 
 images:
   pbf_downloader:
-    name: nexus.kontur.io:8085/konturdev/pbf-downloader
+    name: nexus.kontur.io:8084/konturdev/pbf-downloader
     tag: latest
   osrm_preprocessor:
-    name: nexus.kontur.io:8085/konturdev/osrm-preprocessor
+    name: nexus.kontur.io:8084/konturdev/osrm-preprocessor
     tag: latest
 
 resources:

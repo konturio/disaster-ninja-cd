@@ -37,6 +37,9 @@ spec:
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
         checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
     spec:
+      {{ if .Values.image.usePullSecret }}
+      imagePullSecrets: #TODO remove once image is on ghcr.io
+        - name: {{ .Values.image.pullSecretName }}{{ end }}
       containers:
         - name: insights-api
           image: {{ .Values.image.name }}{{ .Values.image.tagType }}:{{ .Values.image.tag }}
@@ -49,7 +52,7 @@ spec:
           resources:
             requests:
               cpu: "1"
-              memory: "4700Mi"
+              memory: "4700Mi" #TODO parameterize
             limits:
               memory: "9Gi"
           env:

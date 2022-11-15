@@ -1,6 +1,6 @@
 envName: dev
 
-imagePullPolicy: Always
+imagePullPolicy: IfNotPresent
 
 createResource:
   ingress: false

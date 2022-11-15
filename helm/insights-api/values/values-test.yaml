@@ -4,6 +4,8 @@
 image:
   tag: "12755-indicators-upload-endpoint-fields-are-not-validated.c1fa2f1.1"
   tagType: ""
+  pullSecretName: none
+  usePullSecret: false
 
 replicas: 2
 envName: test

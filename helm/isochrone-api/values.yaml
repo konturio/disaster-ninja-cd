@@ -4,6 +4,8 @@
 image:
   tag: latest
   name: nexus.kontur.io:8084/konturdev/isochrone-api
+  pullSecretName: nexus8084
+  usePullSecret: true
 
 port: 8614
 replicas: 1
@@ -16,15 +18,13 @@ createResource:
   serviceMonitor: false
   deploymentLivenessProbe: false
 
-databaseHost: docker.for.mac.host.internal
+databaseHost: host.docker.internal
 databasePort: 5432
 alertingTime: 10m
 
 hikari:
   maximumPoolSize: 5
   minimumIdle: 2
-
-imagePullSecretName: nexus8085
 
 populationApiUrl: https://test-apps02.konturlabs.com/insights-api/
 calculationWorkersNumber: 3
