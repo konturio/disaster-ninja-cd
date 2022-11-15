@@ -37,6 +37,9 @@ spec:
         #only roll pods if config (rendered!) changed
         checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
+      {{ if .Values.image.usePullSecret }}
+      imagePullSecrets: #TODO remove once image is on ghcr.io
+        - name: {{ .Values.image.pullSecretName }}{{ end }}
       shareProcessNamespace: true
       containers:
         - name: layers-api

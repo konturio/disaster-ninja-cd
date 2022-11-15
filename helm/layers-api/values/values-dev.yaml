@@ -4,6 +4,8 @@
 
 image:
   tag: 8571-update-dn2-backend-to-utilize-layers-management-api-for-osm-layers.2c741eb.1
+  usePullSecret: false
+  pullSecretName: none
 
 replicas: 2
 envName: dev
