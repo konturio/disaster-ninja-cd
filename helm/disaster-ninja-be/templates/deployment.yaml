@@ -77,6 +77,7 @@ spec:
           failureThreshold: 1
           periodSeconds: 10
           initialDelaySeconds: 5
+        {{ if .Values.createResource.deploymentLivenessProbe }}
         livenessProbe:
           httpGet:
             path: /active/api/health/readiness
@@ -84,6 +85,7 @@ spec:
           failureThreshold: 10
           periodSeconds: 10
           initialDelaySeconds: 5
+        {{ end }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -106,7 +108,7 @@ spec:
       #don't add app.kubernetes.io/version
       app.kubernetes.io/managed-by: "Helm"
       stage: {{ .Values.envName }}
-  {{ if eq .Values.notificationsEnabled true }}replicas: 1
+  {{ if .Values.notificationsEnabled }}replicas: 1
   {{ else }}replicas: 0{{ end }}
   strategy:
     type: RollingUpdate
@@ -165,6 +167,7 @@ spec:
           failureThreshold: 1
           periodSeconds: 10
           initialDelaySeconds: 5
+        {{ if .Values.createResource.deploymentLivenessProbe }}
         livenessProbe:
           httpGet:
             path: /active/api/health/readiness
@@ -172,4 +175,5 @@ spec:
           failureThreshold: 10
           periodSeconds: 10
           initialDelaySeconds: 5
+        {{ end }}
 ---

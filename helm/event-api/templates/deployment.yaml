@@ -69,7 +69,7 @@ spec:
             failureThreshold: 1
             periodSeconds: 30
             initialDelaySeconds: 30
-          {{ if eq .Values.envName "prod" }}
+          {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
               path: /events/health

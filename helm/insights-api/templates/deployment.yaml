@@ -43,7 +43,7 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: {{ .Values.port }}
-              name: main{{ if eq .Values.jmxEnabled true }}
+              name: main{{ if .Values.jmxEnabled }}
             - containerPort: 5000
               name: jmx{{ end }}
           resources:
@@ -75,7 +75,8 @@ spec:
             failureThreshold: 1
             periodSeconds: 30
             initialDelaySeconds: 30
-          {{ if eq .Values.envName "prod" }}livenessProbe:
+          {{ if .Values.createResource.deploymentLivenessProbe }}
+          livenessProbe:
             httpGet:
               path: /insights-api/health/readiness
               port: {{ .Values.port }}

@@ -8,6 +8,7 @@ createResource:
   ingress: false
   prometheusRule: false
   serviceMonitor: false
+  deploymentLivenessProbe: true
 
 replicas: 1
 

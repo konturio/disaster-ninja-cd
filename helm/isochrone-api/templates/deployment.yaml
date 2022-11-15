@@ -75,7 +75,8 @@ spec:
             failureThreshold: 1
             periodSeconds: 30
             initialDelaySeconds: 30
-          {{ if eq .Values.envName "prod" }}livenessProbe:
+          {{ if .Values.createResource.deploymentLivenessProbe }}
+          livenessProbe:
             httpGet:
               path: /isochrone/health
               port: {{ .Values.port }}

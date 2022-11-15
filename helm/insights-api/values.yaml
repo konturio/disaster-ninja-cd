@@ -15,6 +15,7 @@ createResource:
   ingress: false
   prometheusRule: false
   serviceMonitor: false
+  deploymentLivenessProbe: false
 
 databaseHost: docker.for.mac.host.internal
 databasePort: 8900

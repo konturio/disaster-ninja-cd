@@ -1,5 +1,9 @@
 envName: local
 
+nodeAffinity:
+  enabled: false
+  hostname: localhost
+
 imagePullPolicy: IfNotPresent
 
 createResource:
