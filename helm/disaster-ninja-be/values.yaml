@@ -18,6 +18,7 @@ createResource:
   ingress: false
   prometheusRule: false
   serviceMonitor: false
+  deploymentLivenessProbe: false
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: dev

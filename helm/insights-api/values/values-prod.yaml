@@ -13,6 +13,7 @@ createResource:
   ingress: true
   prometheusRule: true
   serviceMonitor: true
+  deploymentLivenessProbe: true
 
 databaseHost: paris.k8s-01.kontur.io.
 databasePort: 5432

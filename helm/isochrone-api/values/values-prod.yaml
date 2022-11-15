@@ -12,6 +12,7 @@ createResource:
   ingress: true
   prometheusRule: true
   serviceMonitor: true
+  deploymentLivenessProbe: true
 
 databaseHost: mustang.kontur.io
 

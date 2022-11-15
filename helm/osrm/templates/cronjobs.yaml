@@ -19,6 +19,7 @@ spec:
       backoffLimit: 0
       template:
         spec:
+          {{ if .Values.nodeAffinity.enabled }}
           affinity:
             nodeAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
@@ -27,7 +28,8 @@ spec:
                       - key: kubernetes.io/hostname
                         operator: In
                         values:
-                          - {{ .Values.node }}
+                          - {{ .Values.nodeAffinity.hostname }}
+          {{ end }}
           restartPolicy: Never
           volumes:
             - name: {{ .Values.envName }}-pbf-pvc
@@ -76,6 +78,7 @@ spec:
       backoffLimit: 0
       template:
         spec:
+          {{ if .Values.nodeAffinity.enabled }}
           affinity:
             nodeAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
@@ -84,7 +87,8 @@ spec:
                       - key: kubernetes.io/hostname
                         operator: In
                         values:
-                          - {{ .Values.node }}
+                          - {{ .Values.nodeAffinity.hostname }}
+          {{ end }}
           restartPolicy: Never
           volumes:
             - name: {{ .Values.envName }}-pbf-pvc
