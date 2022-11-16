@@ -23,15 +23,18 @@ resources:
   app:
     requests:
       cpu: 100m
-      memory: 256Mi
+      memory: 128Mi
     limits:
-      memory: 1Gi
+      memory: 768Mi
   redis:
     requests:
       cpu: 100m
-      memory: 512M
+      memory: 128Mi
     limits:
-      memory: 1G
+      memory: 768Mi
+
+readinessProbe:
+  initialDelaySeconds: 60
 
 databaseHost: host.docker.internal
 databasePort: 5432

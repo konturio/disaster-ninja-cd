@@ -1,4 +1,4 @@
-envName: local
+envName: quickstart
 
 nodeAffinity:
   enabled: false

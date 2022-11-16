@@ -33,6 +33,9 @@ resources:
     limits:
       memory: 1G
 
+readinessProbe:
+  initialDelaySeconds: 30
+
 databaseHost: host.docker.internal
 databasePort: 8900
 jmxEnabled: true
