@@ -100,6 +100,7 @@ uninstall: cleanup-namespaces \
 		   cleanup-databases
 
 create-image-pull-secrets: create-ns-required-for-pull-secrets #TODO remove once all images are at ghcr.io
+	kubectl apply -f nexus.yaml -n quickstart-osrm
 	kubectl apply -f nexus.yaml -n quickstart-insights-api
 	kubectl apply -f nexus.yaml -n quickstart-isochrone-api
 	kubectl apply -f nexus.yaml -n quickstart-layers-api
@@ -107,6 +108,7 @@ create-image-pull-secrets: create-ns-required-for-pull-secrets #TODO remove once
 	kubectl apply -f nexus.yaml -n quickstart-user-profile-api
 
 create-ns-required-for-pull-secrets: #TODO remove once all images are at ghcr.io
+	if kubectl get ns quickstart-osrm >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-osrm; fi;
 	if kubectl get ns quickstart-insights-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-insights-api; fi;
 	if kubectl get ns quickstart-isochrone-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-isochrone-api; fi;
 	if kubectl get ns quickstart-layers-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-layers-api; fi;
@@ -193,13 +195,13 @@ create-user-profile-api-db:
 
 helm-install-quickstart-all: insights-api \
 							 layers-api \
+							 osrm \
 							 isochrone-api
 #							 disaster-ninja-be \
 #							 disaster-ninja-fe \
 #							 epig \
 #							 event-api \
 #							 layers-tiles-api \
-#							 osrm \
 #							 raster-tiler \
 #							 titiler \
 #							 user-profile-api \
@@ -234,8 +236,9 @@ user-profile-api: keycloak create-image-pull-secrets
 keycloak:
 	helm upgrade --install local-keycloak keycloak -f keycloak/values.yaml -f keycloak/values/values-local.yaml -n quickstart-keycloak
 
-isochrone-api: osrm create-image-pull-secrets
-	helm upgrade --install quickstart-isochrone-api isochrone-api -f isochrone-api/values.yaml -f isochrone-api/values/values-local.yaml -n quickstart-isochrone-api
-osrm:
+isochrone-api: osrm create-image-pull-secrets #OK
+	if kubectl get ns quickstart-isochrone-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-isochrone-api; fi;
+	helm upgrade --install quickstart-isochrone-api isochrone-api -f isochrone-api/values.yaml -f isochrone-api/values/values-quickstart.yaml -n quickstart-isochrone-api
+osrm: create-image-pull-secrets #OK
 	if kubectl get ns quickstart-osrm >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-osrm; fi;
-	helm upgrade --install quickstart-osrm osrm -f osrm/values.yaml -f osrm/values/values-local.yaml -n quickstart-osrm
+	helm upgrade --install quickstart-osrm osrm -f osrm/values.yaml -f osrm/values/values-quickstart.yaml -n quickstart-osrm
