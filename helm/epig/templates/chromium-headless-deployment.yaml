@@ -50,7 +50,9 @@ spec:
             - containerPort: {{ .Values.CHROMIUM_PORT }}
           resources:
             requests:
-              cpu: "500m"
+              cpu: {{ .Values.resources.chromium.requests.cpu | quote }}
+              #TODO: memory
+            #TODO: limits
           livenessProbe:
             httpGet:
               path: /json

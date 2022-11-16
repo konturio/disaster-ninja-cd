@@ -51,10 +51,11 @@ spec:
               name: jmx{{ end }}
           resources:
             requests:
-              cpu: "1"
-              memory: "4700Mi" #TODO parameterize
+              cpu: {{ .Values.resources.app.requests.cpu | quote }}
+              memory: {{ .Values.resources.app.requests.memory | quote }}
             limits:
-              memory: "9Gi"
+              #TODO cpu
+              memory: {{ .Values.resources.app.limits.memory | quote }}
           env:
             - name: OTEL_SERVICE_NAME
               valueFrom:
@@ -174,10 +175,11 @@ spec:
               value: '6379'
           resources:
             requests:
-              cpu: "100m"
-              memory: "512M"
+              cpu: {{ .Values.resources.redis.requests.cpu | quote }}
+              memory: {{ .Values.resources.redis.requests.memory | quote }}
             limits:
-              memory: "1G"
+              #TODO cpu
+              memory: {{ .Values.resources.redis.limits.memory | quote }}
           volumeMounts:
             - name: start-scripts
               mountPath: /opt/bitnami/scripts/start-scripts

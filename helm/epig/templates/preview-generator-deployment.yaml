@@ -50,7 +50,7 @@ spec:
               name: {{ .Values.ENV_NAME }}-preview-generator-secret
         ports:
           - containerPort: {{ .Values.PORT }}
-        resources: { }
+        #TODO: resources
         livenessProbe:
           httpGet:
             path: /health

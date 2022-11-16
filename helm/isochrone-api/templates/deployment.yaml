@@ -47,12 +47,13 @@ spec:
           ports:
             - containerPort: {{ .Values.port }}
               name: main
-          resources: #TODO
+          resources:
             requests:
-              cpu: "100m"
-              memory: "1Gi"
+              cpu: {{ .Values.resources.requests.cpu | quote }}
+              memory: {{ .Values.resources.requests.memory | quote }}
             limits:
-              memory: "1Gi"
+              #TODO cpu
+              memory: {{ .Values.resources.limits.memory | quote }}
           env:
             - name: OTEL_SERVICE_NAME
               valueFrom:

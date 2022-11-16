@@ -19,6 +19,20 @@ createResource:
   serviceMonitor: false
   deploymentLivenessProbe: false
 
+resources:
+  app:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      memory: 1Gi
+  redis:
+    requests:
+      cpu: 100m
+      memory: 512M
+    limits:
+      memory: 1G
+
 databaseHost: host.docker.internal
 databasePort: 8900
 jmxEnabled: true

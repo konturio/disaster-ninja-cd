@@ -18,6 +18,13 @@ createResource:
   serviceMonitor: false
   deploymentLivenessProbe: false
 
+resources:
+  requests:
+    cpu: 100m
+    memory: 1Gi
+  limits:
+    memory: 1Gi
+
 databaseHost: host.docker.internal
 databasePort: 5432
 alertingTime: 10m

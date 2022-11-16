@@ -17,6 +17,13 @@ createResource:
   prometheusRule: false
   serviceMonitor: false
 
+resources:
+  requests:
+    cpu: 1
+    memory: 4Gi
+  limits:
+    memory: 4Gi
+
 databaseHost: host.docker.internal
 databasePort: 5432
 

@@ -4,6 +4,8 @@
 image:
   tag: latest
   name: nexus.kontur.io:8084/konturdev/isochrone-api
+  pullSecretName: nexus8084
+  usePullSecret: true
 
 port: 8614
 replicas: 1
