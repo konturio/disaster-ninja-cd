@@ -27,3 +27,7 @@ containers:
     repository: redis
     pullPolicy: IfNotPresent
     tag: "7-alpine3.16"
+resources:
+  chromium:
+    requests:
+      cpu: 500m

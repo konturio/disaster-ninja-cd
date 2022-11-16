@@ -39,6 +39,7 @@ spec:
     spec:
       containers:
         - name: static-server
+          #TODO: resources
           imagePullPolicy: IfNotPresent
           image: {{ .Values.image.fe.repository }}{{ .Values.image.fe.algorithm }}:{{ .Values.image.fe.tag }}
           ports:

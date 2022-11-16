@@ -16,6 +16,20 @@ createResource:
   serviceMonitor: false
   deploymentLivenessProbe: false
 
+resources:
+  app:
+    requests:
+      cpu: 100m
+      memory: 16Gi
+    limits:
+      memory: 20Gi
+  redis:
+    requests:
+      cpu: 100m
+      memory: 1Gi
+    limits:
+      memory: 5Gi
+
 databaseHost: host.docker.internal
 databaseUser: event_api_user01
 databaseName: event_api

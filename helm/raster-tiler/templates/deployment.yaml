@@ -53,11 +53,11 @@ spec:
               protocol: TCP
           resources:
             requests:
-              cpu: "4"
-              memory: "4Gi"
+              cpu: {{ .Values.resources.requests.cpu | quote }}
+              memory: {{ .Values.resources.requests.memory | quote }}
             limits:
-              memory: "8Gi"
-              cpu: "8"
+              memory: {{ .Values.resources.limits.memory | quote }}
+              cpu: {{ .Values.resources.limits.cpu | quote }}
           env:
             - name: BASE_URL
               value: {{ .Values.base_url }}

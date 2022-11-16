@@ -50,10 +50,11 @@ spec:
               name: main
           resources:
             requests:
-              cpu: "1"
-              memory: "4Gi"
+              cpu: {{ .Values.resources.requests.cpu | quote }}
+              memory: {{ .Values.resources.requests.memory | quote }}
             limits:
-              memory: "4Gi"
+              #TODO cpu
+              memory: {{ .Values.resources.limits.memory | quote }}
           env:
             - name: JAVA_TOOL_OPTIONS
               value: "-XX:MaxRAMPercentage=50"

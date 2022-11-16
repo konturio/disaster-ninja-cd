@@ -69,8 +69,9 @@ spec:
             initialDelaySeconds: 5
           resources:
             limits:
-              cpu: 1
-              memory: 2Gi
+              cpu: {{ .Values.resources.limits.cpu | quote }}
+              memory: {{ .Values.resources.limits.memory | quote }}
             requests:
-              cpu: 1
-              memory: 2Gi
+              cpu: {{ .Values.resources.requests.cpu | quote }}
+              memory: {{ .Values.resources.requests.memory | quote }}
+

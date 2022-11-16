@@ -42,10 +42,11 @@ spec:
               name: main
           resources:
             requests:
-              cpu: "100m"
-              memory: "16Gi"
+              cpu: {{ .Values.resources.app.requests.cpu | quote }}
+              memory: {{ .Values.resources.app.requests.memory | quote }}
             limits:
-              memory: "20Gi"
+              #TODO cpu
+              memory: {{ .Values.resources.app.limits.memory | quote }}
           env:
             - name: OTEL_SERVICE_NAME
               valueFrom:
@@ -164,10 +165,11 @@ spec:
               value: '{{ .Values.redisPort }}'
           resources:
             requests:
-              cpu: "100m"
-              memory: "1Gi"
+              cpu: {{ .Values.resources.redis.requests.cpu | quote }}
+              memory: {{ .Values.resources.redis.requests.memory | quote }}
             limits:
-              memory: "5Gi"
+              #TODO cpu
+              memory: {{ .Values.resources.redis.limits.memory | quote }}
           volumeMounts:
             - name: start-scripts
               mountPath: /opt/bitnami/scripts/start-scripts

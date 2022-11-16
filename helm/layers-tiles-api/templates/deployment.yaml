@@ -46,10 +46,11 @@ spec:
             name: lrs-tiles-api
         resources:
           requests:
-            cpu: "1"
-            memory: "1G"
+            cpu: {{ .Values.resources.requests.cpu | quote }}
+            memory: {{ .Values.resources.requests.memory | quote }}
           limits:
-            memory: "2G"
+            #TODO cpu
+            memory: {{ .Values.resources.limits.memory | quote }}
         envFrom:
         - configMapRef:
             name: {{ .Values.envName }}-layers-tiles-api

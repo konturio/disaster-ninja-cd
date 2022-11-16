@@ -17,6 +17,20 @@ createResource:
   serviceMonitor: true
   deploymentLivenessProbe: false
 
+resources:
+  app:
+    requests:
+      cpu: 1
+      memory: 4700Mi
+    limits:
+      memory: 9Gi
+  redis:
+    requests:
+      cpu: 100m
+      memory: 512M
+    limits:
+      memory: 1G
+
 databaseHost: milan.k8s-01.kontur.io.
 databasePort: 5432
 jmxEnabled: true

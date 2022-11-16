@@ -18,3 +18,11 @@ storage_size: 5Gi
 createResource:
   ingress: false
   defaultSecrets: false
+
+resources:
+  requests:
+    cpu: 4
+    memory: 4Gi
+  limits:
+    cpu: 8
+    memory: 8Gi

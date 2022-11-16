@@ -46,10 +46,11 @@ spec:
             name: be-main
         resources:
           requests:
-            cpu: "1"
-            memory: "4G"
+            cpu: {{ .Values.resources.main.requests.cpu | quote }}
+            memory: {{ .Values.resources.main.requests.memory | quote }}
           limits:
-            memory: "6G"
+            #TODO cpu
+            memory: {{ .Values.resources.main.limits.memory | quote }}
         env:
           - name: JAVA_TOOL_OPTIONS
             value: {{ .Values.java_tool_options }}
@@ -136,10 +137,11 @@ spec:
             name: be-main
         resources:
           requests:
-            cpu: "1"
-            memory: "2G"
+            cpu: {{ .Values.resources.notifier.requests.cpu | quote }}
+            memory: {{ .Values.resources.notifier.requests.memory | quote }}
           limits:
-            memory: "3G"
+            #TODO cpu
+            memory: {{ .Values.resources.notifier.limits.memory | quote }}
         env:
           - name: JAVA_TOOL_OPTIONS
             value: {{ .Values.java_tool_options }}

@@ -30,17 +30,22 @@ helm
 
 ## Pre-requisites
 You need a Postgres cluster available with the following extensions available:
-- ```POSTGIS``` (may be installed by homebrew if you're on a Mac)
-- ```H3``` (build and install as per https://github.com/zachasme/h3-pg):
+- ```postgis``` (may be installed by homebrew if you're on a Mac)
+- ```h3``` (build and install as per https://github.com/zachasme/h3-pg):
     - ```git clone https://github.com/zachasme/h3-pg```
     - ```cd h3-pg```
     - ```cmake -B build -DCMAKE_BUILD_TYPE=Release``` Generate native build system
     - ```cmake --build build``` Build extension(s)
     - ```cmake --install build --component h3-pg``` Install extensions (might require sudo)
-- ```H3_POSTGIS```
-- ```BTREE_GIN```
-- ```BTREE_GIST```
-- ```PLPGSQL```
+- ```h3_postgis```
+- ```postgis_sfcgal```
+- ```btree_gin```
+- ```btree_gist```
+- ```plpgsql```
+- ```pgrouting```
+- ```uuid-ossp```
+- ```http```
+- ```pgRouting``` (may be installed by homebrew if you're on a Mac)
 
 ## Steps
 Run ```install-quickstart``` goal in the ```./Makefile```
