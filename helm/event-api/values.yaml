@@ -4,6 +4,8 @@
 image:
   tag: latest
   name: nexus.kontur.io:8084/konturdev/event-api
+  pullSecretName: nexus8084
+  usePullSecret: true
 
 port: 8624
 replicas: 1

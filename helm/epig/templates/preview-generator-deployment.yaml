@@ -58,14 +58,18 @@ spec:
           httpGet:
             path: /health
             port: {{ .Values.PORT }}
-          initialDelaySeconds: 10
+          initialDelaySeconds: 15
           timeoutSeconds: 10
+          failureThreshold: 10
+          periodSeconds: 15
         readinessProbe:
           httpGet:
             path: /health
             port: {{ .Values.PORT }}
-          initialDelaySeconds: 10
+          initialDelaySeconds: 15
           timeoutSeconds: 10
+          periodSeconds: 15
+          failureThreshold: 1
         securityContext:
           readOnlyRootFilesystem: true
       restartPolicy: Always

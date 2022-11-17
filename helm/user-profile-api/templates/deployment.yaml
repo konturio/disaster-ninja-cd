@@ -75,15 +75,15 @@ spec:
               path: /userprofile/health
               port: {{ .Values.port }}
             failureThreshold: 1
-            periodSeconds: 30
-            initialDelaySeconds: 30
+            periodSeconds: 15
+            initialDelaySeconds: 15
           {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
               path: /userprofile/health
               port: {{ .Values.port }}
             failureThreshold: 10
-            periodSeconds: 30
-            initialDelaySeconds: 30
+            periodSeconds: 15
+            initialDelaySeconds: 15
           {{ end }}
 ---

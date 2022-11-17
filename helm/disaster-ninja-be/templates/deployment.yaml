@@ -76,16 +76,16 @@ spec:
             path: /active/api/health/readiness
             port: {{ .Values.service.port }}
           failureThreshold: 1
-          periodSeconds: 10
-          initialDelaySeconds: 5
+          periodSeconds: 15
+          initialDelaySeconds: 15
         {{ if .Values.createResource.deploymentLivenessProbe }}
         livenessProbe:
           httpGet:
             path: /active/api/health/readiness
             port: {{ .Values.service.port }}
           failureThreshold: 10
-          periodSeconds: 10
-          initialDelaySeconds: 5
+          periodSeconds: 15
+          initialDelaySeconds: 15
         {{ end }}
 ---
 apiVersion: apps/v1
@@ -167,15 +167,15 @@ spec:
             path: /active/api/health/readiness
             port: {{ .Values.service.port }}
           failureThreshold: 1
-          periodSeconds: 10
-          initialDelaySeconds: 5
+          periodSeconds: 15
+          initialDelaySeconds: 15
         {{ if .Values.createResource.deploymentLivenessProbe }}
         livenessProbe:
           httpGet:
             path: /active/api/health/readiness
             port: {{ .Values.service.port }}
           failureThreshold: 10
-          periodSeconds: 10
-          initialDelaySeconds: 5
+          periodSeconds: 15
+          initialDelaySeconds: 15
         {{ end }}
 ---

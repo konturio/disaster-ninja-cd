@@ -1,0 +1,71 @@
+# QUICKSTART values for event-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+image:
+  tag: 'master.b3e72d1.1'
+  pullSecretName: nexus8084
+  usePullSecret: true
+
+replicas: 1
+envName: quickstart
+
+createResource:
+  defaultSecrets: true
+  ingress: false
+  prometheusRule: false
+  serviceMonitor: false
+  deploymentLivenessProbe: false
+
+resources:
+  app:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 768Mi
+  redis:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 768Mi
+
+databaseHost: host.docker.internal
+databaseUser: event_api_user01
+databaseName: event_api
+databasePort: 5432
+
+alertingTime: 10m
+
+jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/test #TODO keycloak
+jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/test/protocol/openid-connect/certs
+
+profiles: dev #TODO check
+
+otlpTracesExporter: none
+otlpTracesPort: none
+
+redisAddr: redis://localhost
+redisPort: 6379
+metricsPort: 9121
+
+konturApiUrl: 'https://test-api.konturlabs.com/'
+
+konturAppsUrl: 'https://test-apps.konturlabs.com/'
+
+pdcUrl: 'https://testdisasteraware.pdc.org'
+pdcMapSrvUrl: 'https://testapps.pdc.org'
+pdcUser: 'eventapi' #TODO disable
+
+emdatUser: 'none' #TODO disable
+
+staticdataS3Folder: 'TEST DEV/'
+
+humanitarianCrisisS3Folder: 'kontur_events/TEST DEV/'
+
+awsSqsUrl: none
+awsSqsDlqUrl: none
+awsSqsEnabled: false
+
+feignUserAgent: 'Event API DEV'
+

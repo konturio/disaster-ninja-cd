@@ -60,14 +60,17 @@ spec:
             httpGet:
               path: /json
               port: {{ .Values.CHROMIUM_PORT }}
-            initialDelaySeconds: 10
+            initialDelaySeconds: 15
             timeoutSeconds: 10
+            failureThreshold: 10
           readinessProbe:
             httpGet:
               path: /json
               port: {{ .Values.CHROMIUM_PORT }}
-            initialDelaySeconds: 10
+            initialDelaySeconds: 15
             timeoutSeconds: 10
+            failureThreshold: 1
+            periodSeconds: 15
           volumeMounts:
             - mountPath: /app/cache
               name: chromium-cache

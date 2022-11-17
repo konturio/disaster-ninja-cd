@@ -59,16 +59,16 @@ spec:
               path: /healthz
               port: http
             failureThreshold: 10
-            periodSeconds: 10
-            initialDelaySeconds: 5
+            periodSeconds: 15
+            initialDelaySeconds: 15
           {{ end }}
           readinessProbe:
             httpGet:
               path: /healthz
               port: http
             failureThreshold: 1
-            periodSeconds: 10
-            initialDelaySeconds: 5
+            periodSeconds: 15
+            initialDelaySeconds: 15
           resources:
             limits:
               cpu: {{ .Values.resources.limits.cpu | quote }}

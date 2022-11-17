@@ -78,16 +78,16 @@ spec:
               path: /layers/v2/health/readiness
               port: {{ .Values.port }}
             failureThreshold: 1
-            periodSeconds: 10
-            initialDelaySeconds: 5
+            periodSeconds: 15
+            initialDelaySeconds: 15
           {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
               path: /layers/v2/health/readiness
               port: {{ .Values.port }}
             failureThreshold: 10
-            periodSeconds: 10
-            initialDelaySeconds: 5
+            periodSeconds: 15
+            initialDelaySeconds: 15
           {{ end }}
           securityContext:
             capabilities:
