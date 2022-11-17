@@ -11,6 +11,8 @@ DEBUG: TRUE
 DEFAULT_IMAGE_URL: "https://test-apps-ninja02.konturlabs.com/active/static/assets/preview_screenshot.png"
 
 containers:
+  pullSecretName: none
+  usePullSecret: false
   chromium_headless:
     replicas: 1
     tag: "main.00d41e5.1"

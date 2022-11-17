@@ -37,6 +37,9 @@ spec:
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
 {{/*        checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed*/}}
     spec:
+      {{ if .Values.images.usePullSecret }}
+      imagePullSecrets: #TODO remove once image is on ghcr.io
+        - name: {{ .Values.images.pullSecretName }}{{ end }}
       {{ if .Values.nodeAffinity.enabled }}
       affinity:
         nodeAffinity:

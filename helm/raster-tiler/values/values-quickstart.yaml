@@ -3,28 +3,27 @@
 # Declare variables to be passed into your templates.
 image:
   tag: latest
-  name: nexus.kontur.io:8084/konturdev/raster-tiler
   pullSecretName: nexus8084
   usePullSecret: true
 
-port: 80
 replicas: 1
-envName: local
-base_url: https://local-raster-tiler.k8s-01.konturlabs.com
-pg_database: layers-db
-pg_host: milan.k8s-01.kontur.io
+envName: quickstart
+base_url: https://localhost #TODO
+titiler_url: https://test-apps02.konturlabs.com/titiler/ #TODO
+pg_host: host.docker.internal
 storage_size: 5Gi
 storageClass: standard
+db_pool_size: 4
 
 createResource:
   ingress: false
-  defaultSecrets: false
+  defaultSecrets: true
   deploymentLivenessProbe: true
 
 resources:
   requests:
-    cpu: 4
-    memory: 4Gi
+    cpu: 100m
+    memory: 128Mi
   limits:
-    cpu: 8
-    memory: 8Gi
+    cpu: 1
+    memory: 768Mi

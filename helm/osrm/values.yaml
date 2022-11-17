@@ -31,6 +31,8 @@ osrmBackendRestartSchedule: "10 2-6 * * *"
 storageClass: local-path
 
 images:
+  pullSecretName: nexus8084
+  usePullSecret: true
   pbf_downloader:
     name: nexus.kontur.io:8084/konturdev/pbf-downloader
     tag: develop.4281fde.1

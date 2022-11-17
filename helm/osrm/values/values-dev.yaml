@@ -1,5 +1,9 @@
 envName: dev
 
+images:
+  pullSecretName: none
+  usePullSecret: false
+
 createResource:
   ingress: true
   prometheusRule: true

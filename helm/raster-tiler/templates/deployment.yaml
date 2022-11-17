@@ -90,6 +90,7 @@ spec:
             failureThreshold: 3
             periodSeconds: 30
             initialDelaySeconds: 30
+          {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
               path: /health
@@ -97,6 +98,7 @@ spec:
             failureThreshold: 10
             periodSeconds: 30
             initialDelaySeconds: 30
+          {{ end }}
           volumeMounts:
             - mountPath: /tiles
               name: raster-tiler-storage-vol

@@ -100,6 +100,7 @@ uninstall: cleanup-namespaces \
 		   cleanup-databases
 
 create-image-pull-secrets: create-ns-required-for-pull-secrets #TODO remove once all images are at ghcr.io
+	kubectl apply -f nexus.yaml -n quickstart-epig
 	kubectl apply -f nexus.yaml -n quickstart-osrm
 	kubectl apply -f nexus.yaml -n quickstart-insights-api
 	kubectl apply -f nexus.yaml -n quickstart-isochrone-api
@@ -108,6 +109,7 @@ create-image-pull-secrets: create-ns-required-for-pull-secrets #TODO remove once
 	kubectl apply -f nexus.yaml -n quickstart-user-profile-api
 
 create-ns-required-for-pull-secrets: #TODO remove once all images are at ghcr.io
+	if kubectl get ns quickstart-epig >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-epig; fi;
 	if kubectl get ns quickstart-osrm >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-osrm; fi;
 	if kubectl get ns quickstart-insights-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-insights-api; fi;
 	if kubectl get ns quickstart-isochrone-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-isochrone-api; fi;
@@ -121,6 +123,11 @@ cleanup-namespaces:
 	if kubectl get ns quickstart-isochrone-api >& /dev/null; then kubectl delete ns quickstart-isochrone-api; fi;
 	if kubectl get ns quickstart-layers-api >& /dev/null; then kubectl delete ns quickstart-layers-api; fi;
 	if kubectl get ns quickstart-osrm >& /dev/null; then kubectl delete ns quickstart-osrm; fi;
+	if kubectl get ns quickstart-epig >& /dev/null; then kubectl delete ns quickstart-epig; fi;
+	if kubectl get ns quickstart-layers-tiles-api >& /dev/null; then kubectl delete ns quickstart-layers-tiles-api; fi;
+	if kubectl get ns quickstart-raster-tiler >& /dev/null; then kubectl delete ns quickstart-raster-tiler; fi;
+	if kubectl get ns quickstart-titiler >& /dev/null; then kubectl delete ns quickstart-titiler; fi;
+	if kubectl get ns quickstart-user-profile-api >& /dev/null; then kubectl delete ns quickstart-user-profile-api; fi;
 
 cleanup-databases:
 	psql -d postgres -c "DROP DATABASE IF EXISTS event_api;";
@@ -179,7 +186,7 @@ create-layers-api-user: create-layers-db #OK
 	psql -d "layers-db" -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"layers-api\";" #TODO seems that other privileges exist by default
 	psql -d "layers-db" -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO \"layers-api\";"
 
-create-layers-tiles-api-user: create-layers-db
+create-layers-tiles-api-user: create-layers-db #OK
 	psql -d "layers-db" -c "CREATE USER \"layers-tiles-api\" WITH PASSWORD 'password';"
 	psql -d "layers-db" -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"layers-tiles-api\";"
 	psql -d "layers-db" -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO \"layers-tiles-api\";"
@@ -192,19 +199,20 @@ create-mosaic-user: create-layers-db
 create-user-profile-api-db:
 	psql -d postgres -c "CREATE USER \"user-profile-api\" WITH PASSWORD 'password';"
 	psql -d postgres -c "CREATE DATABASE \"user-profile-api\" WITH OWNER \"user-profile-api\";";
+	psql -d "user-profile-api" -c "CREATE EXTENSION postgis;";
 
-helm-install-quickstart-all: insights-api \
+helm-install-quickstart-all: epig \
+							 insights-api \
 							 layers-api \
+							 layers-tiles-api \
+							 raster-tiler \
 							 osrm \
+							 user-profile-api \
 							 isochrone-api
 #							 disaster-ninja-be \
 #							 disaster-ninja-fe \
-#							 epig \
 #							 event-api \
-#							 layers-tiles-api \
-#							 raster-tiler \
 #							 titiler \
-#							 user-profile-api \
 #							 keycloak
 
 #TODO dependencies below are very rough
@@ -213,10 +221,11 @@ disaster-ninja-be: insights-api layers-api #user-profile-api keycloak event-api
 	helm upgrade --install local-disaster-ninja-be disaster-ninja-be -f disaster-ninja-be/values.yaml -f disaster-ninja-be/values/values-local.yaml -n quickstart-disaster-ninja
 disaster-ninja-fe: disaster-ninja-be epig
 	helm upgrade --install local-disaster-ninja-fe disaster-ninja-fe -f disaster-ninja-fe/values.yaml -f disaster-ninja-fe/values/values-local.yaml -n quickstart-disaster-ninja
-epig:
-	helm upgrade --install local-epig epig -f epig/values.yaml -f epig/values/values-local.yaml -n quickstart-epig
+epig: create-image-pull-secrets #OK
+	if kubectl get ns quickstart-epig >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-epig; fi;
+	helm upgrade --install local-epig epig -f epig/values.yaml -f epig/values/values-quickstart.yaml -n quickstart-epig
 event-api:
-	helm upgrade --install local-event-api event-api -f event-api/values.yaml -f event-api/values/values-local.yaml -n quickstart-event-api
+	helm upgrade --install quickstart-event-api event-api -f event-api/values.yaml -f event-api/values/values-quickstart.yaml -n quickstart-event-api
 insights-api: create-insights-api-db create-image-pull-secrets #OK
 	if kubectl get ns quickstart-insights-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-insights-api; fi;
 	helm upgrade --install quickstart-insights-api insights-api -f insights-api/values.yaml -f insights-api/values/values-quickstart.yaml -n quickstart-insights-api
@@ -224,15 +233,19 @@ layers-api: create-layers-db create-layers-api-user create-image-pull-secrets #O
 	if kubectl get ns quickstart-layers-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-layers-api; fi;
 	helm upgrade --install quickstart-layers-api layers-api -f layers-api/values.yaml -f layers-api/values/values-quickstart.yaml -n quickstart-layers-api
 
-layers-tiles-api:
-	helm upgrade --install local-layers-tiles-api layers-tiles-api -f layers-tiles-api/values.yaml -f layers-tiles-api/values/values-local.yaml -n quickstart-layers-tiles-api
-raster-tiler: create-image-pull-secrets
-	helm upgrade --install local-raster-tiler raster-tiler -f raster-tiler/values.yaml -f raster-tiler/values/values-local.yaml -n quickstart-raster-tiler
-titiler:
-	helm upgrade --install local-titiler titiler -f titiler/values.yaml -f titiler/values/values-local.yaml -n quickstart-titiler
+layers-tiles-api: #OK
+	if kubectl get ns quickstart-layers-tiles-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-layers-tiles-api; fi;
+	helm upgrade --install quickstart-layers-tiles-api layers-tiles-api -f layers-tiles-api/values.yaml -f layers-tiles-api/values/values-quickstart.yaml -n quickstart-layers-tiles-api
+raster-tiler: create-image-pull-secrets create-mosaic-user titiler #TODO: crashes due to >>>unhandledRejection Error: The server does not support SSL connections
+	if kubectl get ns quickstart-raster-tiler >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-raster-tiler; fi;
+	helm upgrade --install quickstart-raster-tiler raster-tiler -f raster-tiler/values.yaml -f raster-tiler/values/values-quickstart.yaml -n quickstart-raster-tiler
+titiler: #OK
+	if kubectl get ns quickstart-titiler >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-titiler; fi;
+	helm upgrade --install quickstart-titiler titiler -f titiler/values.yaml -f titiler/values/values-quickstart.yaml -n quickstart-titiler
 
-user-profile-api: keycloak create-image-pull-secrets
-	helm upgrade --install local-user-profile-api user-profile-api -f user-profile-api/values.yaml -f user-profile-api/values/values-local.yaml -n quickstart-user-profile-api
+user-profile-api: create-image-pull-secrets #keycloak
+	if kubectl get ns quickstart-user-profile-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-user-profile-api; fi;
+	helm upgrade --install quickstart-user-profile-api user-profile-api -f user-profile-api/values.yaml -f user-profile-api/values/values-quickstart.yaml -n quickstart-user-profile-api
 keycloak:
 	helm upgrade --install local-keycloak keycloak -f keycloak/values.yaml -f keycloak/values/values-local.yaml -n quickstart-keycloak
 

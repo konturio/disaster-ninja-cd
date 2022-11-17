@@ -11,3 +11,4 @@ envName: test
 
 createResource:
   ingress: true
+  deploymentLivenessProbe: true

@@ -80,6 +80,7 @@ spec:
             failureThreshold: 1
             periodSeconds: 10
             initialDelaySeconds: 5
+          {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
               path: /layers/v2/health/readiness
@@ -87,6 +88,7 @@ spec:
             failureThreshold: 10
             periodSeconds: 10
             initialDelaySeconds: 5
+          {{ end }}
           securityContext:
             capabilities:
               add:
