@@ -11,6 +11,8 @@ DEBUG: FALSE
 DEFAULT_IMAGE_URL: "https://disaster.ninja/active/static/assets/preview_screenshot.png"
 
 containers:
+  pullSecretName: none
+  usePullSecret: false
   chromium_headless:
     replicas: 1
     tag: "release-1.1.0.00d41e5.1"

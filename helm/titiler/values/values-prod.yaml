@@ -11,3 +11,4 @@ envName: prod
 
 createResource:
   ingress: true
+  deploymentLivenessProbe: true

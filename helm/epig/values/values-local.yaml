@@ -10,6 +10,8 @@ CACHE_TTL: 1
 DEBUG: TRUE
 
 containers:
+  pullSecretName: nexus8084
+  usePullSecret: true
   chromium_headless:
     replicas: 1
     pullPolicy: IfNotPresent

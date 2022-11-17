@@ -12,6 +12,8 @@ CHROMIUM_PORT: 9222
 CHROMIUM_CACHE_SIZE: 104857600
 
 containers:
+  pullSecretName: nexus8084
+  usePullSecret: true
   chromium_headless:
     replicas: 1
     repository: nexus.kontur.io:8084/konturdev/chromium-headless

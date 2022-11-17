@@ -1,0 +1,15 @@
+# Default values for titiler.
+replicaCount: 1
+
+image:
+  tag: 0.7.1
+
+envName: quickstart
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 1
+    memory: 768Mi

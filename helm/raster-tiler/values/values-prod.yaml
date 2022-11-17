@@ -12,8 +12,10 @@ base_url: https://prod-raster-tiler.k8s-01.konturlabs.com
 pg_host: paris.k8s-01.kontur.io
 titiler_url: https://apps.kontur.io/titiler/
 storage_size: 500Gi
+storageClass: local-path
 db_pool_size: 16
 
 createResource:
   ingress: true
   defaultSecrets: false
+  deploymentLivenessProbe: true

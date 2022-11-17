@@ -11,3 +11,4 @@ envName: dev
 
 createResource:
   ingress: true
+  deploymentLivenessProbe: true

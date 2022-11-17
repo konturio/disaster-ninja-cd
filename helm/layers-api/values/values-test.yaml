@@ -15,6 +15,7 @@ createResource:
   ingress: true
   prometheusRule: true
   serviceMonitor: true
+  deploymentLivenessProbe: true
 
 databaseHost: london.k8s-01.kontur.io
 dnsNameOuter: test-api.konturlabs.com

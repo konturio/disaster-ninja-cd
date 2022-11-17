@@ -1,0 +1,26 @@
+# DEV values for user-profile-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+image:
+  tag: release-0.3.5.d6b718e.1
+  pullSecretName: nexus8084
+  usePullSecret: true
+
+replicas: 1
+envName: quickstart
+
+createResource:
+  defaultSecrets: true
+  ingress: false
+  prometheusRule: false
+  serviceMonitor: false
+  deploymentLivenessProbe: true
+
+databaseHost: host.docker.internal
+
+jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/dev #TODO keycloak
+jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/dev/protocol/openid-connect/certs #TODO keycloak
+
+dnsNameOuter: none
+
+otlpTracesExporter: none

@@ -16,6 +16,7 @@ createResource:
   ingress: false
   prometheusRule: false
   serviceMonitor: false
+  deploymentLivenessProbe: true
 
 resources:
   requests:

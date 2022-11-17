@@ -1,5 +1,9 @@
 envName: local
 
+images:
+  pullSecretName: nexus8084
+  usePullSecret: true
+
 nodeAffinity:
   enabled: false
   hostname: localhost

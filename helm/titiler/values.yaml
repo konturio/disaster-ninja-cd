@@ -20,11 +20,12 @@ env:
 
 createResource:
   ingress: false
+  deploymentLivenessProbe: true
 
 resources:
-  limits:
+  requests:
     cpu: 1
     memory: 2Gi
-  requests:
+  limits:
     cpu: 1
     memory: 2Gi

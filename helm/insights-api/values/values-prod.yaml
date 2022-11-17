@@ -21,9 +21,9 @@ resources:
   app:
     requests:
       cpu: 1
-      memory: 4700Mi
+      memory: 7Gi
     limits:
-      memory: 9Gi
+      memory: 7Gi
   redis:
     requests:
       cpu: 100m

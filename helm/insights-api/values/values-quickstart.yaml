@@ -34,7 +34,7 @@ resources:
       memory: 768Mi
 
 readinessProbe:
-  initialDelaySeconds: 60
+  initialDelaySeconds: 30 #TODO
 
 databaseHost: host.docker.internal
 databasePort: 5432

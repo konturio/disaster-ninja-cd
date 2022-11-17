@@ -12,8 +12,10 @@ base_url: https://test-raster-tiler.k8s-01.konturlabs.com
 pg_host: london.k8s-01.kontur.io
 titiler_url: https://test-apps.konturlabs.com/titiler/
 storage_size: 100Gi
+storageClass: local-path
 db_pool_size: 16
 
 createResource:
   ingress: true
   defaultSecrets: false
+  deploymentLivenessProbe: true
