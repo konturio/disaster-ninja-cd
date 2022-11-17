@@ -1,5 +1,7 @@
 envName: dev
 
+storageClassName: local-path
+
 images:
   pullSecretName: none
   usePullSecret: false
