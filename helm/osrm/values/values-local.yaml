@@ -15,7 +15,7 @@ osrmBackendRestartSchedule: "10/15 * * * *"
 pbfDirSize: 256Mi
 osrmDirSize: 1Gi
 
-storageClass: standard
+storageClassName: standard
 
 images:
   pbf_downloader:

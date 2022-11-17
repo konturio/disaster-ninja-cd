@@ -25,7 +25,8 @@ osrmBackendPort: 5000
 osrmBackendReplicas: 1
 osrmBackendRestartSchedule: "10 2-6 * * *"
 
-storageClass: local-path
+# PersistentVolumeClaim.spec.storageClassName will be omitted from definitions if not set
+# storageClassName: local-path
 
 images:
   pbf_downloader:
