@@ -1,0 +1,24 @@
+# QUICKSTART values for disaster-ninja-fe.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  fe:
+    repository: ghcr.io/konturio/disaster-ninja-fe
+    algorithm: ''
+    tag: release-2.2.0.0f8f7fe.1
+    
+replicaCount: 1
+envName: quickstart
+dnsName1: none #TODO
+
+createResource:
+  ingress: false
+  prometheusRule: false
+  serviceMonitor: false
+
+reportsBucket: 'https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazonaws.com/kontur_reports/dev/' #TODO DN reports
+
+epigHost: 'https://dev-epig.k8s-01.konturlabs.com' #TODO epig
+
+alertingTime: 10m

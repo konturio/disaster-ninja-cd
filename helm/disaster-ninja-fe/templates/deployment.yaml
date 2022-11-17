@@ -19,7 +19,7 @@ spec:
       #don't add app.kubernetes.io/version
       app.kubernetes.io/managed-by: "Helm"
       stage: {{ .Values.envName }}
-  replicas: 2
+  replicas: {{ .Values.replicaCount }}
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -49,14 +49,14 @@ spec:
             - name: config-volume
               mountPath: /usr/src/app/static/config
               readOnly: true
+          #TODO livenessProbe for prod
           readinessProbe:
             httpGet:
               path: /active/
               port: 80
             failureThreshold: 1
-            periodSeconds: 30
-            initialDelaySeconds: 10
-            timeoutSeconds: 1 #(default)
+            periodSeconds: 15
+            initialDelaySeconds: 15
       volumes:
         - name: config-volume
           configMap:

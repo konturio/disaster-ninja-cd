@@ -77,16 +77,16 @@ spec:
               path: /insights-api/health/readiness
               port: {{ .Values.port }}
             failureThreshold: 1
-            periodSeconds: 30
-            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            periodSeconds: 15
+            initialDelaySeconds: 15
           {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
               path: /insights-api/health/readiness
               port: {{ .Values.port }}
             failureThreshold: 10
-            periodSeconds: 30
-            initialDelaySeconds: 30
+            periodSeconds: 15
+            initialDelaySeconds: 15
           {{ end }}
 ---
 apiVersion: apps/v1
@@ -199,22 +199,20 @@ spec:
                 - sh
                 - '-c'
                 - /health/ping_liveness_local.sh 5
-            initialDelaySeconds: 20
+            initialDelaySeconds: 15
             timeoutSeconds: 6
-            periodSeconds: 5
-            successThreshold: 1
-            failureThreshold: 5
+            periodSeconds: 15
+            failureThreshold: 10
           readinessProbe:
             exec:
               command:
                 - sh
                 - '-c'
                 - /health/ping_readiness_local.sh 1
-            initialDelaySeconds: 20
+            initialDelaySeconds: 15
             timeoutSeconds: 2
-            periodSeconds: 5
-            successThreshold: 1
-            failureThreshold: 5
+            periodSeconds: 15
+            failureThreshold: 1
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           imagePullPolicy: IfNotPresent

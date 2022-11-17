@@ -87,17 +87,17 @@ spec:
             httpGet:
               path: /health
               port: http
-            failureThreshold: 3
-            periodSeconds: 30
-            initialDelaySeconds: 30
+            failureThreshold: 1
+            periodSeconds: 15
+            initialDelaySeconds: 15
           {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
               path: /health
               port: http
             failureThreshold: 10
-            periodSeconds: 30
-            initialDelaySeconds: 30
+            periodSeconds: 15
+            initialDelaySeconds: 15
           {{ end }}
           volumeMounts:
             - mountPath: /tiles

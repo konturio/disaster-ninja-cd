@@ -1,4 +1,4 @@
-# Default values for titiler.
+# QUICKSTART values for titiler.
 replicaCount: 1
 
 image:

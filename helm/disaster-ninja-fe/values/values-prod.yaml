@@ -8,7 +8,7 @@ image:
     algorithm: ''
     tag: release-2.2.0.0f8f7fe.1 #this version will be automatically deployed by Flux
 
-replicaCount: 1
+replicaCount: 2
 envName: prod
 dnsName1: prod-disaster-ninja.k8s-01.konturlabs.com
 

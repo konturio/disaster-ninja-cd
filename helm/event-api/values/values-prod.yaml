@@ -3,6 +3,8 @@
 # Declare variables to be passed into your templates.
 image:
   tag: 'master.b3e72d1.1'
+  pullSecretName: none
+  usePullSecret: false
 
 replicas: 1
 envName: prod

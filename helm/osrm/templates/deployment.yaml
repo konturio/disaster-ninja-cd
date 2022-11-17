@@ -105,8 +105,10 @@ spec:
           httpGet:
             path: /nearest/v1/healthz/0,0
             port: {{ .Values.osrmBackendPort }}
-          initialDelaySeconds: 30
+          initialDelaySeconds: 15
           timeoutSeconds: 1
+          periodSeconds: 15
+          failureThreshold: 1
         volumeMounts:
           - mountPath: {{ .Values.osrmPreprocessorDir }}
             name: {{ .Values.envName }}-osrm-preprocessor-data

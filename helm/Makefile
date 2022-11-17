@@ -107,6 +107,7 @@ create-image-pull-secrets: create-ns-required-for-pull-secrets #TODO remove once
 	kubectl apply -f nexus.yaml -n quickstart-layers-api
 	kubectl apply -f nexus.yaml -n quickstart-raster-tiler
 	kubectl apply -f nexus.yaml -n quickstart-user-profile-api
+	kubectl apply -f nexus.yaml -n quickstart-event-api
 
 create-ns-required-for-pull-secrets: #TODO remove once all images are at ghcr.io
 	if kubectl get ns quickstart-epig >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-epig; fi;
@@ -116,6 +117,7 @@ create-ns-required-for-pull-secrets: #TODO remove once all images are at ghcr.io
 	if kubectl get ns quickstart-layers-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-layers-api; fi;
 	if kubectl get ns quickstart-raster-tiler >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-raster-tiler; fi;
 	if kubectl get ns quickstart-user-profile-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-user-profile-api; fi;
+	if kubectl get ns quickstart-event-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-event-api; fi;
 
 ##CLEANUP#
 cleanup-namespaces:
@@ -128,6 +130,8 @@ cleanup-namespaces:
 	if kubectl get ns quickstart-raster-tiler >& /dev/null; then kubectl delete ns quickstart-raster-tiler; fi;
 	if kubectl get ns quickstart-titiler >& /dev/null; then kubectl delete ns quickstart-titiler; fi;
 	if kubectl get ns quickstart-user-profile-api >& /dev/null; then kubectl delete ns quickstart-user-profile-api; fi;
+	if kubectl get ns quickstart-event-api >& /dev/null; then kubectl delete ns quickstart-event-api; fi;
+	if kubectl get ns quickstart-disaster-ninja >& /dev/null; then kubectl delete ns quickstart-disaster-ninja; fi;
 
 cleanup-databases:
 	psql -d postgres -c "DROP DATABASE IF EXISTS event_api;";
@@ -162,7 +166,7 @@ create-insights-api-db: #OK
 	psql -d postgres -c "CREATE DATABASE \"insights-api\" WITH OWNER \"insights-api\";";
 	psql -d "insights-api" -c "CREATE EXTENSION postgis;";
 
-create-isochrone-api-db:
+create-isochrone-api-db: #OK
 	psql -d postgres -c "CREATE USER \"isochrone-api\" WITH PASSWORD 'password';"
 	psql -d postgres -c "CREATE DATABASE gis WITH OWNER \"isochrone-api\";";
 	psql -d gis -c "CREATE EXTENSION postgis;"
@@ -196,35 +200,38 @@ create-mosaic-user: create-layers-db
 	psql -d "layers-db" -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"mosaic\";"
 	psql -d "layers-db" -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO \"mosaic\";"
 
-create-user-profile-api-db:
+create-user-profile-api-db: #OK
 	psql -d postgres -c "CREATE USER \"user-profile-api\" WITH PASSWORD 'password';"
 	psql -d postgres -c "CREATE DATABASE \"user-profile-api\" WITH OWNER \"user-profile-api\";";
 	psql -d "user-profile-api" -c "CREATE EXTENSION postgis;";
 
 helm-install-quickstart-all: epig \
-							 insights-api \
 							 layers-api \
-							 layers-tiles-api \
-							 raster-tiler \
-							 osrm \
 							 user-profile-api \
-							 isochrone-api
-#							 disaster-ninja-be \
-#							 disaster-ninja-fe \
-#							 event-api \
-#							 titiler \
+							 disaster-ninja-be \
+							 disaster-ninja-fe \
+						     event-api \
+							 insights-api \
+							 isochrone-api \
+							 layers-tiles-api \
+							 titiler \
+							 raster-tiler \
+							 osrm
 #							 keycloak
 
 #TODO dependencies below are very rough
 
-disaster-ninja-be: insights-api layers-api #user-profile-api keycloak event-api
-	helm upgrade --install local-disaster-ninja-be disaster-ninja-be -f disaster-ninja-be/values.yaml -f disaster-ninja-be/values/values-local.yaml -n quickstart-disaster-ninja
-disaster-ninja-fe: disaster-ninja-be epig
-	helm upgrade --install local-disaster-ninja-fe disaster-ninja-fe -f disaster-ninja-fe/values.yaml -f disaster-ninja-fe/values/values-local.yaml -n quickstart-disaster-ninja
+disaster-ninja-be: insights-api layers-api user-profile-api event-api #keycloak #OK
+	if kubectl get ns quickstart-disaster-ninja >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-disaster-ninja; fi;
+	helm upgrade --install quickstart-disaster-ninja-be disaster-ninja-be -f disaster-ninja-be/values.yaml -f disaster-ninja-be/values/values-quickstart.yaml -n quickstart-disaster-ninja
+disaster-ninja-fe: disaster-ninja-be epig #OK
+	if kubectl get ns quickstart-disaster-ninja >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-disaster-ninja; fi;
+	helm upgrade --install quickstart-disaster-ninja-fe disaster-ninja-fe -f disaster-ninja-fe/values.yaml -f disaster-ninja-fe/values/values-quickstart.yaml -n quickstart-disaster-ninja
 epig: create-image-pull-secrets #OK
 	if kubectl get ns quickstart-epig >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-epig; fi;
-	helm upgrade --install local-epig epig -f epig/values.yaml -f epig/values/values-quickstart.yaml -n quickstart-epig
-event-api:
+	helm upgrade --install quickstart-epig epig -f epig/values.yaml -f epig/values/values-quickstart.yaml -n quickstart-epig
+event-api: create-event-api-db create-image-pull-secrets #TODO: crashes due to >>>com.amazonaws.services.sqs.model.AmazonSQSException: The security token included in the request is invalid. (Service: AmazonSQS; Status Code: 403; Error Code: InvalidClientTokenId
+	if kubectl get ns quickstart-event-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-event-api; fi;
 	helm upgrade --install quickstart-event-api event-api -f event-api/values.yaml -f event-api/values/values-quickstart.yaml -n quickstart-event-api
 insights-api: create-insights-api-db create-image-pull-secrets #OK
 	if kubectl get ns quickstart-insights-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-insights-api; fi;
@@ -232,8 +239,7 @@ insights-api: create-insights-api-db create-image-pull-secrets #OK
 layers-api: create-layers-db create-layers-api-user create-image-pull-secrets #OK
 	if kubectl get ns quickstart-layers-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-layers-api; fi;
 	helm upgrade --install quickstart-layers-api layers-api -f layers-api/values.yaml -f layers-api/values/values-quickstart.yaml -n quickstart-layers-api
-
-layers-tiles-api: #OK
+layers-tiles-api: create-layers-tiles-api-user #OK
 	if kubectl get ns quickstart-layers-tiles-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-layers-tiles-api; fi;
 	helm upgrade --install quickstart-layers-tiles-api layers-tiles-api -f layers-tiles-api/values.yaml -f layers-tiles-api/values/values-quickstart.yaml -n quickstart-layers-tiles-api
 raster-tiler: create-image-pull-secrets create-mosaic-user titiler #TODO: crashes due to >>>unhandledRejection Error: The server does not support SSL connections
@@ -242,14 +248,13 @@ raster-tiler: create-image-pull-secrets create-mosaic-user titiler #TODO: crashe
 titiler: #OK
 	if kubectl get ns quickstart-titiler >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-titiler; fi;
 	helm upgrade --install quickstart-titiler titiler -f titiler/values.yaml -f titiler/values/values-quickstart.yaml -n quickstart-titiler
-
-user-profile-api: create-image-pull-secrets #keycloak
+user-profile-api: create-image-pull-secrets create-user-profile-api-db #OK #keycloak
 	if kubectl get ns quickstart-user-profile-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-user-profile-api; fi;
 	helm upgrade --install quickstart-user-profile-api user-profile-api -f user-profile-api/values.yaml -f user-profile-api/values/values-quickstart.yaml -n quickstart-user-profile-api
 keycloak:
-	helm upgrade --install local-keycloak keycloak -f keycloak/values.yaml -f keycloak/values/values-local.yaml -n quickstart-keycloak
-
-isochrone-api: osrm create-image-pull-secrets #OK
+	if kubectl get ns quickstart-keycloak >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-keycloak; fi;
+	helm upgrade --install quickstart-keycloak keycloak -f keycloak/values.yaml -f keycloak/values/values-quickstart.yaml -n quickstart-keycloak
+isochrone-api: osrm create-isochrone-api-db create-image-pull-secrets #OK
 	if kubectl get ns quickstart-isochrone-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-isochrone-api; fi;
 	helm upgrade --install quickstart-isochrone-api isochrone-api -f isochrone-api/values.yaml -f isochrone-api/values/values-quickstart.yaml -n quickstart-isochrone-api
 osrm: create-image-pull-secrets #OK
