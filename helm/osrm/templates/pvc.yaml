@@ -11,7 +11,9 @@ spec:
       storage: {{ .Values.pbfDirSize }}
     limits: #TODO test
       storage: {{ .Values.pbfDirSize }}
-  storageClassName: {{ .Values.storageClass }}
+{{ if .Values.storageClassName }}
+  storageClassName: {{ .Values.storageClassName }}
+{{ end }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -26,7 +28,9 @@ spec:
       storage: {{ .Values.osrmDirSize }}
     limits: #TODO test
       storage: {{ .Values.osrmDirSize }}
-  storageClassName: {{ .Values.storageClass }}
+{{ if .Values.storageClassName }}
+  storageClassName: {{ .Values.storageClassName }}
+{{ end }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -41,4 +45,6 @@ spec:
       storage: {{ .Values.osrmDirSize }}
     limits: #TODO test
       storage: {{ .Values.osrmDirSize }}
-  storageClassName: {{ .Values.storageClass }}
+{{ if .Values.storageClassName }}
+  storageClassName: {{ .Values.storageClassName }}
+{{ end }}
