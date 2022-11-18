@@ -7,6 +7,7 @@ image:
   pullSecretName: nexus8084
   usePullSecret: true
 
+db_disable_ssl: true
 port: 80
 replicas: 1
 envName: local

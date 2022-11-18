@@ -6,6 +6,7 @@ image:
   pullSecretName: none
   usePullSecret: false
 
+db_disable_ssl: false
 replicas: 1
 envName: dev
 base_url: https://dev-raster-tiler.k8s-01.konturlabs.com

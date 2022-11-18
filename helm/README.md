@@ -57,10 +57,10 @@ These extensions might be installed either with ```brew``` (https://brew.sh if y
 
 ```kubectl create secret docker-registry nexus8084 --docker-server='nexus.kontur.io:8084' --docker-username='YOUR-USERNAME' --docker-password='YOUR-PASSWORD' -o yaml --dry-run=server | grep -v namespace > nexus.yaml``` this creates a file ```nexus.yaml``` with your auth data - it will be used in next step
 
-**- Step 2:** ```make install-quickstart```
+**- Step 3:** ```make install-quickstart```
 What it does:
 - **DROPs** if they exist and **CREATEs** databases/roles required by platform applications
 - **DELETEs** and **CREATEs** namespaces required for platform applications
 - installs Helm Releases for all apps using ```values-quickstart.yaml``` values files
 
-**- Step 3:** ```kubectl get po -A``` wait until all pods are in Running and Ready state (may take some time - depending on your internet connection as all application images have to be downloaded). There might be failing pods in ```quickstart-osrm``` namespace, that's ok for a while. There is a series of three CrobJobs - once they all succeed at least once - the deployment will be restarted and will finally get up. The series reruns every 15 minutes (clock) so that's the maximal wait time due this CronJob.
+**- Step 4:** ```kubectl get po -A``` wait until all pods are in Running and Ready state (may take some time - depending on your internet connection as all application images have to be downloaded). There might be failing pods in ```quickstart-osrm``` namespace, that's ok for a while. There is a series of three CrobJobs - once they all succeed at least once - the deployment will be restarted and will finally get up. The series reruns every 15 minutes (clock) so that's the maximal wait time due this CronJob.

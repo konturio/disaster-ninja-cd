@@ -83,6 +83,10 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.envName }}-raster-tiler
                   key: password
+            {{ if .Values.db_disable_ssl }}
+            - name: DB_DISABLE_SSL
+              value: "true"
+            {{ end }}
           readinessProbe:
             httpGet:
               path: /health

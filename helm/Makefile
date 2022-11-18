@@ -121,12 +121,21 @@ create-layers-db:
 
 create-layers-api-user: create-layers-db
 	psql -d "layers-db" -c "CREATE USER \"layers-api\" WITH PASSWORD 'password';"
+	psql -d "layers-db" -c "GRANT USAGE ON SCHEMA public TO \"layers-api\";"
+	psql -d "layers-db" -c "ALTER DEFAULT PRIVILEGES FOR ROLE \"layers-db\" IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO \"layers-api\";"
+	psql -d "layers-db" -c "ALTER DEFAULT PRIVILEGES FOR ROLE \"layers-db\" IN SCHEMA public GRANT ALL PRIVILEGES ON SEQUENCES TO \"layers-api\";"
+	psql -d "layers-db" -c "ALTER DEFAULT PRIVILEGES FOR ROLE \"layers-api\" IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO \"layers-db\";"
+	psql -d "layers-db" -c "ALTER DEFAULT PRIVILEGES FOR ROLE \"layers-api\" IN SCHEMA public GRANT ALL PRIVILEGES ON SEQUENCES TO \"layers-db\";"
 
 create-layers-tiles-api-user: create-layers-db
 	psql -d "layers-db" -c "CREATE USER \"layers-tiles-api\" WITH PASSWORD 'password';"
+	psql -d "layers-db" -U "layers-db" -c "ALTER DEFAULT PRIVILEGES FOR ROLE \"layers-db\" IN SCHEMA public GRANT SELECT ON TABLES TO \"layers-tiles-api\";"
+	psql -d "layers-db" -U "layers-api" -c "ALTER DEFAULT PRIVILEGES FOR ROLE \"layers-api\" IN SCHEMA public GRANT SELECT ON TABLES TO \"layers-tiles-api\";"
 
-create-mosaic-user: create-layers-db #TODO not tested
+create-mosaic-user: create-layers-db
 	psql -d "layers-db" -c "CREATE USER \"mosaic\" WITH PASSWORD 'password';"
+	psql -d "layers-db" -U "layers-db" -c "ALTER DEFAULT PRIVILEGES FOR ROLE \"layers-db\" IN SCHEMA public GRANT SELECT ON TABLES TO \"mosaic\";"
+	psql -d "layers-db" -U "layers-api" -c "ALTER DEFAULT PRIVILEGES FOR ROLE \"layers-api\" IN SCHEMA public GRANT SELECT ON TABLES TO \"mosaic\";"
 
 create-user-profile-api-db:
 	psql -d postgres -c "CREATE USER \"user-profile-api\" WITH PASSWORD 'password';"
@@ -171,7 +180,7 @@ layers-api: create-layers-db create-layers-api-user create-image-pull-secrets
 layers-tiles-api: create-layers-tiles-api-user
 	if kubectl get ns quickstart-layers-tiles-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-layers-tiles-api; fi;
 	helm upgrade --install quickstart-layers-tiles-api layers-tiles-api -f layers-tiles-api/values.yaml -f layers-tiles-api/values/values-quickstart.yaml -n quickstart-layers-tiles-api
-raster-tiler: create-image-pull-secrets create-mosaic-user titiler #TODO: crashes due to >>>unhandledRejection Error: The server does not support SSL connections
+raster-tiler: create-image-pull-secrets create-mosaic-user titiler
 	if kubectl get ns quickstart-raster-tiler >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-raster-tiler; fi;
 	helm upgrade --install quickstart-raster-tiler raster-tiler -f raster-tiler/values.yaml -f raster-tiler/values/values-quickstart.yaml -n quickstart-raster-tiler
 titiler:
