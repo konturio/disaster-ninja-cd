@@ -1,8 +1,7 @@
 Platform Helm Charts
 ======================
 
-This folder contains helm charts for all Platform apps
----
+### This folder contains helm charts for all Platform apps
 
 Helm Charts:
 ```
@@ -26,32 +25,42 @@ helm
 │   └── ...
 ```
 
-# Quick Start
+# Quick Local Start
 
 ## Pre-requisites
-You need a Postgres cluster available with the following extensions available:
-- ```postgis``` (may be installed by homebrew if you're on a Mac)
-- ```h3``` (build and install as per https://github.com/zachasme/h3-pg):
-    - ```git clone https://github.com/zachasme/h3-pg```
-    - ```cd h3-pg```
-    - ```cmake -B build -DCMAKE_BUILD_TYPE=Release``` Generate native build system
-    - ```cmake --build build``` Build extension(s)
-    - ```cmake --install build --component h3-pg``` Install extensions (might require sudo)
-- ```h3_postgis```
-- ```postgis_sfcgal```
-- ```btree_gin```
-- ```btree_gist```
-- ```plpgsql```
-- ```pgrouting```
-- ```uuid-ossp```
-- ```http```
-- ```pgRouting``` (may be installed by homebrew if you're on a Mac)
+1. A k8s cluster (**minikube** is enough) (```brew install minikube``` if you're on a Mac)
+2. ```kubectl``` CLI configured with the k8s cluster
+ 
+3. A local Postgres instance available with the following extensions available:
+  - ```postgis``` (may be installed by homebrew if you're on a Mac)
+  - ```h3``` (build and install as per https://github.com/zachasme/h3-pg):
+      - ```git clone https://github.com/zachasme/h3-pg```
+      - ```cd h3-pg```
+      - ```cmake -B build -DCMAKE_BUILD_TYPE=Release``` Generate native build system
+      - ```cmake --build build``` Build extension(s)
+      - ```cmake --install build --component h3-pg``` Install extensions (might require sudo)
+  - ```h3_postgis```
+  - ```postgis_sfcgal```
+  - ```btree_gin```
+  - ```btree_gist```
+  - ```plpgsql```
+  - ```uuid-ossp```
+  - ```http```
+  - ```pgRouting``` (may be installed by homebrew if you're on a Mac)
 
-## Steps
-Run ```install-quickstart``` goal in the ```./Makefile```
+These extensions might be installed either with ```brew``` (https://brew.sh if you're on a Mac) or with ```pgxn``` (https://github.com/pgxn/pgxnclient)
 
-NOTE: it re-creates some databases and namespaces.
+## Quick start
+**- Step 1:** ```kubectl config use-context minikube``` setup ```kubectl``` to use minikube (or change to the desired context)
 
+**- Step 2:** Create authorization for private Kontur nexus: #TODO remove this step once all required images are at ```ghcr.io```
+
+```kubectl create secret docker-registry nexus8084 --docker-server='nexus.kontur.io:8084' --docker-username='YOUR-USERNAME' --docker-password='YOUR-PASSWORD' -o yaml --dry-run=server | grep -v namespace > nexus.yaml``` this creates a file ```nexus.yaml``` with your auth data - it will be used in next step
+
+**- Step 2:** ```make install-quickstart```
 What it does:
-- creates required databases in Postgres cluster accessed by ```localhost``` - please change to the desired hostname if needed
-- installs Helm Releases for all apps using "values-local.yaml" values files **#TODO** change to values-quickstart
+- **DROPs** if they exist and **CREATEs** databases/roles required by platform applications
+- **DELETEs** and **CREATEs** namespaces required for platform applications
+- installs Helm Releases for all apps using ```values-quickstart.yaml``` values files
+
+**- Step 3:** ```kubectl get po -A``` wait until all pods are in Running and Ready state (may take some time - depending on your internet connection as all application images have to be downloaded). There might be failing pods in ```quickstart-osrm``` namespace, that's ok for a while. There is a series of three CrobJobs - once they all succeed at least once - the deployment will be restarted and will finally get up. The series reruns every 15 minutes (clock) so that's the maximal wait time due this CronJob.
