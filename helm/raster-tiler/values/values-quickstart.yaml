@@ -6,6 +6,7 @@ image:
   pullSecretName: nexus8084
   usePullSecret: true
 
+db_disable_ssl: true
 replicas: 1
 envName: quickstart
 base_url: https://localhost #TODO
