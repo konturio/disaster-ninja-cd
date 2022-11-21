@@ -10,6 +10,7 @@ image:
 port: 8614
 replicas: 1
 envName: quickstart
+ingressHost: isochrone-api.kontur.test
 
 createResource:
   defaultSecrets: true

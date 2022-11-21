@@ -19,11 +19,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - {{ .Values.envName }}-raster-tiler.k8s-01.konturlabs.com
+        - {{ .Values.ingressHost }}
       secretName: {{ .Values.envName }}-raster-tiler-tls # < cert-manager will store the created certificate in this secret.
   ingressClassName: nginx
   rules:
-    - host: {{ .Values.envName }}-raster-tiler.k8s-01.konturlabs.com
+    - host: {{ .Values.ingressHost }}
       http:
         paths:
           - path: /

@@ -3,6 +3,7 @@ createResource:
   ingress: false
 
 ENV_NAME: local
+ingressHost: none
 SITE_URL: https://test-apps-ninja02.konturlabs.com/active/
 APP_ID: 'f29339bd-8049-41ae-9d6b-f726d8451894'
 TIMEOUT: 60000

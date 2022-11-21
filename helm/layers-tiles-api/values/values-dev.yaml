@@ -2,6 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 envName: dev
+ingressHost: dev-layers-tiles-api.k8s-01.konturlabs.com
 
 replicas: 1
 

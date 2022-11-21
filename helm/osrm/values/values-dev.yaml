@@ -1,4 +1,5 @@
 envName: dev
+ingressHost: dev-osrm.k8s-01.konturlabs.com
 
 storageClassName: local-path
 

@@ -10,6 +10,7 @@ image:
 port: 8630
 replicas: 1
 envName: local
+ingressHost: none
 
 createResource:
   defaultSecrets: false

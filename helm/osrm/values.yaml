@@ -1,4 +1,5 @@
 envName: dev
+ingressHost: none
 
 imagePullPolicy: IfNotPresent
 

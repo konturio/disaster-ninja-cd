@@ -9,6 +9,7 @@ image:
 db_disable_ssl: false
 replicas: 1
 envName: prod
+ingressHost: prod-raster-tiler.k8s-01.konturlabs.com
 base_url: https://prod-raster-tiler.k8s-01.konturlabs.com
 pg_host: paris.k8s-01.kontur.io
 titiler_url: https://apps.kontur.io/titiler/

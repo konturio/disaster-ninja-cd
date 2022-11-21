@@ -8,6 +8,7 @@ image:
 
 replicas: 1
 envName: quickstart
+ingressHost: event-api.kontur.test
 
 createResource:
   defaultSecrets: true
