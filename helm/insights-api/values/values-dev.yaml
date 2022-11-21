@@ -14,10 +14,10 @@ createResource:
   prometheusRule: true
   serviceMonitor: true
 
-databaseHost: ancient-pond-139865.cloud.neon.tech
+databaseHost: ep-twilight-cake-951994.cloud.neon.tech
 #databaseHost: milan.k8s-01.kontur.io.
 databaseName: main
-databaseUsername: kontur
+databaseUsername: insights_api_user01
 #databaseName: insights-api
 #databaseUsername: insights-api
 databasePort: 5432
