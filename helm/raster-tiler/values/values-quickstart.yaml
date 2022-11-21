@@ -9,6 +9,7 @@ image:
 db_disable_ssl: true
 replicas: 1
 envName: quickstart
+ingressHost: none
 base_url: https://localhost #TODO
 titiler_url: https://test-apps02.konturlabs.com/titiler/ #TODO
 pg_host: host.docker.internal

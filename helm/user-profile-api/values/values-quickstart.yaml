@@ -8,6 +8,7 @@ image:
 
 replicas: 1
 envName: quickstart
+ingressHost: user-profile-api.kontur.quickstart
 
 createResource:
   defaultSecrets: true

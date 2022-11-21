@@ -3,6 +3,7 @@ createResource:
   ingress: true
 
 ENV_NAME: prod
+ingressHost: prod-epig.k8s-01.konturlabs.com
 SITE_URL: https://disaster.ninja/active/
 APP_ID: 'c5ecc65b-1e7e-4e31-92a4-222fadeaeef0'
 TIMEOUT: 9000

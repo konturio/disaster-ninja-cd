@@ -1,6 +1,8 @@
 # Default values for titiler.
 replicaCount: 2
 
+ingressHost: none
+
 image:
   repository: ghcr.io/developmentseed/titiler
   tag: latest

@@ -1,4 +1,5 @@
 envName: quickstart
+ingressHost: osrm.kontur.test
 
 images:
   pullSecretName: nexus8084

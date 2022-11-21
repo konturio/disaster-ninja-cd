@@ -9,6 +9,7 @@ image:
 
 replicas: 2
 envName: dev
+ingressHost: dev-layers-api.k8s-01.konturlabs.com
 
 createResource:
   defaultSecrets: false

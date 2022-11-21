@@ -12,6 +12,7 @@ service:
   port: 8627
 
 envName: local
+ingressHost: none
 
 createResource:
   defaultSecrets: false

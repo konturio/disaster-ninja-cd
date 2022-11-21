@@ -8,6 +8,7 @@ image:
 
 replicas: 1
 envName: dev
+ingressHost: dev-isochrone-api.k8s-01.konturlabs.com
 
 createResource:
   defaultSecrets: false
