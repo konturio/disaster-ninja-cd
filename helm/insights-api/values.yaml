@@ -18,6 +18,8 @@ createResource:
 
 databaseHost: docker.for.mac.host.internal
 databasePort: 8900
+databaseName: insights-api
+databaseUsername: insights-api
 jmxEnabled: true
 alertingTime: 10m
 

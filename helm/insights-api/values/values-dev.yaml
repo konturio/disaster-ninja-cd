@@ -14,7 +14,12 @@ createResource:
   prometheusRule: true
   serviceMonitor: true
 
-databaseHost: milan.k8s-01.kontur.io.
+databaseHost: ancient-pond-139865.cloud.neon.tech
+#databaseHost: milan.k8s-01.kontur.io.
+databaseName: main
+databaseUsername: kontur
+#databaseName: insights-api
+#databaseUsername: insights-api
 databasePort: 5432
 jmxEnabled: true
 
