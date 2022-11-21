@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: "12841-add-fields-with-units-and-descriptions-to-indicators-and-formulas-insights.13659a9.1"
+  tag: "release-0.16.4.d01f36b.1"
   tagType: ""
 
 replicas: 2
