@@ -33,6 +33,8 @@ resources:
 
 databaseHost: paris.k8s-01.kontur.io.
 databasePort: 5432
+databaseName: insights-api
+databaseUsername: insights-api
 jmxEnabled: false
 
 dnsNameOuter: apps.kontur.io
