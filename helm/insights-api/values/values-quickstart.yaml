@@ -35,6 +35,8 @@ resources:
 
 databaseHost: host.docker.internal
 databasePort: 5432
+databaseName: insights-api
+databaseUsername: insights-api
 jmxEnabled: false
 alertingTime: 10m
 
