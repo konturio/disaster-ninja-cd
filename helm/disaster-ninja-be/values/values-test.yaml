@@ -13,7 +13,7 @@ replicas: 2
 
 image:
   be:
-    tag: "main.9939807.1" #this version will be automatically deployed by Flux
+    tag: "11083-add-analytics-into-dn2-be-events-feed-id.b3594d8.1" #this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: 'test'
