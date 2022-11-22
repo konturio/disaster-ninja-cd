@@ -5,7 +5,11 @@ image:
   tag: 0.7.1
 
 envName: quickstart
-ingressHost: titiler.kontur.test
+ingressHost: titiler.kontur
+
+createResource:
+  ingress: true
+  deploymentLivenessProbe: true
 
 resources:
   requests:

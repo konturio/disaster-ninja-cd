@@ -42,11 +42,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - {{ .Values.dnsName1 }}
+        - {{ .Values.ingressHost }}
       secretName: {{ .Values.envName }}-disaster-ninja-tls
   ingressClassName: nginx
   rules:
-    - host: {{ .Values.dnsName1 }}
+    - host: {{ .Values.ingressHost }}
       http:
         paths:
           - path: /active/

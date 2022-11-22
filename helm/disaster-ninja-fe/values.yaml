@@ -10,7 +10,7 @@ image:
 
 replicaCount: 1
 envName: local
-dnsName1: localhost
+ingressHost: none
 
 createResource:
   ingress: false

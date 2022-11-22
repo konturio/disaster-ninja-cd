@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 envName: quickstart
-ingressHost: layers-tiles-api.kontur.test
+ingressHost: layers-tiles-api.kontur
 
 replicas: 1
 
@@ -18,7 +18,7 @@ Debug: true
 
 createResource:
   defaultSecrets: true
-  ingress: false
+  ingress: true
   prometheusRule: false
   serviceMonitor: false
 

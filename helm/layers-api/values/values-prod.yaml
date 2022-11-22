@@ -19,7 +19,6 @@ createResource:
   deploymentLivenessProbe: true
 
 databaseHost: paris.k8s-01.kontur.io
-dnsNameOuter: api.kontur.io
 
 jwtIssuerUri: 'https://keycloak01.kontur.io/auth/realms/kontur'
 jwtJwkSetUri: 'https://keycloak01.kontur.io/auth/realms/kontur/protocol/openid-connect/certs'

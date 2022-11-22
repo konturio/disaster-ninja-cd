@@ -1,10 +1,11 @@
 createResource:
   defaultSecrets: true
-  ingress: false
+  ingress: true
 
 ENV_NAME: quickstart
-ingressHost: epig.kontur.test
-SITE_URL: https://test-apps-ninja02.konturlabs.com/active/ #TODO local DN
+ingressHost: epig.kontur
+SITE_URL: http://disaster-ninja.kontur/active/
+DEFAULT_IMAGE_URL: "http://disaster-ninja.kontur/active/static/assets/preview_screenshot.png"
 APP_ID: 'f29339bd-8049-41ae-9d6b-f726d8451894'
 TIMEOUT: 60000
 CACHE_TTL: 1

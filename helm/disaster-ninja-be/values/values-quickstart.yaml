@@ -2,11 +2,11 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 envName: quickstart
-ingressHost: disaster-ninja.kontur.test
+ingressHost: disaster-ninja.kontur
 
 createResource:
   defaultSecrets: true
-  ingress: false
+  ingress: false #it's covered by DN FE's one
   prometheusRule: false
   serviceMonitor: false
   deploymentLivenessProbe: true
@@ -31,14 +31,14 @@ resources:
     limits:
       memory: 0
 
-keycloakUrl: 'https://keycloak01.konturlabs.com/auth' #TODO keycloak and others
+keycloakUrl: 'https://keycloak01.konturlabs.com/auth' #TODO keycloak
 keycloakRealm: dev #TODO keycloak
-eventApiUrl: 'https://test-apps02.konturlabs.com/events'
-kcApiUrl: 'https://test-api02.konturlabs.com/layers'
-layersApiUrl: 'https://test-api02.konturlabs.com/layers/v2'
-insightsApiUrl: 'https://test-apps02.konturlabs.com/insights-api'
-userProfileApiUrl: 'https://test-apps02.konturlabs.com/userprofile'
-tilesHost: 'https://sonic.kontur.io'
+eventApiUrl: 'http://event-api.kontur/events'
+kcApiUrl: 'https://test-api02.konturlabs.com/layers' #TODO
+layersApiUrl: 'http://layers-api.kontur/layers/v2'
+insightsApiUrl: 'http://insights-api.kontur/insights-api'
+userProfileApiUrl: 'http://user-profile-api.kontur/userprofile'
+tilesHost: 'https://sonic.kontur.io' #TODO
 
 notificationsEnabled: false
 notificationsFeed: none
