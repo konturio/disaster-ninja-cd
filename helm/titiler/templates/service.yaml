@@ -6,7 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/name: titiler
     app.kubernetes.io/instance: {{ .Values.envName }}-titiler
-    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: backend
     app.kubernetes.io/part-of: backend
     stage: {{ .Values.envName }}
