@@ -15,7 +15,7 @@ replicas: 1
 
 image:
   be:
-    tag: "11083-add-analytics-into-dn2-be-events-feed-id.b3594d8.1" # this version will be automatically deployed by Flux
+    tag: "13359-set-list-of-layers-for-smart-city-mode.6ec9b14.1" # this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: dev

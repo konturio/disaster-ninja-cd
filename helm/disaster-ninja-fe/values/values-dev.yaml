@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: main.271569d.1 # image id
+    tag: 13359-set-list-of-layers-for-smart-city-mode.8d47965.1 # image id
     
 replicaCount: 2
 envName: dev
