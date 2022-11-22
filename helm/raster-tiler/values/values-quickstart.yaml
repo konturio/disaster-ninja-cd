@@ -10,15 +10,15 @@ db_disable_ssl: true
 replicas: 1
 envName: quickstart
 ingressHost: none
-base_url: https://localhost #TODO
-titiler_url: https://test-apps02.konturlabs.com/titiler/ #TODO
+base_url: http://raster-tiler.kontur
+titiler_url: http://titiler.kontur/titiler/
 pg_host: host.docker.internal
 storage_size: 5Gi
 storageClass: standard
 db_pool_size: 4
 
 createResource:
-  ingress: false
+  ingress: true
   defaultSecrets: true
   deploymentLivenessProbe: true
 

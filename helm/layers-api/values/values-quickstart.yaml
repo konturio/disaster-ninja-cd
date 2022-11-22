@@ -9,11 +9,11 @@ image:
 
 replicas: 1
 envName: quickstart
-ingressHost: layers-api.kontur.test
+ingressHost: layers-api.kontur
 
 createResource:
   defaultSecrets: true
-  ingress: false
+  ingress: true
   prometheusRule: false
   serviceMonitor: false
   deploymentLivenessProbe: true
@@ -26,7 +26,6 @@ resources:
     memory: 768Mi
 
 databaseHost: host.docker.internal
-dnsNameOuter: none
 
 jwtIssuerUri: 'https://keycloak01.konturlabs.com/auth/realms/dev' #TODO keycloak
 jwtJwkSetUri: 'https://keycloak01.konturlabs.com/auth/realms/dev/protocol/openid-connect/certs' #TODO keycloak

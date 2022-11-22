@@ -19,7 +19,6 @@ createResource:
   deploymentLivenessProbe: true
 
 databaseHost: london.k8s-01.kontur.io
-dnsNameOuter: test-api.konturlabs.com
 
 jwtIssuerUri: 'https://keycloak01.konturlabs.com/auth/realms/test'
 jwtJwkSetUri: 'https://keycloak01.konturlabs.com/auth/realms/test/protocol/openid-connect/certs'

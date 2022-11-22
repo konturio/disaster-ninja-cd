@@ -10,7 +10,7 @@ image:
 
 replicaCount: 2
 envName: test
-dnsName1: test-disaster-ninja.k8s-01.konturlabs.com
+ingressHost: test-disaster-ninja.k8s-01.konturlabs.com
 
 createResource:
   ingress: true

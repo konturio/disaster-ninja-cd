@@ -1,5 +1,5 @@
 envName: quickstart
-ingressHost: osrm.kontur.test
+ingressHost: osrm.kontur
 
 images:
   pullSecretName: nexus8084
@@ -12,7 +12,7 @@ nodeAffinity:
 imagePullPolicy: IfNotPresent
 
 createResource:
-  ingress: false
+  ingress: true
   prometheusRule: false
 
 sourcePbfUrl: https://download.geofabrik.de/europe/andorra-latest.osm.pbf
