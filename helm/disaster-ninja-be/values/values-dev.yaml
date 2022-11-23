@@ -13,7 +13,7 @@ replicas: 1
 
 image:
   be:
-    tag: "13359-set-list-of-layers-for-smart-city-mode.6ec9b14.1" # this version will be automatically deployed by Flux
+    tag: "main.3c13624.1" # this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: dev
