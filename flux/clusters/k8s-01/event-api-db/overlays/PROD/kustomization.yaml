@@ -1,0 +1,10 @@
+bases:
+  - ../../base
+namespace: prod-event-api
+patchesJson6902:
+  - target:
+      group: postgres-operator.crunchydata.com
+      version: v1beta1
+      kind: PostgresCluster
+      name: event-api-db
+    path: postgrescluster-replica-count.yaml

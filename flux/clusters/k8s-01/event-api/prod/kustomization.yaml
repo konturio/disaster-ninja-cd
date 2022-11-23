@@ -16,4 +16,3 @@ patches:
         value:
           - ./helm/event-api/values.yaml
           - ./helm/event-api/values/values-prod.yaml
----
