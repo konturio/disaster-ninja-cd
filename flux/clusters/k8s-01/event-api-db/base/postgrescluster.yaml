@@ -1,0 +1,53 @@
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PostgresCluster
+metadata:
+  name: event-api-db
+  labels:
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: flux
+    app.kubernetes.io/name: event-api-db
+    app.kubernetes.io/part-of: event-api
+spec:
+  backups:
+    pgbackrest:
+      image: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.40-1'
+      repos:
+        - name: repo1
+          volume:
+            volumeClaimSpec:
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 100Gi
+  # image: 'nexus.kontur.io:8084/konturdev/crunchy-postgres-gis:test'
+  instances:
+    - dataVolumeClaimSpec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 100Gi
+      name: instance01
+      replicas: 1
+      resources:
+        limits:
+          memory: 8Gi
+          cpu: '3'
+        requests:
+          memory: 8Gi
+          cpu: '2'
+  metadata:
+    labels:
+      app.kubernetes.io/component: database
+      app.kubernetes.io/managed-by: pgo
+      app.kubernetes.io/name: event-api-db
+      app.kubernetes.io/part-of: event-api
+  postGISVersion: '3.2'
+  postgresVersion: 14
+  users:
+    - name: postgres
+    - name: event-api
+      databases:
+        - event-api
+      options: SUPERUSER
