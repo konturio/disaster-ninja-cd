@@ -32,10 +32,10 @@ spec:
       replicas: 1
       resources:
         limits:
-          memory: 12Gi
+          memory: 32Gi
           cpu: '3'
         requests:
-          memory: 12Gi
+          memory: 32Gi
           cpu: '2'
   metadata:
     labels:
