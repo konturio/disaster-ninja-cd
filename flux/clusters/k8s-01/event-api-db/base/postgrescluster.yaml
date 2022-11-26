@@ -38,7 +38,8 @@ spec:
           memory: 24Gi
           cpu: '2'
   # 32Gi => 43m
-  # 24Gi => 
+  # 24Gi => 44m
+  # 20Gi => 
   metadata:
     labels:
       app.kubernetes.io/component: database
