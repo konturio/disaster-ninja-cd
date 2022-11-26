@@ -32,15 +32,16 @@ spec:
       replicas: 1
       resources:
         limits:
-          memory: 18Gi
+          memory: 22Gi
           cpu: '3'
         requests:
-          memory: 18Gi
+          memory: 22Gi
           cpu: '2'
   # 32Gi => 43m
   # 24Gi => 44m
   # 20Gi => fail at 30m
-  # 18 Gi =>
+  # 18 Gi => fail at 28m
+  # 22 Gi =>
   metadata:
     labels:
       app.kubernetes.io/component: database
