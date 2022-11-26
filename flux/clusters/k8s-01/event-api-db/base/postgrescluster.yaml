@@ -32,10 +32,10 @@ spec:
       replicas: 1
       resources:
         limits:
-          memory: 24Gi
+          memory: 20Gi
           cpu: '3'
         requests:
-          memory: 24Gi
+          memory: 20Gi
           cpu: '2'
   # 32Gi => 43m
   # 24Gi => 44m
