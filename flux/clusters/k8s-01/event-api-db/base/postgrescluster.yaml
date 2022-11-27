@@ -29,7 +29,7 @@ spec:
           requests:
             storage: 100Gi
       name: instance01
-      replicas: 2
+      replicas: 1
       resources:
         limits:
           memory: 24Gi
@@ -37,12 +37,6 @@ spec:
         requests:
           memory: 24Gi
           cpu: '2'
-  # 32Gi => 43m
-  # 24Gi => 44m
-  # 20Gi => fail at 30m
-  # 18 Gi => fail at 28m
-  # 22 Gi => fail at 31m
-  # 23 Gi => fail at 31m
   metadata:
     labels:
       app.kubernetes.io/component: database
