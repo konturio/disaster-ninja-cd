@@ -33,7 +33,7 @@ spec:
       resources:
         limits:
           memory: 24Gi
-          cpu: '3'
+          cpu: '4'
         requests:
           memory: 24Gi
           cpu: '2'
@@ -47,7 +47,39 @@ spec:
     dynamicConfiguration:
       postgresql:
         parameters:
-          shared_preload_libraries: auto_explain,pg_stat_statements
+          auto_explain.log_min_duration: 1s
+          auto_explain.log_nested_statements: 'on'
+          auto_explain.log_verbose: 'on'
+          autovacuum_analyze_scale_factor: 0.005
+          autovacuum_naptime: 15s
+          autovacuum_vacuum_cost_limit: 1000
+          autovacuum_vacuum_insert_scale_factor: 0.01
+          autovacuum_vacuum_scale_factor: 0.01
+          effective_cache_size: 18GB
+          effective_io_concurrency: 200
+          log_autovacuum_min_duration: 250ms
+          log_checkpoints: 'on'
+          log_line_prefix: '[%m u=%u d=%d h=%r p=%p l=%l trans_id=%x]: '
+          maintenance_work_mem: 1536MB
+          max_connections: 50
+          max_parallel_maintenance_workers: 2
+          max_parallel_workers: 4
+          max_parallel_workers_per_gather: 2
+          max_wal_size: 4GB
+          max_worker_processes: 4
+          min_wal_size: 1GB
+          random_page_cost: 1.1
+          shared_buffers: 6GB
+          shared_preload_libraries: 'auto_explain,pg_stat_statements'
+          track_activity_query_size: 4kB
+          track_functions: pl
+          track_io_timing: 'on'
+          vacuum_cost_page_miss: 5
+          wal_buffers: 16M
+          wal_compression: 'on'
+          wal_keep_size: 2GB
+          wal_segment_size: 64MB
+          work_mem: 1GB
   postGISVersion: '3.2'
   postgresVersion: 14
   users:
