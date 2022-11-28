@@ -46,7 +46,7 @@ spec:
   patroni:
     dynamicConfiguration:
       postgresql:
-        shared_preload_libraries: auto_explain,pg_stat_statements
+        shared_preload_libraries: pgaudit,auto_explain,pg_stat_statements
   postGISVersion: '3.2'
   postgresVersion: 14
   users:
