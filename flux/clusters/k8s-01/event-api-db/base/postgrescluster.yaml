@@ -29,7 +29,7 @@ spec:
           requests:
             storage: 100Gi
       name: instance01
-      replicas: 2
+      replicas: 1
       resources:
         limits:
           memory: 24Gi
@@ -43,6 +43,10 @@ spec:
       app.kubernetes.io/managed-by: pgo
       app.kubernetes.io/name: event-api-db
       app.kubernetes.io/part-of: event-api
+  patroni:
+    dynamicConfiguration:
+      postgresql:
+        shared_preload_libraries: auto_explain,pg_stat_statements
   postGISVersion: '3.2'
   postgresVersion: 14
   users:
