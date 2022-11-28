@@ -27,7 +27,7 @@ spec:
           - ReadWriteOnce
         resources:
           requests:
-            storage: 100Gi
+            storage: 75Gi
       name: instance01
       replicas: 1
       resources:
