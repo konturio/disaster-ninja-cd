@@ -4,15 +4,33 @@
 image:
   tag: "release-0.16.4.d01f36b.1"
   tagType: ""
+  pullSecretName: none
+  usePullSecret: false
 
 replicas: 2
 envName: prod
+ingressHost: prod-insights-api.k8s-01.konturlabs.com
 
 createResource:
   defaultSecrets: false
   ingress: true
   prometheusRule: true
   serviceMonitor: true
+  deploymentLivenessProbe: true
+
+resources:
+  app:
+    requests:
+      cpu: 1
+      memory: 7Gi
+    limits:
+      memory: 7Gi
+  redis:
+    requests:
+      cpu: 100m
+      memory: 512M
+    limits:
+      memory: 1G
 
 databaseHost: paris.k8s-01.kontur.io.
 databasePort: 5432

@@ -12,12 +12,28 @@ service:
   port: 8627
 
 envName: local
+ingressHost: none
 
 createResource:
   defaultSecrets: false
   ingress: false
   prometheusRule: false
   serviceMonitor: false
+  deploymentLivenessProbe: false
+
+resources:
+  main:
+    requests:
+      cpu: 1
+      memory: 4G
+    limits:
+      memory: 6G
+  notifier:
+    requests:
+      cpu: 1
+      memory: 2G
+    limits:
+      memory: 3G
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: dev

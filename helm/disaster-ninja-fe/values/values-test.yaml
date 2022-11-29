@@ -8,9 +8,9 @@ image:
     algorithm: ''
     tag: main.943d579.1
 
-replicaCount: 1
+replicaCount: 2
 envName: test
-dnsName1: test-disaster-ninja.k8s-01.konturlabs.com
+ingressHost: test-disaster-ninja.k8s-01.konturlabs.com
 
 createResource:
   ingress: true

@@ -39,6 +39,9 @@ spec:
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
         checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
     spec:
+      {{ if .Values.containers.usePullSecret }}
+      imagePullSecrets: #TODO remove once image is on ghcr.io
+        - name: {{ .Values.containers.pullSecretName }}{{ end }}
       containers:
         - name: chromium-headless
           image: {{ .Values.containers.chromium_headless.repository }}:{{ .Values.containers.chromium_headless.tag }}
@@ -50,19 +53,24 @@ spec:
             - containerPort: {{ .Values.CHROMIUM_PORT }}
           resources:
             requests:
-              cpu: "500m"
+              cpu: {{ .Values.resources.chromium.requests.cpu | quote }}
+              #TODO: memory
+            #TODO: limits
           livenessProbe:
             httpGet:
               path: /json
               port: {{ .Values.CHROMIUM_PORT }}
-            initialDelaySeconds: 10
+            initialDelaySeconds: 15
             timeoutSeconds: 10
+            failureThreshold: 10
           readinessProbe:
             httpGet:
               path: /json
               port: {{ .Values.CHROMIUM_PORT }}
-            initialDelaySeconds: 10
+            initialDelaySeconds: 15
             timeoutSeconds: 10
+            failureThreshold: 1
+            periodSeconds: 15
           volumeMounts:
             - mountPath: /app/cache
               name: chromium-cache

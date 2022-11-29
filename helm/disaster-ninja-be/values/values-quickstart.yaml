@@ -1,0 +1,53 @@
+# QUICKSTART values for disaster-ninja-be.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+envName: quickstart
+ingressHost: disaster-ninja.kontur
+
+createResource:
+  defaultSecrets: true
+  ingress: false #it's covered by DN FE's one
+  prometheusRule: false
+  serviceMonitor: false
+  deploymentLivenessProbe: true
+
+replicas: 1
+
+image:
+  be:
+    tag: "release-0.20.0.0d79a4c.1"
+
+resources:
+  main:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 768Mi
+  notifier:
+    requests:
+      cpu: 0
+      memory: 0
+    limits:
+      memory: 0
+
+keycloakUrl: 'https://keycloak01.konturlabs.com/auth' #TODO keycloak
+keycloakRealm: dev #TODO keycloak
+eventApiUrl: 'http://event-api.kontur/events'
+kcApiUrl: 'https://test-api02.konturlabs.com/layers' #TODO
+layersApiUrl: 'http://layers-api.kontur/layers/v2'
+insightsApiUrl: 'http://insights-api.kontur/insights-api'
+userProfileApiUrl: 'http://user-profile-api.kontur/userprofile'
+tilesHost: 'https://sonic.kontur.io' #TODO
+
+notificationsEnabled: false
+notificationsFeed: none
+notificationsAlertUrlPattern: none
+***REMOVED***
+
+alertingTime: 10m
+
+otlpTracesExporter: none
+otlpTracesPort: none
+
+java_tool_options: "-XX:MaxRAMPercentage=50 -javaagent:/opentelemetry/opentelemetry-javaagent.jar"

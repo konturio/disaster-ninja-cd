@@ -3,6 +3,7 @@ createResource:
   ingress: true
 
 ENV_NAME: dev
+ingressHost: dev-epig.k8s-01.konturlabs.com
 SITE_URL: https://test-apps-ninja02.konturlabs.com/active/
 APP_ID: 'f29339bd-8049-41ae-9d6b-f726d8451894'
 TIMEOUT: 7000
@@ -11,6 +12,8 @@ DEBUG: TRUE
 DEFAULT_IMAGE_URL: "https://test-apps-ninja02.konturlabs.com/active/static/assets/preview_screenshot.png"
 
 containers:
+  pullSecretName: none
+  usePullSecret: false
   chromium_headless:
     replicas: 1
     tag: "main.00d41e5.1"

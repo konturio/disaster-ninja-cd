@@ -1,4 +1,4 @@
-# Dev values for titiler.
+# Prod values for titiler.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -8,6 +8,8 @@ image:
   tag: 0.7.1
 
 envName: prod
+ingressHost: prod-titiler.k8s-01.konturlabs.com
 
 createResource:
   ingress: true
+  deploymentLivenessProbe: true

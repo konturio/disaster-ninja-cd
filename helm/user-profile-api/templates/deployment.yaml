@@ -36,9 +36,10 @@ spec:
         meta.helm.sh/release-name: {{ .Release.Name }}
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
         checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
-    spec:{{ if eq .Values.envName "local" }}
-      imagePullSecrets:
-        - name: {{ .Values.imagePullSecretName }}{{ end }}
+    spec:
+      {{ if .Values.image.usePullSecret }}
+      imagePullSecrets: #TODO remove once image is on ghcr.io
+        - name: {{ .Values.image.pullSecretName }}{{ end }}
       containers:
         - name: user-profile-api
           image: {{ .Values.image.name }}:{{ .Values.image.tag }}
@@ -48,10 +49,11 @@ spec:
               name: main
           resources:
             requests:
-              cpu: "100m"
-              memory: "1Gi"
+              cpu: {{ .Values.resources.requests.cpu | quote }}
+              memory: {{ .Values.resources.requests.memory | quote }}
             limits:
-              memory: "1Gi"
+              #TODO cpu
+              memory: {{ .Values.resources.limits.memory | quote }}
           env:
             - name: OTEL_SERVICE_NAME
               valueFrom:
@@ -73,14 +75,15 @@ spec:
               path: /userprofile/health
               port: {{ .Values.port }}
             failureThreshold: 1
-            periodSeconds: 30
-            initialDelaySeconds: 30
-          {{ if eq .Values.envName "prod" }}livenessProbe:
+            periodSeconds: 15
+            initialDelaySeconds: 15
+          {{ if .Values.createResource.deploymentLivenessProbe }}
+          livenessProbe:
             httpGet:
               path: /userprofile/health
               port: {{ .Values.port }}
             failureThreshold: 10
-            periodSeconds: 30
-            initialDelaySeconds: 30
+            periodSeconds: 15
+            initialDelaySeconds: 15
           {{ end }}
 ---

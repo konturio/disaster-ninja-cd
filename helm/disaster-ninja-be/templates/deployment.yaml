@@ -46,10 +46,11 @@ spec:
             name: be-main
         resources:
           requests:
-            cpu: "1"
-            memory: "4G"
+            cpu: {{ .Values.resources.main.requests.cpu | quote }}
+            memory: {{ .Values.resources.main.requests.memory | quote }}
           limits:
-            memory: "6G"
+            #TODO cpu
+            memory: {{ .Values.resources.main.limits.memory | quote }}
         env:
           - name: JAVA_TOOL_OPTIONS
             value: {{ .Values.java_tool_options }}
@@ -75,15 +76,17 @@ spec:
             path: /active/api/health/readiness
             port: {{ .Values.service.port }}
           failureThreshold: 1
-          periodSeconds: 10
-          initialDelaySeconds: 5
+          periodSeconds: 15
+          initialDelaySeconds: 15
+        {{ if .Values.createResource.deploymentLivenessProbe }}
         livenessProbe:
           httpGet:
             path: /active/api/health/readiness
             port: {{ .Values.service.port }}
           failureThreshold: 10
-          periodSeconds: 10
-          initialDelaySeconds: 5
+          periodSeconds: 15
+          initialDelaySeconds: 15
+        {{ end }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -106,7 +109,7 @@ spec:
       #don't add app.kubernetes.io/version
       app.kubernetes.io/managed-by: "Helm"
       stage: {{ .Values.envName }}
-  {{ if eq .Values.notificationsEnabled true }}replicas: 1
+  {{ if .Values.notificationsEnabled }}replicas: 1
   {{ else }}replicas: 0{{ end }}
   strategy:
     type: RollingUpdate
@@ -134,10 +137,11 @@ spec:
             name: be-main
         resources:
           requests:
-            cpu: "1"
-            memory: "2G"
+            cpu: {{ .Values.resources.notifier.requests.cpu | quote }}
+            memory: {{ .Values.resources.notifier.requests.memory | quote }}
           limits:
-            memory: "3G"
+            #TODO cpu
+            memory: {{ .Values.resources.notifier.limits.memory | quote }}
         env:
           - name: JAVA_TOOL_OPTIONS
             value: {{ .Values.java_tool_options }}
@@ -163,13 +167,15 @@ spec:
             path: /active/api/health/readiness
             port: {{ .Values.service.port }}
           failureThreshold: 1
-          periodSeconds: 10
-          initialDelaySeconds: 5
+          periodSeconds: 15
+          initialDelaySeconds: 15
+        {{ if .Values.createResource.deploymentLivenessProbe }}
         livenessProbe:
           httpGet:
             path: /active/api/health/readiness
             port: {{ .Values.service.port }}
           failureThreshold: 10
-          periodSeconds: 10
-          initialDelaySeconds: 5
+          periodSeconds: 15
+          initialDelaySeconds: 15
+        {{ end }}
 ---

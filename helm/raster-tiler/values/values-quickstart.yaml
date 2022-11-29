@@ -1,0 +1,31 @@
+# QUICKSTART values for raster-tiler.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+image:
+  tag: fba9c5f335e3374bb518cfcf0fb616c672e02f71
+  pullSecretName: nexus8084
+  usePullSecret: true
+
+db_disable_ssl: true
+replicas: 1
+envName: quickstart
+ingressHost: none
+base_url: http://raster-tiler.kontur
+titiler_url: http://titiler.kontur/titiler/
+pg_host: host.docker.internal
+storage_size: 5Gi
+storageClass: standard
+db_pool_size: 4
+
+createResource:
+  ingress: true
+  defaultSecrets: true
+  deploymentLivenessProbe: true
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 1
+    memory: 768Mi

@@ -8,6 +8,8 @@ image:
   tag: 0.7.1
 
 envName: dev
+ingressHost: dev-titiler.k8s-01.konturlabs.com
 
 createResource:
   ingress: true
+  deploymentLivenessProbe: true

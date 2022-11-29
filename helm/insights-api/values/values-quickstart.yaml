@@ -1,0 +1,51 @@
+# QUICKSTART values for insights-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+image:
+  tag: master.86ff058.1
+  tagType: ""
+  name: nexus.kontur.io:8084/konturdev/insights-api
+  usePullSecret: true
+  pullSecretName: nexus8084
+
+port: 8625
+replicas: 1
+envName: quickstart
+ingressHost: insights-api.kontur
+dnsNameOuter: "*" #TODO CORS
+
+createResource:
+  defaultSecrets: true
+  ingress: true
+  prometheusRule: false
+  serviceMonitor: false
+  deploymentLivenessProbe: false
+
+resources:
+  app:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 768Mi
+  redis:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 768Mi
+
+databaseHost: host.docker.internal
+databasePort: 5432
+databaseName: insights-api
+databaseUsername: insights-api
+jmxEnabled: false
+alertingTime: 10m
+
+keycloakUrl: 'https://keycloak01.konturlabs.com/auth' #TODO keycloak
+keycloakRealm: dev
+
+otlpTracesExporter: none
+otlpTracesPort: 4317
+
+client_max_body_size: 5g

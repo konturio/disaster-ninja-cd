@@ -1,4 +1,4 @@
-# Default values for disaster-ninja-fe.
+# DEV values for disaster-ninja-fe.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -8,9 +8,9 @@ image:
     algorithm: ''
     tag: 13359-set-list-of-layers-for-smart-city-mode.8d47965.1 # image id
     
-replicaCount: 1
+replicaCount: 2
 envName: dev
-dnsName1: dev-disaster-ninja.k8s-01.konturlabs.com
+ingressHost: dev-disaster-ninja.k8s-01.konturlabs.com
 
 createResource:
   ingress: true

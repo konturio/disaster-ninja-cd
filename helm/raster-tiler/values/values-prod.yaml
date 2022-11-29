@@ -3,15 +3,21 @@
 # Declare variables to be passed into your templates.
 image:
   tag: 0f4ce811e502827a32f7c15912045e9e9995b2db
+  pullSecretName: none
+  usePullSecret: false
 
-
+db_disable_ssl: false
 replicas: 1
 envName: prod
+ingressHost: prod-raster-tiler.k8s-01.konturlabs.com
 base_url: https://prod-raster-tiler.k8s-01.konturlabs.com
 pg_host: paris.k8s-01.kontur.io
 titiler_url: https://apps.kontur.io/titiler/
 storage_size: 500Gi
+storageClass: local-path
 db_pool_size: 16
 
 createResource:
   ingress: true
+  defaultSecrets: false
+  deploymentLivenessProbe: true

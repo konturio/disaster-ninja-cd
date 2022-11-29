@@ -1,6 +1,8 @@
 # Default values for titiler.
 replicaCount: 2
 
+ingressHost: none
+
 image:
   repository: ghcr.io/developmentseed/titiler
   tag: latest
@@ -20,3 +22,12 @@ env:
 
 createResource:
   ingress: false
+  deploymentLivenessProbe: true
+
+resources:
+  requests:
+    cpu: 5
+    memory: 5Gi
+  limits:
+    cpu: 5
+    memory: 10Gi

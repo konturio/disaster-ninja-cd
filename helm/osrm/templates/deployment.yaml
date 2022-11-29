@@ -37,7 +37,10 @@ spec:
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
 {{/*        checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed*/}}
     spec:
-      {{ if ne .Values.envName "local" }}
+      {{ if .Values.images.usePullSecret }}
+      imagePullSecrets: #TODO remove once image is on ghcr.io
+        - name: {{ .Values.images.pullSecretName }}{{ end }}
+      {{ if .Values.nodeAffinity.enabled }}
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -46,7 +49,7 @@ spec:
               - key: kubernetes.io/hostname
                 operator: In
                 values:
-                  - {{ .Values.node }}
+                  - {{ .Values.nodeAffinity.hostname }}
       {{ end }}
       volumes:
         - name: {{ .Values.envName }}-osrm-preprocessor-data
@@ -102,8 +105,10 @@ spec:
           httpGet:
             path: /nearest/v1/healthz/0,0
             port: {{ .Values.osrmBackendPort }}
-          initialDelaySeconds: 30
+          initialDelaySeconds: 15
           timeoutSeconds: 1
+          periodSeconds: 15
+          failureThreshold: 1
         volumeMounts:
           - mountPath: {{ .Values.osrmPreprocessorDir }}
             name: {{ .Values.envName }}-osrm-preprocessor-data

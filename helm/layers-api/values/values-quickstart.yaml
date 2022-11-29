@@ -1,0 +1,36 @@
+# QUICKSTART values for layers-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  tag: release-1.9.1.96f6375.1
+  usePullSecret: true
+  pullSecretName: nexus8084
+
+replicas: 1
+envName: quickstart
+ingressHost: layers-api.kontur
+
+createResource:
+  defaultSecrets: true
+  ingress: true
+  prometheusRule: false
+  serviceMonitor: false
+  deploymentLivenessProbe: true
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    memory: 768Mi
+
+databaseHost: host.docker.internal
+
+jwtIssuerUri: 'https://keycloak01.konturlabs.com/auth/realms/dev' #TODO keycloak
+jwtJwkSetUri: 'https://keycloak01.konturlabs.com/auth/realms/dev/protocol/openid-connect/certs' #TODO keycloak
+
+alertingTime: 10m
+
+otlpTracesExporter: none
+otlpTracesPort: 4317

@@ -3,15 +3,19 @@
 # Declare variables to be passed into your templates.
 image:
   tag: 'master.44a0248.1'
+  pullSecretName: none
+  usePullSecret: false
 
 replicas: 1
 envName: prod
+ingressHost: prod-event-api.k8s-01.konturlabs.com
 
 createResource:
   defaultSecrets: false
   ingress: true
   prometheusRule: true
   serviceMonitor: true
+  deploymentLivenessProbe: true
 
 databaseHost: moral-pgdb01.cskt9jki4yd3.eu-central-1.rds.amazonaws.com
 databaseUser: event_api_user01

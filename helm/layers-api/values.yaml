@@ -3,19 +3,30 @@
 # Declare variables to be passed into your templates.
 image:
   tag: latest
-  name: 'nexus.kontur.io:8085/konturdev/layers-api'
+  name: nexus.kontur.io:8084/konturdev/layers-api
+  usePullSecret: true
+  pullSecretName: nexus8084
 
 port: 8630
 replicas: 1
 envName: local
+ingressHost: none
 
 createResource:
   defaultSecrets: false
   ingress: false
   prometheusRule: false
   serviceMonitor: false
+  deploymentLivenessProbe: true
 
-databaseHost: docker.for.mac.host.internal
+resources:
+  requests:
+    cpu: 1
+    memory: 4Gi
+  limits:
+    memory: 4Gi
+
+databaseHost: host.docker.internal
 databasePort: 5432
 
 jwtIssuerUri: 'https://keycloak01.konturlabs.com/auth/realms/dev'

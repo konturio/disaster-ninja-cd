@@ -39,9 +39,10 @@ spec:
       annotations:
         meta.helm.sh/release-name: {{ .Release.Name }}
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
-    spec:{{ if eq .Values.envName "local" }}
-      imagePullSecrets:
-        - name: {{ .Values.imagePullSecretName }}{{ end }}
+    spec:
+      {{ if .Values.image.usePullSecret }}
+      imagePullSecrets: #TODO remove once image is on ghcr.io
+        - name: {{ .Values.image.pullSecretName }}{{ end }}
       containers:
         - name: raster-tiler-server
           image: {{ .Values.image.name }}:{{ .Values.image.tag }}
@@ -52,11 +53,11 @@ spec:
               protocol: TCP
           resources:
             requests:
-              cpu: "4"
-              memory: "4Gi"
+              cpu: {{ .Values.resources.requests.cpu | quote }}
+              memory: {{ .Values.resources.requests.memory | quote }}
             limits:
-              memory: "8Gi"
-              cpu: "8"
+              memory: {{ .Values.resources.limits.memory | quote }}
+              cpu: {{ .Values.resources.limits.cpu | quote }}
           env:
             - name: BASE_URL
               value: {{ .Values.base_url }}
@@ -82,20 +83,26 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.envName }}-raster-tiler
                   key: password
+            {{ if .Values.db_disable_ssl }}
+            - name: DB_DISABLE_SSL
+              value: "true"
+            {{ end }}
           readinessProbe:
             httpGet:
               path: /health
               port: http
-            failureThreshold: 3
-            periodSeconds: 30
-            initialDelaySeconds: 30
+            failureThreshold: 1
+            periodSeconds: 15
+            initialDelaySeconds: 15
+          {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
               path: /health
               port: http
             failureThreshold: 10
-            periodSeconds: 30
-            initialDelaySeconds: 30
+            periodSeconds: 15
+            initialDelaySeconds: 15
+          {{ end }}
           volumeMounts:
             - mountPath: /tiles
               name: raster-tiler-storage-vol

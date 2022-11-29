@@ -2,27 +2,36 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 0.0.1-SNAPSHOT
-  name: nexus.kontur.io:8085/konturdev/user-profile-api
+  tag: release-0.3.5.d6b718e.1
+  name: nexus.kontur.io:8084/konturdev/user-profile-api
+  pullSecretName: nexus8084
+  usePullSecret: true
 
 port: 8631
 replicas: 1
 envName: local
+ingressHost: none
 
 createResource:
   defaultSecrets: false
   ingress: false
   prometheusRule: false
   serviceMonitor: false
+  deploymentLivenessProbe: false
 
-databaseHost: docker.for.mac.host.internal
+resources:
+  requests:
+    cpu: 100m
+    memory: 1Gi
+  limits:
+    memory: 1Gi
+
+databaseHost: host.docker.internal
 databasePort: 5432
 alertingTime: 10m
 
 jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/dev
 jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/dev/protocol/openid-connect/certs
-
-imagePullSecretName: nexus8085
 
 otlpTracesExporter: none
 otlpTracesPort: 4317

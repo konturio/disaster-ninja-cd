@@ -2,12 +2,14 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 envName: local
+ingressHost: none
 
 createResource:
   defaultSecrets: false
   ingress: false
   prometheusRule: false
   serviceMonitor: false
+  deploymentLivenessProbe: true
 
 replicas: 1
 

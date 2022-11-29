@@ -3,17 +3,35 @@
 # Declare variables to be passed into your templates.
 image:
   tag: latest
-  name: nexus.kontur.io:8085/konturdev/event-api
+  name: nexus.kontur.io:8084/konturdev/event-api
+  pullSecretName: nexus8084
+  usePullSecret: true
 
 port: 8624
 replicas: 1
 envName: local
+ingressHost: none
 
 createResource:
   defaultSecrets: false
   ingress: false
   prometheusRule: false
   serviceMonitor: false
+  deploymentLivenessProbe: false
+
+resources:
+  app:
+    requests:
+      cpu: 100m
+      memory: 16Gi
+    limits:
+      memory: 20Gi
+  redis:
+    requests:
+      cpu: 100m
+      memory: 1Gi
+    limits:
+      memory: 5Gi
 
 databaseHost: host.docker.internal
 databaseUser: event_api_user01
