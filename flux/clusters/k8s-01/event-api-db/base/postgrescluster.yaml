@@ -14,7 +14,7 @@ spec:
       repoHost:
         topologySpreadConstraints:
           - maxSkew: 1
-            topologyKey: my-node-label
+            topologyKey: kubernetes.io/hostname
             whenUnsatisfiable: ScheduleAnyway
             labelSelector:
               matchLabels:
@@ -57,7 +57,7 @@ spec:
           cpu: '2'
       topologySpreadConstraints:
         - maxSkew: 1
-          topologyKey: db-node-label
+          topologyKey: kubernetes.io/hostname
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
@@ -113,4 +113,3 @@ spec:
       databases:
         - event-api
       options: SUPERUSER
-#
