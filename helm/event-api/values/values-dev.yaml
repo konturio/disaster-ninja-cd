@@ -20,7 +20,7 @@ createResource:
 # databaseHost: marvin-2022081800.cpgzwvbl4mna.eu-central-1.rds.amazonaws.com
 # databaseUser: event_api_user01
 # databaseName: event_api
-databaseHost: db-event-api-primary.dev-event-api.svc
+databaseHost: REMOVE-ME-db-event-api-primary.dev-event-api.svc
 databaseUser: event-api
 databaseName: event-api
 databasePort: 5432
