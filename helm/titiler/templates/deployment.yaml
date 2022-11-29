@@ -72,11 +72,7 @@ spec:
           resources:
             limits:
               cpu: {{ .Values.resources.limits.cpu | quote }}
-              #TODO:               cpu: 5
               memory: {{ .Values.resources.limits.memory | quote }}
-              #TODO memory: 10Gi
             requests:
               cpu: {{ .Values.resources.requests.cpu | quote }}
-              #TODO               cpu: 5
               memory: {{ .Values.resources.requests.memory | quote }}
-              #TODO               memory: 5Gi
