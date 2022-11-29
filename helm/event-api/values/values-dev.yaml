@@ -6,7 +6,7 @@ image:
   pullSecretName: none
   usePullSecret: false
 
-replicas: 1
+replicas: 0
 envName: dev
 ingressHost: dev-event-api.k8s-01.konturlabs.com
 
