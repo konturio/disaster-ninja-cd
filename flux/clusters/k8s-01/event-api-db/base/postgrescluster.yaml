@@ -11,14 +11,14 @@ spec:
   backups:
     pgbackrest:
       image: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.40-1'
-      repoHost:
-        topologySpreadConstraints:
-          - maxSkew: 1
-            topologyKey: kubernetes.io/hostname
-            whenUnsatisfiable: ScheduleAnyway
-            labelSelector:
-              matchLabels:
-                postgres-operator.crunchydata.com/pgbackrest: ''
+      # repoHost:
+      #   topologySpreadConstraints:
+      #     - maxSkew: 1
+      #       topologyKey: kubernetes.io/hostname
+      #       whenUnsatisfiable: ScheduleAnyway
+      #       labelSelector:
+      #         matchLabels:
+      #           postgres-operator.crunchydata.com/pgbackrest: ''
       repos:
         - name: repo1
           volume:
