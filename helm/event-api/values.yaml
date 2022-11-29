@@ -85,7 +85,7 @@ tornadoJapanMaImportEnabled: false
 historicalTornadoJapanMaImportEnabled: false
 calfireSearchEnable: true
 nifcImportEnable: true
-inciwebImportEnable: true
+inciwebImportEnable: false
 humanitarianCrisisImportEnable: true
 nhcAtImportEnable: true
 nhcCpImportEnable: true
