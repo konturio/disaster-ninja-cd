@@ -1,16 +1,24 @@
 apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
-  name: event-api-db
+  name: db-event-api
   labels:
     app.kubernetes.io/component: database
     app.kubernetes.io/managed-by: flux
-    app.kubernetes.io/name: event-api-db
+    app.kubernetes.io/name: db-event-api
     app.kubernetes.io/part-of: event-api
 spec:
   backups:
     pgbackrest:
       image: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.40-1'
+      repoHost:
+        topologySpreadConstraints:
+          - maxSkew: 1
+            topologyKey: my-node-label
+            whenUnsatisfiable: ScheduleAnyway
+            labelSelector:
+              matchLabels:
+                postgres-operator.crunchydata.com/pgbackrest: ''
       repos:
         - name: repo1
           volume:
@@ -25,20 +33,20 @@ spec:
     - affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            podAffinityTerm:
-              topologyKey: kubernetes.io/hostname
-              labelSelector:
-                matchLabels:
-                  postgres-operator.crunchydata.com/cluster: event-api-db
-                  postgres-operator.crunchydata.com/instance-set: group01
+            - weight: 1
+              podAffinityTerm:
+                topologyKey: kubernetes.io/hostname
+                labelSelector:
+                  matchLabels:
+                    postgres-operator.crunchydata.com/cluster: db-event-api
+                    postgres-operator.crunchydata.com/instance-set: '01'
       dataVolumeClaimSpec:
         accessModes:
           - ReadWriteOnce
         resources:
           requests:
             storage: 100Gi
-      name: group01
+      name: '01'
       replicas: 2
       resources:
         limits:
@@ -47,11 +55,18 @@ spec:
         requests:
           memory: 24Gi
           cpu: '2'
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: db-node-label
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              postgres-operator.crunchydata.com/instance-set: '01'
   metadata:
     labels:
       app.kubernetes.io/component: database
       app.kubernetes.io/managed-by: pgo
-      app.kubernetes.io/name: event-api-db
+      app.kubernetes.io/name: db-event-api
       app.kubernetes.io/part-of: event-api
   patroni:
     dynamicConfiguration:
