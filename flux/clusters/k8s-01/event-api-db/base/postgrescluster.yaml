@@ -39,7 +39,7 @@ spec:
           requests:
             storage: 100Gi
       name: '01'
-      replicas: 2
+      replicas: 1
       resources:
         limits:
           memory: 24Gi
