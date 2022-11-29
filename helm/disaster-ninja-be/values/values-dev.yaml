@@ -13,7 +13,7 @@ replicas: 1
 
 image:
   be:
-    tag: "main.dec4c0d.1" # this version will be automatically deployed by Flux
+    tag: "13529-400-errors-are-returned-from-active-api-rum-metrics-if-user-is-logged-in.d3eb686.1" # this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: dev
