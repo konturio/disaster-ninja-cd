@@ -2,11 +2,11 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: "master.44a0248.1"
+  tag: master.44a0248.1
   pullSecretName: none
   usePullSecret: false
 
-replicas: 1
+replicas: 0
 envName: dev
 ingressHost: dev-event-api.k8s-01.konturlabs.com
 
@@ -24,8 +24,8 @@ databasePort: 5432
 
 alertingTime: 10m
 
-jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/dev
-jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/dev/protocol/openid-connect/certs
+jwtIssuerUri: 'https://keycloak01.konturlabs.com/auth/realms/dev'
+jwtJwkSetUri: 'https://keycloak01.konturlabs.com/auth/realms/dev/protocol/openid-connect/certs'
 
 profiles: dev
 
@@ -38,14 +38,14 @@ konturAppsUrl: 'https://test-apps02.konturlabs.com/'
 
 pdcUrl: 'https://testdisasteraware.pdc.org'
 pdcMapSrvUrl: 'https://testapps.pdc.org'
-pdcUser: 'eventapi'
+pdcUser: eventapi
 
-staticdataS3Folder: 'TEST DEV/'
+staticdataS3Folder: TEST DEV/
 
-humanitarianCrisisS3Folder: 'kontur_events/TEST DEV/'
+humanitarianCrisisS3Folder: kontur_events/TEST DEV/
 
 awsSqsUrl: 'https://sqs.us-west-1.amazonaws.com/001426858141/SNS_messages_from_pdc-test-publiccloud-sns.fifo'
 awsSqsDlqUrl: 'https://sqs.us-west-1.amazonaws.com/001426858141/SNS_messages_from_pdc-test-publiccloud-sns_DLQ.fifo'
 awsSqsEnabled: true
 
-feignUserAgent: 'Event API DEV'
+feignUserAgent: Event API DEV
