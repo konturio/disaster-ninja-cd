@@ -42,10 +42,10 @@ spec:
       replicas: 1
       resources:
         limits:
-          memory: 24Gi
+          memory: 32Gi
           cpu: '4'
         requests:
-          memory: 24Gi
+          memory: 32Gi
           cpu: '2'
       topologySpreadConstraints:
         - maxSkew: 1
