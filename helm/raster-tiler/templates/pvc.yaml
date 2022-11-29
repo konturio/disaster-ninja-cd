@@ -19,5 +19,5 @@ spec:
   resources:
     requests:
       storage: {{ .Values.storage_size }}
-  storageClassName: local-path
+  storageClassName: {{ .Values.storageClass }}
   volumeMode: Filesystem

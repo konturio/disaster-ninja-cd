@@ -53,24 +53,26 @@ spec:
             - name: http
               containerPort: {{ .Values.env.PORT }}
               protocol: TCP
+          {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
               path: /healthz
               port: http
             failureThreshold: 10
-            periodSeconds: 10
-            initialDelaySeconds: 5
+            periodSeconds: 15
+            initialDelaySeconds: 15
+          {{ end }}
           readinessProbe:
             httpGet:
               path: /healthz
               port: http
             failureThreshold: 1
-            periodSeconds: 10
-            initialDelaySeconds: 5
+            periodSeconds: 15
+            initialDelaySeconds: 15
           resources:
             limits:
-              cpu: 5
-              memory: 10Gi
+              cpu: {{ .Values.resources.limits.cpu | quote }}
+              memory: {{ .Values.resources.limits.memory | quote }}
             requests:
-              cpu: 5
-              memory: 5Gi
+              cpu: {{ .Values.resources.requests.cpu | quote }}
+              memory: {{ .Values.resources.requests.memory | quote }}

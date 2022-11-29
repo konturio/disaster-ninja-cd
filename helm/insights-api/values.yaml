@@ -4,19 +4,37 @@
 image:
   tag: latest
   tagType: ""
-  name: nexus.kontur.io:8085/konturdev/insights-api
+  name: nexus.kontur.io:8084/konturdev/insights-api
+  usePullSecret: true
+  pullSecretName: nexus8084
 
 port: 8625
 replicas: 1
 envName: local
+ingressHost: none
 
 createResource:
   defaultSecrets: false
   ingress: false
   prometheusRule: false
   serviceMonitor: false
+  deploymentLivenessProbe: false
 
-databaseHost: docker.for.mac.host.internal
+resources:
+  app:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      memory: 1Gi
+  redis:
+    requests:
+      cpu: 100m
+      memory: 512M
+    limits:
+      memory: 1G
+
+databaseHost: host.docker.internal
 databasePort: 8900
 databaseName: insights-api
 databaseUsername: insights-api

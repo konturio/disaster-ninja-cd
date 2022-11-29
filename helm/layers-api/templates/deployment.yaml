@@ -37,6 +37,9 @@ spec:
         #only roll pods if config (rendered!) changed
         checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
+      {{ if .Values.image.usePullSecret }}
+      imagePullSecrets: #TODO remove once image is on ghcr.io
+        - name: {{ .Values.image.pullSecretName }}{{ end }}
       shareProcessNamespace: true
       containers:
         - name: layers-api
@@ -47,10 +50,11 @@ spec:
               name: main
           resources:
             requests:
-              cpu: "1"
-              memory: "4Gi"
+              cpu: {{ .Values.resources.requests.cpu | quote }}
+              memory: {{ .Values.resources.requests.memory | quote }}
             limits:
-              memory: "4Gi"
+              #TODO cpu
+              memory: {{ .Values.resources.limits.memory | quote }}
           env:
             - name: JAVA_TOOL_OPTIONS
               value: "-XX:MaxRAMPercentage=50"
@@ -74,15 +78,17 @@ spec:
               path: /layers/v2/health/readiness
               port: {{ .Values.port }}
             failureThreshold: 1
-            periodSeconds: 10
-            initialDelaySeconds: 5
+            periodSeconds: 15
+            initialDelaySeconds: 15
+          {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
               path: /layers/v2/health/readiness
               port: {{ .Values.port }}
             failureThreshold: 10
-            periodSeconds: 10
-            initialDelaySeconds: 5
+            periodSeconds: 15
+            initialDelaySeconds: 15
+          {{ end }}
           securityContext:
             capabilities:
               add:

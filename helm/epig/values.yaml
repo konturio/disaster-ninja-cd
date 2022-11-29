@@ -2,6 +2,7 @@ createResource:
   defaultSecrets: false
   ingress: false
 
+ingressHost: none
 EVENT_NAME: "event_ready_for_screenshot"
 IMAGE_FORMAT: png
 PORT: "8000"
@@ -12,14 +13,16 @@ CHROMIUM_PORT: 9222
 CHROMIUM_CACHE_SIZE: 104857600
 
 containers:
+  pullSecretName: nexus8084
+  usePullSecret: true
   chromium_headless:
     replicas: 1
-    repository: nexus.kontur.io:8085/konturdev/chromium-headless
+    repository: nexus.kontur.io:8084/konturdev/chromium-headless
     pullPolicy: IfNotPresent
     tag: "latest"
   preview_generator:
     replicas: 1
-    repository: nexus.kontur.io:8085/konturdev/preview-generator
+    repository: nexus.kontur.io:8084/konturdev/preview-generator
     pullPolicy: IfNotPresent
     tag: "latest"
   redis:
@@ -27,3 +30,7 @@ containers:
     repository: redis
     pullPolicy: IfNotPresent
     tag: "7-alpine3.16"
+resources:
+  chromium:
+    requests:
+      cpu: 500m

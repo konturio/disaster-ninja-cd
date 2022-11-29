@@ -19,6 +19,7 @@ spec:
       backoffLimit: 0
       template:
         spec:
+          {{ if .Values.nodeAffinity.enabled }}
           affinity:
             nodeAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
@@ -27,12 +28,16 @@ spec:
                       - key: kubernetes.io/hostname
                         operator: In
                         values:
-                          - {{ .Values.node }}
+                          - {{ .Values.nodeAffinity.hostname }}
+          {{ end }}
           restartPolicy: Never
           volumes:
             - name: {{ .Values.envName }}-pbf-pvc
               persistentVolumeClaim:
                 claimName: {{ .Values.envName }}-pbf-pvc
+          {{ if .Values.images.usePullSecret }}
+          imagePullSecrets: #TODO remove once image is on ghcr.io
+            - name: {{ .Values.images.pullSecretName }}{{ end }}
           containers:
             - name: pbf-downloader
               image: {{ .Values.images.pbf_downloader.name }}:{{ .Values.images.pbf_downloader.tag }}
@@ -76,6 +81,7 @@ spec:
       backoffLimit: 0
       template:
         spec:
+          {{ if .Values.nodeAffinity.enabled }}
           affinity:
             nodeAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
@@ -84,7 +90,8 @@ spec:
                       - key: kubernetes.io/hostname
                         operator: In
                         values:
-                          - {{ .Values.node }}
+                          - {{ .Values.nodeAffinity.hostname }}
+          {{ end }}
           restartPolicy: Never
           volumes:
             - name: {{ .Values.envName }}-pbf-pvc
@@ -93,6 +100,9 @@ spec:
             - name: {{ .Values.envName }}-osrm-preprocessor-data
               persistentVolumeClaim:
                 claimName: {{ .Values.envName }}-osrm-preprocessor-data
+          {{ if .Values.images.usePullSecret }}
+          imagePullSecrets: #TODO remove once image is on ghcr.io
+            - name: {{ .Values.images.pullSecretName }}{{ end }}
           containers:
             - name: osrm-preprocessor
               image: {{ .Values.images.osrm_preprocessor.name }}:{{ .Values.images.osrm_preprocessor.tag }}

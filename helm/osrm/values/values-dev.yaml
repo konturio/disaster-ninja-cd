@@ -1,5 +1,16 @@
 envName: dev
+ingressHost: dev-osrm.k8s-01.konturlabs.com
+
+storageClassName: local-path
+
+images:
+  pullSecretName: none
+  usePullSecret: false
 
 createResource:
   ingress: true
   prometheusRule: true
+
+nodeAffinity:
+  enabled: true
+  hostname: hwn02.k8s-01.kontur.io

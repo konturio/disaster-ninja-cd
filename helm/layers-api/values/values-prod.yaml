@@ -4,18 +4,21 @@
 
 image:
   tag: release-1.10.0.a35d6ab.1
+  usePullSecret: false
+  pullSecretName: none
 
 replicas: 2
 envName: prod
+ingressHost: prod-layers-api.k8s-01.konturlabs.com
 
 createResource:
   defaultSecrets: false
   ingress: true
   prometheusRule: true
   serviceMonitor: true
+  deploymentLivenessProbe: true
 
 databaseHost: paris.k8s-01.kontur.io
-dnsNameOuter: api.kontur.io
 
 jwtIssuerUri: 'https://keycloak01.kontur.io/auth/realms/kontur'
 jwtJwkSetUri: 'https://keycloak01.kontur.io/auth/realms/kontur/protocol/openid-connect/certs'

@@ -33,6 +33,9 @@ spec:
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
         checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
     spec:
+      {{ if .Values.image.usePullSecret }}
+      imagePullSecrets: #TODO remove once image is on ghcr.io
+        - name: {{ .Values.image.pullSecretName }}{{ end }}
       containers:
         - name: event-api
           image: {{ .Values.image.name }}:{{ .Values.image.tag }}
@@ -42,10 +45,11 @@ spec:
               name: main
           resources:
             requests:
-              cpu: "100m"
-              memory: "16Gi"
+              cpu: {{ .Values.resources.app.requests.cpu | quote }}
+              memory: {{ .Values.resources.app.requests.memory | quote }}
             limits:
-              memory: "20Gi"
+              #TODO cpu
+              memory: {{ .Values.resources.app.limits.memory | quote }}
           env:
             - name: OTEL_SERVICE_NAME
               valueFrom:
@@ -67,16 +71,16 @@ spec:
               path: /events/health
               port: {{ .Values.port }}
             failureThreshold: 1
-            periodSeconds: 30
-            initialDelaySeconds: 30
-          {{ if eq .Values.envName "prod" }}
+            periodSeconds: 15
+            initialDelaySeconds: 15
+          {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
               path: /events/health
               port: {{ .Values.port }}
             failureThreshold: 10
-            periodSeconds: 30
-            initialDelaySeconds: 30
+            periodSeconds: 15
+            initialDelaySeconds: 15
           {{ end }}
 ---
 apiVersion: apps/v1
@@ -164,10 +168,11 @@ spec:
               value: '{{ .Values.redisPort }}'
           resources:
             requests:
-              cpu: "100m"
-              memory: "1Gi"
+              cpu: {{ .Values.resources.redis.requests.cpu | quote }}
+              memory: {{ .Values.resources.redis.requests.memory | quote }}
             limits:
-              memory: "5Gi"
+              #TODO cpu
+              memory: {{ .Values.resources.redis.limits.memory | quote }}
           volumeMounts:
             - name: start-scripts
               mountPath: /opt/bitnami/scripts/start-scripts
@@ -187,22 +192,20 @@ spec:
                 - sh
                 - '-c'
                 - /health/ping_liveness_local.sh 5
-            initialDelaySeconds: 20
+            initialDelaySeconds: 15
             timeoutSeconds: 6
-            periodSeconds: 5
-            successThreshold: 1
-            failureThreshold: 5
+            periodSeconds: 15
+            failureThreshold: 10
           readinessProbe:
             exec:
               command:
                 - sh
                 - '-c'
                 - /health/ping_readiness_local.sh 1
-            initialDelaySeconds: 20
+            initialDelaySeconds: 15
             timeoutSeconds: 2
-            periodSeconds: 5
-            successThreshold: 1
-            failureThreshold: 5
+            periodSeconds: 15
+            failureThreshold: 1
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           imagePullPolicy: IfNotPresent

@@ -4,15 +4,33 @@
 image:
   tag: "11842-indicator-updating-process.e69a304.1"
   tagType: ""
+  pullSecretName: none
+  usePullSecret: false
 
 replicas: 2
 envName: test
+ingressHost: test-insights-api.k8s-01.konturlabs.com
 
 createResource:
   defaultSecrets: false
   ingress: true
   prometheusRule: true
   serviceMonitor: true
+  deploymentLivenessProbe: false
+
+resources:
+  app:
+    requests:
+      cpu: 1
+      memory: 5Gi
+    limits:
+      memory: 7Gi
+  redis:
+    requests:
+      cpu: 100m
+      memory: 512M
+    limits:
+      memory: 1G
 
 databaseHost: london.k8s-01.kontur.io.
 databasePort: 5432

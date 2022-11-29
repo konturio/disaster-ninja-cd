@@ -1,7 +1,8 @@
-# DEV values for layers-tiles-api.
+# LOCAL values for layers-tiles-api.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 envName: local
+ingressHost: none
 
 replicas: 1
 

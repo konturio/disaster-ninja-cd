@@ -4,18 +4,21 @@
 
 image:
   tag: release-1.11.0.8ae432c.1
+  usePullSecret: false
+  pullSecretName: none
 
 replicas: 2
 envName: test
+ingressHost: test-layers-api.k8s-01.konturlabs.com
 
 createResource:
   defaultSecrets: false
   ingress: true
   prometheusRule: true
   serviceMonitor: true
+  deploymentLivenessProbe: true
 
 databaseHost: london.k8s-01.kontur.io
-dnsNameOuter: test-api.konturlabs.com
 
 jwtIssuerUri: 'https://keycloak01.konturlabs.com/auth/realms/test'
 jwtJwkSetUri: 'https://keycloak01.konturlabs.com/auth/realms/test/protocol/openid-connect/certs'

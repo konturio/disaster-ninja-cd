@@ -2,12 +2,14 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 envName: test
+ingressHost: test-disaster-ninja.k8s-01.konturlabs.com
 
 createResource:
   defaultSecrets: false
   ingress: false
   prometheusRule: true
   serviceMonitor: true
+  deploymentLivenessProbe: true
 
 replicas: 2
 

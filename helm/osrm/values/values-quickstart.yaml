@@ -1,0 +1,51 @@
+envName: quickstart
+ingressHost: osrm.kontur
+
+images:
+  pullSecretName: nexus8084
+  usePullSecret: true
+
+nodeAffinity:
+  enabled: false
+  hostname: localhost
+
+imagePullPolicy: IfNotPresent
+
+createResource:
+  ingress: true
+  prometheusRule: false
+
+sourcePbfUrl: https://download.geofabrik.de/europe/andorra-latest.osm.pbf
+
+pbfDownloadSchedule: "0/15 * * * *"
+osrmPreprocessingSchedule: "5/15 * * * *"
+osrmBackendRestartSchedule: "10/15 * * * *"
+
+pbfDirSize: 256Mi
+osrmDirSize: 1Gi
+
+storageClassName: standard
+
+resources:
+  pbf_downloader:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 1
+      memory: 768Mi
+  osrm_preprocessor:
+    threads: 2
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 1
+      memory: 768Mi
+  osrm_backend:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 1
+      memory: 768Mi

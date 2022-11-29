@@ -1,0 +1,72 @@
+# QUICKSTART values for event-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+image:
+  tag: 'master.b3e72d1.1'
+  pullSecretName: nexus8084
+  usePullSecret: true
+
+replicas: 1
+envName: quickstart
+ingressHost: event-api.kontur
+
+createResource:
+  defaultSecrets: true
+  ingress: true
+  prometheusRule: false
+  serviceMonitor: false
+  deploymentLivenessProbe: false
+
+resources:
+  app:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 768Mi
+  redis:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 768Mi
+
+databaseHost: host.docker.internal
+databaseUser: event_api_user01
+databaseName: event_api
+databasePort: 5432
+
+alertingTime: 10m
+
+jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/dev #TODO keycloak
+jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/dev/protocol/openid-connect/certs
+
+profiles: dev,awsSqsDisabled #TODO check
+
+otlpTracesExporter: none
+otlpTracesPort: none
+
+redisAddr: redis://localhost
+redisPort: 6379
+metricsPort: 9121
+
+konturApiUrl: 'https://test-api.konturlabs.com/' #TODO uses /geocoder and /layers/collections/bounds/itemsByMultipoint
+
+konturAppsUrl: 'http://insights-api.kontur/' #uses /insights-api
+
+pdcUrl: 'none' #TODO disable
+pdcMapSrvUrl: 'none' #TODO disable
+pdcUser: 'none' #TODO disable
+
+emdatUser: 'none' #TODO disable
+
+staticdataS3Folder: 'TEST DEV/'
+
+humanitarianCrisisS3Folder: 'kontur_events/TEST DEV/'
+
+awsSqsUrl: none
+awsSqsDlqUrl: none
+awsSqsEnabled: false
+
+feignUserAgent: 'Event API DEV'
+

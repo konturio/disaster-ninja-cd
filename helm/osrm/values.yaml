@@ -1,11 +1,15 @@
 envName: dev
-node: hwn02.k8s-01.kontur.io
+ingressHost: none
 
-imagePullPolicy: Always
+imagePullPolicy: IfNotPresent
 
 createResource:
   ingress: false
   prometheusRule: false
+
+nodeAffinity:
+  enabled: true
+  hostname: localhost
 
 #planet url: https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf.torrent
 sourcePbfUrl: https://download.geofabrik.de/europe-latest.osm.pbf
@@ -29,6 +33,8 @@ osrmBackendRestartSchedule: "10 2-6 * * *"
 # storageClassName: local-path
 
 images:
+  pullSecretName: nexus8084
+  usePullSecret: true
   pbf_downloader:
     name: nexus.kontur.io:8084/konturdev/pbf-downloader
     tag: develop.4281fde.1

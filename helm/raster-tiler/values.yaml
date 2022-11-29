@@ -4,15 +4,29 @@
 image:
   tag: latest
   name: nexus.kontur.io:8084/konturdev/raster-tiler
+  pullSecretName: nexus8084
+  usePullSecret: true
 
+db_disable_ssl: true
 port: 80
 replicas: 1
 envName: local
-imagePullSecretName: nexus8085
+ingressHost: none
 base_url: https://local-raster-tiler.k8s-01.konturlabs.com
 pg_database: layers-db
 pg_host: milan.k8s-01.kontur.io
 storage_size: 5Gi
+storageClass: standard
 
 createResource:
   ingress: false
+  defaultSecrets: false
+  deploymentLivenessProbe: true
+
+resources:
+  requests:
+    cpu: 4
+    memory: 4Gi
+  limits:
+    cpu: 8
+    memory: 8Gi

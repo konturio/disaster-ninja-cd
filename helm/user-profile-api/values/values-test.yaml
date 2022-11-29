@@ -3,15 +3,19 @@
 # Declare variables to be passed into your templates.
 image:
   tag: main.34fe8c6.1
+  pullSecretName: none
+  usePullSecret: false
 
 replicas: 2
 envName: test
+ingressHost: test-user-profile-api.k8s-01.konturlabs.com
 
 createResource:
   defaultSecrets: false
   ingress: true
   prometheusRule: true
   serviceMonitor: true
+  deploymentLivenessProbe: false
 
 databaseHost: london.k8s-01.kontur.io.
 

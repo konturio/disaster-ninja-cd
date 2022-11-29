@@ -1,0 +1,29 @@
+createResource:
+  defaultSecrets: true
+  ingress: true
+
+ENV_NAME: quickstart
+ingressHost: epig.kontur
+SITE_URL: http://disaster-ninja.kontur/active/
+DEFAULT_IMAGE_URL: "http://disaster-ninja.kontur/active/static/assets/preview_screenshot.png"
+APP_ID: 'f29339bd-8049-41ae-9d6b-f726d8451894'
+TIMEOUT: 60000
+CACHE_TTL: 1
+DEBUG: TRUE
+
+containers:
+  pullSecretName: nexus8084
+  usePullSecret: true
+  chromium_headless:
+    replicas: 1
+    tag: "release-1.1.0.00d41e5.1"
+  preview_generator:
+    replicas: 1
+    tag: "release-1.1.0.00d41e5.1"
+  redis:
+    replicas: 1
+    tag: "7-alpine3.16"
+resources:
+  chromium:
+    requests:
+      cpu: 100m

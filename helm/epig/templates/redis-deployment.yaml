@@ -41,6 +41,7 @@ spec:
     spec:
       containers:
         - name: redis
+          #TODO: resources
           image: {{ .Values.containers.redis.repository }}:{{ .Values.containers.redis.tag }}
           imagePullPolicy: {{ .Values.containers.redis.pullPolicy }}
           ports:
