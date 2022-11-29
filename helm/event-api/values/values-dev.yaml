@@ -6,7 +6,7 @@ image:
   pullSecretName: none
   usePullSecret: false
 
-replicas: 0
+replicas: 1
 envName: dev
 ingressHost: dev-event-api.k8s-01.konturlabs.com
 
@@ -20,7 +20,7 @@ createResource:
 # databaseHost: marvin-2022081800.cpgzwvbl4mna.eu-central-1.rds.amazonaws.com
 # databaseUser: event_api_user01
 # databaseName: event_api
-databaseHost: REMOVE-ME-db-event-api-primary.dev-event-api.svc
+databaseHost: db-event-api-primary.dev-event-api.svc
 databaseUser: event-api
 databaseName: event-api
 databasePort: 5432
