@@ -22,14 +22,24 @@ spec:
                   storage: 100Gi
   # image: 'nexus.kontur.io:8084/konturdev/crunchy-postgres-gis:test'
   instances:
-    - dataVolumeClaimSpec:
+    - affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            podAffinityTerm:
+              topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchLabels:
+                  postgres-operator.crunchydata.com/cluster: event-api-db
+                  postgres-operator.crunchydata.com/instance-set: group01
+      dataVolumeClaimSpec:
         accessModes:
           - ReadWriteOnce
         resources:
           requests:
             storage: 100Gi
-      name: instance01
-      replicas: 1
+      name: group01
+      replicas: 2
       resources:
         limits:
           memory: 24Gi
