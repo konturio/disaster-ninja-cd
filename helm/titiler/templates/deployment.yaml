@@ -6,7 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/name: titiler
     app.kubernetes.io/instance: {{ .Values.envName }}-titiler
-    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: backend
     app.kubernetes.io/part-of: backend
     stage: {{ .Values.envName }}
@@ -32,7 +32,7 @@ spec:
       labels:
         app.kubernetes.io/name: titiler
         app.kubernetes.io/instance: {{ .Values.envName }}-titiler
-        app.kubernetes.io/managed-by: "Helm"
+        app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/component: backend
         app.kubernetes.io/part-of: backend
         stage: {{ .Values.envName }}
@@ -42,12 +42,12 @@ spec:
     spec:
       containers:
         - name: titiler
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: '{{ .Values.image.repository }}:{{ .Values.image.tag }}'
           imagePullPolicy: IfNotPresent
           env:
           {{- range $key, $val := .Values.env }}
             - name: {{ $key }}
-              value: {{ $val | quote }}
+              value: {{ $val | squote }}
           {{- end }}
           ports:
             - name: http
@@ -72,8 +72,11 @@ spec:
           resources:
             limits:
               cpu: {{ .Values.resources.limits.cpu | quote }}
+              #TODO:               cpu: 5
               memory: {{ .Values.resources.limits.memory | quote }}
+              #TODO memory: 10Gi
             requests:
               cpu: {{ .Values.resources.requests.cpu | quote }}
+              #TODO               cpu: 5
               memory: {{ .Values.resources.requests.memory | quote }}
-
+              #TODO               memory: 5Gi
