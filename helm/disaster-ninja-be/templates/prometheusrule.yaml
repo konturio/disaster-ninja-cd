@@ -46,4 +46,5 @@ spec:
           for: {{ .Values.alertingMaxResponseTime }}
           labels:
             app: disaster-ninja
+            severity: critical
 {{ end }}
