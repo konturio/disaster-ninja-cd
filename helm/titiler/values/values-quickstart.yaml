@@ -10,6 +10,7 @@ ingressHost: titiler.kontur
 createResource:
   ingress: true
   deploymentLivenessProbe: true
+isOfflineInstallation: true
 
 resources:
   requests:

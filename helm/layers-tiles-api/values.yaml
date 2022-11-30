@@ -18,6 +18,7 @@ createResource:
   ingress: false
   prometheusRule: false
   serviceMonitor: false
+isOfflineInstallation: false
 
 resources:
   requests:

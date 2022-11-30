@@ -157,7 +157,7 @@ helm-install-quickstart-all: epig \
 							 osrm
 #							 keycloak #TODO
 
-#TODO dependencies below are very rough
+#dependencies below are very rough
 
 disaster-ninja-be: insights-api layers-api user-profile-api event-api #keycloak
 	if kubectl get ns quickstart-disaster-ninja >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-disaster-ninja; fi;

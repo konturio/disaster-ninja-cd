@@ -13,3 +13,4 @@ ingressHost: prod-titiler.k8s-01.konturlabs.com
 createResource:
   ingress: true
   deploymentLivenessProbe: true
+isOfflineInstallation: false

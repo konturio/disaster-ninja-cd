@@ -10,6 +10,7 @@ images:
 createResource:
   ingress: true
   prometheusRule: true
+isOfflineInstallation: false
 
 nodeAffinity:
   enabled: true

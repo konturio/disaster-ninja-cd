@@ -22,6 +22,7 @@ createResource:
   ingress: false
   defaultSecrets: false
   deploymentLivenessProbe: true
+isOfflineInstallation: false
 
 resources:
   requests:

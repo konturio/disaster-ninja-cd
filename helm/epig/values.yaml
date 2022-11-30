@@ -1,6 +1,7 @@
 createResource:
   defaultSecrets: false
   ingress: false
+isOfflineInstallation: false
 
 ingressHost: none
 EVENT_NAME: "event_ready_for_screenshot"

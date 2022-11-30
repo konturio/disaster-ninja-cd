@@ -16,6 +16,7 @@ createResource:
   prometheusRule: true
   serviceMonitor: true
   deploymentLivenessProbe: true
+isOfflineInstallation: false
 
 databaseHost: moral-pgdb01.cskt9jki4yd3.eu-central-1.rds.amazonaws.com
 databaseUser: event_api_user01

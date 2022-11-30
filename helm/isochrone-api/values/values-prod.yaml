@@ -16,6 +16,7 @@ createResource:
   prometheusRule: true
   serviceMonitor: true
   deploymentLivenessProbe: true
+isOfflineInstallation: false
 
 databaseHost: mustang.kontur.io
 

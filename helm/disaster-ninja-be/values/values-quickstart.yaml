@@ -10,6 +10,7 @@ createResource:
   prometheusRule: false
   serviceMonitor: false
   deploymentLivenessProbe: true
+isOfflineInstallation: true
 
 replicas: 1
 
