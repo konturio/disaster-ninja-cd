@@ -14,6 +14,7 @@ imagePullPolicy: IfNotPresent
 createResource:
   ingress: true
   prometheusRule: false
+isOfflineInstallation: true
 
 sourcePbfUrl: https://download.geofabrik.de/europe/andorra-latest.osm.pbf
 

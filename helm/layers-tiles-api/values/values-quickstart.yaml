@@ -21,6 +21,7 @@ createResource:
   ingress: true
   prometheusRule: false
   serviceMonitor: false
+isOfflineInstallation: true
 
 resources:
   requests:

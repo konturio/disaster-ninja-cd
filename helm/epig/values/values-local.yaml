@@ -1,6 +1,7 @@
 createResource:
   defaultSecrets: false
   ingress: false
+isOfflineInstallation: false
 
 ENV_NAME: local
 ingressHost: none

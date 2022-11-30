@@ -1,6 +1,7 @@
 createResource:
   defaultSecrets: true
   ingress: true
+isOfflineInstallation: true
 
 ENV_NAME: quickstart
 ingressHost: epig.kontur

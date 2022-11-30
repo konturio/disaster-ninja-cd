@@ -18,6 +18,7 @@ createResource:
   prometheusRule: false
   serviceMonitor: false
   deploymentLivenessProbe: false
+isOfflineInstallation: false
 
 databaseHost: host.docker.internal
 databasePort: 5432

@@ -12,7 +12,7 @@ port: 8625
 replicas: 1
 envName: quickstart
 ingressHost: insights-api.kontur
-dnsNameOuter: "*" #TODO CORS
+dnsNameOuter: none #not used due to isOfflineInstallation flag
 
 createResource:
   defaultSecrets: true
@@ -20,6 +20,7 @@ createResource:
   prometheusRule: false
   serviceMonitor: false
   deploymentLivenessProbe: false
+isOfflineInstallation: true
 
 resources:
   app:

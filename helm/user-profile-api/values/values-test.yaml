@@ -16,6 +16,7 @@ createResource:
   prometheusRule: true
   serviceMonitor: true
   deploymentLivenessProbe: false
+isOfflineInstallation: false
 
 databaseHost: london.k8s-01.kontur.io.
 

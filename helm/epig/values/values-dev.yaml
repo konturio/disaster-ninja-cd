@@ -1,6 +1,7 @@
 createResource:
   defaultSecrets: false
   ingress: true
+isOfflineInstallation: false
 
 ENV_NAME: dev
 ingressHost: dev-epig.k8s-01.konturlabs.com

@@ -19,6 +19,7 @@ createResource:
   prometheusRule: false
   serviceMonitor: false
   deploymentLivenessProbe: false
+isOfflineInstallation: false
 
 resources:
   app:

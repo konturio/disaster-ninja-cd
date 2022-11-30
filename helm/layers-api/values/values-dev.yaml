@@ -17,6 +17,7 @@ createResource:
   prometheusRule: true
   serviceMonitor: true
   deploymentLivenessProbe: true
+isOfflineInstallation: false
 
 databaseHost: milan.k8s-01.kontur.io
 
