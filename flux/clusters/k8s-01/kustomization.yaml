@@ -13,6 +13,6 @@ resources:
   - user-profile-api
   - disaster-ninja
 
-# do not comment any lines below unless you want to wipe few databases
+# Do not comment or remove any lines below unless you intend to kill a few databases
   - event-api-db/overlays/DEV
   - event-api-db/overlays/TEST

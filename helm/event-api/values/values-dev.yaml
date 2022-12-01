@@ -6,7 +6,7 @@ image:
   pullSecretName: none
   usePullSecret: false
 
-replicas: 0
+replicas: 1
 envName: dev
 ingressHost: dev-event-api.k8s-01.konturlabs.com
 
@@ -17,7 +17,7 @@ createResource:
   serviceMonitor: true
   deploymentLivenessProbe: false
 
-databaseHost: XXX-db-event-api-primary.dev-event-api.svc
+databaseHost: db-event-api-primary.dev-event-api.svc
 databaseUser: event-api
 databaseName: event-api
 databasePort: 5432
