@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.envName }}-keycloak
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: keycloak
+    app.kubernetes.io/instance: {{ .Values.envName }}-keycloak
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+data:
+  DB_ADDR: host.docker.internal
+  DB_NAME: keycloak
+  DB_USER: keycloak
+  DB_VENDOR: postgres
+  #JAVA_OPTS
+  #JAVA_OPTS_APPEND
+  JDBC_PARAMS: "useSSL=false"
+  #JGROUPS_DISCOVERY_PROTOCOL
+  #JDBC_PING
+  KEYCLOAK_FRONTEND_URL: https://keycloak.kontur/auth
+  KEYCLOAK_USER: keycloak
+  METADATA_URL: https://user-profile-service-locker01.s3.eu-central-1.amazonaws.com/PROD/keycloak01-artifacts.txt #TODO this just downloads once on startup
+  PROXY_ADDRESS_FORWARDING: "true"
+  USP_DB_ADDR: host.docker.internal
+  USP_DB_NAME: user-profile-api
+  USP_DB_PORT: "5432"
+  USP_DB_USER: user-profile-api

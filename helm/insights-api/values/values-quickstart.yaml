@@ -44,7 +44,7 @@ databaseUsername: insights-api
 jmxEnabled: false
 alertingTime: 10m
 
-keycloakUrl: 'https://keycloak01.konturlabs.com/auth' #TODO keycloak
+keycloakUrl: 'http://keycloak.kontur/auth'
 keycloakRealm: dev
 
 otlpTracesExporter: none

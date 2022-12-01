@@ -1,0 +1,24 @@
+{{ if .Values.createResource.prometheusRule }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    prometheus: k8s
+    role: alert-rules
+  name: {{ .Values.envName}}-keycloak-platform-pods
+  namespace: {{ .Release.Namespace }}
+spec:
+  groups:
+    - name: PlatformPodsUnavailable
+      rules:
+        - alert: {{ camelcase .Values.envName }}-PlatformPodsUnavailable-Keycloak
+          annotations:
+            message: 'There are {{ "{{$value}}" }} Ready pods in {{ .Values.envName }} Keycloak'
+            summary: There are less Ready pods than required
+          expr: |
+            kube_deployment_status_replicas_ready{deployment="{{ .Values.envName }}-keycloak"}
+            < 1
+          for: {{ .Values.alertingTime }}
+          labels:
+            severity: critical
+{{ end }}
