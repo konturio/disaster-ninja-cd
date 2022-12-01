@@ -11,7 +11,7 @@
   value:
     name: repo2
     s3:
-      bucket: k8s-01.kontur.io--pgbackrest-backups
+      bucket: k8s-01-kontur-io--pgbackrest-backups
       endpoint: s3.eu-central-1.amazonaws.com
       region: eu-central-1
 
