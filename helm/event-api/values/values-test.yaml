@@ -6,7 +6,7 @@ image:
   pullSecretName: none
   usePullSecret: false
 
-replicas: 0
+replicas: 1
 envName: test
 ingressHost: test-event-api.k8s-01.konturlabs.com
 
@@ -20,7 +20,7 @@ createResource:
 # databaseHost: orbit-20210525-01.cskt9jki4yd3.eu-central-1.rds.amazonaws.com
 # databaseUser: event_api_user01
 # databaseName: event_api
-databaseHost: XXX-db-event-api-primary.test-event-api.svc
+databaseHost: db-event-api-primary.test-event-api.svc
 databaseUser: event-api
 databaseName: event-api
 databasePort: 5432

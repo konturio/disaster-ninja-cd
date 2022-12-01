@@ -8,13 +8,13 @@ patchesJson6902:
       version: v1beta1
       kind: PostgresCluster
       name: db-event-api
-    path: postgrescluster-replica-count.yaml
+    path: postgrescluster-s3-backups.yaml
   - target:
       group: postgres-operator.crunchydata.com
       version: v1beta1
       kind: PostgresCluster
       name: db-event-api
-    path: postgrescluster-s3-backups.yaml
+    path: postgrescluster-resource-adjustment.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
