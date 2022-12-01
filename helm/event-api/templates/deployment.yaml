@@ -72,7 +72,7 @@ spec:
               port: {{ .Values.port }}
             failureThreshold: 1
             periodSeconds: 15
-            initialDelaySeconds: 15
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
           {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
@@ -80,7 +80,7 @@ spec:
               port: {{ .Values.port }}
             failureThreshold: 10
             periodSeconds: 15
-            initialDelaySeconds: 15
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
           {{ end }}
 ---
 apiVersion: apps/v1
@@ -192,7 +192,7 @@ spec:
                 - sh
                 - '-c'
                 - /health/ping_liveness_local.sh 5
-            initialDelaySeconds: 15
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
             timeoutSeconds: 6
             periodSeconds: 15
             failureThreshold: 10
@@ -202,7 +202,7 @@ spec:
                 - sh
                 - '-c'
                 - /health/ping_readiness_local.sh 1
-            initialDelaySeconds: 15
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
             timeoutSeconds: 2
             periodSeconds: 15
             failureThreshold: 1

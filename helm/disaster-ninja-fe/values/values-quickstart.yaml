@@ -17,6 +17,7 @@ createResource:
   prometheusRule: false
   serviceMonitor: false
 isOfflineInstallation: true
+probeInitialDelaySeconds: 90
 
 reportsBucket: 'https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazonaws.com/kontur_reports/dev/' #TODO DN reports
 

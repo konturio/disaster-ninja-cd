@@ -17,6 +17,7 @@ createResource:
   serviceMonitor: false
   deploymentLivenessProbe: false
 isOfflineInstallation: true
+probeInitialDelaySeconds: 90
 
 resources:
   app:

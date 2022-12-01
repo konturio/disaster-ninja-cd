@@ -17,6 +17,7 @@ createResource:
   serviceMonitor: true
   deploymentLivenessProbe: false
 isOfflineInstallation: false
+probeInitialDelaySeconds: 15
 
 databaseHost: orbit-20210525-01.cskt9jki4yd3.eu-central-1.rds.amazonaws.com
 databaseUser: event_api_user01

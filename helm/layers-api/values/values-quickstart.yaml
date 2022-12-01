@@ -18,6 +18,7 @@ createResource:
   serviceMonitor: false
   deploymentLivenessProbe: true
 isOfflineInstallation: true
+probeInitialDelaySeconds: 90
 
 resources:
   requests:

@@ -19,7 +19,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/proxy-body-size: {{ .Values.client_max_body_size }}
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
-    nginx.ingress.kubernetes.io/server-snippet: | #TODO !!! attention This annotation can be used only once per host.
+    nginx.ingress.kubernetes.io/server-snippet: |
     {{ else }}
     nginx.org/client-max-body-size: {{ .Values.client_max_body_size }}
     nginx.org/proxy-read-timeout: 600s

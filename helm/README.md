@@ -88,7 +88,7 @@ What it does:
 - **DELETEs** and **CREATEs** namespaces required for platform applications
 - installs Helm Releases for all apps using ```values-quickstart.yaml``` values files
 
-**- Step 4:** ```kubectl get po -A``` wait until all pods are in Running and Ready state (may take some time - depending on your internet connection as all application images have to be downloaded). There might be failing pods in ```quickstart-osrm``` namespace, that's ok for a while. There is a series of three CrobJobs - once they all succeed at least once - the deployment will be restarted and will finally get up. The series reruns every 15 minutes (clock) so that's the maximal wait time due this CronJob.
+**- Step 4:** ```kubectl get po -A``` wait until all pods are in Running and Ready state (may take some time - depending on your internet connection as all application images have to be downloaded). There might be failing pods in ```quickstart-osrm``` namespace, that's ok for a while. There is a series of three CrobJobs - once they all succeed at least once - the deployment will be restarted and will finally get up. The series reruns every 15 minutes (clock) so that's the maximal wait time due this CronJob. For me overall it takes about 30 minutes for the entire platform to start up.
 
 **- Step 5:** ```nslookup disaster-ninja.kontur $(minikube ip)``` to check DNS configuration, it should resolve the domain to IP address, smth like:
 ```
