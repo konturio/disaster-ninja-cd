@@ -22,3 +22,4 @@ createResource:
   prometheusRule: true
   serviceMonitor: true
 isOfflineInstallation: false
+probeInitialDelaySeconds: 15

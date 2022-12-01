@@ -15,6 +15,7 @@ createResource:
   ingress: true
   prometheusRule: false
 isOfflineInstallation: true
+probeInitialDelaySeconds: 90
 
 sourcePbfUrl: https://download.geofabrik.de/europe/andorra-latest.osm.pbf
 

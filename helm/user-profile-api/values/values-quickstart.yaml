@@ -17,6 +17,7 @@ createResource:
   serviceMonitor: false
   deploymentLivenessProbe: true
 isOfflineInstallation: true
+probeInitialDelaySeconds: 90
 
 databaseHost: host.docker.internal
 

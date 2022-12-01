@@ -17,7 +17,7 @@ metadata:
     {{ if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/server-snippet: | #TODO template style_ninja.json #TODO !!! attention This annotation can be used only once per host.
+    nginx.ingress.kubernetes.io/server-snippet: |
     {{ else }}
     nginx.org/client-max-body-size: 5m
     nginx.org/proxy-read-timeout: 300s
@@ -45,10 +45,12 @@ metadata:
         rewrite "^/active(?=/).*/[^/.]+/{0,1}$" /active/ last;
         return 404;
       }
+      {{ if .Values.isOfflineInstallation }} #TODO workaround
       location /layers/tiles/basemap/style_ninja.json {
         resolver 1.1.1.1 1.0.0.1;
         proxy_pass https://basemap-locker01.s3.eu-central-1.amazonaws.com/PROD/styles/style_ninja.json;
       }
+      {{ end }}
 spec:
   tls:
     - hosts:

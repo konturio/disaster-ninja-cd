@@ -19,6 +19,8 @@ createResource:
   serviceMonitor: false
   deploymentLivenessProbe: false
 isOfflineInstallation: false
+probeInitialDelaySeconds: 15
+
 resources:
   requests:
     cpu: 100m

@@ -11,6 +11,7 @@ createResource:
   serviceMonitor: true
   deploymentLivenessProbe: true
 isOfflineInstallation: false
+probeInitialDelaySeconds: 15
 
 replicas: 1
 

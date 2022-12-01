@@ -79,7 +79,7 @@ spec:
               port: {{ .Values.port }}
             failureThreshold: 1
             periodSeconds: 15
-            initialDelaySeconds: 15
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
           {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
@@ -87,7 +87,7 @@ spec:
               port: {{ .Values.port }}
             failureThreshold: 10
             periodSeconds: 15
-            initialDelaySeconds: 15
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
           {{ end }}
           securityContext:
             capabilities:

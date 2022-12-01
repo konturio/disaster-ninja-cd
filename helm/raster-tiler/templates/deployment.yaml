@@ -93,7 +93,7 @@ spec:
               port: http
             failureThreshold: 1
             periodSeconds: 15
-            initialDelaySeconds: 15
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
           {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
@@ -101,7 +101,7 @@ spec:
               port: http
             failureThreshold: 10
             periodSeconds: 15
-            initialDelaySeconds: 15
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
           {{ end }}
           volumeMounts:
             - mountPath: /tiles

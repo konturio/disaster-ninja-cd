@@ -11,6 +11,7 @@ createResource:
   ingress: true
   prometheusRule: true
 isOfflineInstallation: false
+probeInitialDelaySeconds: 15
 
 nodeAffinity:
   enabled: true
