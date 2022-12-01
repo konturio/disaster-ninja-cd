@@ -2,7 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - epig
-  - event-api-db/overlays/DEV
+  # - event-api-db/overlays/DEV
+  - event-api-db/overlays/TEST
   - event-api
   - insights-api
 #  - isochrone-api

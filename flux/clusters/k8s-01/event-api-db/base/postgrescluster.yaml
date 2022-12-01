@@ -20,6 +20,7 @@ spec:
               resources:
                 requests:
                   storage: 100Gi
+              storageClassName: local-path-regular
   # image: 'nexus.kontur.io:8084/konturdev/crunchy-postgres-gis:test'
   instances:
     - affinity:
