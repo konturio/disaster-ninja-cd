@@ -21,8 +21,8 @@ probeInitialDelaySeconds: 90
 
 databaseHost: host.docker.internal
 
-jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/dev #TODO keycloak
-jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/dev/protocol/openid-connect/certs #TODO keycloak
+jwtIssuerUri: http://keycloak.kontur/auth/realms/dev
+jwtJwkSetUri: http://keycloak.kontur/auth/realms/dev/protocol/openid-connect/certs
 
 dnsNameOuter: none #not used due to isOfflineInstallation flag
 

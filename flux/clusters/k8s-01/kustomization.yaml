@@ -13,3 +13,4 @@ resources:
   - titiler
   - user-profile-api
   - disaster-ninja
+#TODO keycloak 13594
