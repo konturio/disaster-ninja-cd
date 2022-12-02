@@ -26,4 +26,5 @@
   value:
     repoName: repo2
     options:
+      - '--start-fast'
       - '--type=full'
