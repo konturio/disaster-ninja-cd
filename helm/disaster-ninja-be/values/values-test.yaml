@@ -31,7 +31,6 @@ tilesHost: 'https://sonic.kontur.io'
 notificationsEnabled: true
 notificationsFeed: 'kontur-public'
 notificationsAlertUrlPattern: 'https://test-apps-ninja01.konturlabs.com/active/?event=%s&utm_source=slack'
-***REMOVED***
 
 alertingTime: 5m
 

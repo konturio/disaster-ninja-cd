@@ -45,7 +45,6 @@ tilesHost: 'https://sonic.kontur.io' #TODO
 notificationsEnabled: false
 notificationsFeed: none
 notificationsAlertUrlPattern: none
-***REMOVED***
 
 alertingTime: 10m
 
