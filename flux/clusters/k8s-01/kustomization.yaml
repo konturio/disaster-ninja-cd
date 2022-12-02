@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - epig
-  - event-api-db/overlays/DEV
   - event-api
   - insights-api
 #  - isochrone-api
@@ -13,4 +12,9 @@ resources:
   - titiler
   - user-profile-api
   - disaster-ninja
-#TODO keycloak 13594
+  #TODO keycloak 13594
+
+# Do not comment or remove any lines below unless you intend to kill a few databases
+  - event-api-db/overlays/DEV
+  - event-api-db/overlays/TEST
+  - event-api-db/overlays/PROD
