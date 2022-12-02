@@ -32,7 +32,6 @@ tilesHost: 'https://zigzag.kontur.io'
 notificationsEnabled: false
 notificationsFeed: kontur-public
 notificationsAlertUrlPattern: 'https://test-apps-ninja02.konturlabs.com/active/?event=%s'
-notificationsSlackWebHook: 'https://hooks.slack.com/services/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'
 
 alertingTime: 10m
 
