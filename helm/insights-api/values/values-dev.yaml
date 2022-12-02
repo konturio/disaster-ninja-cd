@@ -34,12 +34,13 @@ resources:
     limits:
       memory: 1G
 
-databaseHost: ep-twilight-cake-951994.cloud.neon.tech
-#databaseHost: milan.k8s-01.kontur.io.
-databaseName: main
-databaseUsername: insights_api_user01
-#databaseName: insights-api
-#databaseUsername: insights-api
+#NEON data:
+#databaseHost: ep-twilight-cake-951994.cloud.neon.tech
+#databaseName: main
+#databaseUsername: insights_api_user01
+databaseHost: milan.k8s-01.kontur.io.
+databaseName: insights-api
+databaseUsername: insights-api
 databasePort: 5432
 jmxEnabled: true
 
