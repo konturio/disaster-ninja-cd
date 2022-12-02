@@ -99,7 +99,7 @@ cat << EOT >> secret.yaml
 apiVersion: v1
 data:
 ***REMOVED***
-  kontur.platform.keycloak.username: ZGlzYXN0ZXIubmluamE=
+  kontur.platform.keycloak.username: dXNlcm5hbWU= # = 'username'
 kind: Secret
 metadata:
   labels:
