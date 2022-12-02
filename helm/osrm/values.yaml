@@ -6,6 +6,8 @@ imagePullPolicy: IfNotPresent
 createResource:
   ingress: false
   prometheusRule: false
+isOfflineInstallation: false
+probeInitialDelaySeconds: 15
 
 nodeAffinity:
   enabled: true

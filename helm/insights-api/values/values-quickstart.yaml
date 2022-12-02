@@ -12,7 +12,7 @@ port: 8625
 replicas: 1
 envName: quickstart
 ingressHost: insights-api.kontur
-dnsNameOuter: "*" #TODO CORS
+dnsNameOuter: none #not used due to isOfflineInstallation flag
 
 createResource:
   defaultSecrets: true
@@ -20,6 +20,8 @@ createResource:
   prometheusRule: false
   serviceMonitor: false
   deploymentLivenessProbe: false
+isOfflineInstallation: true
+probeInitialDelaySeconds: 90
 
 resources:
   app:
@@ -42,7 +44,7 @@ databaseUsername: insights-api
 jmxEnabled: false
 alertingTime: 10m
 
-keycloakUrl: 'https://keycloak01.konturlabs.com/auth' #TODO keycloak
+keycloakUrl: 'http://keycloak.kontur/auth'
 keycloakRealm: dev
 
 otlpTracesExporter: none

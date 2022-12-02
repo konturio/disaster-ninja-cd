@@ -16,6 +16,8 @@ createResource:
   prometheusRule: true
   serviceMonitor: true
   deploymentLivenessProbe: false
+isOfflineInstallation: false
+probeInitialDelaySeconds: 15
 
 databaseHost: db-event-api-primary.dev-event-api.svc
 databaseUser: event-api

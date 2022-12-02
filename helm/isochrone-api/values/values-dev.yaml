@@ -16,6 +16,8 @@ createResource:
   prometheusRule: true
   serviceMonitor: true
   deploymentLivenessProbe: false
+isOfflineInstallation: false
+probeInitialDelaySeconds: 15
 
 databaseHost: geocint.kontur.io
 

@@ -1,6 +1,8 @@
 createResource:
   defaultSecrets: false
   ingress: true
+isOfflineInstallation: false
+probeInitialDelaySeconds: 15
 
 ENV_NAME: test
 ingressHost: test-epig.k8s-01.konturlabs.com

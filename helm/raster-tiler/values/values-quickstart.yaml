@@ -21,6 +21,8 @@ createResource:
   ingress: true
   defaultSecrets: true
   deploymentLivenessProbe: true
+isOfflineInstallation: true
+probeInitialDelaySeconds: 90
 
 resources:
   requests:

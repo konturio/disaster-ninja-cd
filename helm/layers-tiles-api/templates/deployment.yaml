@@ -62,11 +62,11 @@ spec:
             port: {{ .Values.HttpPort }}
           failureThreshold: 1
           periodSeconds: 15
-          initialDelaySeconds: 15
+          initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
         livenessProbe:
           httpGet:
             path: /tiles/metrics
             port: {{ .Values.HttpPort }}
           failureThreshold: 10
           periodSeconds: 15
-          initialDelaySeconds: 15
+          initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}

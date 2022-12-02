@@ -16,6 +16,8 @@ createResource:
   ingress: true
   prometheusRule: true
   serviceMonitor: true
+isOfflineInstallation: false
+probeInitialDelaySeconds: 15
 
 reportsBucket: 'https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazonaws.com/kontur_reports/'
 

@@ -60,14 +60,14 @@ spec:
             httpGet:
               path: /json
               port: {{ .Values.CHROMIUM_PORT }}
-            initialDelaySeconds: 15
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
             timeoutSeconds: 10
             failureThreshold: 10
           readinessProbe:
             httpGet:
               path: /json
               port: {{ .Values.CHROMIUM_PORT }}
-            initialDelaySeconds: 15
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
             timeoutSeconds: 10
             failureThreshold: 1
             periodSeconds: 15

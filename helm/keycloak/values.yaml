@@ -1,0 +1,38 @@
+# Default values for keycloak.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: nexus.kontur.io:8084/konturdev/keycloak
+  pullPolicy: IfNotPresent
+  tag: 15.1.1-6
+  pullSecretName: nexus8084
+  usePullSecret: false
+
+service:
+  main: 8080
+  management: 9990
+
+envName: local
+ingressHost: none
+
+createResource:
+  defaultSecrets: false
+  ingress: false
+  prometheusRule: false #TODO not tested
+  serviceMonitor: false #TODO not tested
+  deploymentLivenessProbe: false
+isOfflineInstallation: false
+probeInitialDelaySeconds: 15
+
+resources:
+   requests:
+     cpu: 500m
+     memory: 512Mi
+   limits:
+     cpu: 500m
+     memory: 1Gi
+
+keycloakRealm: dev
+
+alertingTime: 10m

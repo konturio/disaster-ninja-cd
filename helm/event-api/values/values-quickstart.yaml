@@ -16,6 +16,8 @@ createResource:
   prometheusRule: false
   serviceMonitor: false
   deploymentLivenessProbe: false
+isOfflineInstallation: true
+probeInitialDelaySeconds: 90
 
 resources:
   app:
@@ -38,8 +40,8 @@ databasePort: 5432
 
 alertingTime: 10m
 
-jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/dev #TODO keycloak
-jwtJwkSetUri: https://keycloak01.konturlabs.com/auth/realms/dev/protocol/openid-connect/certs
+jwtIssuerUri: http://keycloak.kontur/auth/realms/dev
+jwtJwkSetUri: http://keycloak.kontur/auth/realms/dev/protocol/openid-connect/certs
 
 profiles: dev,awsSqsDisabled #TODO check
 
