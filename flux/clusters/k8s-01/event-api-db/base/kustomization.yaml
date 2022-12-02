@@ -3,3 +3,6 @@ kind: Kustomization
 resources:
   - postgrescluster.yaml
 namespace: OVERRIDEME
+
+commonAnnotations:
+  kustomize.toolkit.fluxcd.io/prune: disabled # disable pruning for all resources here
