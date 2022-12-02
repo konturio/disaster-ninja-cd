@@ -83,9 +83,7 @@ spec:
           max_parallel_maintenance_workers: 2
           max_parallel_workers: 4
           max_parallel_workers_per_gather: 2
-          # max_wal_size: 4GB
           max_worker_processes: 4
-          # min_wal_size: 1GB
           random_page_cost: 1.1
           shared_buffers: 6GB
           shared_preload_libraries: 'auto_explain,pg_stat_statements'
@@ -93,10 +91,7 @@ spec:
           track_functions: pl
           track_io_timing: 'on'
           vacuum_cost_page_miss: 5
-          # wal_buffers: 16M
           wal_compression: 'on'
-          # wal_keep_size: 2GB
-          # wal_segment_size: 64MB
           work_mem: 1GB
   postGISVersion: '3.2'
   postgresVersion: 14
