@@ -11,7 +11,7 @@ port: 8614
 replicas: 1
 envName: quickstart
 ingressHost: isochrone-api.kontur
-dnsNameOuter: "*" #TODO CORS
+dnsNameOuter: none #not used due to isOfflineInstallation flag
 
 createResource:
   defaultSecrets: true
@@ -19,6 +19,8 @@ createResource:
   prometheusRule: false
   serviceMonitor: false
   deploymentLivenessProbe: true
+isOfflineInstallation: true
+probeInitialDelaySeconds: 90
 
 resources:
   requests:

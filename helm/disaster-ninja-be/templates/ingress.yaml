@@ -15,6 +15,10 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
     acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
     nginx.org/client-max-body-size: 5m
+    {{ if .Values.isOfflineInstallation }}
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    {{ end }}
 spec:
   tls:
   - hosts:

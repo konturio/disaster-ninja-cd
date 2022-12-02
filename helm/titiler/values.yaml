@@ -23,6 +23,8 @@ env:
 createResource:
   ingress: false
   deploymentLivenessProbe: true
+isOfflineInstallation: false
+probeInitialDelaySeconds: 15
 
 resources:
   requests:

@@ -1,0 +1,29 @@
+{{ if .Values.createResource.serviceMonitor }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ .Values.envName }}-keycloak
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: keycloak
+    app.kubernetes.io/instance: {{ .Values.envName }}-keycloak
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  endpoints:
+  - interval: 30s
+    port: management #TODO check
+    path: /metrics
+    scheme: http
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: keycloak
+      app.kubernetes.io/instance: {{ .Values.envName }}-keycloak
+      #don't add app.kubernetes.io/version
+      app.kubernetes.io/managed-by: "Helm"
+      stage: {{ .Values.envName }}
+---
+{{ end }}

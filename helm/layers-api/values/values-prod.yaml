@@ -17,6 +17,8 @@ createResource:
   prometheusRule: true
   serviceMonitor: true
   deploymentLivenessProbe: true
+isOfflineInstallation: false
+probeInitialDelaySeconds: 15
 
 databaseHost: paris.k8s-01.kontur.io
 

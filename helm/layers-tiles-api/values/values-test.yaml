@@ -21,3 +21,5 @@ createResource:
   ingress: true
   prometheusRule: true
   serviceMonitor: true
+isOfflineInstallation: false
+probeInitialDelaySeconds: 15

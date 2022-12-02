@@ -10,6 +10,8 @@ createResource:
   prometheusRule: false
   serviceMonitor: false
   deploymentLivenessProbe: true
+isOfflineInstallation: true
+probeInitialDelaySeconds: 90
 
 replicas: 1
 
@@ -31,8 +33,8 @@ resources:
     limits:
       memory: 0
 
-keycloakUrl: 'https://keycloak01.konturlabs.com/auth' #TODO keycloak
-keycloakRealm: dev #TODO keycloak
+keycloakUrl: 'http://keycloak.kontur/auth'
+keycloakRealm: dev
 eventApiUrl: 'http://event-api.kontur/events'
 kcApiUrl: 'https://test-api02.konturlabs.com/layers' #TODO
 layersApiUrl: 'http://layers-api.kontur/layers/v2'

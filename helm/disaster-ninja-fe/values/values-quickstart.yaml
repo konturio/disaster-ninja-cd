@@ -16,6 +16,8 @@ createResource:
   ingress: true
   prometheusRule: false
   serviceMonitor: false
+isOfflineInstallation: true
+probeInitialDelaySeconds: 90
 
 reportsBucket: 'https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazonaws.com/kontur_reports/dev/' #TODO DN reports
 
@@ -23,4 +25,4 @@ epigHost: 'http://epig.kontur'
 
 alertingTime: 10m
 
-#TODO: quickstart.json: "BOUNDARIES_API": "https://test-api02.konturlabs.com", is layers api v1 (/layers/collections/bounds/itemsByMultipoint)
+#TODO: quickstart.json: "BOUNDARIES_API": "https://test-api02.konturlabs.com/layers/collections/bounds/itemsByMultipoint"

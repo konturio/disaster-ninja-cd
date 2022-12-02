@@ -75,12 +75,16 @@ timeout 5
 
 These extensions might be installed either with ```brew``` (https://brew.sh if you're on a Mac) or with ```pgxn``` (https://github.com/pgxn/pgxnclient)
 
+4. Postgres cluster should have prepared transactions enabled. Set in postgresql.conf:
+
+```max_prepared_transactions = 100```
+
 ## Quick start
 **- Step 1:** ```kubectl config use-context minikube``` setup ```kubectl``` to use minikube (or change to the desired context)
 
 **- Step 2:** Create authorization for private Kontur nexus: #TODO remove this step once all required images are at ```ghcr.io```
 
-```kubectl create secret docker-registry nexus8084 --docker-server='nexus.kontur.io:8084' --docker-username='YOUR-USERNAME' --docker-password='YOUR-PASSWORD' -o yaml --dry-run=server | grep -v namespace > nexus.yaml``` this creates a file ```nexus.yaml``` with your auth data - it will be used in next step
+```kubectl create secret docker-registry nexus8084 --docker-server='nexus.kontur.io:8084' --docker-username='YOUR-USERNAME' --docker-password='YOUR-PASSWORD' -o yaml --dry-run=server | grep -vE 'namespace|uid' > nexus.yaml``` this creates a file ```nexus.yaml``` with your auth data - it will be used in next step
 
 **- Step 3:** ```make install-quickstart```
 What it does:
@@ -88,7 +92,7 @@ What it does:
 - **DELETEs** and **CREATEs** namespaces required for platform applications
 - installs Helm Releases for all apps using ```values-quickstart.yaml``` values files
 
-**- Step 4:** ```kubectl get po -A``` wait until all pods are in Running and Ready state (may take some time - depending on your internet connection as all application images have to be downloaded). There might be failing pods in ```quickstart-osrm``` namespace, that's ok for a while. There is a series of three CrobJobs - once they all succeed at least once - the deployment will be restarted and will finally get up. The series reruns every 15 minutes (clock) so that's the maximal wait time due this CronJob.
+**- Step 4:** ```kubectl get po -A``` wait until all pods are in Running and Ready state (may take some time - depending on your internet connection as all application images have to be downloaded). There might be failing pods in ```quickstart-osrm``` namespace, that's ok for a while. There is a series of three CrobJobs - once they all succeed at least once - the deployment will be restarted and will finally get up. The series reruns every 15 minutes (clock) so that's the maximal wait time due this CronJob. For me overall it takes about 30 minutes for the entire platform to start up.
 
 **- Step 5:** ```nslookup disaster-ninja.kontur $(minikube ip)``` to check DNS configuration, it should resolve the domain to IP address, smth like:
 ```
