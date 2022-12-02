@@ -20,3 +20,10 @@
   value:
     - secret:
         name: db-event-api-pgo-s3-credentials
+
+- op: add
+  path: /spec/backups/pgbackrest/manual
+  value:
+    repoName: repo2
+    options:
+      - '--type=full'
