@@ -6,7 +6,7 @@ image:
   pullSecretName: none
   usePullSecret: false
 
-replicas: 0
+replicas: 1
 envName: prod
 ingressHost: prod-event-api.k8s-01.konturlabs.com
 
@@ -22,7 +22,7 @@ probeInitialDelaySeconds: 15
 # databaseHost: moral-pgdb01.cskt9jki4yd3.eu-central-1.rds.amazonaws.com
 # databaseUser: event_api_user01
 # databaseName: event_api
-databaseHost: XXX-db-event-api-primary.prod-event-api.svc
+databaseHost: db-event-api-primary.prod-event-api.svc
 databaseUser: event-api
 databaseName: event-api
 databasePort: 5432
