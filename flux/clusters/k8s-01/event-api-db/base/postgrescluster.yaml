@@ -93,7 +93,7 @@ spec:
           track_functions: pl
           track_io_timing: 'on'
           vacuum_cost_page_miss: 5
-          wal_buffers: 16M
+          # wal_buffers: 16M
           wal_compression: 'on'
           # wal_keep_size: 2GB
           # wal_segment_size: 64MB
