@@ -44,6 +44,8 @@ spec:
         ports:
           - containerPort: {{ .Values.service.port }}
             name: be-main
+          - containerPort: {{ .Values.management.port }}
+            name: be-management
         resources:
           requests:
             cpu: {{ .Values.resources.main.requests.cpu | quote }}
@@ -73,16 +75,16 @@ spec:
             name: {{ .Values.envName }}-disaster-ninja-be
         readinessProbe:
           httpGet:
-            path: /active/api/health/readiness
-            port: {{ .Values.service.port }}
+            path: /health/readiness
+            port: {{ .Values.management.port }}
           failureThreshold: 1
           periodSeconds: 15
           initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
         {{ if .Values.createResource.deploymentLivenessProbe }}
         livenessProbe:
           httpGet:
-            path: /active/api/health/readiness
-            port: {{ .Values.service.port }}
+            path: /health/liveness
+            port: {{ .Values.management.port }}
           failureThreshold: 10
           periodSeconds: 15
           initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
@@ -135,6 +137,8 @@ spec:
         ports:
           - containerPort: {{ .Values.service.port }}
             name: be-main
+          - containerPort: {{ .Values.management.port }}
+            name: be-management
         resources:
           requests:
             cpu: {{ .Values.resources.notifier.requests.cpu | quote }}
@@ -164,16 +168,16 @@ spec:
             name: {{ .Values.envName }}-disaster-ninja-be
         readinessProbe:
           httpGet:
-            path: /active/api/health/readiness
-            port: {{ .Values.service.port }}
+            path: /health/readiness
+            port: {{ .Values.management.port }}
           failureThreshold: 1
           periodSeconds: 15
           initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
         {{ if .Values.createResource.deploymentLivenessProbe }}
         livenessProbe:
           httpGet:
-            path: /active/api/health/readiness
-            port: {{ .Values.service.port }}
+            path: /health/liveness
+            port: {{ .Values.management.port }}
           failureThreshold: 10
           periodSeconds: 15
           initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}

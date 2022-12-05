@@ -25,5 +25,9 @@ spec:
     port: {{ .Values.service.port }}
     targetPort: be-main
     protocol: TCP
+  - name: be-management
+    port: {{ .Values.management.port }}
+    targetPort: be-management
+    protocol: TCP
 ---
 
