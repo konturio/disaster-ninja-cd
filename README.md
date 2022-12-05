@@ -98,7 +98,7 @@ Create secrets (values are encoded with base64, use ```echo -n mypassword | base
 cat << EOT >> secret.yaml
 apiVersion: v1
 data:
-***REMOVED***
+  kontur.platform.keycloak.password: cGFzc3dvcmQ= # = 'password'
   kontur.platform.keycloak.username: dXNlcm5hbWU= # = 'username'
 kind: Secret
 metadata:
