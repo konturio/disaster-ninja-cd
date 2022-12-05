@@ -19,7 +19,7 @@ metadata:
     stage: dev
 data:
   username: c29tZXVzZXJuYW1l
-***REMOVED***
+  password: c29tZXBhc3N3b3Jk
 EOT
 > Secret values should be base64 encoded
 
@@ -59,7 +59,7 @@ metadata:
     stage: dev
 data:
   username: c29tZXVzZXJuYW1l
-***REMOVED***
+  password: c29tZXBhc3N3b3Jk
 EOT
 > Secret values should be base64 encoded
 

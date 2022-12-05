@@ -20,7 +20,7 @@
 		isochrone-api \
 		osrm
 
-#Makefile for local installation
+##Makefile for local installation
 install-quickstart: uninstall \
 					create-all-dbs \
 					helm-install-quickstart-all
