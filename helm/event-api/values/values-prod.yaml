@@ -32,7 +32,7 @@ alertingTime: 2m
 jwtIssuerUri: https://keycloak01.kontur.io/auth/realms/kontur
 jwtJwkSetUri: https://keycloak01.kontur.io/auth/realms/kontur/protocol/openid-connect/certs
 
-profiles: prod, cacheDisabled
+profiles: prod
 
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
