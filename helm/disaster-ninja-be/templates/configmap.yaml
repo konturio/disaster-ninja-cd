@@ -18,7 +18,7 @@ data:
   server.servlet.context-path: /active/api
   management.endpoints.web.base-path: /
   management.endpoints.web.path-mapping.prometheus: metrics
-  management.server.port: {{ .Values.management.port }}
+  management.server.port: {{ .Values.management.port | quote }}
   spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.keycloakUrl }}/realms/{{ .Values.keycloakRealm }}
   spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.keycloakUrl }}/realms/{{ .Values.keycloakRealm }}/protocol/openid-connect/certs
   kontur.platform.event-api.url: {{ .Values.eventApiUrl }}
