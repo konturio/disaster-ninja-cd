@@ -11,6 +11,9 @@ image:
 service:
   port: 8627
 
+management:
+  port: 8081
+
 envName: local
 ingressHost: none
 
