@@ -8,4 +8,3 @@ spec:
       postgresql:
         parameters:
           auto_explain.log_min_duration: 100s
-          log_error_verbosity: verbose
