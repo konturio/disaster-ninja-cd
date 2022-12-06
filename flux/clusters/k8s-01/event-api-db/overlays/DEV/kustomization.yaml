@@ -16,6 +16,9 @@ patchesJson6902:
       name: db-event-api
     path: postgrescluster-resource-adjustment.yaml
 
+patchesStrategicMerge:
+  - postgrescluster-WIP-patches.yaml
+
 generatorOptions:
   disableNameSuffixHash: true
 
