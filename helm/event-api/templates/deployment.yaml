@@ -43,6 +43,8 @@ spec:
           ports:
             - containerPort: {{ .Values.port }}
               name: main
+            - containerPort: {{ .Values.management.port }}
+              name: management
           resources:
             requests:
               cpu: {{ .Values.resources.app.requests.cpu | quote }}
