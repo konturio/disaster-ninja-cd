@@ -19,7 +19,7 @@ spec:
                 - ReadWriteOnce
               resources:
                 requests:
-                  storage: 100Gi
+                  storage: 100Gi # FIXME after 2/1/2023
               storageClassName: local-path-regular
   # image: 'nexus.kontur.io:8084/konturdev/crunchy-postgres-gis:test'
   instances:
@@ -38,7 +38,7 @@ spec:
           - ReadWriteOnce
         resources:
           requests:
-            storage: 100Gi
+            storage: 100Gi # FIXME after 12/20/2022
       name: '01'
       replicas: 1
       resources:
