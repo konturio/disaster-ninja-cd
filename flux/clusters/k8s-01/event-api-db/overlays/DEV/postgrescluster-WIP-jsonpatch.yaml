@@ -2,7 +2,14 @@
 - op: add
   path: /spec/backups/pgbackrest/global
   value:
-    log-level-file: detail
+    # log-level-file: detail # pushed WAL file '00000004000000EF000000FB' to the archive
+# INFO: archive-push command begin 2.40: [pg_wal/00000004000000EF000000FB] --exec-id=530556-e3711d6d --log-level-file=detail --log-level-stderr=info --log-path=/pgdata/pgbackrest/log --pg1-path=/pgdata/pg14 --repo1-host=db-event-api-repo-host-0.db-event-api-pods.dev-event-api.svc.cluster.local. --repo1-host-ca-file=/etc/pgbackrest/conf.d/~postgres-operator/tls-ca.crt --repo1-host-cert-file=/etc/pgbackrest/conf.d/~postgres-operator/client-tls.crt --repo1-host-key-file=/etc/pgbackrest/conf.d/~postgres-operator/client-tls.key --repo1-host-type=tls --repo1-host-user=postgres --repo1-path=/pgbackrest/repo1 --repo2-path=/pgbackrest/dev-event-api/db-event-api/repo2 --repo2-s3-bucket=k8s-01-kontur-io--pgbackrest-backups --repo2-s3-endpoint=s3.eu-central-1.amazonaws.com --repo2-s3-key=<redacted> --repo2-s3-key-secret=<redacted> --repo2-s3-region=eu-central-1 --repo2-type=s3 --stanza=db
+# INFO: pushed WAL file '00000004000000EF000000FB' to the archive
+# INFO: archive-push command end: completed successfully (340ms)
+
+    log-level-file: info
+
+
     # log-level-console: info
     log-level-stderr: info
     # use /pgbackrest/$NAMESPACE/$CLUSTER_NAME/repoN
