@@ -29,6 +29,7 @@ data:
   server.servlet.context-path: /events
   management.endpoints.web.base-path: /
   management.endpoints.web.path-mapping.prometheus: metrics
+  management.endpoint.health.probes.enabled: true
   management.server.port: {{ .Values.management.port | quote }}
   konturApi.host: {{ .Values.konturApiUrl }}
   konturApps.host: {{ .Values.konturAppsUrl }}

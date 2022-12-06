@@ -76,16 +76,16 @@ spec:
                 name: {{ .Values.envName }}-event-api
           readinessProbe:
             httpGet:
-              path: /events/health
-              port: {{ .Values.port }}
+              path: /health/readiness
+              port: {{ .Values.management.port }}
             failureThreshold: 1
             periodSeconds: 15
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
           {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
-              path: /events/health
-              port: {{ .Values.port }}
+              path: /health/liveness
+              port: {{ .Values.management.port }}
             failureThreshold: 10
             periodSeconds: 15
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
