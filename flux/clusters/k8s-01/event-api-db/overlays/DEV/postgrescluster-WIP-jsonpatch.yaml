@@ -7,5 +7,5 @@
     log-level-stderr: info
     # use /pgbackrest/$NAMESPACE/$CLUSTER_NAME/repoN
     repo2-path: /pgbackrest/dev-event-api/db-event-api/repo2
-    repo1-retention-full: 2
-    repo2-retention-full: 5
+    repo1-retention-full: '2'
+    repo2-retention-full: '5'
