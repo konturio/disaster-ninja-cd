@@ -1,10 +1,10 @@
 # see https://access.crunchydata.com/documentation/postgres-operator/latest/tutorial/backups/#using-s3
 
-- op: add
-  path: /spec/backups/pgbackrest/global
-  value:
-    # use /pgbackrest/$NAMESPACE/$CLUSTER_NAME/repoN
-    repo2-path: /pgbackrest/dev-event-api/db-event-api/repo2
+# - op: add
+#   path: /spec/backups/pgbackrest/global
+#   value:
+#     # use /pgbackrest/$NAMESPACE/$CLUSTER_NAME/repoN
+#     repo2-path: /pgbackrest/dev-event-api/db-event-api/repo2
 
 - op: add
   path: /spec/backups/pgbackrest/repos/1
