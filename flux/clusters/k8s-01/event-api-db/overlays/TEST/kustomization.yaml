@@ -2,8 +2,8 @@ bases:
   - ../../base
 namespace: test-event-api
 
-patchesStrategicMerge:
-  - postgrescluster-WIP-merge.yaml
+# patchesStrategicMerge:
+#   - postgrescluster-WIP-merge.yaml
 
 patchesJson6902:
   - target:
