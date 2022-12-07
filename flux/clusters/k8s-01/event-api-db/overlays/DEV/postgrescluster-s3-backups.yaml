@@ -21,6 +21,10 @@
       bucket: k8s-01-kontur-io--pgbackrest-backups
       endpoint: s3.eu-central-1.amazonaws.com
       region: eu-central-1
+    schedules:
+      full: '0 18 * * 2'
+      differential: '0 18 * * 6'
+      incremental: '0 18 * * 3,4,5,0,1'
 
 - op: add
   path: /spec/backups/pgbackrest/configuration
