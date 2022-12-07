@@ -48,6 +48,8 @@ spec:
           ports:
             - containerPort: {{ .Values.port }}
               name: main
+            - containerPort: {{ .Values.management.port }}
+              name: management
           resources:
             requests:
               cpu: {{ .Values.resources.requests.cpu | quote }}
@@ -75,16 +77,16 @@ spec:
                 name: {{ .Values.envName }}-layers-api
           readinessProbe:
             httpGet:
-              path: /layers/v2/health/readiness
-              port: {{ .Values.port }}
+              path: /health/readiness
+              port: {{ .Values.management.port }}
             failureThreshold: 1
             periodSeconds: 15
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
           {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
-              path: /layers/v2/health/readiness
-              port: {{ .Values.port }}
+              path: /health/liveness
+              port: {{ .Values.management.port }}
             failureThreshold: 10
             periodSeconds: 15
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}

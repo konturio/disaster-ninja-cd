@@ -23,3 +23,7 @@ spec:
       port: {{ .Values.port }}
       targetPort: main
       protocol: TCP
+    - name: management
+      port: {{ .Values.management.port }}
+      targetPort: management
+      protocol: TCP
