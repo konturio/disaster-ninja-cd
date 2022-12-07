@@ -21,3 +21,6 @@ data:
   OTEL_LOGS_EXPORTER: none
   spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.jwtIssuerUri }}
   spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.jwtJwkSetUri }}
+  management.endpoints.web.path-mapping.prometheus: metrics
+  management.endpoint.health.probes.enabled: true
+  management.server.port: {{ .Values.management.port | quote }}
