@@ -74,16 +74,16 @@ spec:
                 name: {{ .Values.envName }}-user-profile-api #must contain SPRING_DATASOURCE_PASSWORD
           readinessProbe:
             httpGet:
-              path: /health/readiness
-              port: {{ .Values.management.port }}
+              path: /userprofile/health
+              port: {{ .Values.port }}
             failureThreshold: 1
             periodSeconds: 15
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
           {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
-              path: /health/liveness
-              port: {{ .Values.management.port }}
+              path: /userprofile/health
+              port: {{ .Values.port }}
             failureThreshold: 10
             periodSeconds: 15
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
