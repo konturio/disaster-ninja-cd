@@ -12,6 +12,9 @@ replicas: 1
 envName: local
 ingressHost: none
 
+management:
+  port: 8081
+
 createResource:
   defaultSecrets: false
   ingress: false

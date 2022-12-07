@@ -26,3 +26,6 @@ data:
   #do not use uppercase var names for hikari properties otherwise startup fails with smth like 'The configuration of the pool is sealed once started.'
   spring.datasource.hikari.maximum-pool-size: '{{ .Values.hikari.maximumPoolSize }}'
   spring.datasource.hikari.minimum-idle: '{{ .Values.hikari.minimumIdle }}'
+  management.endpoints.web.path-mapping.prometheus: metrics
+  management.endpoint.health.probes.enabled: 'true'
+  management.server.port: {{ .Values.management.port | quote }}
