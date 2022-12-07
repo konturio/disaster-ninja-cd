@@ -21,9 +21,20 @@
       bucket: k8s-01-kontur-io--pgbackrest-backups
       endpoint: s3.eu-central-1.amazonaws.com
       region: eu-central-1
+    schedules:
+      full: '0 21 * * 3'
+      differential: '0 21 * * 0'
+      incremental: '0 21 * * 4,5,6,1,2'
 
 - op: add
   path: /spec/backups/pgbackrest/configuration
   value:
     - secret:
         name: db-event-api-pgo-s3-credentials
+
+- op: add
+  path: /spec/backups/pgbackrest/manual
+  value:
+    repoName: repo2
+    options:
+      - '--type=full'
