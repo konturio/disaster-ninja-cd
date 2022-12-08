@@ -16,7 +16,9 @@ data:
     dir /data
     # User-supplied master configuration:
     rename-command FLUSHDB ""
+    {{ if eq .Values.envName "prod" }}
     rename-command FLUSHALL ""
+    {{ end }}
     # End of master configuration
   redis.conf: |-
     # User-supplied common configuration:
