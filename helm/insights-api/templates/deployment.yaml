@@ -49,6 +49,8 @@ spec:
               name: main{{ if .Values.jmxEnabled }}
             - containerPort: 5000
               name: jmx{{ end }}
+            - containerPort: {{ .Values.management.port }}
+              name: management
           resources:
             requests:
               cpu: {{ .Values.resources.app.requests.cpu | quote }}
@@ -74,16 +76,16 @@ spec:
                 name: {{ .Values.envName }}-insights-api #must contain SPRING_DATASOURCE_PASSWORD
           readinessProbe:
             httpGet:
-              path: /insights-api/health/readiness
-              port: {{ .Values.port }}
+              path: /health/readiness
+              port: {{ .Values.management.port }}
             failureThreshold: 1
             periodSeconds: 15
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
           {{ if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
-              path: /insights-api/health/readiness
-              port: {{ .Values.port }}
+              path: /health/liveness
+              port:{{ .Values.management.port }}
             failureThreshold: 10
             periodSeconds: 15
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
