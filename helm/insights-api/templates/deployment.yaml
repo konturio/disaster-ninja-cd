@@ -85,7 +85,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /health/liveness
-              port:{{ .Values.management.port }}
+              port: {{ .Values.management.port }}
             failureThreshold: 10
             periodSeconds: 15
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
