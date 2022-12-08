@@ -16,7 +16,6 @@ data:
     dir /data
     # User-supplied master configuration:
     rename-command FLUSHDB ""
-    rename-command FLUSHALL ""
     # End of master configuration
   redis.conf: |-
     # User-supplied common configuration:
