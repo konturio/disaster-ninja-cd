@@ -61,6 +61,11 @@ spec:
                   fieldPath: spec.nodeName
             - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
               value: "http://$(MY_NODE_NAME):{{ .Values.otlpTracesPort }}"
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.databaseSecretName }}
+                  key: {{ .Values.databaseSecretUriKey }}
           envFrom:
             - configMapRef:
                 name: {{ .Values.envName }}-event-api
