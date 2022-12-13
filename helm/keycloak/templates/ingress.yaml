@@ -34,6 +34,6 @@ spec:
           service:
             name: {{ .Values.envName }}-keycloak
             port:
-              name: main #TODO check
+              name: main
 ---
 {{ end }}
