@@ -22,7 +22,7 @@ data:
   #JDBC_PARAMS
   #JGROUPS_DISCOVERY_PROTOCOL
   #JDBC_PING
-  KEYCLOAK_FRONTEND_URL: https://keycloak.kontur/auth
+  KEYCLOAK_FRONTEND_URL: http://keycloak.kontur/auth
   KEYCLOAK_USER: keycloak #is created if not exists, password is set in secret.yaml in KEYCLOAK_PASSWORD
   PROXY_ADDRESS_FORWARDING: "true"
   USP_DB_ADDR: host.docker.internal
@@ -30,3 +30,7 @@ data:
   USP_DB_PORT: "5432"
   USP_DB_USER: user-profile-api
   KEYCLOAK_STATISTICS: all #enables /metrics and /health on management port
+  {{ if .Values.disableSsl }}
+  auth.server.ssl.required: "false"
+  app.server.ssl.required: "false"
+  {{ end }}

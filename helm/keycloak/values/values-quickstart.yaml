@@ -24,6 +24,7 @@ createResource:
   deploymentLivenessProbe: true
 isOfflineInstallation: true
 probeInitialDelaySeconds: 90
+disableSsl: true
 
 resources:
    requests:
