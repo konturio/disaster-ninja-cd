@@ -20,6 +20,8 @@ createResource:
   deploymentLivenessProbe: false
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
+probeInitialDelaySecondsRedis: 15
+usePgDataSecret: false
 
 resources:
   app:
@@ -41,6 +43,7 @@ databaseHost: host.docker.internal
 databaseUser: event_api_user01
 databaseName: event_api
 databasePort: 5432
+databaseMaximumPoolSize: 10
 
 alertingTime: 10m
 

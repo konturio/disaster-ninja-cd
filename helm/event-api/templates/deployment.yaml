@@ -61,11 +61,12 @@ spec:
                   fieldPath: spec.nodeName
             - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
               value: "http://$(MY_NODE_NAME):{{ .Values.otlpTracesPort }}"
+            {{ if .Values.usePgDataSecret }}
             - name: SPRING_DATASOURCE_URL
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.databaseSecretName }}
-                  key: {{ .Values.databaseSecretUriKey }}
+                  key: {{ .Values.databaseSecretUriKey }}{{ end }}
           envFrom:
             - configMapRef:
                 name: {{ .Values.envName }}-event-api
@@ -197,7 +198,7 @@ spec:
                 - sh
                 - '-c'
                 - /health/ping_liveness_local.sh 5
-            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
+            initialDelaySeconds: {{ .Values.probeInitialDelaySecondsRedis }}
             timeoutSeconds: 6
             periodSeconds: 15
             failureThreshold: 10
@@ -207,7 +208,7 @@ spec:
                 - sh
                 - '-c'
                 - /health/ping_readiness_local.sh 1
-            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
+            initialDelaySeconds: {{ .Values.probeInitialDelaySecondsRedis }}
             timeoutSeconds: 2
             periodSeconds: 15
             failureThreshold: 1

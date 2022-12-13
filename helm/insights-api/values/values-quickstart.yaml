@@ -41,6 +41,7 @@ databaseHost: host.docker.internal
 databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
+databaseMaximumPoolSize: 5
 jmxEnabled: false
 alertingTime: 10m
 

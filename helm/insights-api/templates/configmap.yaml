@@ -20,7 +20,7 @@ data:
   spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.keycloakUrl }}/realms/{{ .Values.keycloakRealm }}/protocol/openid-connect/certs
   #do not use uppercase var names for hikari properties otherwise startup fails with smth like 'The configuration of the pool is sealed once started.'
   spring.datasource.hikari.connection-timeout: '600000'
-  spring.datasource.hikari.maximum-pool-size: '20'
+  spring.datasource.hikari.maximum-pool-size: {{ .Values.databaseMaximumPoolSize | squote }}
   SPRING_JDBC_TEMPLATE_QUERY_TIMEOUT: '600'
   OTEL_TRACES_EXPORTER: {{ .Values.otlpTracesExporter }}
   OTEL_METRICS_EXPORTER: none

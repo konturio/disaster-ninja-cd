@@ -11,6 +11,7 @@ metadata:
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
 spec:
   selector:
     matchLabels:
@@ -47,19 +48,10 @@ spec:
         ports:
           - containerPort: {{ .Values.service.main }}
             protocol: TCP
-            name: main #TODO name
+            name: main
           - containerPort: {{ .Values.service.management }}
             protocol: TCP
-            name: management #TODO name
-{{/*          - containerPort: {{ .Values.service.port3 }}*/}}
-{{/*            protocol: TCP*/}}
-{{/*            name: port3 #TODO name*/}}
-{{/*          - containerPort: {{ .Values.service.port4 }}*/}}
-{{/*            protocol: UDP*/}}
-{{/*            name: port4 #TODO name*/}}
-{{/*          - containerPort: {{ .Values.service.port5 }}*/}}
-{{/*            protocol: UDP*/}}
-{{/*            name: port5 #TODO name*/}}
+            name: management
         resources:
           requests:
             cpu: {{ .Values.resources.requests.cpu | quote }}
@@ -74,16 +66,16 @@ spec:
             name: {{ .Values.envName }}-keycloak
         readinessProbe:
           httpGet:
-            path: /auth/ #realms/{{ .Values.keycloakRealm }}/ #TODO
-            port: {{ .Values.service.main }} #TODO check
+            path: /health
+            port: {{ .Values.service.management }}
           failureThreshold: 1
           periodSeconds: 15
-          initialDelaySeconds: 15
+          initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
         {{ if .Values.createResource.deploymentLivenessProbe }}
         livenessProbe:
           httpGet:
-            path: /auth/
-            port: {{ .Values.service.main }} #TODO check
+            path: /health
+            port: {{ .Values.service.management }}
           failureThreshold: 10
           periodSeconds: 15
           initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
