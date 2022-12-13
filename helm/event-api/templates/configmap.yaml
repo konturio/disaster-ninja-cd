@@ -16,7 +16,7 @@ data:
   #SPRING_DATASOURCE_URL: 'jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/{{ .Values.databaseName }}'
   #SPRING_DATASOURCE_USERNAME: {{ .Values.databaseUser }}
   #do not use uppercase var names for hikari properties otherwise startup fails with smth like 'The configuration of the pool is sealed once started.'
-  spring.datasource.hikari.maximum-pool-size: '10'
+  spring.datasource.hikari.maximum-pool-size: {{ .Values.databaseMaximumPoolSize | squote }}
   spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.jwtIssuerUri }}
   spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.jwtJwkSetUri }}
   spring.profiles.active: {{ .Values.profiles }}
