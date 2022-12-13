@@ -28,18 +28,22 @@ helm
 # Quick Local Start
 
 ## Pre-requisites
-1. A k8s cluster (**minikube** is enough) (```brew install minikube``` if you're on a Mac)
-
-2. If you use minikube:
+0. Docker, ```brew``` (if you're on a Mac)
+1. A k8s cluster with 6gb RAM. ```minikube``` is ok (```brew install minikube``` on a Mac)
+2. Helm to manage Helm Charts - ```brew install helm```
+3. If you use minikube:
+- ```minikube config set driver docker``` - use Docker network driver
+- ```minikube config set memory 6gb; minikube config set cpus 4``` - let it use some resources
+- ```minikube delete; minikube start``` to apply the above
 - https://github.com/chipmk/docker-mac-net-connect tool is required, otherwise Ingress resources will not be available from the host machine. (There is a limitation in Docker driver - which has to be workarounded - see https://minikube.sigs.k8s.io/docs/drivers/docker/ : "The ingress, and ingress-dns addons are currently only supported on Linux. See #7332"). Install it by:
   - ```brew install chipmk/tap/docker-mac-net-connect```
-  - ```sudo brew services start chipmk/tap/docker-mac-net-connect```
+  - ```brew services start chipmk/tap/docker-mac-net-connect```
 - addons supporting ingress resources should be enabled (see in details for other OSs: https://minikube.sigs.k8s.io/docs/handbook/addons/ingress-dns/) - example for Mac OS:
 - ```minikube addons enable ingress```
 - ```minikube addons enable ingress-dns```
 - Get ```kubectl``` CLI configured with the k8s cluster: ```kubectl config use-context minikube```
 - ```minikube ip``` and remember the ip address it returns
-- Create a file in ```/etc/resolver/kontur``` with the following contents replacing ```MINIKUBE_IP``` with the ip address from the previous step:
+- Create a file ```/etc/resolver/kontur``` with the following contents replacing ```MINIKUBE_IP``` with the ip address from the previous step:
 ```
 domain kontur
 nameserver MINIKUBE_IP
@@ -56,34 +60,28 @@ timeout 5
             forward . MINIKUBE_IP
     }
 ```
-3. A local Postgres instance available with the following extensions available:
-  - ```postgis``` (may be installed by homebrew if you're on a Mac)
-  - ```h3``` (build and install as per https://github.com/zachasme/h3-pg):
-      - ```git clone https://github.com/zachasme/h3-pg```
-      - ```cd h3-pg```
-      - ```cmake -B build -DCMAKE_BUILD_TYPE=Release``` Generate native build system
-      - ```cmake --build build``` Build extension(s)
-      - ```cmake --install build --component h3-pg``` Install extensions (might require sudo)
+4. a. A local Postgres instance (```brew install postgresql``` on a Mac) with the following extensions available. If other is not specified, they can be installed with ```pgxn``` (first ```brew install pgxn``` to install the tool itself, then use ```pgxn install http``` to install an extension):
+  - ```postgis``` (install with ```brew```)
+  - ```postgis_sfcgal``` (installed as part of ```postgis```)
+  - ```pgRouting``` (install with ```brew```)
+  - ```h3``` (```cmake``` is also required for it, install with ```brew``` if it's missing)
   - ```h3_postgis```
-  - ```postgis_sfcgal```
+  - ```http```
+
+4. b. The following extensions are also required but are either available in postgres by default or are installed as part of some extensions above:
   - ```btree_gin```
   - ```btree_gist```
   - ```plpgsql```
   - ```uuid-ossp```
-  - ```http```
-  - ```pgRouting``` (may be installed by homebrew if you're on a Mac)
 
-These extensions might be installed either with ```brew``` (https://brew.sh if you're on a Mac) or with ```pgxn``` (https://github.com/pgxn/pgxnclient)
-
-4. Postgres cluster should have prepared transactions enabled. Set in postgresql.conf:
+5. Postgres cluster should have prepared transactions enabled. Set in ```postgresql.conf``` (typically ```/usr/local/var/postgres/postgresql.conf``` if local postgres was installed by brew):
 
 ```max_prepared_transactions = 100```
 
 ## Quick start
 **- Step 1:** ```kubectl config use-context minikube``` setup ```kubectl``` to use minikube (or change to the desired context)
 
-**- Step 2:** Create authorization for private Kontur nexus: #TODO remove this step once all required images are at ```ghcr.io```
-
+**- Step 2:** Create authorization for private Kontur nexus: #TODO remove this step once all required images are at ```ghcr.io```. Checkout this repository and run in ```helm``` dir:
 ```kubectl create secret docker-registry nexus8084 --docker-server='nexus.kontur.io:8084' --docker-username='YOUR-USERNAME' --docker-password='YOUR-PASSWORD' -o yaml --dry-run=server | grep -vE 'namespace|uid' > nexus.yaml``` this creates a file ```nexus.yaml``` with your auth data - it will be used in next step
 
 **- Step 3:** ```make install-quickstart```
@@ -103,3 +101,8 @@ Non-authoritative answer:
 Name:	disaster-ninja.kontur
 Address: 192.168.64.2
 ```
+
+**- Further steps:**
+
+- If you don't want to reinstall the entire platform but just want to deploy your changes, use
+```make helm-install-quickstart-all``` to upgrade all helm releases or ```make disaster-ninja-fe``` to upgrade a single release. See the list of available goals in ```Makefile``` 
