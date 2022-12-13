@@ -84,6 +84,7 @@ cleanup-databases:
 ##Create databases and roles
 create-all-dbs: create-event-api-db \
 				create-insights-api-db \
+				create-keycloak-db \
 				create-layers-db \
 				create-layers-api-user \
 				create-layers-tiles-api-user \
@@ -208,13 +209,14 @@ osrm: create-image-pull-secrets
 	helm upgrade --install quickstart-osrm osrm -f osrm/values.yaml -f osrm/values/values-quickstart.yaml -n quickstart-osrm
 
 ####### GOALS FOR TEMPLATES TESTING #######
-template-all: delete-files kustomize-flux template-dev template-test template-prod template-local
+template-all: delete-files kustomize-flux template-dev template-test template-prod template-local template-quickstart
 
 delete-files:
 	rm -f dev.yaml
 	rm -f test.yaml
 	rm -f prod.yaml
 	rm -f local.yaml
+	rm -f quickstart.yaml
 	rm -f ../flux/clusters/k8s-01/flux.yaml
 
 kustomize-flux:
@@ -227,6 +229,7 @@ template-dev:
 	helm template dev-event-api event-api -f event-api/values.yaml -f event-api/values/values-dev.yaml >> dev.yaml
 	helm template dev-insights-api insights-api -f insights-api/values.yaml -f insights-api/values/values-dev.yaml >> dev.yaml
 	helm template dev-isochrone-api isochrone-api -f isochrone-api/values.yaml -f isochrone-api/values/values-dev.yaml >> dev.yaml
+	#helm template dev-keycloak keycloak -f keycloak/values.yaml -f keycloak/values/values-dev.yaml >> dev.yaml
 	helm template dev-layers-api layers-api -f layers-api/values.yaml -f layers-api/values/values-dev.yaml >> dev.yaml
 	helm template dev-layers-tiles-api layers-tiles-api -f layers-tiles-api/values.yaml -f layers-tiles-api/values/values-dev.yaml >> dev.yaml
 	helm template dev-osrm osrm -f osrm/values.yaml -f osrm/values/values-dev.yaml >> dev.yaml
@@ -241,6 +244,7 @@ template-test:
 	helm template test-event-api event-api -f event-api/values.yaml -f event-api/values/values-test.yaml >> test.yaml
 	helm template test-insights-api insights-api -f insights-api/values.yaml -f insights-api/values/values-test.yaml >> test.yaml
 	helm template test-isochrone-api isochrone-api -f isochrone-api/values.yaml -f isochrone-api/values/values-test.yaml >> test.yaml
+	#helm template test-keycloak keycloak -f keycloak/values.yaml -f keycloak/values/values-test.yaml >> test.yaml
 	helm template test-layers-api layers-api -f layers-api/values.yaml -f layers-api/values/values-test.yaml >> test.yaml
 	helm template test-layers-tiles-api layers-tiles-api -f layers-tiles-api/values.yaml -f layers-tiles-api/values/values-test.yaml >> test.yaml
 	#helm template test-osrm osrm -f osrm/values.yaml -f osrm/values/values-test.yaml >> test.yaml
@@ -255,6 +259,7 @@ template-prod:
 	helm template prod-event-api event-api -f event-api/values.yaml -f event-api/values/values-prod.yaml >> prod.yaml
 	helm template prod-insights-api insights-api -f insights-api/values.yaml -f insights-api/values/values-prod.yaml >> prod.yaml
 	helm template prod-isochrone-api isochrone-api -f isochrone-api/values.yaml -f isochrone-api/values/values-prod.yaml >> prod.yaml
+	#helm template prod-keycloak keycloak -f keycloak/values.yaml -f keycloak/values/values-prod.yaml >> prod.yaml
 	helm template prod-layers-api layers-api -f layers-api/values.yaml -f layers-api/values/values-prod.yaml >> prod.yaml
 	helm template prod-layers-tiles-api layers-tiles-api -f layers-tiles-api/values.yaml -f layers-tiles-api/values/values-prod.yaml >> prod.yaml
 	#helm template prod-osrm osrm -f osrm/values.yaml -f osrm/values/values-prod.yaml >> prod.yaml
@@ -269,11 +274,27 @@ template-local:
 	helm template local-event-api event-api -f event-api/values.yaml >> local.yaml
 	helm template local-insights-api insights-api -f insights-api/values.yaml >> local.yaml
 	helm template local-isochrone-api isochrone-api -f isochrone-api/values.yaml -f isochrone-api/values/values-local.yaml >> local.yaml
+	#helm template local-keycloak keycloak -f keycloak/values.yaml -f keycloak/values/values-local.yaml >> local.yaml
 	helm template local-layers-api layers-api -f layers-api/values.yaml >> local.yaml
 	helm template local-layers-tiles-api layers-tiles-api -f layers-tiles-api/values.yaml -f layers-tiles-api/values/values-local.yaml >> local.yaml
 	#helm template local-osrm osrm -f osrm/values.yaml -f osrm/values/values-local.yaml >> local.yaml
 	helm template local-raster-tiler raster-tiler -f raster-tiler/values.yaml >> local.yaml
 	helm template local-titiler titiler -f titiler/values.yaml >> local.yaml
 	helm template local-user-profile-api user-profile-api -f user-profile-api/values.yaml >> local.yaml
+
+template-quickstart:
+	helm template quickstart-disaster-ninja-be disaster-ninja-be -f disaster-ninja-be/values.yaml -f disaster-ninja-be/values/values-quickstart.yaml >> quickstart.yaml
+	helm template quickstart-disaster-ninja-fe disaster-ninja-fe -f disaster-ninja-fe/values.yaml >> quickstart.yaml
+	helm template quickstart-epig epig -f epig/values.yaml -f epig/values/values-quickstart.yaml >> quickstart.yaml
+	helm template quickstart-event-api event-api -f event-api/values.yaml >> quickstart.yaml
+	helm template quickstart-insights-api insights-api -f insights-api/values.yaml >> quickstart.yaml
+	helm template quickstart-isochrone-api isochrone-api -f isochrone-api/values.yaml -f isochrone-api/values/values-quickstart.yaml >> quickstart.yaml
+	helm template quickstart-keycloak keycloak -f keycloak/values.yaml -f keycloak/values/values-quickstart.yaml >> quickstart.yaml
+	helm template quickstart-layers-api layers-api -f layers-api/values.yaml >> quickstart.yaml
+	helm template quickstart-layers-tiles-api layers-tiles-api -f layers-tiles-api/values.yaml -f layers-tiles-api/values/values-quickstart.yaml >> quickstart.yaml
+	helm template quickstart-osrm osrm -f osrm/values.yaml -f osrm/values/values-quickstart.yaml >> quickstart.yaml
+	helm template quickstart-raster-tiler raster-tiler -f raster-tiler/values.yaml >> quickstart.yaml
+	helm template quickstart-titiler titiler -f titiler/values.yaml >> quickstart.yaml
+	helm template quickstart-user-profile-api user-profile-api -f user-profile-api/values.yaml >> quickstart.yaml
 
 #end of testing goals

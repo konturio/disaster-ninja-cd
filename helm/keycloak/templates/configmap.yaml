@@ -13,19 +13,20 @@ metadata:
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
 data:
   DB_ADDR: host.docker.internal
-  DB_NAME: keycloak
+  DB_PORT: "5432"
+  DB_DATABASE: keycloak
   DB_USER: keycloak
   DB_VENDOR: postgres
   #JAVA_OPTS
   #JAVA_OPTS_APPEND
-  JDBC_PARAMS: "useSSL=false"
+  #JDBC_PARAMS
   #JGROUPS_DISCOVERY_PROTOCOL
   #JDBC_PING
   KEYCLOAK_FRONTEND_URL: https://keycloak.kontur/auth
-  KEYCLOAK_USER: keycloak
-  METADATA_URL: https://user-profile-service-locker01.s3.eu-central-1.amazonaws.com/PROD/keycloak01-artifacts.txt #TODO this just downloads once on startup
+  KEYCLOAK_USER: keycloak #is created if not exists, password is set in secret.yaml in KEYCLOAK_PASSWORD
   PROXY_ADDRESS_FORWARDING: "true"
   USP_DB_ADDR: host.docker.internal
   USP_DB_NAME: user-profile-api
   USP_DB_PORT: "5432"
   USP_DB_USER: user-profile-api
+  KEYCLOAK_STATISTICS: all #enables /metrics and /health on management port

@@ -15,7 +15,7 @@ metadata:
 spec:
   endpoints:
   - interval: 30s
-    port: management #TODO check
+    port: management
     path: /metrics
     scheme: http
   selector:
