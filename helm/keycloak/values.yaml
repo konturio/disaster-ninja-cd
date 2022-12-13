@@ -3,9 +3,9 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: nexus.kontur.io:8084/konturdev/keycloak
+  repository: nexus.kontur.io:8084/konturdev/keycloak-with-ups-spi
   pullPolicy: IfNotPresent
-  tag: 15.1.1-6
+  tag: 13594-setup-keycloak-in-k8s-cluster.35a1069.1
   pullSecretName: nexus8084
   usePullSecret: false
 
