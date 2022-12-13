@@ -8,7 +8,7 @@ ENV_NAME: test
 ingressHost: test-epig.k8s-01.konturlabs.com
 SITE_URL: https://test-apps-ninja01.konturlabs.com/active/
 APP_ID: '59b3842c-8ac3-4672-a31f-5fc9543edacd'
-TIMEOUT: 9000
+TIMEOUT: 8000
 CACHE_TTL: 600
 DEBUG: TRUE
 DEFAULT_IMAGE_URL: "https://test-apps-ninja01.konturlabs.com/active/static/assets/preview_screenshot.png"
