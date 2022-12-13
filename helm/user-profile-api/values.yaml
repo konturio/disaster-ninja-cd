@@ -33,6 +33,7 @@ resources:
 
 databaseHost: host.docker.internal
 databasePort: 5432
+databaseMaximumPoolSize: 10
 alertingTime: 10m
 
 jwtIssuerUri: https://keycloak01.konturlabs.com/auth/realms/dev

@@ -37,6 +37,7 @@ databaseHost: host.docker.internal
 databaseUser: event_api_user01
 databaseName: event_api
 databasePort: 5432
+databaseMaximumPoolSize: 5
 
 alertingTime: 10m
 

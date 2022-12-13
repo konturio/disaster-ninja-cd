@@ -15,7 +15,7 @@ data:
   SPRING_DATASOURCE_URL: 'jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/user-profile-api'
   SPRING_DATASOURCE_USERNAME: user-profile-api
   #do not use uppercase var names for hikari properties otherwise startup fails with smth like 'The configuration of the pool is sealed once started.'
-  spring.datasource.hikari.maximum-pool-size: '10'
+  spring.datasource.hikari.maximum-pool-size: {{ .Values.databaseMaximumPoolSize | squote }}
   OTEL_TRACES_EXPORTER: {{ .Values.otlpTracesExporter }}
   OTEL_METRICS_EXPORTER: none
   OTEL_LOGS_EXPORTER: none
