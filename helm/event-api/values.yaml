@@ -82,7 +82,7 @@ gdacsImportEnable: true
 firmsModisImportEnable: true
 firmsNoaaImportEnable: true
 firmsSuomiImportEnable: true
-emDatImportEnable: true
+emDatImportEnable: false
 staticImportEnable: true
 stormsNoaaImportEnable: true
 tornadoJapanMaImportEnabled: false
