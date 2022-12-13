@@ -13,8 +13,10 @@ metadata:
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
 data:
   spring.redis.host: '{{ .Values.envName }}-event-api-redis'
-  #SPRING_DATASOURCE_URL: 'jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/{{ .Values.databaseName }}'
-  #SPRING_DATASOURCE_USERNAME: {{ .Values.databaseUser }}
+  {{ if not .Values.usePgDataSecret }}
+  SPRING_DATASOURCE_URL: 'jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/{{ .Values.databaseName }}'
+  SPRING_DATASOURCE_USERNAME: {{ .Values.databaseUser }}
+  {{ end }}
   #do not use uppercase var names for hikari properties otherwise startup fails with smth like 'The configuration of the pool is sealed once started.'
   spring.datasource.hikari.maximum-pool-size: {{ .Values.databaseMaximumPoolSize | squote }}
   spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.jwtIssuerUri }}
