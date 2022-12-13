@@ -35,6 +35,8 @@ resources:
     limits:
       memory: 5Gi
 
+databaseSecretName: db-event-api-pguser-event-api
+databaseSecretUriKey: jdbc-uri
 databaseHost: host.docker.internal
 databaseUser: event_api_user01
 databaseName: event_api
