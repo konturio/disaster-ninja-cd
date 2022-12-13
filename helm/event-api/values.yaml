@@ -20,6 +20,8 @@ createResource:
   deploymentLivenessProbe: false
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
+probeInitialDelaySecondsRedis: 15
+usePgDataSecret: false
 
 resources:
   app:
