@@ -46,7 +46,7 @@ jmxEnabled: false
 alertingTime: 10m
 
 keycloakUrl: 'http://keycloak.kontur/auth'
-keycloakRealm: dev
+keycloakRealm: quickstart
 
 otlpTracesExporter: none
 otlpTracesPort: 4317
