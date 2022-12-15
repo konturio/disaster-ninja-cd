@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: release-1.9.1.96f6375.1
+  tag: release-1.11.0.8ae432c.1
   usePullSecret: true
   pullSecretName: nexus8084
 
@@ -29,8 +29,8 @@ resources:
 
 databaseHost: host.docker.internal
 
-jwtIssuerUri: 'http://keycloak.kontur/auth/realms/dev'
-jwtJwkSetUri: 'http://keycloak.kontur/auth/realms/dev/protocol/openid-connect/certs'
+jwtIssuerUri: 'http://keycloak.kontur/auth/realms/quickstart'
+jwtJwkSetUri: 'http://keycloak.kontur/auth/realms/quickstart/protocol/openid-connect/certs'
 
 alertingTime: 10m
 

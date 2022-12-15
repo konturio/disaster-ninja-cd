@@ -1,0 +1,489 @@
+{
+  "realm": "quickstart",
+  "enabled": true,
+  "users": [
+    {
+      "username": "disaster.ninja",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password"
+        }
+      ],
+      "clientRoles": {
+        "event-api": [ "read:feed:kontur-public" ]
+      }
+    }
+  ],
+  "roles": {
+    "client": {
+      "kontur_platform": [
+        {
+          "name": "bivariateStatistic",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "4a6fb44c-988c-4b5f-bf48-03678dba77a0",
+          "attributes": {}
+        },
+        {
+          "name": "konturAdmin",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "4a6fb44c-988c-4b5f-bf48-03678dba77a0",
+          "attributes": {}
+        },
+        {
+          "name": "advancedPolygonDetails",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "4a6fb44c-988c-4b5f-bf48-03678dba77a0",
+          "attributes": {}
+        },
+        {
+          "name": "betaFeatures",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "4a6fb44c-988c-4b5f-bf48-03678dba77a0",
+          "attributes": {}
+        },
+        {
+          "name": "createApps",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "4a6fb44c-988c-4b5f-bf48-03678dba77a0",
+          "attributes": {}
+        }
+      ],
+      "insights-api": [
+        {
+          "name": "uploadIndicators",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "4e0c0944-ce3b-4e92-a6c1-8df506e03613",
+          "attributes": {}
+        }
+      ],
+      "event-api": [
+        {
+          "name": "read:feed:kontur-public",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "3eabb3b3-5ec4-442b-affb-a3d5b43db2fa",
+          "attributes": {}
+        },
+        {
+          "name": "read:raw-data",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "3eabb3b3-5ec4-442b-affb-a3d5b43db2fa",
+          "attributes": {}
+        },
+        {
+          "name": "read:all",
+          "composite": true,
+          "composites": {
+            "client": {
+              "event-api": [
+                "read:raw-data",
+                "read:feed:all"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "3eabb3b3-5ec4-442b-affb-a3d5b43db2fa",
+          "attributes": {}
+        },
+        {
+          "name": "read:feed:all",
+          "composite": true,
+          "composites": {
+            "client": {
+              "event-api": [
+                "read:feed:kontur-public"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "3eabb3b3-5ec4-442b-affb-a3d5b43db2fa",
+          "attributes": {}
+        },
+        {
+          "name": "test_role_1_client",
+          "composite": true,
+          "composites": {
+            "client": {
+              "event-api": [
+                "read:raw-data"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "3eabb3b3-5ec4-442b-affb-a3d5b43db2fa",
+          "attributes": {
+            "feed": [
+              "gdacs"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "groups": [
+    {
+      "name": "betaFeatures-and-createApps-quickstart",
+      "path": "/betaFeatures-and-createApps-quickstart",
+      "attributes": {},
+      "realmRoles": [],
+      "clientRoles": {
+        "kontur_platform": [
+          "betaFeatures",
+          "createApps"
+        ]
+      },
+      "subGroups": []
+    },
+    {
+      "name": "quickstart",
+      "path": "/quickstart",
+      "attributes": {},
+      "realmRoles": [],
+      "clientRoles": {
+        "kontur_platform": [
+          "bivariateStatistic",
+          "advancedPolygonDetails"
+        ],
+        "event-api": [
+          "read:all"
+        ]
+      },
+      "subGroups": []
+    },
+    {
+      "name": "event-api-public",
+      "path": "/event-api-public",
+      "attributes": {},
+      "realmRoles": [],
+      "clientRoles": {
+        "event-api": [
+          "read:feed:kontur-public"
+        ]
+      },
+      "subGroups": []
+    },
+    {
+      "name": "event-api-public-v1",
+      "path": "/event-api-public-v1",
+      "attributes": {},
+      "realmRoles": [],
+      "clientRoles": {
+        "event-api": [
+          "read:feed:kontur-public"
+        ]
+      },
+      "subGroups": []
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "account",
+      "name": "${client_account}",
+      "rootUrl": "${authBaseUrl}",
+      "baseUrl": "/realms/quickstart/account/",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "redirectUris": [
+        "/realms/quickstart/account/*"
+      ],
+      "webOrigins": [],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "publicClient": true,
+      "frontchannelLogout": false,
+      "protocol": "openid-connect",
+      "attributes": {},
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": 0,
+      "protocolMappers": [
+        {
+          "name": "platform_roles",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-client-role-mapper",
+          "consentRequired": false,
+          "config": {
+            "multivalued": "true",
+            "userinfo.token.claim": "false",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "claim.name": "realm_access.roles",
+            "jsonType.label": "String",
+            "usermodel.clientRoleMapping.clientId": "kontur_platform"
+          }
+        },
+        {
+          "name": "username",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-property-mapper",
+          "consentRequired": false,
+          "config": {
+            "userinfo.token.claim": "false",
+            "user.attribute": "username",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "claim.name": "username",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "name": "event_api_roles",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-client-role-mapper",
+          "consentRequired": false,
+          "config": {
+            "usermodel.clientRoleMapping.rolePrefix": "EVENTAPI_",
+            "multivalued": "true",
+            "userinfo.token.claim": "false",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "claim.name": "realm_access.roles",
+            "jsonType.label": "String",
+            "usermodel.clientRoleMapping.clientId": "event-api"
+          }
+        }
+      ],
+      "defaultClientScopes": [
+        "web-origins",
+        "profile",
+        "roles",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    },
+    {
+      "clientId": "event-api",
+      "rootUrl": "http://event-api.kontur/events",
+      "adminUrl": "http://event-api.kontur/events",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "redirectUris": [
+        "http://event-api.kontur/events/*"
+      ],
+      "webOrigins": [
+        "http://*.kontur"
+      ],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "publicClient": true,
+      "frontchannelLogout": false,
+      "protocol": "openid-connect",
+      "attributes": {
+        "backchannel.logout.session.required": "true",
+        "backchannel.logout.revoke.offline.tokens": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "defaultClientScopes": [
+        "web-origins",
+        "profile",
+        "roles",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    },
+    {
+      "clientId": "insights-api",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "redirectUris": [],
+      "webOrigins": [],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "publicClient": true,
+      "frontchannelLogout": false,
+      "protocol": "openid-connect",
+      "attributes": {
+        "backchannel.logout.session.required": "true",
+        "backchannel.logout.revoke.offline.tokens": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "defaultClientScopes": [
+        "web-origins",
+        "profile",
+        "roles",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    },
+    {
+      "clientId": "kontur_platform",
+      "rootUrl": "https://test-apps02.konturlabs.com",
+      "adminUrl": "https://test-apps02.konturlabs.com/",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "redirectUris": [
+        "http://*.kontur/*"
+      ],
+      "webOrigins": [
+        "*"
+      ],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "publicClient": true,
+      "frontchannelLogout": false,
+      "protocol": "openid-connect",
+      "attributes": {
+        "id.token.as.detached.signature": "false",
+        "saml.assertion.signature": "false",
+        "saml.force.post.binding": "false",
+        "saml.multivalued.roles": "false",
+        "saml.encrypt": "false",
+        "oauth2.quickstartice.authorization.grant.enabled": "false",
+        "backchannel.logout.revoke.offline.tokens": "false",
+        "saml.server.signature": "false",
+        "saml.server.signature.keyinfo.ext": "false",
+        "use.refresh.tokens": "true",
+        "exclude.session.state.from.auth.response": "false",
+        "oidc.ciba.grant.enabled": "false",
+        "saml.artifact.binding": "false",
+        "backchannel.logout.session.required": "true",
+        "client_credentials.use_refresh_token": "false",
+        "saml_force_name_id_format": "false",
+        "require.pushed.authorization.requests": "false",
+        "saml.client.signature": "false",
+        "tls.client.certificate.bound.access.tokens": "false",
+        "saml.authnstatement": "false",
+        "display.on.consent.screen": "false",
+        "saml.onetimeuse.condition": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "protocolMappers": [
+        {
+          "name": "platform_roles",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-client-role-mapper",
+          "consentRequired": false,
+          "config": {
+            "multivalued": "true",
+            "userinfo.token.claim": "false",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "claim.name": "realm_access.roles",
+            "jsonType.label": "String",
+            "usermodel.clientRoleMapping.clientId": "kontur_platform"
+          }
+        },
+        {
+          "name": "username",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-property-mapper",
+          "consentRequired": false,
+          "config": {
+            "userinfo.token.claim": "false",
+            "user.attribute": "username",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "claim.name": "username",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "name": "event_api_roles",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-client-role-mapper",
+          "consentRequired": false,
+          "config": {
+            "usermodel.clientRoleMapping.rolePrefix": "EVENTAPI_",
+            "multivalued": "true",
+            "userinfo.token.claim": "false",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "claim.name": "realm_access.roles",
+            "jsonType.label": "String",
+            "usermodel.clientRoleMapping.clientId": "event-api"
+          }
+        }
+      ],
+      "defaultClientScopes": [
+        "web-origins",
+        "profile",
+        "roles",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    }
+  ],
+  "components": {
+    "org.keycloak.storage.UserStorageProvider": [
+      {
+        "name": "UserSettingsAPI",
+        "providerId": "UserSettingsAPI",
+        "subComponents": {},
+        "config": {
+          "cachePolicy": [
+            "NO_CACHE"
+          ],
+          "priority": [
+            "0"
+          ],
+          "enabled": [
+            "true"
+          ]
+        }
+      }
+    ]
+  }
+}

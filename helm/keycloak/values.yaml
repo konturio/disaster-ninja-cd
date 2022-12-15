@@ -22,6 +22,7 @@ createResource:
   prometheusRule: false #TODO not tested
   serviceMonitor: false #TODO not tested
   deploymentLivenessProbe: false
+  importDefaultRealm: false
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 disableSsl: false

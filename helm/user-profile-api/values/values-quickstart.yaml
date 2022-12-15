@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: release-0.3.5.d6b718e.1
+  tag: release-0.3.7.5cfca24.1
   pullSecretName: nexus8084
   usePullSecret: true
 
@@ -22,8 +22,8 @@ probeInitialDelaySeconds: 90
 databaseHost: host.docker.internal
 databaseMaximumPoolSize: 5
 
-jwtIssuerUri: http://keycloak.kontur/auth/realms/dev
-jwtJwkSetUri: http://keycloak.kontur/auth/realms/dev/protocol/openid-connect/certs
+jwtIssuerUri: http://keycloak.kontur/auth/realms/quickstart
+jwtJwkSetUri: http://keycloak.kontur/auth/realms/quickstart/protocol/openid-connect/certs
 
 dnsNameOuter: none #not used due to isOfflineInstallation flag
 

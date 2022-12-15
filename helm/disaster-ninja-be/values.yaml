@@ -52,7 +52,7 @@ tilesHost: 'https://zigzag.kontur.io'
 notificationsEnabled: false
 notificationsFeed: disabled
 notificationsAlertUrlPattern: disabled
-***REMOVED***
+notificationsSlackWebHook: disabled
 
 alertingTime: 10m
 
