@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: "13718-add-field-last_updated-to-indicators-table-and-api.23274fd.1"
+  tag: "release-0.16.6.e1c98b7.1"
   tagType: ""
   pullSecretName: none
   usePullSecret: false
