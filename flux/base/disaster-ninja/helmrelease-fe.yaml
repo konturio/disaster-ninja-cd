@@ -4,22 +4,23 @@ kind: HelmRelease
 metadata:
   name: disaster-ninja-fe
 spec:
-  suspend: false
-  interval: 5m
   chart:
     spec:
       chart: ./helm/disaster-ninja-fe
-      valuesFiles:
-        - ./helm/disaster-ninja-fe/values.yaml
+      interval: 1m
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: GitRepository
         name: kontur-platform
         namespace: flux-system
-      interval: 1m
+      valuesFiles:
+        - ./helm/disaster-ninja-fe/values.yaml
+  interval: 5m
+  suspend: false
+  test:
+    enable: true
   upgrade:
     remediation:
       remediateLastFailure: true
-  test:
-    enable: true
----
+  values:
+    k8s_cluster_flavor: '${k8s_cluster_flavor}' # optional value that can be substituted in a Flux pipeline
