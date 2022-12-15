@@ -14,7 +14,10 @@ metadata:
     nginx.ingress.kubernetes.io/server-snippet: |
 {{- else }}
     nginx.org/client-max-body-size: 5m
+    nginx.org/location-snippets: |
+      include CORS_02_location.inc.conf;
     nginx.org/server-snippets: |
+      set $cors_config_file '/etc/nginx/default.cors.json';
 {{- end }}
       client_max_body_size 5m;
   labels:
