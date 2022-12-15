@@ -41,3 +41,5 @@ alertingTime: 10m
 
 otlpTracesExporter: none
 otlpTracesPort: 4317
+
+k8s_cluster_flavor: '${k8s_cluster_flavor}' # value can be substituted in a Flux pipeline
