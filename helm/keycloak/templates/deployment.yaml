@@ -52,6 +52,10 @@ spec:
           - containerPort: {{ .Values.service.management }}
             protocol: TCP
             name: management
+        volumeMounts:
+          - name: import-volume
+            mountPath: /usr/import
+            readOnly: true
         resources:
           requests:
             cpu: {{ .Values.resources.requests.cpu | quote }}
@@ -80,4 +84,11 @@ spec:
           periodSeconds: 15
           initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
         {{ end }}
+      volumes:
+        - name: import-volume
+          configMap:
+            name: {{ .Values.envName }}-import-keycloak
+            items:
+              - key: import-cfgmap-data
+                path: "{{ .Values.envName }}-realm.json"
 ---

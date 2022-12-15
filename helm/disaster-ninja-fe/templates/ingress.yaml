@@ -14,15 +14,18 @@ metadata:
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
     cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
     acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
-    {{ if .Values.isOfflineInstallation }}
+{{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/server-snippet: |
-    {{ else }}
+{{- else }}
     nginx.org/client-max-body-size: 5m
     nginx.org/proxy-read-timeout: 300s
+    nginx.org/location-snippets: |
+      include CORS_02_location.inc.conf;
     nginx.org/server-snippets: |
-    {{ end }}
+      set $cors_config_file '/etc/nginx/default.cors.json';
+{{- end }}
       client_max_body_size 5m;
       proxy_read_timeout 300s;
 
@@ -31,10 +34,16 @@ metadata:
       }
       location ^~ /active/preview.png {
         resolver 1.1.1.1 1.0.0.1;
+{{- if not .Values.isOfflineInstallation }}
+        include CORS_02_location.inc.conf;
+{{- end }}
         proxy_pass  {{ .Values.epigHost }}/active/preview.png;
       }
       location ~^/active/reports/(.*\..*)$ {
         resolver 1.1.1.1 1.0.0.1;
+{{- if not .Values.isOfflineInstallation }}
+        include CORS_02_location.inc.conf;
+{{- end }}
         proxy_pass  {{ .Values.reportsBucket }}$1;
       }
       location ~/active/reports[/]?[^/.]+$ {
@@ -45,12 +54,12 @@ metadata:
         rewrite "^/active(?=/).*/[^/.]+/{0,1}$" /active/ last;
         return 404;
       }
-      {{ if .Values.isOfflineInstallation }} #TODO workaround
+{{- if .Values.isOfflineInstallation }} #TODO workaround
       location /layers/tiles/basemap/style_ninja.json {
         resolver 1.1.1.1 1.0.0.1;
         proxy_pass https://basemap-locker01.s3.eu-central-1.amazonaws.com/PROD/styles/style_ninja.json;
       }
-      {{ end }}
+{{- end }}
 spec:
   tls:
     - hosts:

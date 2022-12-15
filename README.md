@@ -1,6 +1,11 @@
 Kontur platform
 ======================
 
+Quick Start: How to install the entire platform
+=====
+
+See in [helm/README.md](helm/README.md)
+
 ---
 <a name="structure"></a>Repository structure
 ---
@@ -65,76 +70,6 @@ containers:
 **Please note that in the case of using image digest - it's specified with @ between image name and digest** - so if you use this approach, please change your helm chart accordingly. See ```disaster-ninja-fe``` for the example.
 
 
-<a name="minikube"></a>How to run a platform app in local minikube, the example for disaster-ninja-be
+<a name="minikube"></a>How to run a single platform app in local minikube, the example for disaster-ninja-be
 ---
-
-Requirements:
- - [helm](https://helm.sh/docs/intro/install/)
- - kubernetes-client (kubectl)
- - [minikube](https://minikube.sigs.k8s.io/docs/start/)
-
-Create namespace
-```
-kubectl create namespace local-disaster-ninja
-```
-Remove strict requirements for CPUs / memory
-from `./helm/disaster-ninja-be/templates/deployment.yaml`
-```diff
-- spec:
--   containers:
--   - name: disaster-ninja-be
--     image: {{ .Values.image.be.repository }}:{{ .Values.image.be.tag }}
--     imagePullPolicy: {{ .Values.image.pullPolicy }}
--     resources:
--       requests:
--         cpu: "10"
--         memory: "2G"
--       limits:
--         memory: "4G"
-```
-
-Create secrets (values are encoded with base64, use ```echo -n mypassword | base64```):
-```
-cat << EOT >> secret.yaml
-apiVersion: v1
-data:
-  kontur.platform.keycloak.password: cGFzc3dvcmQ= # = 'password'
-  kontur.platform.keycloak.username: dXNlcm5hbWU= # = 'username'
-kind: Secret
-metadata:
-  labels:
-    app.kubernetes.io/instance: local-disaster-ninja-be
-    app.kubernetes.io/name: disaster-ninja-be
-    stage: local
-  name: local-disaster-ninja-be
-  namespace: local-disaster-ninja
-EOT
-
-kubectl apply -f secret.yaml 
-```
-
-Then you can install helm release
-```
-helm --kube-context minikube -n local-disaster-ninja upgrade --install local-disaster-ninja-be ./helm/disaster-ninja-be
-```
-
-To connect to the application running within the cluster, you might need to setup port forwarding:
-You can use [Lens](https://github.com/lensapp/lens) for that, 
-or the next line:
-```
-kubectl -n local-disaster-ninja port-forward svc/local-disaster-ninja-be 8627:8627
-```
-After that back-end will be available by
-```
-http://localhost:8627/swagger-ui/index.html
-```
-
-Stop minikube
-```
-minikube stop
-```
-
-Uninstall helm release
-```
-helm uninstall local-disaster-ninja-be
-```
+Use goals from [Makefile](helm/Makefile) - they even create local databases and default passwords. No manual resource reconfiguration is required.

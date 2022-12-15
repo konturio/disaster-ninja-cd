@@ -22,8 +22,9 @@ createResource:
   prometheusRule: false
   serviceMonitor: false
   deploymentLivenessProbe: true
+  importDefaultRealm: true
 isOfflineInstallation: true
-probeInitialDelaySeconds: 90
+probeInitialDelaySeconds: 120
 disableSsl: true
 
 resources:
@@ -34,6 +35,6 @@ resources:
      cpu: 500m
      memory: 768Mi
 
-keycloakRealm: dev
+keycloakRealm: quickstart
 
 alertingTime: 10m
