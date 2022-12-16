@@ -4,22 +4,21 @@ kind: HelmRelease
 metadata:
   name: user-profile-api
 spec:
-  suspend: false
-  interval: 5m
   chart:
     spec:
       chart: ./helm/user-profile-api
-      valuesFiles:
-        - ./helm/user-profile-api/values.yaml
+      interval: 1m
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: GitRepository
         name: kontur-platform
         namespace: flux-system
-      interval: 1m
+      valuesFiles:
+        - ./helm/user-profile-api/values.yaml
+  interval: 5m
+  suspend: false
+  test:
+    enable: true
   upgrade:
     remediation:
       remediateLastFailure: true
-  test:
-    enable: true
----
