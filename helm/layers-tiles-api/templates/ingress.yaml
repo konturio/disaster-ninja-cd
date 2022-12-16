@@ -1,7 +1,6 @@
 {{ if .Values.createResource.ingress }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
-aaa: {{ .Values.k8s_cluster_flavor }}
 metadata:
   annotations:
     acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
