@@ -1,6 +1,7 @@
 {{ if .Values.createResource.ingress }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
+aaa: {{ .Values.k8s_cluster_flavor }}
 metadata:
   annotations:
     acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
@@ -10,6 +11,13 @@ metadata:
   {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  {{- else }}
+    {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
+    nginx.org/location-snippets: |
+      include CORS_02_location.inc.conf;
+    nginx.org/server-snippets: |
+      set $cors_config_file '/etc/nginx/default.cors.json';
+    {{- end }}
   {{- end }}
   labels:
     app.kubernetes.io/instance: {{ .Values.envName }}-layers-tiles-api

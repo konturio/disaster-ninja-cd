@@ -1,2 +1,2 @@
 # validate helm installation locally using layers-api as an example:
-helm template --dry-run -n dev-layers-api -f values.yaml -f values/values-dev.yaml dev-layers-api . | kubectl apply --dry-run=client -f -
+cd helm/layers-api && helm template --dry-run -n dev-layers-api -f values.yaml --set-string k8s_cluster_flavor=k8s-01.kontur.io -f values/values-dev.yaml dev-layers-api . | kubectl apply --dry-run=client -f -
