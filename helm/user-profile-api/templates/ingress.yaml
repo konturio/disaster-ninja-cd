@@ -11,7 +11,6 @@ metadata:
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
   {{- else }}
-    nginx.org/location-snippets: |
     {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
     nginx.org/location-snippets: |
       include CORS_02_location.inc.conf;
