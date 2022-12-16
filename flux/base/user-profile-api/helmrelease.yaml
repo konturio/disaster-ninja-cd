@@ -22,3 +22,5 @@ spec:
   upgrade:
     remediation:
       remediateLastFailure: true
+  values:
+    k8s_cluster_flavor: '${k8s_cluster_flavor}' # optional value that can be substituted in a Flux pipeline
