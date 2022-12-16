@@ -1,26 +1,26 @@
 apiVersion: v1
+data:
+  OTEL_LOGS_EXPORTER: none
+  OTEL_METRICS_EXPORTER: none
+  OTEL_TRACES_EXPORTER: {{ .Values.otlpTracesExporter }}
+  SPRING_DATASOURCE_URL: jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/user-profile-api
+  SPRING_DATASOURCE_USERNAME: user-profile-api
+  management.endpoint.health.probes.enabled: "true"
+  management.endpoints.web.path-mapping.prometheus: metrics
+  management.server.port: {{ .Values.management.port | quote }}
+  #do not use uppercase var names for hikari properties otherwise startup fails with smth like 'The configuration of the pool is sealed once started.'
+  spring.datasource.hikari.maximum-pool-size: {{ .Values.databaseMaximumPoolSize | quote }}
+  spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.jwtIssuerUri }}
+  spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.jwtJwkSetUri }}
 kind: ConfigMap
 metadata:
-  name: {{ .Values.envName }}-user-profile-api
-  namespace: {{ .Release.Namespace }}
-  labels:
-    app.kubernetes.io/name: user-profile-api
-    app.kubernetes.io/instance: {{ .Values.envName }}-user-profile-api
-    app.kubernetes.io/managed-by: "Helm"
-    stage: {{ .Values.envName }}
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
-data:
-  SPRING_DATASOURCE_URL: 'jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/user-profile-api'
-  SPRING_DATASOURCE_USERNAME: user-profile-api
-  #do not use uppercase var names for hikari properties otherwise startup fails with smth like 'The configuration of the pool is sealed once started.'
-  spring.datasource.hikari.maximum-pool-size: {{ .Values.databaseMaximumPoolSize | squote }}
-  OTEL_TRACES_EXPORTER: {{ .Values.otlpTracesExporter }}
-  OTEL_METRICS_EXPORTER: none
-  OTEL_LOGS_EXPORTER: none
-  spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.jwtIssuerUri }}
-  spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.jwtJwkSetUri }}
-  management.endpoints.web.path-mapping.prometheus: metrics
-  management.endpoint.health.probes.enabled: 'true'
-  management.server.port: {{ .Values.management.port | quote }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-user-profile-api
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: user-profile-api
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-user-profile-api
+  namespace: {{ .Release.Namespace }}

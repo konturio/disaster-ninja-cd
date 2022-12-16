@@ -13,7 +13,7 @@ spec:
       rules:
         - alert: {{ camelcase .Values.envName }}-PlatformPodsUnavailable-UserProfileApi
           annotations:
-            message: 'There are {{ "{{$value}}" }} Ready pods in {{ .Values.envName }} UserProfile API'
+            message: There are {{ "{{$value}}" }} Ready pods in {{ .Values.envName }} UserProfile API
             summary: There are less Ready pods than required
           expr: |
             kube_deployment_status_replicas_ready{deployment="{{ .Values.envName }}-user-profile-api"}
@@ -21,5 +21,4 @@ spec:
           for: {{ .Values.alertingTime }}
           labels:
             severity: critical
----
 {{ end }}

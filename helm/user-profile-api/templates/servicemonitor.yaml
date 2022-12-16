@@ -2,28 +2,27 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ .Values.envName }}-user-profile-api
-  namespace: {{ .Release.Namespace }}
-  labels:
-    app.kubernetes.io/name: user-profile-api
-    app.kubernetes.io/instance: {{ .Values.envName }}-user-profile-api
-    app.kubernetes.io/managed-by: "Helm"
-    stage: {{ .Values.envName }}
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-user-profile-api
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: user-profile-api
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-user-profile-api
+  namespace: {{ .Release.Namespace }}
 spec:
   endpoints:
     - interval: 30s
-      port: management
       path: /metrics
+      port: management
       scheme: http
   selector:
     matchLabels:
-      app.kubernetes.io/name: user-profile-api
       app.kubernetes.io/instance: {{ .Values.envName }}-user-profile-api
       #don't add app.kubernetes.io/version
-      app.kubernetes.io/managed-by: "Helm"
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: user-profile-api
       stage: {{ .Values.envName }}
----
 {{ end }}

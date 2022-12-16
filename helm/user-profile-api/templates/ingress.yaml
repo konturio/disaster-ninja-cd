@@ -2,58 +2,45 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.envName }}-user-profile-api
-  namespace: {{ .Release.Namespace }}
-  labels:
-    app.kubernetes.io/name: user-profile-api
-    app.kubernetes.io/instance: {{ .Values.envName }}-user-profile-api
-    app.kubernetes.io/managed-by: "Helm"
-    stage: {{ .Values.envName }}
   annotations:
+    acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
+    cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
-    cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
-    acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
-    {{ if .Values.isOfflineInstallation }}
+  {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    {{ else }}
+  {{- else }}
+    {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
     nginx.org/location-snippets: |
-      if ($request_method = 'OPTIONS') {
-        add_header Access-Control-Allow-Origin 'https://{{ .Values.dnsNameOuter }}';
-
-        add_header Access-Control-Allow-Credentials 'true';
-        add_header Access-Control-Allow-Methods *;
-
-        add_header Access-Control-Allow-Headers 'Authorization,Keep-Alive,User-Agent,If-Modified-Since,Cache-Control,Content-Type';
-
-        add_header Access-Control-Max-Age 86400;
-        add_header Content-Type 'text/plain charset=UTF-8';
-        add_header Content-Length 0;
-        return 204;
-      }
-
-      add_header Access-Control-Allow-Origin 'https://{{ .Values.dnsNameOuter }}';
-      add_header Access-Control-Allow-Credentials 'true';
-      add_header Access-Control-Allow-Methods *;
-      add_header Access-Control-Allow-Headers 'Authorization,Keep-Alive,User-Agent,If-Modified-Since,Cache-Control,Content-Type';
-    {{ end }}
+      include CORS_02_location.inc.conf;
+      proxy_set_header Origin ""; # Disable CORS processing by upstreams
+    nginx.org/server-snippets: |
+      set $cors_config_file '/etc/nginx/default.cors.json';
+    {{- end }}
+  {{- end }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-user-profile-api
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: user-profile-api
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-user-profile-api
+  namespace: {{ .Release.Namespace }}
 spec:
-  tls:
-    - hosts:
-        - {{ .Values.ingressHost }}
-      secretName: {{ .Values.envName }}-user-profile-api-tls # < cert-manager will store the created certificate in this secret.
   ingressClassName: nginx
   rules:
     - host: {{ .Values.ingressHost }}
       http:
         paths:
-          - path: /
-            pathType: Prefix
-            backend:
+          - backend:
               service:
                 name: {{ .Values.envName }}-user-profile-api
                 port:
                   name: main
----
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - {{ .Values.ingressHost }}
+      secretName: {{ .Values.envName }}-user-profile-api-tls # < cert-manager will store the created certificate in this secret.
 {{ end }}
