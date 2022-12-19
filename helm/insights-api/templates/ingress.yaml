@@ -15,27 +15,16 @@ metadata:
     nginx.ingress.kubernetes.io/server-snippet: |
   {{- else }}
     nginx.org/client-max-body-size: {{ .Values.client_max_body_size }}
+    {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
     nginx.org/location-snippets: |
-      if ($request_method = 'OPTIONS') {
-        add_header Access-Control-Allow-Origin 'https://{{ .Values.dnsNameOuter }}';
-
-        add_header Access-Control-Allow-Credentials 'true';
-        add_header Access-Control-Allow-Methods *;
-
-        add_header Access-Control-Allow-Headers 'Authorization,Keep-Alive,User-Agent,If-Modified-Since,Cache-Control,Content-Type';
-
-        add_header Access-Control-Max-Age 86400;
-        add_header Content-Type 'text/plain charset=UTF-8';
-        add_header Content-Length 0;
-        return 204;
-      }
-
-      add_header Access-Control-Allow-Origin 'https://{{ .Values.dnsNameOuter }}';
-      add_header Access-Control-Allow-Credentials 'true';
-      add_header Access-Control-Allow-Methods *;
-      add_header Access-Control-Allow-Headers 'Authorization,Keep-Alive,User-Agent,If-Modified-Since,Cache-Control,Content-Type';
+      include CORS_02_location.inc.conf;
+      proxy_set_header Origin ""; # Disable CORS processing by upstreams
+    {{- end }}
     nginx.org/proxy-read-timeout: 600s
     nginx.org/server-snippets: |
+    {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
+      set $cors_config_file '/etc/nginx/default.cors.json';
+    {{- end }}
   {{- end }}
       client_max_body_size {{ .Values.client_max_body_size }};
       proxy_read_timeout 600s;
