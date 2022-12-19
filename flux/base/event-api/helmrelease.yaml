@@ -4,7 +4,6 @@ kind: HelmRelease
 metadata:
   name: event-api
 spec:
-  suspend: false
   interval: 5m
   chart:
     spec:
@@ -17,9 +16,9 @@ spec:
         name: kontur-platform
         namespace: flux-system
       interval: 1m
+  suspend: false
+  test:
+    enable: true
   upgrade:
     remediation:
       remediateLastFailure: true
-  test:
-    enable: true
----

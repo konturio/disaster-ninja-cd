@@ -1,54 +1,53 @@
-{{ if .Values.createResource.serviceMonitor }}
+{{- if .Values.createResource.serviceMonitor }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-event-api
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: event-api
+    stage: {{ .Values.envName }}
   name: {{ .Values.envName }}-event-api
   namespace: {{ .Release.Namespace }}
-  labels:
-    app.kubernetes.io/name: event-api
-    app.kubernetes.io/instance: {{ .Values.envName }}-event-api
-    app.kubernetes.io/managed-by: "Helm"
-    stage: {{ .Values.envName }}
-  annotations:
-    meta.helm.sh/release-name: {{ .Release.Name }}
-    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
 spec:
   endpoints:
   - interval: 30s
-    port: main
     path: /events/metrics
+    port: main
     scheme: http
   selector:
     matchLabels:
-      app.kubernetes.io/name: event-api
       app.kubernetes.io/instance: {{ .Values.envName }}-event-api
-      app.kubernetes.io/managed-by: "Helm"
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: event-api
       stage: {{ .Values.envName }}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ .Values.envName }}-event-api-redis
-  namespace: {{ .Release.Namespace }}
-  labels:
-    app.kubernetes.io/name: event-api-redis
-    app.kubernetes.io/instance: {{ .Values.envName }}-event-api-redis
-    app.kubernetes.io/managed-by: "Helm"
-    stage: {{ .Values.envName }}
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-event-api-redis
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: event-api-redis
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-event-api-redis
+  namespace: {{ .Release.Namespace }}
 spec:
   endpoints:
   - interval: 30s
-    port: metrics
     path: /metrics
+    port: metrics
     scheme: http
   selector:
     matchLabels:
-      app.kubernetes.io/name: event-api-redis
       app.kubernetes.io/instance: {{ .Values.envName }}-event-api-redis
-      app.kubernetes.io/managed-by: "Helm"
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: event-api-redis
       stage: {{ .Values.envName }}
----
-{{ end }}
+{{- end }}

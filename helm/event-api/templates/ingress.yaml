@@ -1,47 +1,46 @@
-{{ if .Values.createResource.ingress }}
+{{- if .Values.createResource.ingress }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.envName }}-event-api
-  namespace: {{ .Release.Namespace }}
-  labels:
-    app.kubernetes.io/name: event-api
-    app.kubernetes.io/instance: {{ .Values.envName }}-event-api
-    app.kubernetes.io/managed-by: "Helm"
-    stage: {{ .Values.envName }}
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
     cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
     acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
-    {{ if .Values.isOfflineInstallation }}
+  {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/proxy-body-size: 5m
     nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
     nginx.ingress.kubernetes.io/server-snippet: |
-    {{ else }}
+  {{- else }}
     nginx.org/client-max-body-size: 5m
     nginx.org/proxy-read-timeout: 1800s
     nginx.org/server-snippets: |
-    {{ end }}
+  {{- end }}
       proxy_read_timeout 1800s;
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-event-api
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: event-api
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-event-api
+  namespace: {{ .Release.Namespace }}
 spec:
-  tls:
-    - hosts:
-        - {{ .Values.ingressHost }}
-      secretName: {{ .Values.envName }}-event-api-tls # < cert-manager will store the created certificate in this secret.
   ingressClassName: nginx
   rules:
     - host: {{ .Values.ingressHost }}
       http:
         paths:
-          - path: /events
-            pathType: Prefix
-            backend:
+          - backend:
               service:
                 name: {{ .Values.envName }}-event-api
                 port:
                   name: main
----
-{{ end }}
+            path: /events
+            pathType: Prefix
+  tls:
+    - hosts:
+        - {{ .Values.ingressHost }}
+      secretName: {{ .Values.envName }}-event-api-tls # < cert-manager will store the created certificate in this secret.
+{{- end }}
