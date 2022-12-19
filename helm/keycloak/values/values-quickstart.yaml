@@ -9,9 +9,23 @@ image:
   pullSecretName: nexus8084
   usePullSecret: true
 
+replicas: 1
+
 service:
   main: 8080
   management: 9990
+  kcFrontEndUrl: http://keycloak.kontur/auth
+
+keycloak:
+  databaseHost: host.docker.internal
+  databasePort: 5432
+  databaseName: keycloak
+  databaseUser: keycloak
+ups:
+  databaseHost: host.docker.internal
+  databasePort: 5432
+  databaseName: user-profile-api
+  databaseUser: user-profile-api
 
 envName: quickstart
 ingressHost: keycloak.kontur

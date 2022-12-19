@@ -23,11 +23,11 @@ spec:
   ports:
   - name: main
     port: {{ .Values.service.main }}
-    targetPort: main #TODO check
+    targetPort: main
     protocol: TCP
   - name: management
     port: {{ .Values.service.management }}
-    targetPort: management #TODO check
+    targetPort: management
     protocol: TCP
 ---
 

@@ -12,23 +12,23 @@ metadata:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
 data:
-  DB_ADDR: host.docker.internal
-  DB_PORT: "5432"
-  DB_DATABASE: keycloak
-  DB_USER: keycloak
+  DB_ADDR: {{ .Values.keycloak.databaseHost }}
+  DB_PORT: {{ .Values.keycloak.databasePort | quote }}
+  DB_DATABASE: {{ .Values.keycloak.databaseName }}
+  DB_USER: {{ .Values.keycloak.databaseUser }}
   DB_VENDOR: postgres
   #JAVA_OPTS
   #JAVA_OPTS_APPEND
   #JDBC_PARAMS
   #JGROUPS_DISCOVERY_PROTOCOL
   #JDBC_PING
-  KEYCLOAK_FRONTEND_URL: http://keycloak.kontur/auth
+  KEYCLOAK_FRONTEND_URL: {{ .Values.service.kcFrontEndUrl }}
   KEYCLOAK_USER: keycloak #is only created if not exists, password is set in secret.yaml in KEYCLOAK_PASSWORD
   PROXY_ADDRESS_FORWARDING: "true"
-  USP_DB_ADDR: host.docker.internal
-  USP_DB_NAME: user-profile-api
-  USP_DB_PORT: "5432"
-  USP_DB_USER: user-profile-api
+  USP_DB_ADDR: {{ .Values.ups.databaseHost }}
+  USP_DB_NAME: {{ .Values.ups.databaseName }}
+  USP_DB_PORT: {{ .Values.ups.databasePort | quote }}
+  USP_DB_USER: {{ .Values.ups.databaseUser }}
   KEYCLOAK_STATISTICS: all #enables /metrics and /health on management port
   {{ if .Values.disableSsl }}
   auth.server.ssl.required: "false"
