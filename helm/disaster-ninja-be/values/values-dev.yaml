@@ -17,7 +17,7 @@ replicas: 1
 
 image:
   be:
-    tag: "13569-gdpr-logged-in-user-email-addresses-available-in-non-secured-metrics-endpoint.af575be.1" # this version will be automatically deployed by Flux
+    tag: "13809-adjust-endpoint-apps-id-apps-to-manage-features-configuration-dn-be.5b80670.1" # this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: dev
