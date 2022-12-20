@@ -54,5 +54,6 @@ otlpTracesExporter: none
 otlpTracesPort: 4317
 
 client_max_body_size: 5g
+proxy_read_timeout: 600s
 
 k8s_cluster_flavor: default # value may be substituted in a Flux pipeline
