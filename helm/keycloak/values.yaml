@@ -5,9 +5,11 @@
 image:
   repository: nexus.kontur.io:8084/konturdev/keycloak-with-ups-spi
   pullPolicy: IfNotPresent
-  tag: 13594-setup-keycloak-in-k8s-cluster.35a1069.1
+  tag: 13594-setup-keycloak-in-k8s-cluster.6a625cd.1
   pullSecretName: nexus8084
   usePullSecret: false
+
+replicas: 1
 
 service:
   main: 8080
@@ -19,22 +21,20 @@ ingressHost: none
 createResource:
   defaultSecrets: false
   ingress: false
-  prometheusRule: false #TODO not tested
-  serviceMonitor: false #TODO not tested
+  prometheusRule: false
+  serviceMonitor: false
   deploymentLivenessProbe: false
   importDefaultRealm: false
 isOfflineInstallation: false
-probeInitialDelaySeconds: 15
+probeInitialDelaySeconds: 180
 disableSsl: false
 
 resources:
    requests:
-     cpu: 500m
-     memory: 512Mi
+     cpu: 100m
+     memory: 128Mi
    limits:
      cpu: 500m
-     memory: 1Gi
-
-keycloakRealm: dev
+     memory: 768Mi
 
 alertingTime: 10m

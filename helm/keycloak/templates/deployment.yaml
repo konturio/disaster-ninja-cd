@@ -24,8 +24,8 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 1 #TODO check
-      maxUnavailable: 0
+      maxSurge: 0
+      maxUnavailable: 1
   template:
     metadata:
       labels:
@@ -52,10 +52,12 @@ spec:
           - containerPort: {{ .Values.service.management }}
             protocol: TCP
             name: management
+        {{ if .Values.createResource.importDefaultRealm }}
         volumeMounts:
           - name: import-volume
             mountPath: /usr/import
             readOnly: true
+        {{ end }}
         resources:
           requests:
             cpu: {{ .Values.resources.requests.cpu | quote }}
@@ -84,6 +86,7 @@ spec:
           periodSeconds: 15
           initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
         {{ end }}
+      {{ if .Values.createResource.importDefaultRealm }}
       volumes:
         - name: import-volume
           configMap:
@@ -91,4 +94,5 @@ spec:
             items:
               - key: import-cfgmap-data
                 path: "{{ .Values.envName }}-realm.json"
+      {{ end }}
 ---
