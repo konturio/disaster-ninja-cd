@@ -20,7 +20,7 @@ metadata:
       include CORS_02_location.inc.conf;
       proxy_set_header Origin ""; # Disable CORS processing by upstreams
     {{- end }}
-    nginx.org/proxy-read-timeout: 600s
+    nginx.org/proxy-read-timeout: {{ .Values.proxy_read_timeout | quote }}
     nginx.org/server-snippets: |
     {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
       set $cors_config_file '/etc/nginx/default.cors.json';

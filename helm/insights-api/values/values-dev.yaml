@@ -53,4 +53,4 @@ keycloakRealm: dev
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
 
-client_max_body_size: 5g
+proxy_read_timeout: 1800s
