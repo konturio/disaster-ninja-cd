@@ -102,8 +102,6 @@ spec:
             periodSeconds: 15
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
         {{- end }}
-          restartPolicy: Always
-          terminationGracePeriodSeconds: 30
 ---
 apiVersion: apps/v1
 kind: Deployment
