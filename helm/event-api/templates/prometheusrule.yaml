@@ -1,4 +1,4 @@
-{{ if .Values.createResource.prometheusRule }}
+{{- if .Values.createResource.prometheusRule }}
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
@@ -13,7 +13,7 @@ spec:
       rules:
         - alert: {{ camelcase .Values.envName }}-PlatformPodsUnavailable-EventApi
           annotations:
-            message: 'There are {{ "{{$value}}" }} ready pods in {{ .Values.envName }} Event API'
+            message: There are {{ "{{$value}}" }} ready pods in {{ .Values.envName }} Event API
             summary: There are less Ready pods than required
           expr: |
             kube_deployment_status_replicas_ready{deployment="{{ .Values.envName }}-event-api"}
@@ -21,4 +21,4 @@ spec:
           for: {{ .Values.alertingTime }}
           labels:
             severity: critical
-{{ end }}
+{{- end }}

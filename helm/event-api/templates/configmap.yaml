@@ -1,68 +1,68 @@
 apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Values.envName }}-event-api
-  namespace: {{ .Release.Namespace }}
-  labels:
-    app.kubernetes.io/name: event-api
-    app.kubernetes.io/instance: {{ .Values.envName }}-event-api
-    app.kubernetes.io/managed-by: "Helm"
-    stage: {{ .Values.envName }}
-  annotations:
-    meta.helm.sh/release-name: {{ .Release.Name }}
-    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
 data:
-  spring.redis.host: '{{ .Values.envName }}-event-api-redis'
-  {{ if not .Values.usePgDataSecret }}
-  SPRING_DATASOURCE_URL: 'jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/{{ .Values.databaseName }}'
-  SPRING_DATASOURCE_USERNAME: {{ .Values.databaseUser }}
-  {{ end }}
-  #do not use uppercase var names for hikari properties otherwise startup fails with smth like 'The configuration of the pool is sealed once started.'
-  spring.datasource.hikari.maximum-pool-size: {{ .Values.databaseMaximumPoolSize | squote }}
-  spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.jwtIssuerUri }}
-  spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.jwtJwkSetUri }}
-  spring.profiles.active: {{ .Values.profiles }}
-  spring.liquibase.enabled: '{{ .Values.liquibaseEnabled }}'
-  OTEL_TRACES_EXPORTER: {{ .Values.otlpTracesExporter }}
-  OTEL_METRICS_EXPORTER: none
   OTEL_LOGS_EXPORTER: none
-  server.servlet.context-path: /events
-  management.endpoints.web.base-path: /
-  management.endpoints.web.path-mapping.prometheus: metrics
+  OTEL_METRICS_EXPORTER: none
+  OTEL_TRACES_EXPORTER: {{ .Values.otlpTracesExporter }}
+  aws.sqs.dlqUrl: {{ .Values.awsSqsDlqUrl }}
+  aws.sqs.enabled: {{ .Values.awsSqsEnabled | quote }}
+  aws.sqs.url: {{ .Values.awsSqsUrl }}
+  emdat.user: {{ .Values.emdatUser }}
+  feign.client.config.default.defaultRequestHeaders.User-Agent: {{ .Values.feignUserAgent }}
+  humanitarianCrisis.s3Folder: {{ .Values.humanitarianCrisisS3Folder }}
   konturApi.host: {{ .Values.konturApiUrl }}
   konturApps.host: {{ .Values.konturAppsUrl }}
+  management.endpoints.web.base-path: /
+  management.endpoints.web.path-mapping.prometheus: metrics
+  {{- if not .Values.usePgDataSecret }}
+  SPRING_DATASOURCE_URL: 'jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/{{ .Values.databaseName }}'
+  SPRING_DATASOURCE_USERNAME: {{ .Values.databaseUser }}
+  {{- end }}
   pdc.host: {{ .Values.pdcUrl }}
   pdc.mapSrvHost: {{ .Values.pdcMapSrvUrl }}
   pdc.user: {{ .Values.pdcUser }}
-  emdat.user: {{ .Values.emdatUser }}
+  scheduler.calfireSearch.enable: {{ .Values.calfireSearchEnable | quote }}
+  scheduler.emDatImport.enable: {{ .Values.emDatImportEnable | quote }}
+  scheduler.enrichment.enable: {{ .Values.enrichmentEnable | quote }}
+  scheduler.eventCombination.enable: {{ .Values.eventCombinationEnable | quote }}
+  scheduler.feedComposition.enable: {{ .Values.feedCompositionEnable | quote }}
+  scheduler.firmsModisImport.enable: {{ .Values.firmsModisImportEnable | quote }}
+  scheduler.firmsNoaaImport.enable: {{ .Values.firmsNoaaImportEnable | quote }}
+  scheduler.firmsSuomiImport.enable: {{ .Values.firmsSuomiImportEnable | quote }}
+  scheduler.gdacsImport.enable: {{ .Values.gdacsImportEnable | quote }}
+  scheduler.historicalTornadoJapanMaImport.enabled: {{ .Values.historicalTornadoJapanMaImportEnabled | quote }}
+  scheduler.hpSrvImport.enable: {{ .Values.hpSrvImportEnable | quote }}
+  scheduler.hpSrvMagsImport.enable: {{ .Values.hpSrvMagsImportEnable | quote }}
+  scheduler.humanitarianCrisisImport.enable: {{ .Values.humanitarianCrisisImportEnable | quote }}
+  scheduler.inciwebImport.enable: {{ .Values.inciwebImportEnable | quote }}
+  scheduler.metrics.enable: {{ .Values.metricsEnable | quote }}
+  scheduler.nhcAtImport.enable: {{ .Values.nhcAtImportEnable | quote }}
+  scheduler.nhcCpImport.enable: {{ .Values.nhcCpImportEnable | quote }}
+  scheduler.nhcEpImport.enable: {{ .Values.nhcEpImportEnable | quote }}
+  scheduler.nifcImport.enable: {{ .Values.nifcImportEnable | quote }}
+  scheduler.normalization.enable: {{ .Values.normalizationEnable | quote }}
+  scheduler.pdcMapSrvSearch.enable: {{ .Values.pdcMapSrvSearchEnable | quote }}
+  scheduler.reEnrichment.enable: {{ .Values.reEnrichmentEnable | quote }}
+  scheduler.staticImport.enable: {{ .Values.staticImportEnable | quote }}
+  scheduler.stormsNoaaImport.enable: {{ .Values.stormsNoaaImportEnable | quote }}
+  scheduler.tornadoJapanMaImport.enabled: {{ .Values.tornadoJapanMaImportEnabled | quote }}
+  server.servlet.context-path: /events
+  #do not use uppercase var names for hikari properties otherwise startup fails with smth like 'The configuration of the pool is sealed once started.'
+  spring.datasource.hikari.maximum-pool-size: {{ .Values.databaseMaximumPoolSize | quote }}
+  spring.liquibase.enabled: {{ .Values.liquibaseEnabled | quote }}
+  spring.profiles.active: {{ .Values.profiles }}
+  spring.redis.host: {{ .Values.envName }}-event-api-redis
+  spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.jwtIssuerUri }}
+  spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.jwtJwkSetUri }}
   staticdata.s3Folder: {{ .Values.staticdataS3Folder }}
-  humanitarianCrisis.s3Folder: {{ .Values.humanitarianCrisisS3Folder }}
-  aws.sqs.url: {{ .Values.awsSqsUrl }}
-  aws.sqs.dlqUrl: {{ .Values.awsSqsDlqUrl }}
-  aws.sqs.enabled: '{{ .Values.awsSqsEnabled }}'
-  feign.client.config.default.defaultRequestHeaders.User-Agent: {{ .Values.feignUserAgent }}
-  scheduler.hpSrvImport.enable: '{{ .Values.hpSrvImportEnable }}'
-  scheduler.hpSrvMagsImport.enable: '{{ .Values.hpSrvMagsImportEnable }}'
-  scheduler.pdcMapSrvSearch.enable: '{{ .Values.pdcMapSrvSearchEnable }}'
-  scheduler.gdacsImport.enable: '{{ .Values.gdacsImportEnable }}'
-  scheduler.firmsModisImport.enable: '{{ .Values.firmsModisImportEnable }}'
-  scheduler.firmsNoaaImport.enable: '{{ .Values.firmsNoaaImportEnable }}'
-  scheduler.firmsSuomiImport.enable: '{{ .Values.firmsSuomiImportEnable }}'
-  scheduler.emDatImport.enable: '{{ .Values.emDatImportEnable }}'
-  scheduler.staticImport.enable: '{{ .Values.staticImportEnable }}'
-  scheduler.stormsNoaaImport.enable: '{{ .Values.stormsNoaaImportEnable }}'
-  scheduler.tornadoJapanMaImport.enabled: '{{ .Values.tornadoJapanMaImportEnabled }}'
-  scheduler.historicalTornadoJapanMaImport.enabled: '{{ .Values.historicalTornadoJapanMaImportEnabled }}'
-  scheduler.calfireSearch.enable: '{{ .Values.calfireSearchEnable }}'
-  scheduler.nifcImport.enable: '{{ .Values.nifcImportEnable }}'
-  scheduler.inciwebImport.enable: '{{ .Values.inciwebImportEnable }}'
-  scheduler.humanitarianCrisisImport.enable: '{{ .Values.humanitarianCrisisImportEnable }}'
-  scheduler.nhcAtImport.enable: '{{ .Values.nhcAtImportEnable }}'
-  scheduler.nhcCpImport.enable: '{{ .Values.nhcCpImportEnable }}'
-  scheduler.nhcEpImport.enable: '{{ .Values.nhcEpImportEnable }}'
-  scheduler.normalization.enable: '{{ .Values.normalizationEnable }}'
-  scheduler.eventCombination.enable: '{{ .Values.eventCombinationEnable }}'
-  scheduler.feedComposition.enable: '{{ .Values.feedCompositionEnable }}'
-  scheduler.enrichment.enable: '{{ .Values.enrichmentEnable }}'
-  scheduler.reEnrichment.enable: '{{ .Values.reEnrichmentEnable }}'
-  scheduler.metrics.enable: '{{ .Values.metricsEnable }}'
+kind: ConfigMap
+metadata:
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-event-api
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/name: event-api
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-event-api
+  namespace: {{ .Release.Namespace }}
