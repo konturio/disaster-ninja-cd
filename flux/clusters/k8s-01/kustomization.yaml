@@ -12,7 +12,7 @@ resources:
   - titiler
   - user-profile-api
   - disaster-ninja
-  #TODO keycloak 13594
+  - keycloak
 
 # Do not comment or remove any lines below unless you intend to kill a few databases
   - event-api-db/overlays/DEV
