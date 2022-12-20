@@ -1,4 +1,4 @@
-# Default values for keycloak.
+# Quickstart values for keycloak.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -38,7 +38,7 @@ createResource:
   deploymentLivenessProbe: true
   importDefaultRealm: true
 isOfflineInstallation: true
-probeInitialDelaySeconds: 120
+probeInitialDelaySeconds: 360
 disableSsl: true
 
 resources:
@@ -48,7 +48,5 @@ resources:
    limits:
      cpu: 500m
      memory: 768Mi
-
-keycloakRealm: quickstart
 
 alertingTime: 10m
