@@ -1,241 +1,259 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.envName }}-insights-api
-  namespace: {{ .Release.Namespace }}
-  labels:
-    app.kubernetes.io/name: insights-api
-    app.kubernetes.io/instance: {{ .Values.envName }}-insights-api
-    app.kubernetes.io/managed-by: "Helm"
-    stage: {{ .Values.envName }}
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-insights-api
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: insights-api
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-insights-api
+  namespace: {{ .Release.Namespace }}
 spec:
+  progressDeadlineSeconds: 600
+  replicas: {{ .Values.replicas }}
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app.kubernetes.io/name: insights-api
       app.kubernetes.io/instance: {{ .Values.envName }}-insights-api
       #don't add app.kubernetes.io/version
-      app.kubernetes.io/managed-by: "Helm"
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: insights-api
       stage: {{ .Values.envName }}
-  replicas: {{ .Values.replicas }}
   strategy:
-    type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 1
+    type: RollingUpdate
   template:
     metadata:
-      labels:
-        app.kubernetes.io/name: insights-api
-        app.kubernetes.io/instance: {{ .Values.envName }}-insights-api
-        app.kubernetes.io/managed-by: "Helm"
-        stage: {{ .Values.envName }}
       annotations:
+        checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
         meta.helm.sh/release-name: {{ .Release.Name }}
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
-        checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
+      labels:
+        app.kubernetes.io/instance: {{ .Values.envName }}-insights-api
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: insights-api
+        stage: {{ .Values.envName }}
     spec:
-      {{ if .Values.image.usePullSecret }}
+    {{- if .Values.image.usePullSecret }}
       imagePullSecrets: #TODO remove once image is on ghcr.io
-        - name: {{ .Values.image.pullSecretName }}{{ end }}
+        - name: {{ .Values.image.pullSecretName }}
+    {{- end }}
       containers:
-        - name: insights-api
-          image: {{ .Values.image.name }}{{ .Values.image.tagType }}:{{ .Values.image.tag }}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: {{ .Values.port }}
-              name: main{{ if .Values.jmxEnabled }}
-            - containerPort: 5000
-              name: jmx{{ end }}
-            - containerPort: {{ .Values.management.port }}
-              name: management
-          resources:
-            requests:
-              cpu: {{ .Values.resources.app.requests.cpu | quote }}
-              memory: {{ .Values.resources.app.requests.memory | quote }}
-            limits:
-              #TODO cpu
-              memory: {{ .Values.resources.app.limits.memory | quote }}
-          env:
+        - env:
             - name: OTEL_SERVICE_NAME
               valueFrom:
                 fieldRef:
+                  apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/instance']
             - name: MY_NODE_NAME
               valueFrom:
                 fieldRef:
+                  apiVersion: v1
                   fieldPath: spec.nodeName
             - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-              value: "http://$(MY_NODE_NAME):{{ .Values.otlpTracesPort }}"
+              value: http://$(MY_NODE_NAME):{{ .Values.otlpTracesPort }}
           envFrom:
             - configMapRef:
                 name: {{ .Values.envName }}-insights-api
             - secretRef:
                 name: {{ .Values.envName }}-insights-api #must contain SPRING_DATASOURCE_PASSWORD
+          image: {{ .Values.image.name }}{{ .Values.image.tagType }}:{{ .Values.image.tag }}
+          imagePullPolicy: IfNotPresent
+          name: insights-api
+          ports:
+            - containerPort: {{ .Values.port }}
+              name: main{{ if .Values.jmxEnabled }}
+              protocol: TCP
+            - containerPort: 5000
+              name: jmx{{ end }}
+              protocol: TCP
+            - containerPort: {{ .Values.management.port }}
+              name: management
+              protocol: TCP
           readinessProbe:
+            failureThreshold: 1
             httpGet:
               path: /health/readiness
               port: {{ .Values.management.port }}
-            failureThreshold: 1
-            periodSeconds: 15
+              scheme: HTTP
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
-          {{ if .Values.createResource.deploymentLivenessProbe }}
+            periodSeconds: 15
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              #TODO cpu
+              memory: {{ .Values.resources.app.limits.memory | quote }}
+            requests:
+              cpu: {{ .Values.resources.app.requests.cpu | quote }}
+              memory: {{ .Values.resources.app.requests.memory | quote }}
+        {{- if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             httpGet:
               path: /health/liveness
               port: {{ .Values.management.port }}
+              scheme: HTTP
             failureThreshold: 10
             periodSeconds: 15
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
-          {{ end }}
+        {{- end }}
+          restartPolicy: Always
+          terminationGracePeriodSeconds: 30
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.envName }}-insights-api-redis
-  namespace: {{ .Release.Namespace }}
-  labels:
-    app.kubernetes.io/name: insights-api-redis
-    app.kubernetes.io/instance: {{ .Values.envName }}-insights-api-redis
-    app.kubernetes.io/managed-by: "Helm"
-    stage: {{ .Values.envName }}
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-insights-api-redis
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: insights-api-redis
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-insights-api-redis
+  namespace: {{ .Release.Namespace }}
 spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app.kubernetes.io/name: insights-api-redis
       app.kubernetes.io/instance: {{ .Values.envName }}-insights-api-redis
       #don't add app.kubernetes.io/version
-      app.kubernetes.io/managed-by: "Helm"
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: insights-api-redis
       stage: {{ .Values.envName }}
-  replicas: 1
   strategy:
-    type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 0
+    type: RollingUpdate
   template:
     metadata:
-      labels:
-        app.kubernetes.io/name: insights-api-redis
-        app.kubernetes.io/instance: {{ .Values.envName }}-insights-api-redis
-        app.kubernetes.io/managed-by: "Helm"
-        stage: {{ .Values.envName }}
       annotations:
+        checksum/configmap: {{ include (print $.Template.BasePath "/redis-conf.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
         meta.helm.sh/release-name: {{ .Release.Name }}
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
-        checksum/configmap: {{ include (print $.Template.BasePath "/redis-conf.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
+      labels:
+        app.kubernetes.io/instance: {{ .Values.envName }}-insights-api-redis
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: insights-api-redis
+        stage: {{ .Values.envName }}
     spec:
-      volumes:
-        - name: start-scripts
-          configMap:
-            name: {{ .Values.envName }}-insights-api-redis-scripts
-            defaultMode: 493
-        - name: health
-          configMap:
-            name: {{ .Values.envName }}-insights-api-redis-health
-            defaultMode: 493
-        - name: config
-          configMap:
-            name: {{ .Values.envName }}-insights-api-redis-configuration
-            defaultMode: 420
-        - name: redis-tmp-conf
-          emptyDir: {}
-        - name: tmp
-          emptyDir: {}
-        - name: redis-data
-          emptyDir: {}
       containers:
-        - name: redis
-          image: docker.io/bitnami/redis:7.0.3-debian-11-r0
+        - args:
+            - -c
+            - /opt/bitnami/scripts/start-scripts/start-master.sh
           command:
             - /bin/bash
-          args:
-            - '-c'
-            - /opt/bitnami/scripts/start-scripts/start-master.sh
-          ports:
-            - name: redis
-              containerPort: 6379
-              protocol: TCP
           env:
             - name: REDIS_REPLICATION_MODE
               value: master
             - name: ALLOW_EMPTY_PASSWORD
-              value: 'no'
+              value: "no"
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: redis
                   key: redis-password
+                  name: redis
             - name: REDIS_TLS_ENABLED
-              value: 'no'
+              value: "no"
             - name: REDIS_PORT
-              value: '6379'
-          resources:
-            requests:
-              cpu: {{ .Values.resources.redis.requests.cpu | quote }}
-              memory: {{ .Values.resources.redis.requests.memory | quote }}
-            limits:
-              #TODO cpu
-              memory: {{ .Values.resources.redis.limits.memory | quote }}
-          volumeMounts:
-            - name: start-scripts
-              mountPath: /opt/bitnami/scripts/start-scripts
-            - name: health
-              mountPath: /health
-            - name: redis-data
-              mountPath: /data
-            - name: config
-              mountPath: /opt/bitnami/redis/mounted-etc
-            - name: redis-tmp-conf
-              mountPath: /opt/bitnami/redis/etc/
-            - name: tmp
-              mountPath: /tmp
+              value: "6379"
+          image: docker.io/bitnami/redis:7.0.3-debian-11-r0
+          imagePullPolicy: IfNotPresent
           livenessProbe:
             exec:
               command:
                 - sh
-                - '-c'
+                - -c
                 - /health/ping_liveness_local.sh 5
-            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
-            timeoutSeconds: 6
-            periodSeconds: 15
             failureThreshold: 10
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
+            periodSeconds: 15
+            successThreshold: 1
+            timeoutSeconds: 6
+          name: redis
+          ports:
+            - containerPort: 6379
+              name: redis
+              protocol: TCP
           readinessProbe:
             exec:
               command:
                 - sh
-                - '-c'
+                - -c
                 - /health/ping_readiness_local.sh 1
-            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
-            timeoutSeconds: 2
-            periodSeconds: 15
             failureThreshold: 1
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
+            periodSeconds: 15
+            successThreshold: 1
+            timeoutSeconds: 2
+          resources:
+            limits:
+              #TODO cpu
+              memory: {{ .Values.resources.redis.limits.memory | quote }}
+            requests:
+              cpu: {{ .Values.resources.redis.requests.cpu | quote }}
+              memory: {{ .Values.resources.redis.requests.memory | quote }}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
-          imagePullPolicy: IfNotPresent
-        - name: redis-exporter
-          image: oliver006/redis_exporter:v1.43.0
-          resources:
-            requests:
-              cpu: 100m
-              memory: 100Mi
-          ports:
-            - name: metrics
-              protocol: TCP
-              containerPort: 9121
-          env:
+          volumeMounts:
+            - mountPath: /opt/bitnami/scripts/start-scripts
+              name: start-scripts
+            - mountPath: /health
+              name: health
+            - mountPath: /data
+              name: redis-data
+            - mountPath: /opt/bitnami/redis/mounted-etc
+              name: config
+            - mountPath: /opt/bitnami/redis/etc/
+              name: redis-tmp-conf
+            - mountPath: /tmp
+              name: tmp
+        - env:
             - name: REDIS_ADDR
               value: redis://localhost:6379
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: redis
                   key: redis-password
+                  name: redis
+          image: oliver006/redis_exporter:v1.43.0
+          imagePullPolicy: IfNotPresent
+          name: redis-exporter
+          ports:
+            - containerPort: 9121
+              name: metrics
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
----
+      volumes:
+        - configMap:
+            defaultMode: 493
+            name: {{ .Values.envName }}-insights-api-redis-scripts
+          name: start-scripts
+        - configMap:
+            defaultMode: 493
+            name: {{ .Values.envName }}-insights-api-redis-health
+          name: health
+        - configMap:
+            defaultMode: 420
+            name: {{ .Values.envName }}-insights-api-redis-configuration
+          name: config
+        - emptyDir: {}
+          name: redis-tmp-conf
+        - emptyDir: {}
+          name: tmp
+        - emptyDir: {}
+          name: redis-data
