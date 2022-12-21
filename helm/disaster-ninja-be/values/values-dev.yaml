@@ -17,7 +17,7 @@ replicas: 1
 
 image:
   be:
-    tag: "13809-adjust-endpoint-apps-id-apps-to-manage-features-configuration-dn-be.5b80670.1" # this version will be automatically deployed by Flux
+    tag: "13900-provide-event-summary-or-its-analogue.32e8580.1" # this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: dev
