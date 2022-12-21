@@ -1,0 +1,20 @@
+envName: prod
+
+createResource:
+  ingress: true
+isOfflineInstallation: false
+ingressHost: https://prod-basemap-tileserver.k8s-01.konturlabs.com/
+
+tileserver:
+  replicas: 1
+  image: 'nexus.kontur.io:8084/maptiler/tileserver-gl'
+  tag: 'v4.3.2'
+
+basemap:
+  processingSchedule: "0 0 */7 * *" # Run once in 7 days at midnight
+  renderer:
+    image: "nexus.kontur.io:8084/konturdev/build-basemap"
+    tag: "dev-13255" #TODO update once new image is created
+  db:
+    image: "nexus.kontur.io:8084/postgis/postgis"
+    tag: "14-master"

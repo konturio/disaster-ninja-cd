@@ -1,0 +1,51 @@
+{{ if .Values.createResource.ingress }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
+    cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  {{- if .Values.isOfflineInstallation }}
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-body-size: 5m
+    nginx.ingress.kubernetes.io/server-snippet: |
+  {{- else }}
+    nginx.org/client-max-body-size: 5m
+    {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
+    nginx.org/location-snippets: |
+      include CORS_02_location.inc.conf;
+    {{- end }}
+    nginx.org/server-snippets: |
+      {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
+      set $cors_config_file '/etc/nginx/default.cors.json';
+      {{- end }}
+  {{- end }}
+      client_max_body_size 5m;
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-basemap-tileserver
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: basemap-tileserver
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-basemap-tileserver
+  namespace: {{ .Release.Namespace }}
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: {{ .Values.ingressHost }}
+      http:
+        paths:
+          - backend:
+              service:
+                name: {{ .Values.envName }}-basemap-tileserver
+                port:
+                  name: main
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - {{ .Values.ingressHost }}
+      secretName: {{ .Values.envName }}-basemap-tileserver-tls # < cert-manager will store the created certificate in this secret.
+{{ end }}
