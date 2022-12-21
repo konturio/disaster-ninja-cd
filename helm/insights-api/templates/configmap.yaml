@@ -5,7 +5,7 @@ data:
   OTEL_TRACES_EXPORTER: {{ .Values.otlpTracesExporter }}
   SPRING_DATASOURCE_URL: jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/{{ .Values.databaseName }}
   SPRING_DATASOURCE_USERNAME: {{ .Values.databaseUsername }}
-  SPRING_JDBC_TEMPLATE_QUERY_TIMEOUT: {{ .Values.jdbcTemplateQueryTimeout }}
+  SPRING_JDBC_TEMPLATE_QUERY_TIMEOUT: {{ .Values.jdbcTemplateQueryTimeout | quote }}
   SPRING_JMX_ENABLED: {{ .Values.jmxEnabled | quote }}
   SPRING_PROFILES_ACTIVE: {{ .Values.envName }}
   graphql.servlet.tracing-enabled: "false" #11653
