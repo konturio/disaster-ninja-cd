@@ -22,8 +22,8 @@ probeInitialDelaySeconds: 15
 
 databaseHost: london.k8s-01.kontur.io
 
-jwtIssuerUri: 'https://keycloak01.konturlabs.com/auth/realms/test'
-jwtJwkSetUri: 'https://keycloak01.konturlabs.com/auth/realms/test/protocol/openid-connect/certs'
+jwtIssuerUri: 'https://test-keycloak.k8s-01.konturlabs.com/auth/realms/test'
+jwtJwkSetUri: 'https://test-keycloak.k8s-01.konturlabs.com/auth/realms/test/protocol/openid-connect/certs'
 
 alertingTime: 5m
 
