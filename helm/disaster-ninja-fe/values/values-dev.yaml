@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: 13451-fix-dn-and-smart-city-app-names-and-icons.200992b.1 # image id
+    tag: absolute-url-util-test.7e30fd8.1 # image id
     
 replicaCount: 2
 envName: dev
