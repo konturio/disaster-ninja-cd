@@ -54,3 +54,4 @@ otlpTracesExporter: otlp
 otlpTracesPort: 4317
 
 proxy_read_timeout: 1800s
+jdbcTemplateQueryTimeout: "1800"

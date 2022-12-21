@@ -48,3 +48,5 @@ keycloakRealm: 'test'
 
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
+
+jdbcTemplateQueryTimeout: "600"
