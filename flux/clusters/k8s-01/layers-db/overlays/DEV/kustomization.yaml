@@ -1,6 +1,6 @@
 bases:
   - ../../base
-namespace: layers-db
+namespace: dev-layers-db
 
 # patchesStrategicMerge:
 #   - postgrescluster-WIP-merge.yaml
@@ -10,25 +10,25 @@ patchesJson6902:
       group: postgres-operator.crunchydata.com
       version: v1beta1
       kind: PostgresCluster
-      name: db-event-api
+      name: db-layers
     path: postgrescluster-s3-backups.yaml
   - target:
       group: postgres-operator.crunchydata.com
       version: v1beta1
       kind: PostgresCluster
-      name: db-event-api
+      name: db-layers
     path: postgrescluster-resource-adjustment.yaml
   - target:
       group: postgres-operator.crunchydata.com
       version: v1beta1
       kind: PostgresCluster
-      name: db-event-api
+      name: db-layers
     path: postgrescluster-onsite-backups.yaml
   # - target:
   #     group: postgres-operator.crunchydata.com
   #     version: v1beta1
   #     kind: PostgresCluster
-  #     name: db-event-api
+  #     name: db-layers
   #   path: postgrescluster-WIP-jsonpatch.yaml
 
 generatorOptions:
