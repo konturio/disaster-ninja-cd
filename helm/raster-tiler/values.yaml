@@ -23,7 +23,7 @@ createResource:
   defaultSecrets: false
   deploymentLivenessProbe: true
 isOfflineInstallation: false
-probeInitialDelaySeconds: 15
+probeInitialDelaySeconds: 30
 
 resources:
   requests:

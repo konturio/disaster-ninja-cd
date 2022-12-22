@@ -1,18 +1,18 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Values.envName }}-raster-tiler
-  namespace: {{ .Release.Namespace }}
-  labels:
-    app.kubernetes.io/name: raster-tiler
-    app.kubernetes.io/instance: {{ .Values.envName }}-raster-tiler
-    app.kubernetes.io/managed-by: "Helm"
-    app.kubernetes.io/component: backend
-    app.kubernetes.io/part-of: backend
-    stage: {{ .Values.envName }}
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/instance: {{ .Values.envName }}-raster-tiler
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: raster-tiler
+    app.kubernetes.io/part-of: backend
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-raster-tiler
+  namespace: {{ .Release.Namespace }}
 spec:
   accessModes:
   - ReadWriteOnce
