@@ -1,74 +1,82 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.envName }}-titiler
-  namespace: {{ .Release.Namespace }}
-  labels:
-    app.kubernetes.io/name: titiler
-    app.kubernetes.io/instance: {{ .Values.envName }}-titiler
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/component: backend
-    app.kubernetes.io/part-of: backend
-    stage: {{ .Values.envName }}
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/instance: {{ .Values.envName }}-titiler
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: titiler
+    app.kubernetes.io/part-of: backend
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-titiler
+  namespace: {{ .Release.Namespace }}
 spec:
+  progressDeadlineSeconds: 600
+  replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
       #don't add app.kubernetes.io/version
-      app.kubernetes.io/name: titiler
-      app.kubernetes.io/instance: {{ .Values.envName }}-titiler
       app.kubernetes.io/component: backend
+      app.kubernetes.io/instance: {{ .Values.envName }}-titiler
+      app.kubernetes.io/name: titiler
       stage: {{ .Values.envName }}
-  replicas: {{ .Values.replicaCount }}
   strategy:
-    type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 1
+    type: RollingUpdate
   template:
     metadata:
-      labels:
-        app.kubernetes.io/name: titiler
-        app.kubernetes.io/instance: {{ .Values.envName }}-titiler
-        app.kubernetes.io/managed-by: Helm
-        app.kubernetes.io/component: backend
-        app.kubernetes.io/part-of: backend
-        stage: {{ .Values.envName }}
       annotations:
         meta.helm.sh/release-name: {{ .Release.Name }}
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+      labels:
+        app.kubernetes.io/component: backend
+        app.kubernetes.io/instance: {{ .Values.envName }}-titiler
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: titiler
+        app.kubernetes.io/part-of: backend
+        stage: {{ .Values.envName }}
     spec:
       containers:
-        - name: titiler
-          image: '{{ .Values.image.repository }}:{{ .Values.image.tag }}'
-          imagePullPolicy: IfNotPresent
-          env:
+        - env:
           {{- range $key, $val := .Values.env }}
             - name: {{ $key }}
-              value: {{ $val | squote }}
+              value: {{ $val | quote }}
           {{- end }}
-          ports:
-            - name: http
-              containerPort: {{ .Values.env.PORT }}
-              protocol: TCP
-          {{ if .Values.createResource.deploymentLivenessProbe }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: IfNotPresent
+        {{- if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
-            httpGet:
-              path: /healthz
-              port: http
             failureThreshold: 10
-            periodSeconds: 15
-            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
-          {{ end }}
-          readinessProbe:
             httpGet:
               path: /healthz
               port: http
-            failureThreshold: 1
-            periodSeconds: 15
+              scheme: HTTP
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+        {{- end }}
+          name: titiler
+          ports:
+            - containerPort: {{ .Values.env.PORT }}
+              name: http
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 1
+            httpGet:
+              path: /healthz
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
           resources:
             limits:
               cpu: {{ .Values.resources.limits.cpu | quote }}
@@ -76,3 +84,5 @@ spec:
             requests:
               cpu: {{ .Values.resources.requests.cpu | quote }}
               memory: {{ .Values.resources.requests.memory | quote }}
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30

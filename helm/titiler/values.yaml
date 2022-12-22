@@ -24,7 +24,7 @@ createResource:
   ingress: false
   deploymentLivenessProbe: true
 isOfflineInstallation: false
-probeInitialDelaySeconds: 15
+probeInitialDelaySeconds: 5
 
 resources:
   requests:
