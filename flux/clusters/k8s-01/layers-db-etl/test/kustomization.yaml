@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../base/layers-db-etl
+namePrefix: test-
+namespace: test-layers-db-etl
+patches:
+  - target:
+      kind: HelmRelease
+      name: layers-db-etl
+      group: helm.toolkit.fluxcd.io
+      version: v2beta1
+    patch: |-
+      - op: replace
+        path: /spec/chart/spec/valuesFiles
+        value:
+          - ./helm/layers-db-etl/values.yaml
+          - ./helm/layers-db-etl/values/values-test.yaml

@@ -6,6 +6,7 @@ resources:
   - insights-api
 #  - isochrone-api
   - layers-api
+  - layers-db-etl
   - layers-tiles-api
   - osrm
   - raster-tiler
