@@ -10,6 +10,15 @@ metadata:
   {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  {{- else }}
+    {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
+    nginx.org/server-snippets: |
+      set $cors_config_file '/etc/nginx/default.cors.json';
+    nginx.org/location-snippets: |
+      include CORS_02_location.inc.conf;
+      proxy_set_header Origin ""; # Disable CORS processing by smart upstreams
+      proxy_hide_header "Access-Control-Allow-Origin"; # hide CORS response of this specific app
+    {{- end }}
   {{- end }}
   labels:
     app.kubernetes.io/component: backend
