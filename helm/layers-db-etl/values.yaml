@@ -29,7 +29,7 @@ resources:
     memory: 4Gi
 
 pgHost: host.docker.internal
-pgPort: 5433
+pgPort: 5432
 pgDatabase: layers-db
 pgUser: layers-db
 
