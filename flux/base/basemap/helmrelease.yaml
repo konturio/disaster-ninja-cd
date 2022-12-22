@@ -16,10 +16,7 @@ spec:
         name: kontur-platform
         namespace: flux-system
       interval: 1m
-  install:
-    disableWait: true
   upgrade:
-    disableWait: true
     remediation:
       remediateLastFailure: true
 ---

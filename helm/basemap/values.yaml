@@ -8,7 +8,6 @@ k8s_cluster_flavor: default # value may be substituted in a Flux pipeline
 ingressHost: none
 
 pvc:
-  tileserverStorageClassName: local-path
   tileStorageSize: 150Gi
   processorStorageSize: 500Gi
   postgresStorageSize: 3000Gi
@@ -35,15 +34,15 @@ basemap:
     tag: "14-master"
     config:
       maintenanceWorkMem: "5GB"
-      sharedBuffers: "2GB"
-      effectiveCacheSize: "128GB"
+      sharedBuffers: "10GB"
+      effectiveCacheSize: "80GB"
       randomPageCost: "1.1"
       effectiveIoConcurrency: "200"
       workMem: "2GB"
       maxConnections: "32"
       walLevel: "minimal"
       maxWalSenders: "0"
-      maxWalSize: "5GB"
+      maxWalSize: "10GB"
       checkpointTimeout: "60min"
       checkpointCompletionTarget: "0.9"
 

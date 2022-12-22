@@ -19,6 +19,3 @@ basemap:
   db:
     image: "nexus.kontur.io:8084/postgis/postgis"
     tag: "14-master"
-
-pvc:
-  tileserverStorageClassName: standard

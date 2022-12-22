@@ -11,9 +11,6 @@ spec:
       storage: {{ .Values.pvc.tileStorageSize }}
     limits:
       storage: {{ .Values.pvc.tileStorageSize }}
-{{ if .Values.pvc.tileserverStorageClassName }}
-  storageClassName: {{ .Values.pvc.tileserverStorageClassName }}
-{{ end }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
