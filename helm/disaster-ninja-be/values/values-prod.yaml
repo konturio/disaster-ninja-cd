@@ -19,7 +19,7 @@ image:
   be:
     tag: "release-0.22.2.7227eef.1" # this version will be automatically deployed by Flux
 
-keycloakUrl: 'https://keycloak01.kontur.io/auth'
+keycloakUrl: 'https://prod-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: kontur
 eventApiUrl: 'https://apps.kontur.io/events/'
 kcApiUrl: 'https://api.kontur.io/layers'

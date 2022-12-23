@@ -1,0 +1,52 @@
+# TEST values for keycloak.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: nexus.kontur.io:8084/konturdev/keycloak-with-ups-spi
+  pullPolicy: IfNotPresent
+  tag: 13594-setup-keycloak-in-k8s-cluster.6a625cd.1
+  pullSecretName: nexus8084
+  usePullSecret: false
+
+replicas: 1
+
+service:
+  main: 8080
+  management: 9990
+  kcFrontEndUrl: https://prod-keycloak.k8s-01.konturlabs.com/auth
+
+keycloak:
+  databaseHost: paris.k8s-01.kontur.io.
+  databasePort: 5432
+  databaseName: keycloak
+  databaseUser: keycloak
+ups:
+  databaseHost: paris.k8s-01.kontur.io.
+  databasePort: 5432
+  databaseName: user-profile-api
+  databaseUser: user-profile-api
+
+envName: prod
+ingressHost: prod-keycloak.k8s-01.konturlabs.com
+
+createResource:
+  defaultSecrets: false
+  ingress: true
+  prometheusRule: true
+  serviceMonitor: true
+  deploymentLivenessProbe: false
+  importDefaultRealm: false
+isOfflineInstallation: false
+probeInitialDelaySeconds: 180
+disableSsl: false
+
+resources:
+   requests:
+     cpu: 100m
+     memory: 128Mi
+   limits:
+     cpu: 500m
+     memory: 768Mi
+
+alertingTime: 2m

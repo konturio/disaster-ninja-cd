@@ -14,7 +14,7 @@
     "KLA__hotProjects_outlines",
     "focused-geometry"
   ],
-  "KEYCLOAK_URL": "https://keycloak01.kontur.io",
+  "KEYCLOAK_URL": "https://prod-keycloak.k8s-01.konturlabs.com",
   "KEYCLOAK_REALM": "kontur",
   "KEYCLOAK_CLIENT_ID": "kontur_platform",
   "AUTOFOCUS_PADDINGS": [
