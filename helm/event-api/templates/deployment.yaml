@@ -72,11 +72,14 @@ spec:
             - containerPort: {{ .Values.port }}
               name: main
               protocol: TCP
+            - containerPort: {{ .Values.management.port }}
+              name: management
+              protocol: TCP
           readinessProbe:
             failureThreshold: 1
             httpGet:
-              path: /events/health
-              port: {{ .Values.port }}
+              path: /health/readiness
+              port: {{ .Values.management.port }}
               scheme: HTTP
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
             periodSeconds: 15
@@ -93,8 +96,8 @@ spec:
           livenessProbe:
             failureThreshold: 10
             httpGet:
-              path: /events/health
-              port: {{ .Values.port }}
+              path: /health/liveness
+              port: {{ .Values.management.port }}
               scheme: HTTP
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
             periodSeconds: 15
