@@ -19,6 +19,10 @@ spec:
       port: {{ .Values.port }}
       protocol: TCP
       targetPort: main
+    - name: management
+      port: {{ .Values.management.port }}
+      protocol: TCP
+      targetPort: management
   selector:
     app.kubernetes.io/instance: {{ .Values.envName }}-event-api
     app.kubernetes.io/managed-by: Helm

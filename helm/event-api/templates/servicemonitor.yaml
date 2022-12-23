@@ -15,8 +15,8 @@ metadata:
 spec:
   endpoints:
   - interval: 30s
-    path: /events/metrics
-    port: main
+    path: /metrics
+    port: management
     scheme: http
   selector:
     matchLabels:
