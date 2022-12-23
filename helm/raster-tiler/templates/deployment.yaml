@@ -1,64 +1,53 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.envName }}-raster-tiler
-  namespace: {{ .Release.Namespace }}
-  labels:
-    app.kubernetes.io/name: raster-tiler
-    app.kubernetes.io/instance: {{ .Values.envName }}-raster-tiler
-    app.kubernetes.io/managed-by: "Helm"
-    app.kubernetes.io/component: backend
-    app.kubernetes.io/part-of: backend
-    stage: {{ .Values.envName }}
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/instance: {{ .Values.envName }}-raster-tiler
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: raster-tiler
+    app.kubernetes.io/part-of: backend
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-raster-tiler
+  namespace: {{ .Release.Namespace }}
 spec:
+  progressDeadlineSeconds: 600
+  replicas: {{ .Values.replicas }}
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
-      #don't add app.kubernetes.io/version
-      app.kubernetes.io/name: raster-tiler
-      app.kubernetes.io/instance: {{ .Values.envName }}-raster-tiler
       app.kubernetes.io/component: backend
+      app.kubernetes.io/instance: {{ .Values.envName }}-raster-tiler
+      app.kubernetes.io/name: raster-tiler
+      #don't add app.kubernetes.io/version
       stage: {{ .Values.envName }}
-  replicas: {{ .Values.replicas }}
   strategy:
-    type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 1
+    type: RollingUpdate
   template:
     metadata:
-      labels:
-        app.kubernetes.io/name: raster-tiler
-        app.kubernetes.io/instance: {{ .Values.envName }}-raster-tiler
-        app.kubernetes.io/managed-by: "Helm"
-        app.kubernetes.io/component: backend
-        app.kubernetes.io/part-of: backend
-        stage: {{ .Values.envName }}
       annotations:
         meta.helm.sh/release-name: {{ .Release.Name }}
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+      labels:
+        app.kubernetes.io/component: backend
+        app.kubernetes.io/instance: {{ .Values.envName }}-raster-tiler
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: raster-tiler
+        app.kubernetes.io/part-of: backend
+        stage: {{ .Values.envName }}
     spec:
-      {{ if .Values.image.usePullSecret }}
+    {{- if .Values.image.usePullSecret }}
       imagePullSecrets: #TODO remove once image is on ghcr.io
-        - name: {{ .Values.image.pullSecretName }}{{ end }}
+        - name: {{ .Values.image.pullSecretName }}
+    {{- end }}
       containers:
-        - name: raster-tiler-server
-          image: {{ .Values.image.name }}:{{ .Values.image.tag }}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: {{ .Values.port }}
-              name: http
-              protocol: TCP
-          resources:
-            requests:
-              cpu: {{ .Values.resources.requests.cpu | quote }}
-              memory: {{ .Values.resources.requests.memory | quote }}
-            limits:
-              memory: {{ .Values.resources.limits.memory | quote }}
-              cpu: {{ .Values.resources.limits.cpu | quote }}
-          env:
+        - env:
             - name: BASE_URL
               value: {{ .Values.base_url }}
             - name: TITILER_BASE_URL
@@ -76,42 +65,63 @@ spec:
             - name: PGUSER
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.envName }}-raster-tiler
                   key: username
+                  name: {{ .Values.envName }}-raster-tiler
             - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.envName }}-raster-tiler
                   key: password
-            {{ if .Values.db_disable_ssl }}
+                  name: {{ .Values.envName }}-raster-tiler
+          {{- if .Values.db_disable_ssl }}
             - name: DB_DISABLE_SSL
               value: "true"
-            {{ end }}
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: http
-            failureThreshold: 1
-            periodSeconds: 15
-            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
-          {{ if .Values.createResource.deploymentLivenessProbe }}
+          {{- end }}
+          image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+          imagePullPolicy: IfNotPresent
+        {{- if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
+            failureThreshold: 10
             httpGet:
               path: /health
               port: http
-            failureThreshold: 10
-            periodSeconds: 15
+              scheme: HTTP
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
-          {{ end }}
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 1
+        {{- end }}
+          name: raster-tiler-server
+          ports:
+            - containerPort: {{ .Values.port }}
+              name: http
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: {{ .Values.resources.limits.cpu | quote }}
+              memory: {{ .Values.resources.limits.memory | quote }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu | quote }}
+              memory: {{ .Values.resources.requests.memory | quote }}
           volumeMounts:
             - mountPath: /tiles
               name: raster-tiler-storage-vol
-              readOnly: false
-      volumes:
-        - name: raster-tiler-storage-vol
-          persistentVolumeClaim:
-            claimName: {{ .Values.envName }}-raster-tiler
       dnsConfig:
         options:
           - name: ndots
             value: "0"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: raster-tiler-storage-vol
+          persistentVolumeClaim:
+            claimName: {{ .Values.envName }}-raster-tiler
