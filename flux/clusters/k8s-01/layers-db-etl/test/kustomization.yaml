@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ../../../../base/layers-db-etl
 namePrefix: test-
-namespace: test-layers-db-etl
+namespace: test-layers-db
 patches:
   - target:
       kind: HelmRelease

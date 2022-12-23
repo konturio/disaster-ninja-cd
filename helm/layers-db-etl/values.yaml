@@ -1,6 +1,7 @@
 # Default values for layers-db-etl.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+
 image:
   tag: latest
   name: nexus.kontur.io:8084/konturdev/layers-db-etl
@@ -10,13 +11,9 @@ image:
 port: 8626
 replicas: 1
 envName: local
-ingressHost: none
 
 createResource:
   defaultSecrets: false
-  ingress: false
-  prometheusRule: false
-  serviceMonitor: false
   deploymentLivenessProbe: true
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
@@ -32,7 +29,3 @@ pgHost: host.docker.internal
 pgPort: 5432
 pgDatabase: layers-db
 pgUser: layers-db
-
-alertingTime: 10m
-
-k8s_cluster_flavor: default # value may be substituted in a Flux pipeline

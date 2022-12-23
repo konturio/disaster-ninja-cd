@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ../../../../base/layers-db-etl
 namePrefix: prod-
-namespace: prod-layers-db-etl
+namespace: prod-layers-db
 patches:
   - target:
       kind: HelmRelease

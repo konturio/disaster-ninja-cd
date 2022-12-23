@@ -9,14 +9,10 @@ image:
 
 replicas: 2
 envName: dev
-ingressHost: dev-layers-db-etl.k8s-01.konturlabs.com
 
 createResource:
   defaultSecrets: false
-  ingress: true
-  prometheusRule: false
-  serviceMonitor: false
-  deploymentLivenessProbe: true
+  deploymentLivenessProbe: false
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 

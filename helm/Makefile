@@ -36,7 +36,7 @@ create-image-pull-secrets: create-ns-required-for-pull-secrets #TODO remove once
 	kubectl apply -f nexus.yaml -n quickstart-insights-api
 	kubectl apply -f nexus.yaml -n quickstart-isochrone-api
 	kubectl apply -f nexus.yaml -n quickstart-layers-api
-	kubectl apply -f nexus.yaml -n quickstart-layers-db-etl
+	kubectl apply -f nexus.yaml -n quickstart-layers-db
 	kubectl apply -f nexus.yaml -n quickstart-raster-tiler
 	kubectl apply -f nexus.yaml -n quickstart-user-profile-api
 	kubectl apply -f nexus.yaml -n quickstart-event-api
@@ -48,7 +48,7 @@ create-ns-required-for-pull-secrets: #TODO remove once all images are at ghcr.io
 	if kubectl get ns quickstart-insights-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-insights-api; fi;
 	if kubectl get ns quickstart-isochrone-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-isochrone-api; fi;
 	if kubectl get ns quickstart-layers-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-layers-api; fi;
-	if kubectl get ns quickstart-layers-db-etl >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-layers-db-etl; fi;
+	if kubectl get ns quickstart-layers-db >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-layers-db; fi;
 	if kubectl get ns quickstart-raster-tiler >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-raster-tiler; fi;
 	if kubectl get ns quickstart-user-profile-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-user-profile-api; fi;
 	if kubectl get ns quickstart-event-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-event-api; fi;
@@ -58,7 +58,7 @@ cleanup-namespaces:
 	if kubectl get ns quickstart-insights-api >& /dev/null; then kubectl delete ns quickstart-insights-api; fi;
 	if kubectl get ns quickstart-isochrone-api >& /dev/null; then kubectl delete ns quickstart-isochrone-api; fi;
 	if kubectl get ns quickstart-layers-api >& /dev/null; then kubectl delete ns quickstart-layers-api; fi;
-	if kubectl get ns quickstart-layers-db-etl >& /dev/null; then kubectl delete ns quickstart-layers-db-etl; fi;
+	if kubectl get ns quickstart-layers-db >& /dev/null; then kubectl delete ns quickstart-layers-db; fi;
 	if kubectl get ns quickstart-osrm >& /dev/null; then kubectl delete ns quickstart-osrm; fi;
 	if kubectl get ns quickstart-epig >& /dev/null; then kubectl delete ns quickstart-epig; fi;
 	if kubectl get ns quickstart-layers-tiles-api >& /dev/null; then kubectl delete ns quickstart-layers-tiles-api; fi;
@@ -192,8 +192,8 @@ layers-api: create-layers-db create-layers-api-user create-image-pull-secrets
 	if kubectl get ns quickstart-layers-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-layers-api; fi;
 	helm upgrade --install quickstart-layers-api layers-api -f layers-api/values.yaml -f layers-api/values/values-quickstart.yaml -n quickstart-layers-api
 layers-db-etl: create-layers-db create-image-pull-secrets
-	if kubectl get ns quickstart-layers-db-etl >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-layers-db-etl; fi;
-	helm upgrade --install quickstart-layers-db-etl layers-db-etl -f layers-db-etl/values.yaml -f layers-db-etl/values/values-quickstart.yaml -n quickstart-layers-db-etl
+	if kubectl get ns quickstart-layers-db >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-layers-db; fi;
+	helm upgrade --install quickstart-layers-db-etl layers-db-etl -f layers-db-etl/values.yaml -f layers-db-etl/values/values-quickstart.yaml -n quickstart-layers-db
 layers-tiles-api: create-layers-tiles-api-user
 	if kubectl get ns quickstart-layers-tiles-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-layers-tiles-api; fi;
 	helm upgrade --install quickstart-layers-tiles-api layers-tiles-api -f layers-tiles-api/values.yaml -f layers-tiles-api/values/values-quickstart.yaml -n quickstart-layers-tiles-api

@@ -9,17 +9,11 @@ image:
 
 replicas: 2
 envName: prod
-ingressHost: prod-layers-db-etl.k8s-01.konturlabs.com
 
 createResource:
   defaultSecrets: false
-  ingress: true
-  prometheusRule: false
-  serviceMonitor: false
   deploymentLivenessProbe: true
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 
 pgHost: paris.k8s-01.kontur.io
-
-alertingTime: 2m
