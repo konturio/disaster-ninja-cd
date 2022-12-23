@@ -17,11 +17,10 @@ metadata:
           return 403;
         }
     {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
+      set $cors_config_file '/etc/nginx/default.cors.json';
     nginx.org/location-snippets: |
       include CORS_02_location.inc.conf;
       proxy_set_header Origin ""; # Disable CORS processing by upstreams
-    nginx.org/server-snippets: |
-      set $cors_config_file '/etc/nginx/default.cors.json';
     {{- end }}
   {{- end }}
   labels:
