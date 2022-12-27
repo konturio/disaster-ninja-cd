@@ -10,7 +10,7 @@ ingressHost: none
 pvc:
   tileStorageSize: 150Gi
   processorStorageSize: 500Gi
-  postgresStorageSize: 3000Gi
+  postgresStorageSize: 1800Gi
 
 imagePullPolicy: IfNotPresent
 
@@ -64,7 +64,7 @@ resources:
   db:
     limits:
       memory: 128Gi
-      cpu: '60'
+      cpu: '50'
     requests:
       memory: 64Gi
-      cpu: '30'
+      cpu: '20'
