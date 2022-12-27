@@ -16,4 +16,4 @@ createResource:
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 
-pgHost: milan.k8s-01.kontur.io
+pgHost: db-layers-primary.dev-layers-db.svc.cluster.local
