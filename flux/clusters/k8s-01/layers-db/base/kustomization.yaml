@@ -4,5 +4,5 @@ resources:
   - postgrescluster.yaml
 namespace: OVERRIDEME
 
-# commonAnnotations:
-#   kustomize.toolkit.fluxcd.io/prune: enabled # disable pruning for all resources here
+commonAnnotations:
+  kustomize.toolkit.fluxcd.io/prune: enabled # disable pruning for all resources here
