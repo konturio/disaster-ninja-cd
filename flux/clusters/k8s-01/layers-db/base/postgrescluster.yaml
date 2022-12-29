@@ -101,3 +101,12 @@ spec:
       databases:
         - layers-db
       options: SUPERUSER
+    - name: layers-api
+      databases:
+        - layers-db
+    - name: layers-tiles-api
+      databases:
+        - layers-db
+    - name: mosaic
+      databases:
+        - layers-db
