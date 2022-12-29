@@ -16,4 +16,4 @@ createResource:
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 
-pgHost: london.k8s-01.kontur.io
+pgHost: db-layers-primary.test-layers-db.svc.cluster.local
