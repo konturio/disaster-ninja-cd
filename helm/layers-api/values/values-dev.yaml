@@ -20,7 +20,7 @@ createResource:
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 
-databaseHost: milan.k8s-01.kontur.io
+databaseHost: db-layers-primary.dev-layers-db.svc
 
 jwtIssuerUri: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 jwtJwkSetUri: 'https://dev-keycloak.k8s-01.konturlabs.com/auth/protocol/openid-connect/certs'
