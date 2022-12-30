@@ -12,7 +12,7 @@ envName: dev
 ingressHost: dev-raster-tiler.k8s-01.konturlabs.com
 base_url: https://dev-raster-tiler.k8s-01.konturlabs.com
 titiler_url: https://test-apps02.konturlabs.com/titiler/
-pg_host: db-layers-primary.dev-layers-db.svc
+pg_host: milan.k8s-01.kontur.io
 storage_size: 100Gi
 storageClass: local-path
 db_pool_size: 16
