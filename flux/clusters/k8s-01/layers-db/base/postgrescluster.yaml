@@ -101,12 +101,20 @@ spec:
       databases:
         - layers-db
       options: SUPERUSER
+      password:
+        type: AlphaNumeric
     - name: layers-api
       databases:
         - layers-db
+      password:
+        type: AlphaNumeric
     - name: layers-tiles-api
       databases:
         - layers-db
+      password:
+        type: AlphaNumeric
     - name: mosaic
       databases:
         - layers-db
+      password:
+        type: AlphaNumeric
