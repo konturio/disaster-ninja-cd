@@ -17,7 +17,6 @@ data:
     ALTER TABLE layers_group_properties    OWNER TO "layers-api";
     ALTER TABLE layers_category_properties OWNER TO "layers-api";
     ALTER TABLE layers_features            OWNER TO "layers-api";
-    ALTER TABLE layers_features            OWNER TO "layers-api";
-    ALTER TABLE layers_features            OWNER TO "layers-api";
-    ALTER TABLE layers_features            OWNER TO "layers-api";
-    ALTER TABLE layers_features            OWNER TO "layers-api";
+    ALTER TABLE layers_dependencies        OWNER TO "layers-api";
+    ALTER TABLE databasechangelog          OWNER TO "layers-api";
+    ALTER TABLE databasechangeloglock      OWNER TO "layers-api";
