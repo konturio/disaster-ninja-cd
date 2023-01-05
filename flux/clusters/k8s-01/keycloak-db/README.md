@@ -5,10 +5,10 @@ To validate changes before committing you can use commands below
 
 #### To replicate the build:
 ```bash
-kustomize build --load-restrictor=LoadRestrictionsNone --reorder=legacy flux/clusters/k8s-01/layers-db/overlays/DEV/ | less
+kustomize build --load-restrictor=LoadRestrictionsNone --reorder=legacy flux/clusters/k8s-01/keycloak-db/overlays/DEV/ | less
 ```
 
 #### To replicate the build and apply dry run locally:
 ```bash
-kustomize build --load-restrictor=LoadRestrictionsNone --reorder=legacy flux/clusters/k8s-01/layers-db/overlays/DEV/ | kubectl apply --server-side --dry-run=server -f-
+kustomize build --load-restrictor=LoadRestrictionsNone --reorder=legacy flux/clusters/k8s-01/keycloak-db/overlays/DEV/ | kubectl apply --server-side --dry-run=server -f-
 ```

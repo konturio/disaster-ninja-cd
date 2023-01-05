@@ -8,9 +8,6 @@ metadata:
     app.kubernetes.io/name: db-keycloak
     app.kubernetes.io/part-of: keycloak
 spec:
-  databaseInitSQL:
-    key: init.sql
-    name: keycloak-db-init-sql
   backups:
     pgbackrest:
       image: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.40-1'
