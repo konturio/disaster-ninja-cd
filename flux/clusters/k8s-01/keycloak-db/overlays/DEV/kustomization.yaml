@@ -1,6 +1,6 @@
 bases:
   - ../../base
-namespace: dev-keycloak-db
+namespace: dev-keycloak
 
 # patchesStrategicMerge:
 #   - postgrescluster-WIP-merge.yaml
