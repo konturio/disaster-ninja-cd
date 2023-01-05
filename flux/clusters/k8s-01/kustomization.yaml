@@ -22,3 +22,4 @@ resources:
   - layers-db/overlays/DEV
   - layers-db/overlays/TEST
   - layers-db/overlays/PROD
+  - keycloak-db/overlays/DEV
