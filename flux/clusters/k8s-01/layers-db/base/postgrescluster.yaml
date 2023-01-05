@@ -8,6 +8,9 @@ metadata:
     app.kubernetes.io/name: db-layers
     app.kubernetes.io/part-of: layers
 spec:
+  databaseInitSQL:
+    key: init.sql
+    name: layers-db-init-sql
   backups:
     pgbackrest:
       image: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.40-1'
