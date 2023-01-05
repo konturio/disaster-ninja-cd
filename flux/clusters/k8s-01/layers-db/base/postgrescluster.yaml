@@ -8,6 +8,9 @@ metadata:
     app.kubernetes.io/name: db-layers
     app.kubernetes.io/part-of: layers
 spec:
+  databaseInitSQL:
+    key: init.sql
+    name: layers-db-init-sql
   backups:
     pgbackrest:
       image: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.40-1'
@@ -21,8 +24,6 @@ spec:
                 requests:
                   storage: 50Gi
               storageClassName: local-path-regular
-  # image: 'nexus.kontur.io:8084/konturdev/crunchy-postgres-gis:test'
-  image: 'registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-14.6-2'
   instances:
     - affinity:
         podAntiAffinity:
@@ -95,7 +96,7 @@ spec:
           vacuum_cost_page_miss: 5
           wal_compression: 'on'
           work_mem: 1GB
-  postGISVersion: '3.3'
+  postGISVersion: '3.2'
   postgresVersion: 14
   users:
     - name: postgres
@@ -103,3 +104,20 @@ spec:
       databases:
         - layers-db
       options: SUPERUSER
+      password:
+        type: AlphaNumeric
+    - name: layers-api
+      databases:
+        - layers-db
+      password:
+        type: AlphaNumeric
+    - name: layers-tiles-api
+      databases:
+        - layers-db
+      password:
+        type: AlphaNumeric
+    - name: mosaic
+      databases:
+        - layers-db
+      password:
+        type: AlphaNumeric

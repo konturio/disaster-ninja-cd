@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 8571-update-dn2-backend-to-utilize-layers-management-api-for-osm-layers.2c741eb.1
+  tag: 13984-create-oam-application.64559dd.1
   usePullSecret: false
   pullSecretName: none
 
@@ -20,7 +20,7 @@ createResource:
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 
-databaseHost: milan.k8s-01.kontur.io
+databaseHost: db-layers-primary.dev-layers-db.svc
 
 jwtIssuerUri: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 jwtJwkSetUri: 'https://dev-keycloak.k8s-01.konturlabs.com/auth/protocol/openid-connect/certs'
