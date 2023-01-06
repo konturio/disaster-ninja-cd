@@ -1,16 +1,13 @@
 apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
-  name: db-layers
+  name: db-keycloak
   labels:
     app.kubernetes.io/component: database
     app.kubernetes.io/managed-by: flux
-    app.kubernetes.io/name: db-layers
-    app.kubernetes.io/part-of: layers
+    app.kubernetes.io/name: db-keycloak
+    app.kubernetes.io/part-of: keycloak
 spec:
-  # databaseInitSQL:
-  #   key: init.sql
-  #   name: layers-db-init-sql
   backups:
     pgbackrest:
       image: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.40-1'
@@ -33,7 +30,7 @@ spec:
                 topologyKey: kubernetes.io/hostname
                 labelSelector:
                   matchLabels:
-                    postgres-operator.crunchydata.com/cluster: db-layers
+                    postgres-operator.crunchydata.com/cluster: db-keycloak
                     postgres-operator.crunchydata.com/instance-set: '01'
       dataVolumeClaimSpec:
         accessModes:
@@ -61,8 +58,8 @@ spec:
     labels:
       app.kubernetes.io/component: database
       app.kubernetes.io/managed-by: pgo
-      app.kubernetes.io/name: db-layers
-      app.kubernetes.io/part-of: layers
+      app.kubernetes.io/name: db-keycloak
+      app.kubernetes.io/part-of: keycloak
   patroni:
     dynamicConfiguration:
       postgresql:
@@ -100,24 +97,9 @@ spec:
   postgresVersion: 14
   users:
     - name: postgres
-    - name: layers-db
+    - name: keycloak-db
       databases:
-        - layers-db
+        - keycloak-db
       options: SUPERUSER
-      password:
-        type: AlphaNumeric
-    - name: layers-api
-      databases:
-        - layers-db
-      password:
-        type: AlphaNumeric
-    - name: layers-tiles-api
-      databases:
-        - layers-db
-      password:
-        type: AlphaNumeric
-    - name: mosaic
-      databases:
-        - layers-db
       password:
         type: AlphaNumeric

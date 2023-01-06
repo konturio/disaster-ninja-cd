@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: layers-db-init-sql
+data:
+  init.sql: |
+    \set ON_ERROR_STOP
+    \echo "EXECUTING DB INIT SCRIPT"
+
+    \c layers-db
+    
+    GRANT SELECT ON ALL TABLES IN SCHEMA public TO "mosaic";
+    
+    ALTER TABLE layers                     OWNER TO "layers-api";
+    ALTER TABLE apps                       OWNER TO "layers-api";
+    ALTER TABLE apps_layers                OWNER TO "layers-api";
+    ALTER TABLE layers_group_properties    OWNER TO "layers-api";
+    ALTER TABLE layers_category_properties OWNER TO "layers-api";
+    ALTER TABLE layers_features            OWNER TO "layers-api";
+    ALTER TABLE layers_dependencies        OWNER TO "layers-api";
+    ALTER TABLE databasechangelog          OWNER TO "layers-api";
+    ALTER TABLE databasechangeloglock      OWNER TO "layers-api";
