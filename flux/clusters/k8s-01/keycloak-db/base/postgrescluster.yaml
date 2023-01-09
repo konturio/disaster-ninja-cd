@@ -84,6 +84,7 @@ spec:
           max_parallel_workers: 4
           max_parallel_workers_per_gather: 2
           max_worker_processes: 4
+          max_prepared_transactions: 100
           random_page_cost: 1.1
           shared_buffers: 6GB
           shared_preload_libraries: 'auto_explain,pg_stat_statements'
