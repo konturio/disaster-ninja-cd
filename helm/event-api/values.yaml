@@ -69,7 +69,7 @@ konturAppsUrl: 'https://test-apps.konturlabs.com/'
 pdcUrl: 'https://testdisasteraware.pdc.org'
 pdcMapSrvUrl: 'https://testapps.pdc.org'
 
-emdatUser: 'azapasnik@kontur.io'
+emdatUser: 'prytvinsky_kontur'
 
 staticdataS3Folder: 'TEST DEV/'
 
@@ -88,7 +88,7 @@ gdacsImportEnable: true
 firmsModisImportEnable: true
 firmsNoaaImportEnable: true
 firmsSuomiImportEnable: true
-emDatImportEnable: false
+emDatImportEnable: true
 staticImportEnable: true
 stormsNoaaImportEnable: true
 tornadoJapanMaImportEnabled: false
