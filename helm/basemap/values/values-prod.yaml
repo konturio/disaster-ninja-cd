@@ -3,7 +3,7 @@ envName: prod
 createResource:
   ingress: true
 isOfflineInstallation: false
-ingressHost: https://prod-basemap-tileserver.k8s-01.konturlabs.com/
+ingressHost: prod-basemap-tileserver.k8s-01.konturlabs.com
 
 tileserver:
   replicas: 1
