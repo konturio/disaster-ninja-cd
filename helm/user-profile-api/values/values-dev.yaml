@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 13984-create-oam-application.d7a9c89.1
+  tag: 13984-create-oam-application.5013cbe.1
   pullSecretName: none
   usePullSecret: false
 
