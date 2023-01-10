@@ -72,7 +72,6 @@ spec:
             path: /health
             port: {{ .Values.tileserver.port }}
             scheme: HTTP
-          initialDelaySeconds: 500
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 1
@@ -82,10 +81,16 @@ spec:
             path: /health
             port: {{ .Values.tileserver.port }}
             scheme: HTTP
-          initialDelaySeconds: 500
           periodSeconds: 15
           successThreshold: 1
           timeoutSeconds: 1
+        startupProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.tileserver.port }}
+            scheme: HTTP
+          periodSeconds: 10
+          failureThreshold: 100
         ports:
         - containerPort: {{ .Values.tileserver.port }}
           protocol: TCP
