@@ -72,7 +72,7 @@ spec:
             path: /health
             port: {{ .Values.tileserver.port }}
             scheme: HTTP
-          initialDelaySeconds: 5
+          initialDelaySeconds: 500
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 1
@@ -82,7 +82,7 @@ spec:
             path: /health
             port: {{ .Values.tileserver.port }}
             scheme: HTTP
-          initialDelaySeconds: 5
+          initialDelaySeconds: 500
           periodSeconds: 15
           successThreshold: 1
           timeoutSeconds: 1
