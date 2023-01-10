@@ -19,7 +19,8 @@
 		keycloak \
 		create-isochrone-api-db \
 		isochrone-api \
-		osrm
+		osrm \
+		basemap
 
 ##Makefile for local installation
 install-quickstart: uninstall \
@@ -33,6 +34,7 @@ create-image-pull-secrets: create-ns-required-for-pull-secrets #TODO remove once
 	kubectl apply -f nexus.yaml -n quickstart-keycloak
 	kubectl apply -f nexus.yaml -n quickstart-epig
 	kubectl apply -f nexus.yaml -n quickstart-osrm
+	kubectl apply -f nexus.yaml -n quickstart-basemap
 	kubectl apply -f nexus.yaml -n quickstart-insights-api
 	kubectl apply -f nexus.yaml -n quickstart-isochrone-api
 	kubectl apply -f nexus.yaml -n quickstart-layers-api
@@ -45,6 +47,7 @@ create-ns-required-for-pull-secrets: #TODO remove once all images are at ghcr.io
 	if kubectl get ns quickstart-keycloak >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-keycloak; fi;
 	if kubectl get ns quickstart-epig >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-epig; fi;
 	if kubectl get ns quickstart-osrm >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-osrm; fi;
+	if kubectl get ns quickstart-basemap >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-basemap; fi;
 	if kubectl get ns quickstart-insights-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-insights-api; fi;
 	if kubectl get ns quickstart-isochrone-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-isochrone-api; fi;
 	if kubectl get ns quickstart-layers-api >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-layers-api; fi;
@@ -60,6 +63,7 @@ cleanup-namespaces:
 	if kubectl get ns quickstart-layers-api >& /dev/null; then kubectl delete ns quickstart-layers-api; fi;
 	if kubectl get ns quickstart-layers-db >& /dev/null; then kubectl delete ns quickstart-layers-db; fi;
 	if kubectl get ns quickstart-osrm >& /dev/null; then kubectl delete ns quickstart-osrm; fi;
+	if kubectl get ns quickstart-basemap >& /dev/null; then kubectl delete ns quickstart-basemap; fi;
 	if kubectl get ns quickstart-epig >& /dev/null; then kubectl delete ns quickstart-epig; fi;
 	if kubectl get ns quickstart-layers-tiles-api >& /dev/null; then kubectl delete ns quickstart-layers-tiles-api; fi;
 	if kubectl get ns quickstart-raster-tiler >& /dev/null; then kubectl delete ns quickstart-raster-tiler; fi;
@@ -169,6 +173,7 @@ helm-install-quickstart-all: epig \
 							 raster-tiler \
 							 keycloak \
 							 osrm \
+							 basemap \
 							 isochrone-api
 
 #dependencies below are very rough
@@ -176,7 +181,7 @@ helm-install-quickstart-all: epig \
 disaster-ninja-be: insights-api layers-api user-profile-api event-api keycloak
 	if kubectl get ns quickstart-disaster-ninja >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-disaster-ninja; fi;
 	helm upgrade --install quickstart-disaster-ninja-be disaster-ninja-be -f disaster-ninja-be/values.yaml -f disaster-ninja-be/values/values-quickstart.yaml -n quickstart-disaster-ninja
-disaster-ninja-fe: disaster-ninja-be epig
+disaster-ninja-fe: disaster-ninja-be epig basemap
 	if kubectl get ns quickstart-disaster-ninja >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-disaster-ninja; fi;
 	helm upgrade --install quickstart-disaster-ninja-fe disaster-ninja-fe -f disaster-ninja-fe/values.yaml -f disaster-ninja-fe/values/values-quickstart.yaml -n quickstart-disaster-ninja
 epig: create-image-pull-secrets
@@ -215,6 +220,9 @@ isochrone-api: osrm create-isochrone-api-db create-image-pull-secrets
 osrm: create-image-pull-secrets
 	if kubectl get ns quickstart-osrm >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-osrm; fi;
 	helm upgrade --install quickstart-osrm osrm -f osrm/values.yaml -f osrm/values/values-quickstart.yaml -n quickstart-osrm
+basemap: create-image-pull-secrets
+	if kubectl get ns quickstart-basemap >& /dev/null; then echo NS already exists; else kubectl create ns quickstart-basemap; fi;
+	helm upgrade --install quickstart-basemap basemap -f basemap/values.yaml -f basemap/values/values-quickstart.yaml -n quickstart-basemap
 
 ####### GOALS FOR TEMPLATES TESTING #######
 template-all: delete-files kustomize-flux template-dev template-test template-prod template-local template-quickstart
@@ -242,6 +250,7 @@ template-dev:
 	helm template dev-layers-db-etl layers-db-etl -f layers-db-etl/values.yaml -f layers-db-etl/values/values-dev.yaml >> dev.yaml
 	helm template dev-layers-tiles-api layers-tiles-api -f layers-tiles-api/values.yaml -f layers-tiles-api/values/values-dev.yaml >> dev.yaml
 	helm template dev-osrm osrm -f osrm/values.yaml -f osrm/values/values-dev.yaml >> dev.yaml
+	helm template dev-basemap basemap -f basemap/values.yaml -f basemap/values/values-dev.yaml >> dev.yaml
 	helm template dev-raster-tiler raster-tiler -f raster-tiler/values.yaml -f raster-tiler/values/values-dev.yaml >> dev.yaml
 	helm template dev-titiler titiler -f titiler/values.yaml -f titiler/values/values-dev.yaml >> dev.yaml
 	helm template dev-user-profile-api user-profile-api -f user-profile-api/values.yaml -f user-profile-api/values/values-dev.yaml >> dev.yaml
@@ -258,6 +267,7 @@ template-test:
 	helm template test-layers-db-etl layers-db-etl -f layers-db-etl/values.yaml -f layers-db-etl/values/values-test.yaml >> test.yaml
 	helm template test-layers-tiles-api layers-tiles-api -f layers-tiles-api/values.yaml -f layers-tiles-api/values/values-test.yaml >> test.yaml
 	#helm template test-osrm osrm -f osrm/values.yaml -f osrm/values/values-test.yaml >> test.yaml
+	helm template test-basemap basemap -f basemap/values.yaml -f basemap/values/values-test.yaml >> test.yaml
 	helm template test-raster-tiler raster-tiler -f raster-tiler/values.yaml -f raster-tiler/values/values-test.yaml >> test.yaml
 	helm template test-titiler titiler -f titiler/values.yaml -f titiler/values/values-test.yaml >> test.yaml
 	helm template test-user-profile-api user-profile-api -f user-profile-api/values.yaml -f user-profile-api/values/values-test.yaml >> test.yaml
@@ -274,6 +284,7 @@ template-prod:
 	helm template prod-layers-db-etl layers-db-etl -f layers-db-etl/values.yaml -f layers-db-etl/values/values-prod.yaml >> prod.yaml
 	helm template prod-layers-tiles-api layers-tiles-api -f layers-tiles-api/values.yaml -f layers-tiles-api/values/values-prod.yaml >> prod.yaml
 	#helm template prod-osrm osrm -f osrm/values.yaml -f osrm/values/values-prod.yaml >> prod.yaml
+	helm template prod-basemap basemap -f basemap/values.yaml -f basemap/values/values-prod.yaml >> prod.yaml
 	helm template prod-raster-tiler raster-tiler -f raster-tiler/values.yaml -f raster-tiler/values/values-prod.yaml >> prod.yaml
 	helm template prod-titiler titiler -f titiler/values.yaml -f titiler/values/values-prod.yaml >> prod.yaml
 	helm template prod-user-profile-api user-profile-api -f user-profile-api/values.yaml -f user-profile-api/values/values-prod.yaml >> prod.yaml
@@ -290,6 +301,7 @@ template-local:
 	helm template local-layers-db-etl layers-db-etl -f layers-db-etl/values.yaml >> local.yaml
 	helm template local-layers-tiles-api layers-tiles-api -f layers-tiles-api/values.yaml -f layers-tiles-api/values/values-local.yaml >> local.yaml
 	#helm template local-osrm osrm -f osrm/values.yaml -f osrm/values/values-local.yaml >> local.yaml
+	helm template local-basemap basemap -f basemap/values.yaml -f basemap/values.yaml >> local.yaml
 	helm template local-raster-tiler raster-tiler -f raster-tiler/values.yaml >> local.yaml
 	helm template local-titiler titiler -f titiler/values.yaml >> local.yaml
 	helm template local-user-profile-api user-profile-api -f user-profile-api/values.yaml >> local.yaml
@@ -306,6 +318,7 @@ template-quickstart:
 	helm template quickstart-layers-db-etl layers-db-etl -f layers-db-etl/values.yaml >> quickstart.yaml
 	helm template quickstart-layers-tiles-api layers-tiles-api -f layers-tiles-api/values.yaml -f layers-tiles-api/values/values-quickstart.yaml >> quickstart.yaml
 	helm template quickstart-osrm osrm -f osrm/values.yaml -f osrm/values/values-quickstart.yaml >> quickstart.yaml
+	helm template quickstart-basemap basemap -f basemap/values.yaml -f basemap/values/values-quickstart.yaml >> quickstart.yaml
 	helm template quickstart-raster-tiler raster-tiler -f raster-tiler/values.yaml >> quickstart.yaml
 	helm template quickstart-titiler titiler -f titiler/values.yaml >> quickstart.yaml
 	helm template quickstart-user-profile-api user-profile-api -f user-profile-api/values.yaml >> quickstart.yaml

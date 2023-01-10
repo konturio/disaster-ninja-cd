@@ -1,0 +1,106 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Values.envName }}-basemap
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: basemap
+    app.kubernetes.io/instance: {{ .Values.envName }}-basemap
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  schedule: {{ .Values.basemap.processingSchedule | quote }}
+  concurrencyPolicy: "Forbid"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          shareProcessNamespace: true # required to shut down postgres when pipeline is done
+          restartPolicy: Never
+          {{ if .Values.images.usePullSecret }}
+          imagePullSecrets:
+          - name: {{ .Values.images.pullSecretName }}
+          {{ end }}
+          containers:
+          - name: basemap-rendering
+            image: {{ .Values.basemap.renderer.image }}:{{ .Values.basemap.renderer.tag }}
+            imagePullPolicy: Always
+            volumeMounts:
+            - name: {{ .Values.envName }}-basemap-processor-pvc
+              mountPath: /persisted-volume
+            env:
+            - name: ENV_NAME
+              value: {{ .Values.envName }}
+            - name: PGHOST
+              value: localhost
+            - name: PGUSER
+              value: gis
+            - name: PGDATABASE
+              value: gis
+            envFrom:
+              - secretRef:
+                  name: {{ .Values.envName }}-basemap
+            resources:
+              limits:
+                memory: {{ .Values.resources.renderer.limits.memory | quote }}
+                cpu: {{ .Values.resources.renderer.limits.cpu | quote }}
+              requests:
+                memory: {{ .Values.resources.renderer.requests.memory | quote }}
+                cpu: {{ .Values.resources.renderer.requests.cpu | quote }}
+          - name: postgres
+            image: {{ .Values.basemap.db.image }}:{{ .Values.basemap.db.tag }}
+            args:
+            - "-c"
+            - "maintenance_work_mem={{ .Values.basemap.db.config.maintenanceWorkMem }}"
+            - "-c"
+            - "shared_buffers={{ .Values.basemap.db.config.sharedBuffers }}"
+            - "-c"
+            - "effective_cache_size={{ .Values.basemap.db.config.effectiveCacheSize }}"
+            - "-c"
+            - "random_page_cost={{ .Values.basemap.db.config.randomPageCost }}"
+            - "-c"
+            - "effective_io_concurrency={{ .Values.basemap.db.config.effectiveIoConcurrency }}"
+            - "-c"
+            - "work_mem={{ .Values.basemap.db.config.workMem }}"
+            - "-c"
+            - "max_connections={{ .Values.basemap.db.config.maxConnections }}"
+            - "-c"
+            - "wal_level={{ .Values.basemap.db.config.walLevel }}"
+            - "-c"
+            - "max_wal_senders={{ .Values.basemap.db.config.maxWalSenders }}"
+            - "-c"
+            - "max_wal_size={{ .Values.basemap.db.config.maxWalSize }}"
+            - "-c"
+            - "checkpoint_timeout={{ .Values.basemap.db.config.checkpointTimeout }}"
+            - "-c"
+            - "checkpoint_completion_target={{ .Values.basemap.db.config.checkpointCompletionTarget }}"
+            env:
+            - name: POSTGRES_USER
+              value: gis
+            - name: POSTGRES_DATABASE
+              value: gis
+            - name: POSTGRES_HOST_AUTH_METHOD
+              value: trust
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+            volumeMounts:
+            - name: {{ .Values.envName }}-basemap-postgres-pvc
+              mountPath: /var/lib/postgresql/data
+            resources:
+              limits:
+                memory: {{ .Values.resources.db.limits.memory | quote }}
+                cpu: {{ .Values.resources.db.limits.cpu | quote }}
+              requests:
+                memory: {{ .Values.resources.db.requests.memory | quote }}
+                cpu: {{ .Values.resources.db.requests.cpu | quote }}
+          volumes:
+          - name: {{ .Values.envName }}-basemap-processor-pvc
+            persistentVolumeClaim:
+              claimName: {{ .Values.envName }}-basemap-processor-pvc
+          - name: {{ .Values.envName }}-basemap-postgres-pvc
+            persistentVolumeClaim:
+              claimName: {{ .Values.envName }}-basemap-postgres-pvc
+---

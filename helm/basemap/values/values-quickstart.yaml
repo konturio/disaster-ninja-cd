@@ -1,0 +1,21 @@
+envName: quickstart
+
+createResource:
+  ingress: false
+  defaultSecrets: true
+isOfflineInstallation: true
+ingressHost: basemap.kontur
+
+tileserver:
+  replicas: 1
+  image: 'nexus.kontur.io:8084/maptiler/tileserver-gl'
+  tag: 'v4.3.2'
+
+basemap:
+  processingSchedule: "0 0 */7 * *" # Run once in 7 days at midnight
+  renderer:
+    image: "nexus.kontur.io:8084/konturdev/build-basemap"
+    tag: "latest"
+  db:
+    image: "nexus.kontur.io:8084/postgis/postgis"
+    tag: "14-master"

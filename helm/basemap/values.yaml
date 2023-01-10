@@ -1,0 +1,70 @@
+envName: dev
+
+createResource:
+  ingress: false
+  defaultSecrets: false
+isOfflineInstallation: false
+k8s_cluster_flavor: default # value may be substituted in a Flux pipeline
+ingressHost: none
+
+pvc:
+  tileStorageSize: 150Gi
+  processorStorageSize: 500Gi
+  postgresStorageSize: 1800Gi
+
+imagePullPolicy: IfNotPresent
+
+images:
+  pullSecretName: nexus8084
+  usePullSecret: true
+
+tileserver:
+  replicas: 1
+  image: 'nexus.kontur.io:8084/maptiler/tileserver-gl'
+  tag: 'v4.3.2'
+  port: 8080
+
+basemap:
+  processingSchedule: "0 0 */7 * *" # Run once in 7 days at midnight
+  renderer:
+    image: "nexus.kontur.io:8084/konturdev/build-basemap"
+    tag: "latest"
+  db:
+    image: "nexus.kontur.io:8084/postgis/postgis"
+    tag: "14-master"
+    config:
+      maintenanceWorkMem: "5GB"
+      sharedBuffers: "10GB"
+      effectiveCacheSize: "80GB"
+      randomPageCost: "1.1"
+      effectiveIoConcurrency: "200"
+      workMem: "2GB"
+      maxConnections: "32"
+      walLevel: "minimal"
+      maxWalSenders: "0"
+      maxWalSize: "10GB"
+      checkpointTimeout: "60min"
+      checkpointCompletionTarget: "0.9"
+
+resources:
+  tileserver:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 100m
+      memory: 256Mi
+  renderer:
+    limits:
+      memory: 30Gi
+      cpu: '4'
+    requests:
+      memory: 10Gi
+      cpu: '2'
+  db:
+    limits:
+      memory: 128Gi
+      cpu: '50'
+    requests:
+      memory: 64Gi
+      cpu: '20'
