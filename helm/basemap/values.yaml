@@ -21,7 +21,7 @@ images:
 tileserver:
   replicas: 1
   image: 'nexus.kontur.io:8084/maptiler/tileserver-gl'
-  tag: 'v4.3.2'
+  tag: 'v4.4.0'
   port: 8080
 
 basemap:
@@ -49,10 +49,10 @@ basemap:
 resources:
   tileserver:
     requests:
-      cpu: 50m
+      cpu: 100m
       memory: 1Gi
     limits:
-      cpu: 100m
+      cpu: 500m
       memory: 1.5Gi
   renderer:
     limits:
