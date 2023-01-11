@@ -8,6 +8,17 @@ spec:
   rollback:
     disableWait: true
     disableWaitForJobs: true
+  install:
+    disableWait: true
+    disableWaitForJobs: true
+  uninstall:
+    disableWait: true
+    disableWaitForJobs: true
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+    disableWait: true
+    disableWaitForJobs: true
   chart:
     spec:
       chart: ./helm/basemap
@@ -19,7 +30,4 @@ spec:
         name: kontur-platform
         namespace: flux-system
       interval: 1m
-  upgrade:
-    remediation:
-      remediateLastFailure: true
 ---
