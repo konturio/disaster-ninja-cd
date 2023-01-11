@@ -64,6 +64,7 @@ spec:
         - {{ .Values.tileserver.port | quote }}
         - '--mbtiles'
         - basemap.mbtiles
+        - '-V'
         image: {{ .Values.tileserver.image }}:{{ .Values.tileserver.tag }}
         imagePullPolicy: {{ .Values.imagePullPolicy }}
         livenessProbe:
