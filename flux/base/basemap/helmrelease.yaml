@@ -4,7 +4,7 @@ metadata:
   name: basemap
 spec:
   suspend: false
-  interval: 5m
+  interval: 35m
   rollback:
     disableWait: true
     disableWaitForJobs: true
