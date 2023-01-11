@@ -11,9 +11,6 @@ spec:
   install:
     disableWait: true
     disableWaitForJobs: true
-  uninstall:
-    disableWait: true
-    disableWaitForJobs: true
   upgrade:
     remediation:
       remediateLastFailure: true
