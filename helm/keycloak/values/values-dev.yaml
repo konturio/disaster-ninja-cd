@@ -17,10 +17,10 @@ service:
   kcFrontEndUrl: https://dev-keycloak.k8s-01.konturlabs.com/auth
 
 keycloak:
-  databaseHost: db-keycloak-primary.dev-keycloak.svc
+  databaseHost: milan.k8s-01.kontur.io.
   databasePort: 5432
-  databaseName: keycloak-db
-  databaseUser: keycloak-db
+  databaseName: keycloak
+  databaseUser: keycloak
 ups:
   databaseHost: milan.k8s-01.kontur.io.
   databasePort: 5432
