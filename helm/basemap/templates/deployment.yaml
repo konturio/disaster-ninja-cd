@@ -93,6 +93,7 @@ spec:
           failureThreshold: 100
         ports:
         - containerPort: {{ .Values.tileserver.port }}
+          name: main
           protocol: TCP
         volumeMounts:
         - mountPath: /data
