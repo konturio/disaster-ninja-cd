@@ -98,7 +98,7 @@ spec:
   postgresVersion: 14
   users:
     - name: postgres
-    - name: keycloak-db
+    - name: keycloak
       databases:
         - keycloak-db
       options: SUPERUSER
