@@ -28,7 +28,7 @@ ups:
   databaseUser: user-profile-api
 
 envName: test
-ingressHost: test-keycloak.k8s-01.konturlabs.com
+ingressHost: keycloak01.konturlabs.com
 
 createResource:
   defaultSecrets: false
