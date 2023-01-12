@@ -23,5 +23,5 @@ resources:
   - layers-db/overlays/DEV
   - layers-db/overlays/TEST
   - layers-db/overlays/PROD
-  - keycloak-db/overlays/DEV
+#  - keycloak-db/overlays/DEV
   - user-profile-api-db/overlays/DEV
