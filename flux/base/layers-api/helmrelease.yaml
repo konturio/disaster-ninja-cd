@@ -4,6 +4,19 @@ kind: HelmRelease
 metadata:
   name: layers-api
 spec:
+  suspend: false
+  interval: 30m
+  rollback:
+    disableWait: true
+    disableWaitForJobs: true
+  install:
+    disableWait: true
+    disableWaitForJobs: true
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+    disableWait: true
+    disableWaitForJobs: true
   chart:
     spec:
       chart: ./helm/layers-api
@@ -15,12 +28,7 @@ spec:
         namespace: flux-system
       valuesFiles:
         - ./helm/layers-api/values.yaml
-  interval: 5m
-  suspend: false
   test:
     enable: true
-  upgrade:
-    remediation:
-      remediateLastFailure: true
   values:
     k8s_cluster_flavor: '${k8s_cluster_flavor}' # optional value that can be substituted in a Flux pipeline
