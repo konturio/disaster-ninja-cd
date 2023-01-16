@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: 14176-broken-url-routing-for-all-pages-except-the-default.ccf759f.1 # image id
+    tag: sensor-demo.b75ad85.1 # image id
     
 replicaCount: 2
 envName: dev
