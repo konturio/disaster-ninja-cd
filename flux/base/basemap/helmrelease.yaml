@@ -1,0 +1,30 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: basemap
+spec:
+  suspend: false
+  interval: 35m
+  rollback:
+    disableWait: true
+    disableWaitForJobs: true
+  install:
+    disableWait: true
+    disableWaitForJobs: true
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+    disableWait: true
+    disableWaitForJobs: true
+  chart:
+    spec:
+      chart: ./helm/basemap
+      valuesFiles:
+        - ./helm/basemap/values.yaml
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: GitRepository
+        name: kontur-platform
+        namespace: flux-system
+      interval: 1m
+---
