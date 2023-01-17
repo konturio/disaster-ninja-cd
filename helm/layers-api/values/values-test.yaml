@@ -20,7 +20,7 @@ createResource:
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 
-databaseHost: london.k8s-01.kontur.io
+databaseHost: db-layers-primary.test-layers-db.svc
 
 jwtIssuerUri: 'https://keycloak01.konturlabs.com/auth/realms/test'
 jwtJwkSetUri: 'https://keycloak01.konturlabs.com/auth/realms/test/protocol/openid-connect/certs'

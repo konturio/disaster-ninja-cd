@@ -9,7 +9,8 @@ data:
 
     \c layers-db
     
-    GRANT SELECT ON ALL TABLES IN SCHEMA public TO "mosaic";
+    GRANT SELECT ON layers TO "mosaic";
+    GRANT SELECT ON layers_features TO "mosaic";
     
     GRANT SELECT ON layers TO "layers-tiles-api";
     GRANT SELECT ON layers_features TO "layers-tiles-api";
