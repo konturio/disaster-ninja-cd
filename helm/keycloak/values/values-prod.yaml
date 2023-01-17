@@ -5,7 +5,7 @@
 image:
   repository: nexus.kontur.io:8084/konturdev/keycloak-with-ups-spi
   pullPolicy: IfNotPresent
-  tag: 13594-setup-keycloak-in-k8s-cluster.6a625cd.1
+  tag: release-0.3.9.d84cefb.1
   pullSecretName: nexus8084
   usePullSecret: false
 
@@ -35,7 +35,7 @@ createResource:
   ingress: true
   prometheusRule: true
   serviceMonitor: true
-  deploymentLivenessProbe: false
+  deploymentLivenessProbe: true
   importDefaultRealm: false
 isOfflineInstallation: false
 probeInitialDelaySeconds: 180
