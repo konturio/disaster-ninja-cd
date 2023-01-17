@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../base/keycloak
+namePrefix: prod-
+namespace: prod-keycloak
+patches:
+  - target:
+      kind: HelmRelease
+      name: keycloak
+      group: helm.toolkit.fluxcd.io
+      version: v2beta1
+    patch: |-
+      - op: replace
+        path: /spec/chart/spec/valuesFiles
+        value:
+          - ./helm/keycloak/values.yaml
+          - ./helm/keycloak/values/values-prod.yaml
+---
