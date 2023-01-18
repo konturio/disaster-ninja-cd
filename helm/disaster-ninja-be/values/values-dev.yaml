@@ -17,7 +17,7 @@ replicas: 1
 
 image:
   be:
-    tag: "13900-provide-event-summary-or-its-analogue.32e8580.1" # this version will be automatically deployed by Flux
+    tag: "13256-dn2-be-serve-translated-basemap-style-based-on-user-s-language.0bd2d24.1" # this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: dev
