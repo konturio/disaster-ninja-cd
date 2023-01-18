@@ -44,7 +44,7 @@ dnsNameOuter: test-apps.konturlabs.com
 alertingTime: 5m
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
-keycloakRealm: 'test'
+keycloakRealm: test
 
 otlpTracesExporter: otlp
 otlpTracesPort: 4317

@@ -22,8 +22,8 @@ probeInitialDelaySeconds: 15
 
 databaseHost: db-layers-primary.dev-layers-db.svc
 
-jwtIssuerUri: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
-jwtJwkSetUri: 'https://dev-keycloak.k8s-01.konturlabs.com/auth/protocol/openid-connect/certs'
+jwtIssuerUri: 'https://dev-keycloak.k8s-01.konturlabs.com/auth/realms/dev'
+jwtJwkSetUri: 'https://dev-keycloak.k8s-01.konturlabs.com/auth/realms/dev/protocol/openid-connect/certs'
 
 alertingTime: 10m
 
