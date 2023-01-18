@@ -55,4 +55,8 @@ awsSqsUrl: 'https://sqs.us-west-1.amazonaws.com/001426858141/SNS_messages_from_p
 awsSqsDlqUrl: 'https://sqs.us-west-1.amazonaws.com/001426858141/SNS_messages_from_pdc-test-copy-publiccloud-sns_DLQ.fifo'
 awsSqsEnabled: true
 
+feedCompositionEnable: false
+enrichmentEnable: false
+reEnrichmentEnable: false
+
 feignUserAgent: Event API TEST
