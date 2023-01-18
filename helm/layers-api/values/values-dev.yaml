@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 13984-create-oam-application.64559dd.1
+  tag: 8040-layers-api-add-kontur-basemaps-to-panel-with-layers.3e2247f.1
   usePullSecret: false
   pullSecretName: none
 
