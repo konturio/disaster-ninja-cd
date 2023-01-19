@@ -18,7 +18,7 @@ data:
   spring.redis.host: {{ .Values.envName }}-insights-api-redis
   spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.keycloakUrl }}/realms/{{ .Values.keycloakRealm }}
   spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.keycloakUrl }}/realms/{{ .Values.keycloakRealm }}/protocol/openid-connect/certs
-  calculations.useStatSeparateTables: false
+  calculations.useStatSeparateTables: "false"
 kind: ConfigMap
 metadata:
   annotations:
