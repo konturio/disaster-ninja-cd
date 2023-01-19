@@ -21,6 +21,7 @@ isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 
 databaseHost: db-user-profile-api-primary.dev-user-profile-api.svc
+databaseName: user-profile-api-db
 
 jwtIssuerUri: 'https://dev-keycloak.k8s-01.konturlabs.com/auth/realms/dev'
 jwtJwkSetUri: 'https://dev-keycloak.k8s-01.konturlabs.com/auth/realms/dev/protocol/openid-connect/certs'
