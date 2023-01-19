@@ -9,12 +9,12 @@ data:
 
     \c layers-db
     
-    GRANT SELECT ON layers TO "mosaic";
-    GRANT SELECT ON layers_features TO "mosaic";
+    GRANT SELECT ON ALL TABLES IN SCHEMA public TO "mosaic";
     
     GRANT SELECT ON layers TO "layers-tiles-api";
     GRANT SELECT ON layers_features TO "layers-tiles-api";
     GRANT EXECUTE ON FUNCTION hot_projects(integer, integer, integer) TO "layers-tiles-api";
+    GRANT EXECUTE ON FUNCTION hot_projects_outlines(integer, integer, integer) TO "layers-tiles-api";
      
     ALTER TABLE layers                     OWNER TO "layers-api";
     ALTER TABLE apps                       OWNER TO "layers-api";
