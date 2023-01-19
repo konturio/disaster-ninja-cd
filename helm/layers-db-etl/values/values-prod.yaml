@@ -16,4 +16,4 @@ createResource:
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 
-pgHost: paris.k8s-01.kontur.io
+pgHost: db-layers-primary.prod-layers-db.svc
