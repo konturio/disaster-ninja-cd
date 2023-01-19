@@ -22,9 +22,9 @@ keycloak:
   databaseName: keycloak-db
   databaseUser: keycloak
 ups:
-  databaseHost: london.k8s-01.kontur.io.
+  databaseHost: db-user-profile-api-primary.test-user-profile-api.svc
   databasePort: 5432
-  databaseName: user-profile-api
+  databaseName: user-profile-api-db
   databaseUser: user-profile-api
 
 envName: test
