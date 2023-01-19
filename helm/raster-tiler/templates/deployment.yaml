@@ -77,7 +77,7 @@ spec:
               value: "true"
           {{- end }}
           image: {{ .Values.image.name }}:{{ .Values.image.tag }}
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
         {{- if .Values.createResource.deploymentLivenessProbe }}
           livenessProbe:
             failureThreshold: 10
