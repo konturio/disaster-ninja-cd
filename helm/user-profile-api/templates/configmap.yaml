@@ -3,7 +3,7 @@ data:
   OTEL_LOGS_EXPORTER: none
   OTEL_METRICS_EXPORTER: none
   OTEL_TRACES_EXPORTER: {{ .Values.otlpTracesExporter }}
-  SPRING_DATASOURCE_URL: jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/user-profile-api
+  SPRING_DATASOURCE_URL: jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/{{ .Values.databaseName }}
   SPRING_DATASOURCE_USERNAME: user-profile-api
   management.endpoint.health.probes.enabled: "true"
   management.endpoints.web.path-mapping.prometheus: metrics
