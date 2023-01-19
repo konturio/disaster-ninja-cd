@@ -67,4 +67,4 @@ resources:
       cpu: '50'
     requests:
       memory: 64Gi
-      cpu: '20'
+      cpu: '10'
