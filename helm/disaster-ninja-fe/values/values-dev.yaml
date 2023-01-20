@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: test-i18n-await.8fa93f0.1 # image id
+    tag: 14293-the-translated-names-of-the-panels-are-switched-back-to-the-english-version-after-page-refreshment.7288b29.1 # image id
     
 replicaCount: 2
 envName: dev
