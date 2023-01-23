@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: 14293-the-translated-names-of-the-panels-are-switched-back-to-the-english-version-after-page-refreshment.7288b29.1 # image id
+    tag: 14327-arrow-in-the-analytics-tab-is-in-the-incorrect-position-at-the-initiate-state.73fc98d.1 # image id
     
 replicaCount: 2
 envName: dev
