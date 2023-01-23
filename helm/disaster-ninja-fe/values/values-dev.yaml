@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: 14327-arrow-in-the-analytics-tab-is-in-the-incorrect-position-at-the-initiate-state.73fc98d.1 # image id
+    tag: 14294-after-several-updates-the-initial-state-of-the-analytics-panel-becomes-advanced-analytics.c376677.1 # image id
     
 replicaCount: 2
 envName: dev
