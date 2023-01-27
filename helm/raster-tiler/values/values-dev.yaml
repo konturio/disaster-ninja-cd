@@ -23,3 +23,11 @@ createResource:
   deploymentLivenessProbe: true
 isOfflineInstallation: false
 probeInitialDelaySeconds: 30
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 4Gi
+  limits:
+    cpu: 8
+    memory: 8Gi
