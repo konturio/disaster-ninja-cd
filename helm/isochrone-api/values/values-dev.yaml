@@ -28,7 +28,7 @@ hikari:
   maximumPoolSize: 10
   minimumIdle: 3
 
-populationApiUrl: https://test-apps02.konturlabs.com/insights-api/
+populationApiUrl: http://dev-insights-api.dev-insights-api.svc:8625/insights-api/
 calculationWorkersNumber: 7
 isochroneTimeLimitSeconds: 1200
 isochroneIntervalSeconds: 300
