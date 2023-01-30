@@ -21,11 +21,11 @@ image:
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: dev
-eventApiUrl: 'https://test-apps02.konturlabs.com/events'
+eventApiUrl: 'http://dev-event-api.dev-event-api.svc:8624/events'
 kcApiUrl: 'https://test-api02.konturlabs.com/layers'
-layersApiUrl: 'https://test-api02.konturlabs.com/layers/v2'
-insightsApiUrl: 'https://test-apps02.konturlabs.com/insights-api'
-userProfileApiUrl: 'https://test-apps02.konturlabs.com/userprofile'
+layersApiUrl: 'http://dev-layers-api.dev-layers-api.svc:8630/layers/v2/'
+insightsApiUrl: 'http://dev-insights-api.dev-insights-api.svc:8625/insights-api/'
+userProfileApiUrl: 'http://dev-user-profile-api.dev-user-profile-api.svc:8631/userprofile'
 tilesHost: 'https://sonic.kontur.io'
 
 notificationsEnabled: true
