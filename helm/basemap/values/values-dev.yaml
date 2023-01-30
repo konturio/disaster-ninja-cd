@@ -14,7 +14,7 @@ basemap:
   processingSchedule: "0 0 */2 * *" # Run once in 2 days at midnight
   renderer:
     image: "nexus.kontur.io:8084/konturdev/build-basemap"
-    tag: "14310-country-names-are-not-translated-in-basemap.b11b4d8.1"
+    tag: "14310-country-names-are-not-translated-in-basemap.dccca87.1"
   db:
     image: "nexus.kontur.io:8084/postgis/postgis"
     tag: "14-master"

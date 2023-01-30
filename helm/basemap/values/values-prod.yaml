@@ -14,7 +14,7 @@ basemap:
   processingSchedule: "0 0 */2 * *" # Run once in 2 days at midnight
   renderer:
     image: "nexus.kontur.io:8084/konturdev/build-basemap"
-    tag: "master.647e711.1"
+    tag: "master.6f79791.1"
   db:
     image: "nexus.kontur.io:8084/postgis/postgis"
     tag: "14-master"
