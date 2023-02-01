@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 13984-create-oam-application.5013cbe.1
+  tag: 14373-configure-map-extent-for-apps-in-ups.5d1f7dd.1
   pullSecretName: none
   usePullSecret: false
 
