@@ -24,7 +24,7 @@ keycloakRealm: dev
 eventApiUrl: 'http://dev-event-api.dev-event-api.svc:8624/events'
 kcApiUrl: 'https://test-api02.konturlabs.com/layers'
 layersApiUrl: 'http://dev-layers-api.dev-layers-api.svc:8630/layers/v2/'
-insightsApiUrl: 'http://dev-insights-api.dev-insights-api.svc:8625/insights-api/'
+insightsApiUrl: 'https://test-apps02.konturlabs.com/insights-api'
 userProfileApiUrl: 'http://dev-user-profile-api.dev-user-profile-api.svc:8631/userprofile'
 tilesHost: 'https://sonic.kontur.io'
 
