@@ -17,7 +17,7 @@ replicas: 1
 
 image:
   be:
-    tag: "14423-dn2-be-update-layers-api-application-extraction.facc703.1" # this version will be automatically deployed by Flux
+    tag: "14373-configure-map-extent-for-apps-in-ups.eb77690.1" # this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: dev
