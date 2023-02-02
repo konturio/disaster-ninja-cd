@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: "master.61ef313.1"
+  tag: "12103-service-for-calculating-stops-and-quality.dbdb8b7.1"
   tagType: ""
   pullSecretName: none
   usePullSecret: false
