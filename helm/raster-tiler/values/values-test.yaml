@@ -11,7 +11,7 @@ replicas: 1
 envName: test
 ingressHost: test-raster-tiler.k8s-01.konturlabs.com
 base_url: https://test-raster-tiler.k8s-01.konturlabs.com
-titiler_url: https://test-apps.konturlabs.com/titiler/
+titiler_url: http://test-titiler.test-titiler.svc
 pg_host: db-layers-primary.test-layers-db.svc
 storage_size: 100Gi
 storageClass: local-path
