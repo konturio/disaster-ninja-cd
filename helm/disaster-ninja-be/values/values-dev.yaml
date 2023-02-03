@@ -17,7 +17,7 @@ replicas: 1
 
 image:
   be:
-    tag: "14373-configure-map-extent-for-apps-in-ups.eb77690.1" # this version will be automatically deployed by Flux
+    tag: "14469-add-bbox-and-centroid-fields-to-dn-be-response.66e30a2.1" # this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: dev
