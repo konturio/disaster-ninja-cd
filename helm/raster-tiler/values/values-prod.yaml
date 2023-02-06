@@ -11,7 +11,7 @@ replicas: 1
 envName: prod
 ingressHost: prod-raster-tiler.k8s-01.konturlabs.com
 base_url: https://prod-raster-tiler.k8s-01.konturlabs.com
-titiler_url: https://apps.kontur.io/titiler/
+titiler_url: http://prod-titiler.prod-titiler.svc
 pg_host: db-layers-primary.prod-layers-db.svc
 storage_size: 500Gi
 storageClass: local-path
