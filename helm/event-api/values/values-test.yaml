@@ -34,7 +34,7 @@ alertingTime: 5m
 jwtIssuerUri: 'https://keycloak01.konturlabs.com/auth/realms/test'
 jwtJwkSetUri: 'https://keycloak01.konturlabs.com/auth/realms/test/protocol/openid-connect/certs'
 
-profiles: test
+profiles: test, cacheDisabled
 
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
