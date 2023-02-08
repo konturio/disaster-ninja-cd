@@ -17,7 +17,7 @@ replicas: 1
 
 image:
   be:
-    tag: "14469-add-bbox-and-centroid-fields-to-dn-be-response.66e30a2.1" # this version will be automatically deployed by Flux
+    tag: "9831-update-layer-config-to-use-kontur-s-params.bbc7dba.1" # this version will be automatically deployed by Flux
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: dev
