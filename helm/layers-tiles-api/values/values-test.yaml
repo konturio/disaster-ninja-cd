@@ -7,9 +7,9 @@ ingressHost: test-layers-tiles-api.k8s-01.konturlabs.com
 replicas: 1
 
 image:
-  tag: "20220815" #this version will be automatically deployed by Flux
+  tag: "20221019" #this version will be automatically deployed by Flux
 
-DbPoolMaxConnLifeTime: 1h
+DbPoolMaxConnLifeTime: 10m
 DbPoolMaxConns: 10
 DbTimeout: 10
 CacheTTL: 10
