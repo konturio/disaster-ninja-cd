@@ -9,7 +9,7 @@ replicas: 1
 image:
   tag: "20220815" #this version will be automatically deployed by Flux
 
-DbPoolMaxConnLifeTime: 10m
+DbPoolMaxConnLifeTime: 1h
 DbPoolMaxConns: 10
 DbTimeout: 10
 CacheTTL: 10
