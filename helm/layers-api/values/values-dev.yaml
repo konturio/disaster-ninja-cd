@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 14423-dn2-be-update-layers-api-application-extraction.65b3d73.1
+  tag: 13944-layers-api-collect-live-sensor-data.feeb792.1
   usePullSecret: false
   pullSecretName: none
 
