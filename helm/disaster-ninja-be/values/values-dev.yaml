@@ -17,7 +17,7 @@ replicas: 1
 
 image:
   be:
-    tag: 14666-sla-dn2-fe-was-stuck-for-40-seconds.17bec32.1
+    tag: 14267-dn-be-collect-live-sensor-data.504704f.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: dev
