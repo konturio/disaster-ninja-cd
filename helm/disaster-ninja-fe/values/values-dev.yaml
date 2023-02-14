@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: 14263-dn-fe-create-live-sensor-feature.b00e3e6.1 # image id
+    tag: 14263-dn-fe-create-live-sensor-feature.74b4981.1 # image id
     
 replicaCount: 2
 envName: dev
