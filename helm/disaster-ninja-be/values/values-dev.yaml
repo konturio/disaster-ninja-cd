@@ -17,7 +17,7 @@ replicas: 1
 
 image:
   be:
-    tag: 9831-update-layer-config-to-use-kontur-s-params.7999785.1
+    tag: main.848b872.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: dev
