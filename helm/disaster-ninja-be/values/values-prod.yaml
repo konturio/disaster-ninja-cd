@@ -25,7 +25,7 @@ eventApiUrl: 'https://apps.kontur.io/events/'
 kcApiUrl: 'https://api.kontur.io/layers'
 layersApiUrl: 'https://api.kontur.io/layers/v2'
 insightsApiUrl: 'https://apps.kontur.io/insights-api'
-userProfileApiUrl: 'https://apps.kontur.io/userprofile/'
+userProfileApiUrl: 'http://prod-user-profile-api.prod-user-profile-api.svc:8631/userprofile'
 tilesHost: 'https://disaster.ninja'
 
 notificationsEnabled: true
