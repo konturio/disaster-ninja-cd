@@ -17,7 +17,7 @@ replicas: 1
 
 image:
   be:
-    tag: 13570-fix-percentile-metrics-reporting-to-report-histogram-instead.bda165d.1
+    tag: 14475-dn2-be-refactor-layers-service-and-layers-api-client.fcb273e.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: dev
