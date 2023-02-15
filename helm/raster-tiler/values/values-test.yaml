@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 1152d9224e1687bfe3a6a836018ab1f9fb11c541
+  tag: 0eead48e6770bbc21a7696d3fb37696572904c55
   pullSecretName: none
   usePullSecret: false
 
