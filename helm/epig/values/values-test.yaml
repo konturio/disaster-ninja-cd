@@ -30,4 +30,4 @@ resources:
     requests:
       cpu: 500m
     limits:
-      cpu: 4
+      cpu: 2
