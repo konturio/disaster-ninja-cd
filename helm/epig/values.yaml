@@ -36,3 +36,14 @@ resources:
   chromium:
     requests:
       cpu: 500m
+      memory: 300Mi
+    limits:
+      cpu: 1
+      memory: 800Mi
+  preview_generator:
+    requests:
+      cpu: 100m
+      memory: 100Mi
+    limits:
+      cpu: 200m
+      memory: 300Mi
