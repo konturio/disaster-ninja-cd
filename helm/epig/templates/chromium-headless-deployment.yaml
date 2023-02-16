@@ -54,8 +54,10 @@ spec:
           resources:
             requests:
               cpu: {{ .Values.resources.chromium.requests.cpu | quote }}
-              #TODO: memory
-            #TODO: limits
+              memory: {{ .Values.resources.chromium.requests.memory | quote }}
+            limits:
+              cpu: {{ .Values.resources.chromium.limits.cpu | quote }}
+              memory: {{ .Values.resources.chromium.limits.memory | quote }}
           livenessProbe:
             httpGet:
               path: /json
