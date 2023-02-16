@@ -21,7 +21,7 @@ image:
 
 keycloakUrl: 'https://keycloak01.kontur.io/auth'
 keycloakRealm: kontur
-eventApiUrl: 'https://apps.kontur.io/events/'
+eventApiUrl: 'http://prod-event-api.prod-event-api.svc:8624/events'
 kcApiUrl: 'https://api.kontur.io/layers'
 layersApiUrl: 'https://api.kontur.io/layers/v2'
 insightsApiUrl: 'http://prod-insights-api.prod-insights-api.svc:8625/insights-api'
