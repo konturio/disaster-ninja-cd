@@ -22,7 +22,7 @@ probeInitialDelaySeconds: 15
 databaseHost: mustang.kontur.io
 
 dnsNameOuter: apps.kontur.io
-alertingTime: 2m
+alertingTime: 5m
 
 hikari:
   maximumPoolSize: 10
