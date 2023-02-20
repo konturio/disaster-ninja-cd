@@ -25,7 +25,7 @@ databaseName: user-profile-api-db
 jwtIssuerUri: 'https://keycloak01.kontur.io/auth/realms/kontur'
 jwtJwkSetUri: 'https://keycloak01.kontur.io/auth/realms/kontur/protocol/openid-connect/certs'
 
-alertingTime: 2m
+alertingTime: 5m
 
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
