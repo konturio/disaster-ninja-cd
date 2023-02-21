@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: ab28800e503dd248c66efe841a897b4e0cdcec25
+  tag: 01d446e917cb601c06efd9caf1cc65c60b52f25d
   pullSecretName: none
   usePullSecret: false
 
@@ -11,7 +11,7 @@ replicas: 1
 envName: prod
 ingressHost: prod-raster-tiler.k8s-01.konturlabs.com
 base_url: https://prod-raster-tiler.k8s-01.konturlabs.com
-titiler_url: https://apps.kontur.io/titiler/
+titiler_url: http://prod-titiler.prod-titiler.svc
 pg_host: db-layers-primary.prod-layers-db.svc
 storage_size: 500Gi
 storageClass: local-path

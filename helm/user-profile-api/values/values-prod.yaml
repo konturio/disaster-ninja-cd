@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: release-0.3.10.270b4a1.1
+  tag: release-0.4.0.eca97f6.1
   pullSecretName: none
   usePullSecret: false
 
@@ -25,7 +25,7 @@ databaseName: user-profile-api-db
 jwtIssuerUri: 'https://keycloak01.kontur.io/auth/realms/kontur'
 jwtJwkSetUri: 'https://keycloak01.kontur.io/auth/realms/kontur/protocol/openid-connect/certs'
 
-alertingTime: 2m
+alertingTime: 5m
 
 otlpTracesExporter: otlp
 otlpTracesPort: 4317

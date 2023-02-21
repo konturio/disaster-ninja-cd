@@ -41,7 +41,7 @@ databaseUsername: insights-api
 jmxEnabled: false
 
 dnsNameOuter: apps.kontur.io
-alertingTime: 2m
+alertingTime: 5m
 
 keycloakUrl: 'https://keycloak01.kontur.io/auth'
 keycloakRealm: kontur

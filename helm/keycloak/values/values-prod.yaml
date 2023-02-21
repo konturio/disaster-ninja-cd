@@ -49,4 +49,4 @@ resources:
      cpu: 500m
      memory: 768Mi
 
-alertingTime: 2m
+alertingTime: 5m
