@@ -20,7 +20,12 @@ spec:
             < 1
           for: {{ .Values.alertingTime }}
           labels:
+            team: development
+            {{- if eq .Values.envName "prod" }}
             severity: critical
+            {{- else }}
+            severity: warning
+            {{- end }}
 {{ end }}
 ---
 {{ if eq .Values.envName "prod" }}
@@ -46,5 +51,10 @@ spec:
           for: {{ .Values.alertingMaxResponseTime }}
           labels:
             app: disaster-ninja
+            team: development
+            {{- if eq .Values.envName "prod" }}
             severity: critical
+            {{- else }}
+            severity: warning
+            {{- end }}
 {{ end }}

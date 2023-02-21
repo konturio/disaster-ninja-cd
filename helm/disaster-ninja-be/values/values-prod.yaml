@@ -32,7 +32,7 @@ notificationsEnabled: true
 notificationsFeed: kontur-public
 notificationsAlertUrlPattern: 'https://disaster.ninja/active/?event=%s&utm_source=slack'
 
-alertingTime: 2m
+alertingTime: 5m
 alertingMaxResponseTime: 10s
 
 otlpTracesExporter: otlp

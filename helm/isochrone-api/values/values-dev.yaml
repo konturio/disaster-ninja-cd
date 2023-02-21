@@ -22,7 +22,7 @@ probeInitialDelaySeconds: 15
 databaseHost: geocint.kontur.io
 
 dnsNameOuter: test-apps02.konturlabs.com
-alertingTime: 5m
+alertingTime: 10m
 
 hikari:
   maximumPoolSize: 10
