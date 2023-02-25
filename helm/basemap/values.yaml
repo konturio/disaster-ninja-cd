@@ -35,12 +35,12 @@ basemap:
     config:
       maintenanceWorkMem: "5GB"
       sharedBuffers: "10GB"
-      effectiveCacheSize: "80GB"
-      randomPageCost: "1.1"
-      effectiveIoConcurrency: "200"
+      effectiveCacheSize: "200GB" # should roughly match the limits
+      randomPageCost: "1.1" # low random page cost lets planner do more unordered Index Scans
+      effectiveIoConcurrency: "200" # for nvme drives this should be high - drive can process a lot in parallel
       workMem: "2GB"
-      maxConnections: "32"
-      walLevel: "minimal"
+      maxConnections: "100" # max_connections has to be higher than number of osm2pgsql threads
+      walLevel: "minimal" # the db is ephemeral and does not need recovery
       maxWalSenders: "0"
       maxWalSize: "10GB"
       checkpointTimeout: "60min"
@@ -52,19 +52,19 @@ resources:
       cpu: 100m
       memory: 1Gi
     limits:
-      cpu: 500m
+      cpu: '1'
       memory: 1.5Gi
   renderer:
     limits:
-      memory: 30Gi
-      cpu: '4'
+      memory: 128Gi # ~50Gb for osm2pgsql slim nodes cache + ~50Gb for keeping planet.osm in page cache
+      cpu: '32' # should match --number-processes in osm2pgsql and -j in tile_generator
     requests:
       memory: 10Gi
       cpu: '2'
   db:
     limits:
-      memory: 128Gi
-      cpu: '50'
+      memory: 256Gi 
+      cpu: '50' # should be higher than limit of renderer
     requests:
       memory: 64Gi
       cpu: '10'
