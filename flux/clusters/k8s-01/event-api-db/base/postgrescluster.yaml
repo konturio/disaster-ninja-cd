@@ -43,11 +43,11 @@ spec:
       replicas: 1
       resources:
         limits:
-          memory: 32Gi
-          cpu: '4'
+          memory: 64Gi # # let Postres use the page cache
+          cpu: '16' # set as event-api pool size + autovacuum workers + a bit for parallel workers
         requests:
-          memory: 32Gi
-          cpu: '2'
+          memory: 22Gi # roughly shared_buffers + pool size * work_mem
+          cpu: '2' # if we don't have CPU we can run on potato
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: kubernetes.io/hostname
@@ -70,28 +70,28 @@ spec:
           auto_explain.log_verbose: 'on'
           autovacuum_analyze_scale_factor: 0.005
           autovacuum_naptime: 15s
-          autovacuum_vacuum_cost_limit: 1000
+          autovacuum_vacuum_cost_limit: -1 # we want vacuum to happen at full speed
           autovacuum_vacuum_insert_scale_factor: 0.01
           autovacuum_vacuum_scale_factor: 0.01
-          effective_cache_size: 18GB
+          effective_cache_size: 60GB # should be close to memory limit
           effective_io_concurrency: 200
           log_autovacuum_min_duration: 250ms
           log_checkpoints: 'on'
           log_error_verbosity: verbose
           log_line_prefix: '[%m u=%u d=%d h=%r p=%p l=%l trans_id=%x]: '
-          maintenance_work_mem: 1536MB
-          max_connections: 50
-          max_parallel_maintenance_workers: 2
-          max_parallel_workers: 4
-          max_parallel_workers_per_gather: 2
-          max_worker_processes: 4
+          maintenance_work_mem: 2GB
+          max_connections: 100 # don't lower max_connections below 100 - unused don't consume anything but you may be able to connect one day
+          max_parallel_maintenance_workers: 4
+          max_parallel_workers: 16
+          max_parallel_workers_per_gather: 4
+          max_worker_processes: 16
           random_page_cost: 1.1
           shared_buffers: 6GB
           shared_preload_libraries: 'auto_explain,pg_stat_statements'
           track_activity_query_size: 4kB
           track_functions: pl
           track_io_timing: 'on'
-          vacuum_cost_page_miss: 5
+          vacuum_cost_page_miss: 2 # default value
           wal_compression: 'on'
           work_mem: 1GB
   postGISVersion: '3.2'
