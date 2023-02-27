@@ -4,6 +4,7 @@ data:
   PGPORT: "{{ .Values.pgPort }}"
   PGDATABASE: "{{ .Values.pgDatabase }}"
   PGUSER: "{{ .Values.pgUser }}"
+  LAYERSDBSTAGE: "{{ .Values.envName }}"
 kind: ConfigMap
 metadata:
   annotations:
