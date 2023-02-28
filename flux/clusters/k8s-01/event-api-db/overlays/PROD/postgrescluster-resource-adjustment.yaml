@@ -2,24 +2,3 @@
   path: /spec/instances/0/replicas
   value: 2
 
-<<<<<<< HEAD
-#- op: replace
-#  path: /spec/instances/0/resources
-#  value:
-#    limits:
-#      memory: 64Gi # # let Postres use the page cache
-#      cpu: '16' # set as event-api pool size + autovacuum workers + a bit for parallel workers
-#    requests:
-#      memory: 22Gi # roughly shared_buffers + pool size * work_mem
-#      cpu: '2' # if we don't have CPU we can run on potato
-=======
-- op: replace
-  path: /spec/instances/0/resources
-  value:
-    limits:
-      memory: 64Gi # # let Postres use the page cache
-      cpu: '16' # set as event-api pool size + autovacuum workers + a bit for parallel workers
-    requests:
-      memory: 22Gi # roughly shared_buffers + pool size * work_mem
-      cpu: '2' # if we don't have CPU we can run on potato
->>>>>>> 3c19d7b (13441 set event-api postgres limits dramatically higher)
