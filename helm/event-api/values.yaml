@@ -106,5 +106,6 @@ feedCompositionEnable: true
 enrichmentEnable: true
 reEnrichmentEnable: true
 metricsEnable: true
+eventExpirationEnable: true
 
 k8s_cluster_flavor: default # value may be substituted in a Flux pipeline
