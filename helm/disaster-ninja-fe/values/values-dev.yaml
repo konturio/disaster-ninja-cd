@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: 13240-apply-new-ui-design-of-analytical-panel-dn-fe.d693b37.1 # image id
+    tag: 15070-add-transformation-options-to-mcda-layers.8aec0d2.1 # image id
     
 replicaCount: 2
 envName: dev
