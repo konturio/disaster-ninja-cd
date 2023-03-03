@@ -45,6 +45,7 @@ basemap:
       maxWalSize: "10GB"
       checkpointTimeout: "60min"
       checkpointCompletionTarget: "0.9"
+      synchronousCommit: "off"
 
 resources:
   tileserver:

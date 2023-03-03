@@ -77,6 +77,8 @@ spec:
             - "checkpoint_timeout={{ .Values.basemap.db.config.checkpointTimeout }}"
             - "-c"
             - "checkpoint_completion_target={{ .Values.basemap.db.config.checkpointCompletionTarget }}"
+            - "-c"
+            - "synchronous_commit={{ .Values.basemap.db.config.synchronousCommit }}"
             env:
             - name: POSTGRES_USER
               value: gis

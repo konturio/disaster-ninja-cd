@@ -17,4 +17,4 @@ basemap:
     tag: "master.34a58bb.1"
   db:
     image: "nexus.kontur.io:8084/postgis/postgis"
-    tag: "14-master"
+    tag: "15-3.3"
