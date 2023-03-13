@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 14862-create-marketing-app-on-user-profile-and-layers-db.ee60c3c.1
+  tag: main.fbed199.1
   pullSecretName: none
   usePullSecret: false
 
