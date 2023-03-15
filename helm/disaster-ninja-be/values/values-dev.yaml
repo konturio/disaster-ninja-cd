@@ -17,7 +17,7 @@ replicas: 1
 
 image:
   be:
-    tag: 14438-dn2-be-return-correct-layer-type-for-basemap.c1666e7.1
+    tag: main.ed302f1.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: dev
