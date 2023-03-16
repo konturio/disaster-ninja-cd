@@ -108,7 +108,7 @@ spec:
             persistentVolumeClaim:
               claimName: {{ .Values.envName }}-basemap-processor-pvc
           - name: {{ .Values.envName }}-basemap-postgres-pvc
-            emtyDir: {}
+            emptyDir: {}
             persistentVolumeClaim:
               claimName: {{ .Values.envName }}-basemap-postgres-pvc
 ---
