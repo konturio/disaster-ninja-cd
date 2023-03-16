@@ -16,6 +16,7 @@ spec:
   concurrencyPolicy: "Forbid"
   jobTemplate:
     spec:
+      parallelism: 1
       template:
         spec:
           shareProcessNamespace: true # required to shut down postgres when pipeline is done
@@ -98,15 +99,16 @@ spec:
               requests:
                 memory: {{ .Values.resources.db.requests.memory | quote }}
                 cpu: {{ .Values.resources.db.requests.cpu | quote }}
-            lifecycle:
-              preStop:
-                exec:
-                  command: ["sh", "-c", "rm -rf /var/lib/postgresql/data/*"]
+            # lifecycle:
+            #   preStop:
+            #     exec:
+            #       command: ["sh", "-c", "rm -rf /var/lib/postgresql/data/*"]
           volumes:
           - name: {{ .Values.envName }}-basemap-processor-pvc
             persistentVolumeClaim:
               claimName: {{ .Values.envName }}-basemap-processor-pvc
           - name: {{ .Values.envName }}-basemap-postgres-pvc
+            emtyDir: {}
             persistentVolumeClaim:
               claimName: {{ .Values.envName }}-basemap-postgres-pvc
 ---
