@@ -98,6 +98,10 @@ spec:
               requests:
                 memory: {{ .Values.resources.db.requests.memory | quote }}
                 cpu: {{ .Values.resources.db.requests.cpu | quote }}
+            lifecycle:
+              preStop:
+                exec:
+                  command: ["sh", "-c", "rm -rf /var/lib/postgresql/data/*"]
           volumes:
           - name: {{ .Values.envName }}-basemap-processor-pvc
             persistentVolumeClaim:
