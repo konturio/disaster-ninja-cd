@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: 15070-add-transformation-options-to-mcda-layers.8aec0d2.1 # image id
+    tag: 14439-dn2-fe-utilize-layer-type-property-to-filter-out-layers-that-can-t-be-shown.3974609.1 # image id
     
 replicaCount: 2
 envName: dev
