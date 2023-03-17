@@ -1,4 +1,1 @@
-*    @konturio/infrastructure
-
-helm/**/values-dev.yaml    @konturio/back-end-developers-oss @konturio/front-end-developers-oss
-helm/**/Chart.yaml    @konturio/back-end-developers-oss @konturio/front-end-developers-oss
+helm/**/values-prod.yaml    @konturio/back-end-developers-oss @konturio/front-end-developers-oss @konturio/infrastructure
