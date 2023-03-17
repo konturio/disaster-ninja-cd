@@ -13,7 +13,7 @@ createResource:
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 
-replicas: 1
+replicas: 2
 
 image:
   be:
