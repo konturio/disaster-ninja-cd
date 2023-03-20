@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 14269-dn-be-aggregate-live-sensor-data-into-h3.a0cecd9.1
+  tag: 15378-run-process-to-update-oam-metadata-in-layers-db-for-oam-api-in-k8s.3fddd16.1
   usePullSecret: false
   pullSecretName: none
 
