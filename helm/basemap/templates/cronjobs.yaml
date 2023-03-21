@@ -16,6 +16,7 @@ spec:
   concurrencyPolicy: "Forbid"
   jobTemplate:
     spec:
+      parallelism: 1
       template:
         spec:
           shareProcessNamespace: true # required to shut down postgres when pipeline is done
