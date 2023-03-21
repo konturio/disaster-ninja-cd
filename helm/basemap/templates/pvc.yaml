@@ -33,8 +33,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   accessModes:
-  - ReadWriteOncePod
-  # - ReadWriteOnce
+  - ReadWriteOnce
   resources:
     requests:
       storage: {{ .Values.pvc.postgresStorageSize }}

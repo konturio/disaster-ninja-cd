@@ -99,18 +99,15 @@ spec:
               requests:
                 memory: {{ .Values.resources.db.requests.memory | quote }}
                 cpu: {{ .Values.resources.db.requests.cpu | quote }}
-            # Comment by: Jamal Shahverdiyev
-            # I kept these lines just to be sure, if the changes due PVC folder cleaning will not work I will try to uncomment these lines and test with them
-            # lifecycle:
-            #   preStop:
-            #     exec:
-            #       command: ["sh", "-c", "rm -rf /var/lib/postgresql/data/*"]
+            lifecycle:
+              preStop:
+                exec:
+                  command: ["sh", "-c", "rm -rf /var/lib/postgresql/data/*"]
           volumes:
           - name: {{ .Values.envName }}-basemap-processor-pvc
             persistentVolumeClaim:
               claimName: {{ .Values.envName }}-basemap-processor-pvc
           - name: {{ .Values.envName }}-basemap-postgres-pvc
-            emptyDir: {}
             persistentVolumeClaim:
               claimName: {{ .Values.envName }}-basemap-postgres-pvc
 ---
