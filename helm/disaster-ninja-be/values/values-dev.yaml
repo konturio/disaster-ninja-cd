@@ -17,7 +17,7 @@ replicas: 1
 
 image:
   be:
-    tag: 14817-enable-http-caching-for-insights-api-tiles-full.8600a6c.1
+    tag: 14818-replace-dn-be-tile-proxying-with-redirect-on-ingress-level.8774e37.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: dev
