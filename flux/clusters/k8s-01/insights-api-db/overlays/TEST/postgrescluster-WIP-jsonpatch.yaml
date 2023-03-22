@@ -4,7 +4,7 @@
 #     log-level-file: info # enough to see WAL file names
 #     log-level-stderr: info # enough to see WAL file names
 #     # use /pgbackrest/$NAMESPACE/$CLUSTER_NAME/repoN
-#     repo2-path: /pgbackrest/test-insights-api/insights-api-db/repo2
+#     repo2-path: /pgbackrest/test-insights-api/db-insights-api/repo2
 #     repo1-retention-full-type: 'count'
 #     repo1-retention-full: '2'  # two full in-cluster backups max
 #     repo2-retention-full-type: 'time'
