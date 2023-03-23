@@ -30,7 +30,7 @@
   path: /spec/backups/pgbackrest/configuration
   value:
     - secret:
-        name: insights-api-db-pgo-s3-credentials
+        name: db-insights-api-pgo-s3-credentials
 
 - op: add
   path: /spec/backups/pgbackrest/manual

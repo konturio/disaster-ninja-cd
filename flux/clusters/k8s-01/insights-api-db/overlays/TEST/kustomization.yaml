@@ -1,6 +1,6 @@
 bases:
   - ../../base
-namespace: test-insights-api-db
+namespace: test-insights-api
 
 # patchesStrategicMerge:
 #   - postgrescluster-WIP-merge.yaml
@@ -35,7 +35,7 @@ generatorOptions:
   disableNameSuffixHash: true
 
 # secretGenerator:
-# - name: insights-api-db-pgo-s3-credentials
+# - name: db-insights-api-pgo-s3-credentials
 #   files:
 #   - s3.conf
 #   options:
