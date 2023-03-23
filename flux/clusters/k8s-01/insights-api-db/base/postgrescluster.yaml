@@ -79,7 +79,7 @@ spec:
           log_error_verbosity: verbose
           log_line_prefix: '[%m u=%u d=%d h=%r p=%p l=%l trans_id=%x]: '
           maintenance_work_mem: 1536MB
-          max_connections: 50
+          max_connections: 100
           max_parallel_maintenance_workers: 2
           max_parallel_workers: 4
           max_parallel_workers_per_gather: 2
