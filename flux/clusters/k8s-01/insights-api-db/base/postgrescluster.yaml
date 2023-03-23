@@ -100,7 +100,7 @@ spec:
     - name: postgres
     - name: insights-api
       databases:
-        - db-insights-api
+        - insights-api
       options: SUPERUSER
       password:
         type: AlphaNumeric
