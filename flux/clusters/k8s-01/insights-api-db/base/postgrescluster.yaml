@@ -1,12 +1,12 @@
 apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
-  name: insights-api-db
+  name: db-insights-api
   labels:
     app.kubernetes.io/component: database
     app.kubernetes.io/managed-by: flux
-    app.kubernetes.io/name: insights-api-db
-    app.kubernetes.io/part-of: insights-api-db
+    app.kubernetes.io/name: db-insights-api
+    app.kubernetes.io/part-of: insights-api
 spec:
   backups:
     pgbackrest:
@@ -30,7 +30,7 @@ spec:
                 topologyKey: kubernetes.io/hostname
                 labelSelector:
                   matchLabels:
-                    postgres-operator.crunchydata.com/cluster: insights-api-db
+                    postgres-operator.crunchydata.com/cluster: db-insights-api
                     postgres-operator.crunchydata.com/instance-set: '01'
       dataVolumeClaimSpec:
         accessModes:
@@ -58,8 +58,8 @@ spec:
     labels:
       app.kubernetes.io/component: database
       app.kubernetes.io/managed-by: pgo
-      app.kubernetes.io/name: insights-api-db
-      app.kubernetes.io/part-of: insights-api-db
+      app.kubernetes.io/name: db-insights-api
+      app.kubernetes.io/part-of: insights-api
   patroni:
     dynamicConfiguration:
       postgresql:
@@ -98,9 +98,9 @@ spec:
   postgresVersion: 14
   users:
     - name: postgres
-    - name: insightsapi
+    - name: insights-api
       databases:
-        - insights-api-db
+        - db-insights-api
       options: SUPERUSER
       password:
         type: AlphaNumeric
