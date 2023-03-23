@@ -16,4 +16,4 @@
       - ReadWriteOnce
     resources:
       requests:
-        storage: 1600Gi
+        storage: 3000Gi
