@@ -35,8 +35,8 @@ resources:
       memory: 1G
 
 # Comment added by: Jamal Shahverdiyev and will be deleted after all tests
-# databaseHost: london.k8s-01.kontur.io.
-databaseHost: db-insights-api-primary.test-insights-api.svc
+databaseHost: london.k8s-01.kontur.io.
+# databaseHost: db-insights-api-primary.test-insights-api.svc
 databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
