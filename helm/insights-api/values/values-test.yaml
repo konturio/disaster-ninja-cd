@@ -34,7 +34,7 @@ resources:
     limits:
       memory: 1G
 
-databaseHost: london.k8s-01.kontur.io.
+databaseHost: db-insights-api-primary.test-insights-api.svc
 databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
