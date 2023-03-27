@@ -29,7 +29,7 @@ resources:
 # Related task Jamal Shahverdiyev: 15368
   - insights-api-db/overlays/DEV
   - insights-api-db/overlays/TEST
-  # - insights-api-db/overlays/PROD
+  - insights-api-db/overlays/PROD
   - user-profile-api-db/overlays/DEV
   - user-profile-api-db/overlays/TEST
   - user-profile-api-db/overlays/PROD
