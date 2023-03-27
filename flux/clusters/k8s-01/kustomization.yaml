@@ -27,7 +27,7 @@ resources:
   - keycloak-db/overlays/TEST
   - keycloak-db/overlays/PROD
 # Related task Jamal Shahverdiyev: 15368
-  # - insights-api-db/overlays/DEV
+  - insights-api-db/overlays/DEV
   - insights-api-db/overlays/TEST
   # - insights-api-db/overlays/PROD
   - user-profile-api-db/overlays/DEV
