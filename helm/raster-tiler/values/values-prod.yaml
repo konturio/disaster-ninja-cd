@@ -16,6 +16,7 @@ pg_host: db-layers-primary.prod-layers-db.svc
 storage_size: 500Gi
 storageClass: local-path
 db_pool_size: 16
+oam_layer_id: openaerialmap
 
 createResource:
   ingress: true

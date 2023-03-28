@@ -16,6 +16,7 @@ pg_host: host.docker.internal
 storage_size: 5Gi
 storageClass: standard
 db_pool_size: 4
+oam_layer_id: openaerialmap
 
 createResource:
   ingress: true
