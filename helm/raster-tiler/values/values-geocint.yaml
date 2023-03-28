@@ -1,4 +1,4 @@
-# Test values for raster-tiler.
+# Dev values for raster-tiler.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
@@ -8,15 +8,15 @@ image:
 
 db_disable_ssl: false
 replicas: 1
-envName: test
-ingressHost: test-raster-tiler.k8s-01.konturlabs.com
-base_url: https://test-raster-tiler.k8s-01.konturlabs.com
-titiler_url: http://test-titiler.test-titiler.svc
-pg_host: db-layers-primary.test-layers-db.svc
+envName: geocint
+ingressHost: geocint-raster-tiler.k8s-01.konturlabs.com
+base_url: https://geocint-raster-tiler.k8s-01.konturlabs.com
+titiler_url: http://dev-titiler.dev-titiler.svc
+pg_host: db-layers-primary.dev-layers-db.svc
 storage_size: 100Gi
 storageClass: local-path
 db_pool_size: 16
-oam_layer_id: openaerialmap
+oam_layer_id: openaerialmap-geocint
 
 createResource:
   ingress: true

@@ -72,6 +72,8 @@ spec:
                 secretKeyRef:
                   key: password
                   name: {{ .Values.envName }}-raster-tiler
+            - name: OAM_LAYER_ID
+              value: {{ .Values.oam_layer_id }}
           {{- if .Values.db_disable_ssl }}
             - name: DB_DISABLE_SSL
               value: "true"
