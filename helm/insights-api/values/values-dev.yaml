@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 14817-enable-http-caching-for-insights-api-tiles-full.f84ee9d.1
+  tag: 14817-enable-http-caching-for-insights-api-tiles-full.7143863.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
