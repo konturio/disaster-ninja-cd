@@ -38,7 +38,9 @@ resources:
 #databaseHost: ep-twilight-cake-951994.cloud.neon.tech
 #databaseName: main
 #databaseUsername: insights_api_user01
-databaseHost: milan.k8s-01.kontur.io.
+# Commented by Jamal Shahverdiyev. If new Domain inside of Kubernetes will work fine we can delete following comment too.
+# databaseHost: milan.k8s-01.kontur.io.
+databaseHost: db-insights-api-primary.dev-insights-api.svc
 databaseName: insights-api
 databaseUsername: insights-api
 databasePort: 5432
