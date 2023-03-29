@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: 14439-dn2-fe-utilize-layer-type-property-to-filter-out-layers-that-can-t-be-shown.3974609.1 # image id
+    tag: 15105-add-coloring-options-to-mcda-layer.76c62b4.1 # image id
     
 replicaCount: 2
 envName: dev
