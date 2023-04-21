@@ -17,7 +17,7 @@ replicas: 1
 
 image:
   be:
-    tag: 15559-update-layers-api-endpoint-to-process-general-layer-s-style-and-for-app.06e4782.1
+    tag: 14817-enable-http-caching-for-insights-api-tiles-full.57a1e20.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: dev
