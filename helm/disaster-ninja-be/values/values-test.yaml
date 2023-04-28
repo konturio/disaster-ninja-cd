@@ -17,7 +17,7 @@ replicas: 2
 
 image:
   be:
-    tag: release-0.26.0.fa37bce.1
+    tag: 15559-update-layers-api-endpoint-to-process-general-layer-s-style-and-for-app.8468374.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: test
