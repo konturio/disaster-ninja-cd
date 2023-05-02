@@ -19,12 +19,12 @@ data:
   spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.keycloakUrl }}/realms/{{ .Values.keycloakRealm }}
   spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.keycloakUrl }}/realms/{{ .Values.keycloakRealm }}/protocol/openid-connect/certs
   calculations.useStatSeparateTables: "false"
-  calculations.tiles.tile-size: {{ .Values.tileSize }}
-  calculations.tiles.hex-edge-pixels: {{ .Values.hexEdgePixels }}
-  calculations.tiles.max-h3-resolution: {{ .Values.maxH3Resolution }}
-  calculations.tiles.min-h3-resolution: {{ .Values.minH3Resolution }}
-  calculations.tiles.max-zoom: {{ .Values.maxZoom }}
-  calculations.tiles.min-zoom: {{ .Values.minZoom }}
+  calculations.tiles.tile-size: {{ .Values.tileSize | quote }}
+  calculations.tiles.hex-edge-pixels: {{ .Values.hexEdgePixels | quote }}
+  calculations.tiles.max-h3-resolution: {{ .Values.maxH3Resolution | quote }}
+  calculations.tiles.min-h3-resolution: {{ .Values.minH3Resolution | quote }}
+  calculations.tiles.max-zoom: {{ .Values.maxZoom | quote }}
+  calculations.tiles.min-zoom: {{ .Values.minZoom | quote }}
 
 kind: ConfigMap
 metadata:
