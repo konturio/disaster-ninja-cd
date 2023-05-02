@@ -24,7 +24,7 @@ createResource:
   deploymentLivenessProbe: false
 isOfflineInstallation: false
 probeInitialDelaySeconds: 20
-timeoutSeconds: 20
+timeoutSeconds: 400
 
 resources:
   app:
