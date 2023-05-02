@@ -23,7 +23,8 @@ createResource:
   serviceMonitor: false
   deploymentLivenessProbe: false
 isOfflineInstallation: false
-probeInitialDelaySeconds: 15
+probeInitialDelaySeconds: 20
+timeoutSeconds: 20
 
 resources:
   app:
