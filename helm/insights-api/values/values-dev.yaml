@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 15587-update-function-for-determining-hex-resolution-depending-on-zoom-insights-api.7c4cdce.1
+  tag: 15587-fix-functions-for-tiles.40fe33f.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
