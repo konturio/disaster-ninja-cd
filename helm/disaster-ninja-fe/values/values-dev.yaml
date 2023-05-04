@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: release-2.8.0.18baace.1 # image id
+    tag: 15855-map-footer-is-cut-on-some-mobile-devices.74392cc.1 # image id
     
 replicaCount: 2
 envName: dev
