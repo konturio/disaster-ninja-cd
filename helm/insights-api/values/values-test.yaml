@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: "release-0.17.2.6af2ec6.1"
+  tag: 15587-fix-functions-for-tiles.40fe33f.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
@@ -34,7 +34,9 @@ resources:
     limits:
       memory: 1G
 
+# Comment added by: Jamal Shahverdiyev and will be deleted after all tests
 databaseHost: london.k8s-01.kontur.io.
+# databaseHost: db-insights-api-primary.test-insights-api.svc
 databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
@@ -49,4 +51,11 @@ keycloakRealm: test
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
 
-jdbcTemplateQueryTimeout: "600"
+jdbcTemplateQueryTimeout: "1800"
+
+tileSize: 512
+hexEdgePixels: 4
+maxH3Resolution: 8
+minH3Resolution: 0
+maxZoom: 15
+minZoom: 0

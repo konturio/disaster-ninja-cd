@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 13944-layers-api-collect-live-sensor-data.feeb792.1
+  tag: main.6f096dd.1
   usePullSecret: false
   pullSecretName: none
 

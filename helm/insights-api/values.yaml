@@ -14,7 +14,7 @@ envName: local
 ingressHost: none
 
 management:
-  port: 8081
+  port: 8082
 
 createResource:
   defaultSecrets: false
@@ -23,7 +23,8 @@ createResource:
   serviceMonitor: false
   deploymentLivenessProbe: false
 isOfflineInstallation: false
-probeInitialDelaySeconds: 15
+probeInitialDelaySeconds: 20
+timeoutSeconds: 400
 
 resources:
   app:

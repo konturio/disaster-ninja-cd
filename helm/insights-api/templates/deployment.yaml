@@ -82,9 +82,9 @@ spec:
               port: {{ .Values.management.port }}
               scheme: HTTP
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
-            periodSeconds: 15
+            periodSeconds: 20
             successThreshold: 1
-            timeoutSeconds: 1
+            timeoutSeconds: {{ .Values.timeoutSeconds }}
           resources:
             limits:
               #TODO cpu

@@ -4,3 +4,4 @@ resources:
   - dev
   - test
   - prod
+  - geocint
