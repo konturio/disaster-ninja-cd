@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: "release-0.17.2.6af2ec6.1"
+  tag: "Release-0.18.0.432f33d.1"
   tagType: ""
   pullSecretName: none
   usePullSecret: false
@@ -50,3 +50,10 @@ otlpTracesExporter: otlp
 otlpTracesPort: 4317
 
 jdbcTemplateQueryTimeout: "600"
+
+tileSize: 512
+hexEdgePixels: 4
+maxH3Resolution: 8
+minH3Resolution: 0
+maxZoom: 15
+minZoom: 0
