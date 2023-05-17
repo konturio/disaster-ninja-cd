@@ -18,4 +18,4 @@ basemap:
   db:
     image: "nexus.kontur.io:8084/postgis/postgis"
     tag: "14-master"
-    shm_size: '1gb'
+    shm_size: "1gb"
