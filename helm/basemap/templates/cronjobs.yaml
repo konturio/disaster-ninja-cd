@@ -26,7 +26,7 @@ spec:
           {{ end }}
           containers:
           - name: basemap-rendering
-            image: {{ .Values.basemap.renderer.image }}:{{ .Values.basemap.renderer.tag }}           
+            image: {{ .Values.basemap.renderer.image }}:{{ .Values.basemap.renderer.tag }}
             imagePullPolicy: Always
             volumeMounts:
             - name: {{ .Values.envName }}-basemap-processor-pvc
