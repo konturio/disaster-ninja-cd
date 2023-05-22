@@ -31,8 +31,6 @@ spec:
             volumeMounts:
             - name: {{ .Values.envName }}-basemap-processor-pvc
               mountPath: /persisted-volume
-            - name: dshm
-              mountPath: /dev/shm    
             env:
             - name: ENV_NAME
               value: {{ .Values.envName }}
@@ -107,7 +105,4 @@ spec:
           - name: {{ .Values.envName }}-basemap-postgres-pvc
             persistentVolumeClaim:
               claimName: {{ .Values.envName }}-basemap-postgres-pvc
-          - name: dshm
-            emptyDir:
-              medium: Memory
 ---
