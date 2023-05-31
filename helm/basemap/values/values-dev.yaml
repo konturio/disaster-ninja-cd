@@ -17,5 +17,5 @@ basemap:
     tag: "13811-change-basemap-to-use-kontur-boundaries-for-default-language-selection.77e81b3.1"
   db:
     image: "nexus.kontur.io:8084/postgis/postgis"
-    shm_size: 1g
+    shm_size: 10g
     tag: "15-3.3"
