@@ -59,7 +59,7 @@ proxy_read_timeout: 1800s
 jdbcTemplateQueryTimeout: "1800"
 
 tileSize: 512
-hexEdgePixels: 4
+hexEdgePixels: 2
 maxH3Resolution: 8
 minH3Resolution: 0
 maxZoom: 15
