@@ -17,7 +17,7 @@ replicas: 1
 
 image:
   be:
-    tag: 15371-detect-appid-from-requester-domain-name-in-config-request.69f8010.1
+    tag: main.748cc8c.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: dev
