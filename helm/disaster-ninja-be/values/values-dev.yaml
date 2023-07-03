@@ -17,7 +17,7 @@ replicas: 1
 
 image:
   be:
-    tag: 16088-create-manifest-about-insights-for-openai.e40f793.1
+    tag: 16088-create-manifest-about-insights-for-openai.2b94a64.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: dev
