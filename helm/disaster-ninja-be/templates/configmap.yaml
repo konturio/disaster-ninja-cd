@@ -27,6 +27,7 @@ data:
   kontur.platform.kcApi.url: {{ .Values.kcApiUrl }}
   kontur.platform.layersApi.url: {{ .Values.layersApiUrl }}
   kontur.platform.insightsApi.url: {{ .Values.insightsApiUrl }}
+  kontur.platform.insightsApi.useInsightsV2: {{ .Values.useInsightsV2 }}
   kontur.platform.userProfileApi.url: {{ .Values.userProfileApiUrl }}
   kontur.platform.tiles.host: {{ .Values.tilesHost }}
   #notifications.enabled: "false" #overridden by env var
