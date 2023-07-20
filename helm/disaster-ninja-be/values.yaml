@@ -49,6 +49,8 @@ insightsApiUrl: 'https://test-apps02.konturlabs.com/insights-api'
 userProfileApiUrl: 'https://test-apps02.konturlabs.com/userprofile'
 tilesHost: 'https://zigzag.kontur.io'
 
+useInsightsV2: false
+
 notificationsEnabled: false
 notificationsFeed: disabled
 notificationsAlertUrlPattern: disabled

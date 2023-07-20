@@ -17,7 +17,7 @@ replicas: 1
 
 image:
   be:
-    tag: 16088-create-manifest-about-insights-for-openai.2b94a64.1
+    tag: main.d488b2e.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: dev
@@ -27,6 +27,8 @@ layersApiUrl: 'http://dev-layers-api.dev-layers-api.svc:8630/layers/v2/'
 insightsApiUrl: 'https://dev-insights-api.k8s-01.konturlabs.com/insights-api'
 userProfileApiUrl: 'http://dev-user-profile-api.dev-user-profile-api.svc:8631/userprofile'
 tilesHost: 'https://sonic.kontur.io'
+
+useInsightsV2: true
 
 notificationsEnabled: true
 notificationsFeed: kontur-public
