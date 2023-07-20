@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 15666-live-sensor-data-aggregation-performance-degrades-too-quickly.1d86bf9.1
+  tag: 16213-create-embedded-application-with-disasters-panel.8c0ed4c.1
   usePullSecret: false
   pullSecretName: none
 

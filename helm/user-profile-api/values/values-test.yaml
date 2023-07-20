@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: main.5ca8ce4.1
+  tag: 16213-create-embedded-application-with-disasters-panel.3f3c06a.1
   pullSecretName: none
   usePullSecret: false
 
