@@ -59,3 +59,6 @@ maxH3Resolution: 8
 minH3Resolution: 0
 maxZoom: 15
 minZoom: 0
+
+calculations:
+  useStatSeparateTables: true
