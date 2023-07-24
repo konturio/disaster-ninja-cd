@@ -55,8 +55,8 @@ keycloakRealm: dev
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
 
-proxy_read_timeout: 1800s
-jdbcTemplateQueryTimeout: "1800"
+proxy_read_timeout: 10800s
+jdbcTemplateQueryTimeout: "10800"
 
 tileSize: 512
 hexEdgePixels: 2
