@@ -28,7 +28,7 @@ insightsApiUrl: 'https://dev-insights-api.k8s-01.konturlabs.com/insights-api'
 userProfileApiUrl: 'http://dev-user-profile-api.dev-user-profile-api.svc:8631/userprofile'
 tilesHost: 'https://sonic.kontur.io'
 
-useInsightsV2: false
+useInsightsV2: true
 
 notificationsEnabled: true
 notificationsFeed: kontur-public
