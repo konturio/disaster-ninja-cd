@@ -33,3 +33,5 @@ resources:
   limits:
     cpu: 5
     memory: 10Gi
+
+loglevel: info
