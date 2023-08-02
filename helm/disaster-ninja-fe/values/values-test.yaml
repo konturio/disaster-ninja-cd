@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: main.a9020e0.1
+    tag: 16386-mcda-layers-do-not-display-hexagons-at-8th-level.8d6e6e6.1
 
 replicaCount: 2
 envName: test
