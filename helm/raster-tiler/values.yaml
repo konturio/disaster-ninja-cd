@@ -32,3 +32,5 @@ resources:
   limits:
     cpu: 8
     memory: 8Gi
+
+log_level: info
