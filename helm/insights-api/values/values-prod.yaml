@@ -49,7 +49,8 @@ keycloakRealm: kontur
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
 
-jdbcTemplateQueryTimeout: "600"
+proxy_read_timeout: 21600s
+jdbcTemplateQueryTimeout: "21600"
 
 tileSize: 512
 hexEdgePixels: 4
