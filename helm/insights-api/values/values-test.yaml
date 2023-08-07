@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 14855-sync-data-uploading-and-updating-table-with-geometry-stat_h3_geom.fcde7ca.1
+  tag: master.9d52fb8.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
@@ -51,8 +51,8 @@ keycloakRealm: test
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
 
-proxy_read_timeout: 10800s
-jdbcTemplateQueryTimeout: "10800"
+proxy_read_timeout: 21600s
+jdbcTemplateQueryTimeout: "21600"
 
 tileSize: 512
 hexEdgePixels: 4
