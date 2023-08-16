@@ -18,7 +18,7 @@ createResource:
   serviceMonitor: true
   deploymentLivenessProbe: true
 isOfflineInstallation: false
-probeInitialDelaySeconds: 15
+probeInitialDelaySeconds: 30
 
 databaseHost: db-layers-primary.dev-layers-db.svc
 
