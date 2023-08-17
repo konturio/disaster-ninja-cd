@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 15721-check-idempotency-key-before-insert-record-in-database.ca227cb.1
+  tag: 15721-check-idempotency-key-before-insert-record-in-database.cb21cae.1
   usePullSecret: false
   pullSecretName: none
 
@@ -18,7 +18,7 @@ createResource:
   serviceMonitor: true
   deploymentLivenessProbe: true
 isOfflineInstallation: false
-probeInitialDelaySeconds: 90
+probeInitialDelaySeconds: 15
 
 databaseHost: db-layers-primary.dev-layers-db.svc
 
