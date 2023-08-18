@@ -9,7 +9,7 @@
     # use /pgbackrest/$NAMESPACE/$CLUSTER_NAME/repoN
     repo2-path: /pgbackrest/prod-insights-api/db-insights-api/repo2
     repo1-retention-full-type: 'count'
-    repo1-retention-full: '2'  # two full in-cluster backups max
+    repo1-retention-full: '1'  # one full in-cluster backup max
     repo2-retention-full-type: 'time'
     repo2-retention-full: '30' # we aim to have the ability to restore backups from S3 within the past 30 days.
 
