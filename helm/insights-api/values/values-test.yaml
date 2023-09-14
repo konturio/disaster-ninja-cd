@@ -40,7 +40,7 @@ databaseHost: london.k8s-01.kontur.io.
 databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
-databaseMaximumPoolSize: 200
+databaseMaximumPoolSize: 300
 jmxEnabled: true
 
 dnsNameOuter: test-apps.konturlabs.com
