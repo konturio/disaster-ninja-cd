@@ -40,6 +40,7 @@ databaseHost: db-insights-api-primary.test-insights-api.svc
 databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
+databaseMaximumPoolSize: 200
 jmxEnabled: true
 
 dnsNameOuter: test-apps.konturlabs.com
