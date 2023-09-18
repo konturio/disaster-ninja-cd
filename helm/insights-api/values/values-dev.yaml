@@ -43,6 +43,7 @@ resources:
 databaseHost: db-insights-api-primary.dev-insights-api.svc
 databaseName: insights-api
 databaseUsername: insights-api
+databaseMaximumPoolSize: 200
 databasePort: 5432
 jmxEnabled: true
 
