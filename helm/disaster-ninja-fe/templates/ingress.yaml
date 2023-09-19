@@ -23,7 +23,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/server-snippet: |
   {{- else }}
-    nginx.org/client-max-body-size: 5m
+    nginx.org/client-max-body-size: 100m
     nginx.org/proxy-read-timeout: 300s
     {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
     nginx.org/location-snippets: |
@@ -34,7 +34,7 @@ metadata:
       set $cors_config_file '/etc/nginx/default.cors.json';
       {{- end }}
   {{- end }}
-      client_max_body_size 5m;
+      client_max_body_size 100m;
       proxy_read_timeout 300s;
 
       location = / {
