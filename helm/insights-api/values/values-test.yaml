@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 16683-insights-return-message-about-success-when-loading-interrupt.886641a.1
+  tag: 16683-insights-return-message-about-success-when-loading-interrupt.e3bc239.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
