@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 16213-create-embedded-application-with-disasters-panel.3f3c06a.1
+  tag: 11669-replace-roads-unmapped-with-osm-road-completeness-in-the-analytical-panel.f2c25ab.1
   pullSecretName: none
   usePullSecret: false
 
