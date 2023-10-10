@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 11669-replace-roads-unmapped-with-osm-road-completeness-in-the-analytical-panel.f2c25ab.1
+  tag: release-0.4.5.241c35f.1
   pullSecretName: none
   usePullSecret: false
 
