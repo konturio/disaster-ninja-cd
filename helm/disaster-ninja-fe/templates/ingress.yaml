@@ -75,34 +75,39 @@ metadata:
 spec:
   tls:
     - hosts:
-        - {{ .Values.ingressHost }}
+      {{- range $index, $val := .Values.ingressHosts }}
+        - {{ $val }}
+      {{- end }}
       secretName: {{ .Values.envName }}-disaster-ninja-tls
   ingressClassName: nginx
   rules:
-    - host: {{ .Values.ingressHost }}
+      {{$envName := .Values.envName }}
+      {{- range $index, $val := .Values.ingressHosts }}
+    - host: {{ $val }}
       http:
         paths:
           - path: /active/
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.envName }}-disaster-ninja-fe
+                name: {{ $envName }}-disaster-ninja-fe
                 port:
                   name: fe-main
           - path: /live/
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.envName }}-disaster-ninja-fe
+                name: {{ $envName }}-disaster-ninja-fe
                 port:
                   name: fe-main
           - path: /active/api/
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.envName }}-disaster-ninja-be
+                name: {{ $envName }}-disaster-ninja-be
                 port:
                   name: be-main
+      {{- end }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress

@@ -10,7 +10,11 @@ image:
 
 replicaCount: 2
 envName: prod
-ingressHost: prod-disaster-ninja.k8s-01.konturlabs.com
+ingressHosts:
+  - prod-disaster-ninja.k8s-01.konturlabs.com
+  - disaster.ninja
+  - new.openaerialmap.org
+  - maps.kontur.io
 
 createResource:
   ingress: true
