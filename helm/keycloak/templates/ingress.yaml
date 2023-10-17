@@ -33,6 +33,15 @@ spec:
   - host: {{ .Values.ingressHost }}
     http:
       paths:
+      {{- if .Values.tls }}
+      - path: {{ .Values.tls.service.path }}
+        backend:
+          service:
+            name: {{ .Values.tls.service.name }}
+            port:
+              number: 8089
+        pathType: ImplementationSpecific
+      {{- end}}
       - path: /
         pathType: Prefix
         backend:
@@ -41,4 +50,54 @@ spec:
             port:
               name: main
 ---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.envName }}-keycloak-ng
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: keycloak-ng
+    app.kubernetes.io/instance: {{ .Values.envName }}-keycloak
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
+    acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
+    {{ if .Values.isOfflineInstallation }}
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    {{ else }}
+    nginx.ingress.kubernetes.io/proxy-buffering: "on"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+    nginx.ingress.kubernetes.io/proxy-buffers: "4 256k"
+    nginx.ingress.kubernetes.io/proxy-busy-buffers-size: "4 256k"
+    {{ end }}
+spec:
+  tls:
+  - hosts:
+    - {{ .Values.ingressHost }}
+    secretName: {{ .Values.envName }}-keycloak-tls # < cert-manager will store the created certificate in this secret.
+  ingressClassName: {{ .Values.ingressClass }}
+  rules:
+  - host: {{ .Values.ingressHost }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.envName }}-keycloak
+            port:
+              name: main
+      {{- if .Values.tls }}
+      - path: {{ .Values.tls.service.path }}
+        backend:
+          service:
+            name: {{ .Values.tls.service.name }}
+            port:
+              number: 8089
+        pathType: ImplementationSpecific
+      {{- end}}
 {{ end }}

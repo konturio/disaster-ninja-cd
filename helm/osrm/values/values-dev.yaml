@@ -1,5 +1,6 @@
 envName: dev
 ingressHost: dev-osrm.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 storageClassName: local-path
 

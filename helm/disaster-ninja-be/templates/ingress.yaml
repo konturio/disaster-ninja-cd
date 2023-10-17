@@ -41,4 +41,45 @@ spec:
             port:
               name: be-main
 ---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.envName }}-disaster-ninja-be-ng
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: disaster-ninja-be-ng
+    app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja-be
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
+    acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
+    nginx.ingress.kubernetes.io/proxy-body-size: 5m
+    nginx.ingress.kubernetes.io/use-forwarded-headers: "true" # allow X-Forwarded-Host for different hostnames
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header Host $host;
+      proxy_set_header X-Forwarded-Host "https://www.example.com/be";
+    {{ if .Values.isOfflineInstallation }}
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    {{ end }}
+spec:
+  tls:
+  - hosts:
+    - {{ .Values.ingressHost }}
+    secretName: {{ .Values.envName }}-disaster-ninja-be-tls # < cert-manager will store the created certificate in this secret.
+  ingressClassName: {{ .Values.ingressClass }}
+  rules:
+  - host: {{ .Values.ingressHost }}
+    http:
+      paths:
+      - path: /active/api/
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.envName }}-disaster-ninja-be
+            port:
+              name: be-main
 {{ end }}

@@ -52,4 +52,58 @@ spec:
     - hosts:
         - {{ .Values.ingressHost }}
       secretName: {{ .Values.envName }}-insights-api-tls # < cert-manager will store the created certificate in this secret.
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
+    cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  {{- if .Values.isOfflineInstallation }}
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-body-size: {{ .Values.client_max_body_size }}
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/server-snippet: |
+  {{- else }}
+    nginx.ingress.kubernetes.io/proxy-body-size: {{ .Values.client_max_body_size }}
+    {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      include /etc/nginx/CORS_02_location.inc.conf;
+      proxy_set_header Origin ""; # Disable CORS processing by upstreams
+    {{- end }}
+    nginx.ingress.kubernetes.io/proxy-read-timeout: {{ .Values.proxy_read_timeout | quote }}
+    nginx.ingress.kubernetes.io/server-snippet: |
+    {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
+      set $cors_config_file '/etc/nginx/default.cors.json';
+    {{- end }}
+  {{- end }}
+      client_max_body_size {{ .Values.client_max_body_size }};
+      proxy_read_timeout {{ .Values.proxy_read_timeout | quote }};
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-insights-api
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: insights-api-ng
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-insights-api-ng
+  namespace: {{ .Release.Namespace }}
+spec:
+  ingressClassName: {{ .Values.ingressClass }}
+  rules:
+    - host: {{ .Values.ingressHost }}
+      http:
+        paths:
+          - backend:
+              service:
+                name: {{ .Values.envName }}-insights-api
+                port:
+                  name: main
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - {{ .Values.ingressHost }}
+      secretName: {{ .Values.envName }}-insights-api-tls # < cert-manager will store the created certificate in this secret.
 {{- end }}

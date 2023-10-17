@@ -11,6 +11,7 @@ image:
 replicaCount: 2
 envName: dev
 ingressHost: dev-disaster-ninja.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 createResource:
   ingress: true

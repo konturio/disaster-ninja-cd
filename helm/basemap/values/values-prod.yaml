@@ -4,6 +4,7 @@ createResource:
   ingress: true
 isOfflineInstallation: false
 ingressHost: prod-basemap-tileserver.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 tileserver:
   replicas: 1
@@ -18,3 +19,8 @@ basemap:
   db:
     image: "nexus.kontur.io:8084/postgis/postgis"
     tag: "15-3.3"
+
+tls:
+  service:
+    name: cm-acme-http-solver-bwv7b
+    path: /.well-known/acme-challenge/Z6-s0jJmioTSNnmoZmlUH8r9ZdWts3vtukZruJ8ykuA

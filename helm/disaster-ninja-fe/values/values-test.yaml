@@ -11,6 +11,7 @@ image:
 replicaCount: 2
 envName: test
 ingressHost: test-disaster-ninja.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 createResource:
   ingress: true
@@ -24,3 +25,5 @@ reportsBucket: 'https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazo
 epigHost: 'https://test-epig.k8s-01.konturlabs.com'
 
 alertingTime: 5m
+
+client_max_body_size: 100m

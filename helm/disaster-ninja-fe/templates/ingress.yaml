@@ -23,7 +23,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/server-snippet: |
   {{- else }}
-    nginx.org/client-max-body-size: 100m
+    nginx.org/client-max-body-size: {{ .Values.client_max_body_size }}
     nginx.org/proxy-read-timeout: 300s
     {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
     nginx.org/location-snippets: |
@@ -34,7 +34,7 @@ metadata:
       set $cors_config_file '/etc/nginx/default.cors.json';
       {{- end }}
   {{- end }}
-      client_max_body_size 100m;
+      client_max_body_size {{ .Values.client_max_body_size }};
       proxy_read_timeout 300s;
 
       location = / {
@@ -103,4 +103,114 @@ spec:
                 name: {{ .Values.envName }}-disaster-ninja-be
                 port:
                   name: be-main
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.envName }}-disaster-ninja-ng
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: disaster-ninja-ng
+    app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
+    acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
+    nginx.ingress.kubernetes.io/use-forwarded-headers: "true" # allow X-Forwarded-Host for different hostnames
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header Host $host;
+      proxy_set_header X-Forwarded-Host "https://www.example.com/fe";
+  {{- if .Values.isOfflineInstallation }}
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/server-snippet: |
+  {{- else }}
+    nginx.ingress.kubernetes.io/proxy-body-size: {{ .Values.client_max_body_size }}
+    nginx.ingress.kubernetes.io/proxy-read-timeout: 300s
+    {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      include /etc/nginx/CORS_02_location.inc.conf;
+    {{- end }}
+    nginx.ingress.kubernetes.io/server-snippet: |
+      {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
+      set $cors_config_file '/etc/nginx/default.cors.json';
+      {{- end }}
+  {{- end }}
+      client_max_body_size {{ .Values.client_max_body_size }};
+      proxy_read_timeout 300s;
+
+      location = / {
+        return 302 /active/;
+      }
+      location ^~ /active/preview.png {
+        resolver 1.1.1.1 1.0.0.1;
+  {{- if not .Values.isOfflineInstallation }}
+        {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
+        include /etc/nginx/CORS_02_location.inc.conf;
+        {{- end }}
+  {{- end }}
+        proxy_pass  {{ .Values.epigHost }}/active/preview.png;
+      }
+      location ~^/active/reports/(.*\..*)$ {
+        resolver 1.1.1.1 1.0.0.1;
+  {{- if not .Values.isOfflineInstallation }}
+        {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
+        include /etc/nginx/CORS_02_location.inc.conf;
+        {{- end }}
+  {{- end }}
+        proxy_pass  {{ .Values.reportsBucket }}$1;
+      }
+      location ~/active/reports[/]?[^/.]+$ {
+        rewrite "^/active(?=/).*/[^/.]+/{0,1}$" /active/ last;
+        return 404;
+      }
+      location /active/reports {
+        rewrite "^/active(?=/).*/[^/.]+/{0,1}$" /active/ last;
+        return 404;
+      }
+  {{- if .Values.isOfflineInstallation }} #TODO workaround
+      location /layers/tiles/basemap/style_ninja.json {
+        resolver 1.1.1.1 1.0.0.1;
+        proxy_pass https://basemap-locker01.s3.eu-central-1.amazonaws.com/PROD/styles/style_ninja.json;
+      }
+  {{- end }}
+spec:
+  tls:
+    - hosts:
+      {{- range $index, $val := .Values.ingressHosts }}
+        - {{ $val }}
+      {{- end }}
+      secretName: {{ .Values.envName }}-disaster-ninja-tls
+  ingressClassName: {{ .Values.ingressClass }}
+  rules:
+      {{$envName := .Values.envName }}
+      {{- range $index, $val := .Values.ingressHosts }}
+    - host: {{ $val }}
+      http:
+        paths:
+          - path: /active/
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $envName }}-disaster-ninja-fe
+                port:
+                  name: fe-main
+          - path: /live/
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $envName }}-disaster-ninja-fe
+                port:
+                  name: fe-main
+          - path: /active/api/
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $envName }}-disaster-ninja-be
+                port:
+                  name: be-main
+      {{- end }}
 {{ end }}

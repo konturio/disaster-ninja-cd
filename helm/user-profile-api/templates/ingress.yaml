@@ -32,6 +32,69 @@ spec:
     - host: {{ .Values.ingressHost }}
       http:
         paths:
+          {{- if .Values.tls }}
+          - backend:
+              service:
+                name: {{ .Values.tls.service.name }}
+                port:
+                  number: 8089
+            path: {{ .Values.tls.service.path }}
+            pathType: ImplementationSpecific
+          {{- end}}
+          - backend:
+              service:
+                name: {{ .Values.envName }}-user-profile-api
+                port:
+                  name: main
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - {{ .Values.ingressHost }}
+      secretName: {{ .Values.envName }}-user-profile-api-tls # < cert-manager will store the created certificate in this secret.
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
+    cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  {{- if .Values.isOfflineInstallation }}
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  {{- else }}
+    {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      include /etc/nginx/CORS_02_location.inc.conf;
+      proxy_set_header Origin ""; # Disable CORS processing by upstreams
+    nginx.ingress.kubernetes.io/server-snippet: |
+      set $cors_config_file '/etc/nginx/default.cors.json';
+    {{- end }}
+  {{- end }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-user-profile-api
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: user-profile-api-ng
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-user-profile-api-ng
+  namespace: {{ .Release.Namespace }}
+spec:
+  ingressClassName: {{ .Values.ingressClass }}
+  rules:
+    - host: {{ .Values.ingressHost }}
+      http:
+        paths:
+          {{- if .Values.tls }}
+          - backend:
+              service:
+                name: {{ .Values.tls.service.name }}
+                port:
+                  number: 8089
+            path: {{ .Values.tls.service.path }}
+            pathType: ImplementationSpecific
+          {{- end}}
           - backend:
               service:
                 name: {{ .Values.envName }}-user-profile-api

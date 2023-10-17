@@ -37,6 +37,13 @@ spec:
     - host: {{ .Values.ingressHost }}
       http:
         paths:
+          - backend:
+              service:
+                name: cm-acme-http-solver-gk82r
+                port:
+                  number: 8089
+            path: /.well-known/acme-challenge/Xag3-4jVyEc4Nmmup5oztG4wbWPWgZxtNOIYqkWuHb4
+            pathType: ImplementationSpecific
           - path: /
             pathType: Prefix
             backend:
@@ -44,5 +51,51 @@ spec:
                 name: {{ .Values.envName }}-osrm-backend
                 port:
                   name: main
+
 ---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.envName }}-osrm-ng
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: osrm-ng
+    app.kubernetes.io/instance: {{ .Values.envName }}-osrm
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
+    acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
+    {{ if .Values.isOfflineInstallation }}
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-body-size: 5m
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
+    nginx.ingress.kubernetes.io/server-snippet: |
+    {{ else }}
+    nginx.ingress.kubernetes.io/proxy-body-size: 5m
+    nginx.ingress.kubernetes.io/proxy-read-timeout: 1800s
+    nginx.ingress.kubernetes.io/server-snippet: |
+    {{ end }}
+      client_max_body_size 5m;
+      proxy_read_timeout 1800s;
+spec:
+  tls:
+    - hosts:
+        - {{ .Values.ingressHost }}
+      secretName: {{ .Values.envName }}-osrm-tls # < cert-manager will store the created certificate in this secret.
+  ingressClassName: {{ .Values.ingressClass }}
+  rules:
+    - host: {{ .Values.ingressHost }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.envName }}-osrm-backend
+                port:
+                  name: main
 {{ end }}

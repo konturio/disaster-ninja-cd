@@ -29,6 +29,7 @@ ups:
 
 envName: dev
 ingressHost: dev-keycloak.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 createResource:
   defaultSecrets: false
@@ -50,3 +51,8 @@ resources:
      memory: 768Mi
 
 alertingTime: 10m
+
+tls:
+  service:
+    name: cm-acme-http-solver-zbvdx
+    path: /.well-known/acme-challenge/LGaapS2CXemD08pYNwyTRhhQ0XUWwnyNfU7Y7M0U8qU

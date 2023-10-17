@@ -3,6 +3,7 @@
 # Declare variables to be passed into your templates.
 envName: prod
 ingressHost: prod-layers-tiles-api.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 replicas: 2
 
@@ -23,3 +24,8 @@ createResource:
   serviceMonitor: true
 isOfflineInstallation: false
 probeInitialDelaySeconds: 5
+
+tls:
+  service:
+    name: cm-acme-http-solver-g9dlk
+    path: /.well-known/acme-challenge/vLFF1GTOBcai3eoMeQZGEEsVDLMSsJFlI0YKtGfvSLE

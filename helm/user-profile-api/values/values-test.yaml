@@ -10,6 +10,7 @@ image:
 replicas: 2
 envName: test
 ingressHost: test-user-profile-api.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 createResource:
   defaultSecrets: false
@@ -30,3 +31,8 @@ alertingTime: 5m
 
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
+
+tls:
+  service:
+    name: cm-acme-http-solver-nfvcd
+    path: /.well-known/acme-challenge/xxD2NoDD-4kQD7mvjllhgwuiLAzcdm6pFYzCW0MVXwM
