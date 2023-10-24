@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 16981-always-create-a-new-indicator-and-then-delete-the-old-one-on-update.8264909.1
+  tag: 16268-serve-tiles-based-on-v1-schema-from-v2-database.3781a7b.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
