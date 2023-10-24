@@ -11,7 +11,7 @@ image:
 replicaCount: 2
 envName: test
 ingressHosts:
-  - test-disaster-ninja.k8s-01.konturlabs.com
+  test-disaster-ninja.k8s-01.konturlabs.com: {}
 ingressClass: ingress-nginx
 
 createResource:

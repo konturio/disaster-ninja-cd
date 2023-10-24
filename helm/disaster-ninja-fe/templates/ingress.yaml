@@ -75,17 +75,26 @@ metadata:
 spec:
   tls:
     - hosts:
-      {{- range $index, $val := .Values.ingressHosts }}
-        - {{ $val }}
+      {{- range $key, $val := .Values.ingressHosts }}
+        - {{ $key }}
       {{- end }}
       secretName: {{ .Values.envName }}-disaster-ninja-tls
   ingressClassName: nginx
   rules:
       {{$envName := .Values.envName }}
-      {{- range $index, $val := .Values.ingressHosts }}
-    - host: {{ $val }}
+      {{- range $key, $val := .Values.ingressHosts }}
+    - host: {{ $key }}
       http:
         paths:
+  {{- if $val.tls }} #TODO workaround
+          - path: {{ $val.tls.service.path }}
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: {{ $val.tls.service.name }}
+                port:
+                  number: 8089
+  {{- end }}
           - path: /active/
             pathType: Prefix
             backend:
@@ -176,6 +185,9 @@ metadata:
         rewrite "^/active(?=/).*/[^/.]+/{0,1}$" /active/ last;
         return 404;
       }
+      location /tiles/users/ {
+        proxy_pass https://lima.kontur.io;
+      }
   {{- if .Values.isOfflineInstallation }} #TODO workaround
       location /layers/tiles/basemap/style_ninja.json {
         resolver 1.1.1.1 1.0.0.1;
@@ -185,17 +197,26 @@ metadata:
 spec:
   tls:
     - hosts:
-      {{- range $index, $val := .Values.ingressHosts }}
-        - {{ $val }}
+      {{- range $key, $val := .Values.ingressHosts }}
+        - {{ $key }}
       {{- end }}
       secretName: {{ .Values.envName }}-disaster-ninja-tls
   ingressClassName: {{ .Values.ingressClass }}
   rules:
       {{$envName := .Values.envName }}
-      {{- range $index, $val := .Values.ingressHosts }}
-    - host: {{ $val }}
+      {{- range $key, $val := .Values.ingressHosts }}
+    - host: {{ $key }}
       http:
         paths:
+  {{- if $val.tls }} #TODO workaround
+          - path: {{ $val.tls.service.path }}
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: {{ $val.tls.service.name }}
+                port:
+                  number: 8089
+  {{- end }}
           - path: /active/
             pathType: Prefix
             backend:
