@@ -17,7 +17,7 @@ replicas: 2
 
 image:
   be:
-    tag: main.ec46a32.1
+    tag: do-not-merge-ignore-population-check.e768a2c.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: test
