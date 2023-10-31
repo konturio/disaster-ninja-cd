@@ -70,6 +70,7 @@ metadata:
       include /etc/nginx/CORS_02_location.inc.conf;
       proxy_set_header Origin ""; # Disable CORS processing by upstreams
     nginx.ingress.kubernetes.io/server-snippet: |
+      proxy_bind off;
       set $cors_config_file '/etc/nginx/default.cors.json';
     {{- end }}
   {{- end }}

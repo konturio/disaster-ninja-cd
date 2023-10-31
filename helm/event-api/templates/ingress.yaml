@@ -79,6 +79,7 @@ metadata:
       set $cors_config_file '/etc/nginx/default.cors.json';
     {{- end }}
   {{- end }}
+      proxy_bind off;
       proxy_read_timeout 1800s;
   labels:
     app.kubernetes.io/instance: {{ .Values.envName }}-event-api

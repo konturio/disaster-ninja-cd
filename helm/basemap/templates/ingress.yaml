@@ -82,6 +82,7 @@ metadata:
       set $cors_config_file '/etc/nginx/default.cors.json';
       {{- end }}
   {{- end }}
+      proxy_bind off;
       client_max_body_size 5m;
   labels:
     app.kubernetes.io/instance: {{ .Values.envName }}-basemap-tileserver

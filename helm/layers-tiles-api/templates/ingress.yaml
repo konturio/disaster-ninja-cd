@@ -70,6 +70,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
   {{- else }}
     nginx.ingress.kubernetes.io/server-snippet: |
+      proxy_bind off;
       location ~* "^/tiles/metrics" {
           deny all;
           return 403;

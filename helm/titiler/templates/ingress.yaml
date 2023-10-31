@@ -60,6 +60,7 @@ metadata:
   {{- else }}
     {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
     nginx.ingress.kubernetes.io/server-snippet: |
+      proxy_bind off;
       set $cors_config_file '/etc/nginx/default.cors.json';
     nginx.ingress.kubernetes.io/configuration-snippet: |
       include /etc/nginx/CORS_02_location.inc.conf;

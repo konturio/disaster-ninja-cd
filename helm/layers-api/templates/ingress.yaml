@@ -74,6 +74,7 @@ metadata:
       {{- end }}
   {{- end }}
       client_max_body_size 5m;
+      proxy_bind off;
   labels:
     app.kubernetes.io/instance: {{ .Values.envName }}-layers-api
     app.kubernetes.io/managed-by: Helm

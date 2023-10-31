@@ -79,6 +79,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-read-timeout: 1800s
     nginx.ingress.kubernetes.io/server-snippet: |
     {{ end }}
+      proxy_bind off;
       client_max_body_size 5m;
       proxy_read_timeout 1800s;
 spec:
