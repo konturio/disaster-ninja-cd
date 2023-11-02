@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: better-critical-error-message.4fcb70c.1
+    tag: release-2.15.1.0f9737e.1
 
 replicaCount: 2
 envName: test
