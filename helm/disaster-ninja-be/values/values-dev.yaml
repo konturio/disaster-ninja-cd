@@ -17,7 +17,7 @@ replicas: 1
 
 image:
   be:
-    tag: release-0.30.0.3b588f8.1
+    tag: release-0.30.0.112063a.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: dev
