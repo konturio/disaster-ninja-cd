@@ -17,7 +17,7 @@ replicas: 2
 
 image:
   be:
-    tag: do-not-merge-ignore-population-check.8bec600.1
+    tag: release-0.30.0.3b588f8.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: test
