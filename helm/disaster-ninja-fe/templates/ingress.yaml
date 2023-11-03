@@ -148,6 +148,10 @@ metadata:
       {{- end }}
   {{- end }}
 
+      if ($host = "maps.kontur.io") {
+        return 301 https://disaster.ninja/active/?app=634f23f5-f898-4098-a8bd-09eb7c1e1ae5;
+      }
+
       expires $dn2021_expires;
       more_set_headers "Strict-Transport-Security: max-age=31536000";
       more_set_headers "X-Frame-Options: $dn2021_x_frame_options";
