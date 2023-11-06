@@ -131,6 +131,9 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
     acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
     nginx.ingress.kubernetes.io/use-forwarded-headers: "true" # allow X-Forwarded-Host for different hostnames
+    # if set to "true" there is HTTP 500 for e.g. curl -v http://maps.kontur.io/active/
+    # so we do check scheme and redirect manually
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
   {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
@@ -148,8 +151,8 @@ metadata:
       {{- end }}
   {{- end }}
 
-      if ($host = "maps.kontur.io") {
-        return 301 https://disaster.ninja/active/?app=634f23f5-f898-4098-a8bd-09eb7c1e1ae5;
+      if ($scheme = "http") {
+        return 301 https://$host$request_uri;
       }
 
       expires $dn2021_expires;
