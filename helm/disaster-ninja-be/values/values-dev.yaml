@@ -17,7 +17,7 @@ replicas: 1
 
 image:
   be:
-    tag: 16924-serve-correct-favicon-based-on-domain-name.450f4bd.1
+    tag: release-0.30.1.73ddec4.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
 keycloakRealm: dev
