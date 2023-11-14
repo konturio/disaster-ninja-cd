@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: release-0.5.0.340ff6f.1
+  tag: 17057-disable-about-page-for-smart-city-and-oam-apps.200b758.1
   pullSecretName: none
   usePullSecret: false
 
