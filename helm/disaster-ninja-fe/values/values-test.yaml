@@ -12,6 +12,8 @@ replicaCount: 2
 envName: test
 ingressHosts:
   test-disaster-ninja.k8s-01.konturlabs.com: {}
+  test-maps-kontur-io.k8s-01.konturlabs.com: {}
+  test-new-openaerialmap-org.k8s-01.konturlabs.com: {}
 ingressClass: ingress-nginx
 
 createResource:
