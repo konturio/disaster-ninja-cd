@@ -5,9 +5,9 @@
 image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
-    algorithm: ''
-    tag: main.77ce1ca.1 # image id
-    
+    algorithm: ""
+    tag: main.d51ac0f.1
+
 replicaCount: 2
 envName: dev
 ingressHost: dev-disaster-ninja.k8s-01.konturlabs.com
@@ -19,8 +19,8 @@ createResource:
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 
-reportsBucket: 'https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazonaws.com/kontur_reports/dev/'
+reportsBucket: "https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazonaws.com/kontur_reports/dev/"
 
-epigHost: 'https://dev-epig.k8s-01.konturlabs.com'
+epigHost: "https://dev-epig.k8s-01.konturlabs.com"
 
 alertingTime: 10m
