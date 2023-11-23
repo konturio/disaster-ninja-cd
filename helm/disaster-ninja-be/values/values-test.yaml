@@ -17,7 +17,7 @@ replicas: 2
 
 image:
   be:
-    tag: release-0.30.1.73ddec4.1
+    tag: 17124-add-more-favicon-endpoints-for-different-formats.1a58b67.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: test
