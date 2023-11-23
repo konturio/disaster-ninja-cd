@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: release-2.15.1.0f9737e.1
+    tag: 16704-migrate-existing-tools-to-new-config.125d8de.1
 
 replicaCount: 2
 envName: test
