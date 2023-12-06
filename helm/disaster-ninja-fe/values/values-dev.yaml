@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 17064-update-links-to-favicon-using-new-endpoint.42e88c7.1
+    tag: release-2.16.0.f9d751d.1
 
 replicaCount: 2
 envName: dev
