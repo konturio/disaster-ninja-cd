@@ -2,11 +2,11 @@
   path: /spec/instances/0/resources
   value:
     limits:
-      memory: 32Gi
-      cpu: '4'
+      memory: 64Gi
+      cpu: '16'
     requests:
-      memory: 32Gi
-      cpu: '4'
+      memory: 22Gi
+      cpu: '2'
 
 - op: replace
   path: /spec/instances/0/dataVolumeClaimSpec
