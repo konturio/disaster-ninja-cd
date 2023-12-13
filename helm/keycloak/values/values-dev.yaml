@@ -5,7 +5,7 @@
 image:
   repository: nexus.kontur.io:8084/konturdev/keycloak-with-ups-spi
   pullPolicy: IfNotPresent
-  tag: 13594-setup-keycloak-in-k8s-cluster.6a625cd.1
+  tag: 17381-create-new-welcome-email-template.4b744c4.1
   pullSecretName: nexus8084
   usePullSecret: false
 
