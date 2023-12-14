@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 17381-create-new-welcome-email-template.4b744c4.1
+  tag: release-0.5.2.9fb26d3.1
   pullSecretName: none
   usePullSecret: false
 
