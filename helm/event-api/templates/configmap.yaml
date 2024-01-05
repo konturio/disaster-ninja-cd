@@ -42,6 +42,7 @@ data:
   scheduler.nhcEpImport.enable: {{ .Values.nhcEpImportEnable | quote }}
   scheduler.nifcImport.enable: {{ .Values.nifcImportEnable | quote }}
   scheduler.normalization.enable: {{ .Values.normalizationEnable | quote }}
+  scheduler.normalization.providers: {{ .Values.normalizationProviders | quote }}
   scheduler.pdcMapSrvSearch.enable: {{ .Values.pdcMapSrvSearchEnable | quote }}
   scheduler.reEnrichment.enable: {{ .Values.reEnrichmentEnable | quote }}
   scheduler.staticImport.enable: {{ .Values.staticImportEnable | quote }}
