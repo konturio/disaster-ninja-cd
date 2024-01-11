@@ -17,7 +17,7 @@ replicas: 2
 
 image:
   be:
-    tag: 17557-create-be-endpoint-to-return-hot-projects-as-a-geojson.2dc0fe6.1
+    tag: main.da0d311.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
 keycloakRealm: test
