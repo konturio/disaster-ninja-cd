@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: release-2.18.0.e665988.1
+    tag: release-2.18.0.396a798.1
 
 replicaCount: 2
 envName: dev
@@ -24,3 +24,4 @@ reportsBucket: "https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazo
 epigHost: "https://dev-epig.k8s-01.konturlabs.com"
 
 alertingTime: 10m
+e/pulls
