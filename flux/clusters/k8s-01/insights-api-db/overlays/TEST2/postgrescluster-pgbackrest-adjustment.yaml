@@ -1,7 +1,0 @@
-- op: add
-  path: /spec/backups/pgbackrest/global/archive-timeout
-  value: '360'
-
-- op: add
-  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/wal_level
-  value: 'minimal'
