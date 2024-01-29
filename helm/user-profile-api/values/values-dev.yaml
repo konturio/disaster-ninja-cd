@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: main.8e94aa6.1
+  tag: 17517-enable-layer-feature-panel-for-all-users.414a168.1
   pullSecretName: none
   usePullSecret: false
 
