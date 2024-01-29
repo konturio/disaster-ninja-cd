@@ -1,0 +1,3 @@
+- op: add
+  path: /spec/image
+  value: nexus.kontur.io:8085/konturdev/crunchy-postgres-gis-h3:1.2
