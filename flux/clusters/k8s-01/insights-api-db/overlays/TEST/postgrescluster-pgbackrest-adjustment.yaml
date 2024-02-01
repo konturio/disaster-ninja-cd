@@ -4,4 +4,4 @@
 
 - op: add
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/wal_level
-  value: 'minimal'
+  value: 'replica'
