@@ -58,7 +58,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: {{ .Values.databaseSecretUriKey }}
-                  name: {{ .Values.databaseSecretName }}
+                  name: {{ .Values.databaseSecretName }}-secret
             {{- end }}
           envFrom:
             - configMapRef:
