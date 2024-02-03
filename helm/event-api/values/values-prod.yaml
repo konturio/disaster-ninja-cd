@@ -24,7 +24,7 @@ usePgDataSecret: true
 # databaseHost: moral-pgdb01.cskt9jki4yd3.eu-central-1.rds.amazonaws.com
 # databaseUser: event_api_user01
 # databaseName: event_api
-databaseHost: db-event-api-replicas.prod-event-api.svc
+databaseHost: db-event-api-primary.prod-event-api.svc
 databaseUser: event-api
 databaseName: event-api
 databasePort: 5432
