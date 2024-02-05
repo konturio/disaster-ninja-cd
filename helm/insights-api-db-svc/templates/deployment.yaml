@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-insights-api-db-svc
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: insights-api-db-svc
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-insights-api-db-svc
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.replicas }}
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Values.envName }}-insights-api-db-svc
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: insights-api-db-svc
+      stage: {{ .Values.envName }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        meta.helm.sh/release-name: {{ .Release.Name }}
+        meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+      labels:
+        app.kubernetes.io/instance: {{ .Values.envName }}-insights-api-db-svc
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: insights-api-db-svc
+        stage: {{ .Values.envName }}
+    spec:
+      {{- if .Values.image.usePullSecret }}
+      imagePullSecrets: #TODO remove once image is on ghcr.io
+        - name: {{ .Values.image.pullSecretName }}
+      {{- end }}
+      containers:
+        - envFrom:
+            - configMapRef:
+                name: {{ .Values.envName }}-insights-api-db-svc
+            - secretRef:
+            name: {{ .Values.envName }}-insights-api-db-svc
+          image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+          imagePullPolicy: IfNotPresent
+
+          {{- if .Values.createResource.deploymentLivenessProbe }}
+          # TODO livenessProbe
+          {{- end }}
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - cat start.sh
+            failureThreshold: 1
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
+            periodSeconds: 15
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: insights-api-db-svc
+          ports:
+            - containerPort: {{ .Values.port }}
+              name: main
+              protocol: TCP
+          resources:
+            requests:
+              cpu: {{ .Values.resources.requests.cpu | quote }}
+              memory: {{ .Values.resources.requests.memory | quote }}
+            limits:
+              #TODO cpu
+              memory: {{ .Values.resources.limits.memory | quote }}

@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../base/insights-api-db-svc
+namePrefix: prod-
+namespace: prod-insights-api-db-svc
+patches:
+  - target:
+      kind: HelmRelease
+      name: insights-api-db-svc
+      group: helm.toolkit.fluxcd.io
+      version: v2beta1
+    patch: |-
+      - op: replace
+        path: /spec/chart/spec/valuesFiles
+        value:
+          - ./helm/insights-api-db-svc/values.yaml
+          - ./helm/insights-api-db-svc/values/values-prod.yaml
