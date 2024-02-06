@@ -1,0 +1,26 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: insights-api-db-svc
+spec:
+  chart:
+    spec:
+      chart: ./helm/insights-api-db-svc
+      interval: 1m
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: kontur-platform
+        namespace: flux-system
+      valuesFiles:
+        - ./helm/insights-api-db-svc/values.yaml
+  interval: 5m
+  suspend: false
+  test:
+    enable: true
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+  values:
+    k8s_cluster_flavor: '${k8s_cluster_flavor}' # optional value that can be substituted in a Flux pipeline
