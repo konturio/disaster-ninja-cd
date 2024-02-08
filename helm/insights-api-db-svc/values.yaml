@@ -24,7 +24,6 @@ isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 
 resources:
-  app:
     requests:
       cpu: 100m
       memory: 256Mi

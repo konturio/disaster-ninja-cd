@@ -45,7 +45,7 @@ spec:
             - configMapRef:
                 name: {{ .Values.envName }}-insights-api-db-svc
             - secretRef:
-            name: {{ .Values.envName }}-insights-api-db-svc
+                name: {{ .Values.envName }}-insights-api-db-svc
           image: {{ .Values.image.name }}:{{ .Values.image.tag }}
           imagePullPolicy: IfNotPresent
 
