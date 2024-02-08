@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ../../../../base/insights-api-db-svc
 namePrefix: dev-
-namespace: dev-insights-api-db-svc
+namespace: dev-insights-api
 patches:
   - target:
       kind: HelmRelease
