@@ -13,12 +13,9 @@ ingressHost: test-insights-api-db-svc.k8s-01.konturlabs.com
 
 createResource:
   defaultSecrets: false
-  ingress: true
-  prometheusRule: true
-  serviceMonitor: true
-  deploymentLivenessProbe: false
+  deploymentLivenessProbe: true
 isOfflineInstallation: false
-probeInitialDelaySeconds: 90
+probeInitialDelaySeconds: 15
 
 databaseHost: db-insights-api-primary.test-insights-api.svc
 databasePort: 5432

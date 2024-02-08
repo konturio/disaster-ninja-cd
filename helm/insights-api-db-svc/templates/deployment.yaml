@@ -37,7 +37,7 @@ spec:
         stage: {{ .Values.envName }}
     spec:
       {{- if .Values.image.usePullSecret }}
-      imagePullSecrets: #TODO remove once image is on ghcr.io
+      imagePullSecrets:
         - name: {{ .Values.image.pullSecretName }}
       {{- end }}
       containers:
@@ -50,7 +50,6 @@ spec:
           imagePullPolicy: IfNotPresent
 
           {{- if .Values.createResource.deploymentLivenessProbe }}
-          # TODO livenessProbe
           {{- end }}
           readinessProbe:
             exec:
