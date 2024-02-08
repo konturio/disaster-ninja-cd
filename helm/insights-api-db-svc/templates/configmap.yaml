@@ -1,7 +1,9 @@
 apiVersion: v1
 data:
-  SPRING_DATASOURCE_URL: jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/{{ .Values.databaseName }}
-  SPRING_DATASOURCE_USERNAME: {{ .Values.databaseUsername }}
+  PGHOST: "{{ .Values.pgHost }}"
+  PGPORT: "{{ .Values.pgPort }}"
+  PGDATABASE: "{{ .Values.pgDatabase }}"
+  PGUSER: "{{ .Values.pgUser }}"
 kind: ConfigMap
 metadata:
   annotations:

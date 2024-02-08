@@ -1,0 +1,24 @@
+# QUICKSTART values for layers-db-etl.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  tag: main.5e82c24.1
+  usePullSecret: true
+  pullSecretName: nexus8084
+
+replicas: 1
+envName: quickstart
+
+createResource:
+  defaultSecrets: true
+  deploymentLivenessProbe: true
+isOfflineInstallation: true
+probeInitialDelaySeconds: 90
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    memory: 768Mi
