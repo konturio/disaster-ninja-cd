@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
-    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    meta.helm.sh/release-namespace: {{ .Values.envName }}-insights-api
   labels:
     app.kubernetes.io/instance: {{ .Values.envName }}-insights-api-db-svc
     app.kubernetes.io/managed-by: Helm
