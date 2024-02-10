@@ -37,13 +37,6 @@ spec:
     - host: {{ .Values.ingressHost }}
       http:
         paths:
-          - backend:
-              service:
-                name: cm-acme-http-solver-gk82r
-                port:
-                  number: 8089
-            path: /.well-known/acme-challenge/Xag3-4jVyEc4Nmmup5oztG4wbWPWgZxtNOIYqkWuHb4
-            pathType: ImplementationSpecific
           - path: /
             pathType: Prefix
             backend:

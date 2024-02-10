@@ -24,8 +24,3 @@ createResource:
   serviceMonitor: true
 isOfflineInstallation: false
 probeInitialDelaySeconds: 5
-
-tls:
-  service:
-    name: cm-acme-http-solver-g9dlk
-    path: /.well-known/acme-challenge/vLFF1GTOBcai3eoMeQZGEEsVDLMSsJFlI0YKtGfvSLE

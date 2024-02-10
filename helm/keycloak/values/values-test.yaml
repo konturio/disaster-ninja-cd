@@ -51,8 +51,3 @@ resources:
      memory: 768Mi
 
 alertingTime: 10m
-
-tls:
-  service:
-    name: cm-acme-http-solver-6m9vh
-    path: /.well-known/acme-challenge/xKq7ZRWd1cAbALIkFiltZkMAQ3wTySM3fMgMkp_A-Uk

@@ -31,8 +31,3 @@ alertingTime: 5m
 
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
-
-tls:
-  service:
-    name: cm-acme-http-solver-nfvcd
-    path: /.well-known/acme-challenge/xxD2NoDD-4kQD7mvjllhgwuiLAzcdm6pFYzCW0MVXwM

@@ -15,7 +15,6 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
     acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
     nginx.ingress.kubernetes.io/use-forwarded-headers: "true" # allow X-Forwarded-Host for different hostnames
-    nginx.ingress.kubernetes.io/enable-cors: "true"
   {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/server-snippet: |
@@ -72,26 +71,17 @@ metadata:
 spec:
   tls:
     - hosts:
-      {{- range $key, $val := .Values.ingressHosts }}
-        - {{ $key }}
+      {{- range $key, $h := .Values.ingressHosts }}
+        - {{ $h }}
       {{- end }}
       secretName: {{ .Values.envName }}-disaster-ninja-tls
   ingressClassName: nginx
   rules:
       {{$envName := .Values.envName }}
-      {{- range $key, $val := .Values.ingressHosts }}
-    - host: {{ $key }}
+      {{- range $key, $h := .Values.ingressHosts }}
+    - host: {{ $h }}
       http:
         paths:
-  {{- if $val.tls }} #TODO workaround
-          - path: {{ $val.tls.service.path }}
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: {{ $val.tls.service.name }}
-                port:
-                  number: 8089
-  {{- end }}
           - path: /active/
             pathType: Prefix
             backend:
@@ -139,6 +129,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/server-snippet: |
   {{- else }}
+    nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/proxy-body-size: {{ .Values.client_max_body_size }}
     nginx.ingress.kubernetes.io/proxy-read-timeout: 300s
     {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
@@ -271,26 +262,17 @@ metadata:
 spec:
   tls:
     - hosts:
-      {{- range $key, $val := .Values.ingressHosts }}
-        - {{ $key }}
+      {{- range $i, $h := .Values.ingressHosts }}
+        - {{ $h }}
       {{- end }}
-      secretName: {{ .Values.envName }}-disaster-ninja-tls-ng
+      secretName: {{ .Values.envName }}-disaster-ninja-tls
   ingressClassName: {{ .Values.ingressClass }}
   rules:
       {{$envName := .Values.envName }}
-      {{- range $key, $val := .Values.ingressHosts }}
-    - host: {{ $key }}
+      {{- range $i, $h := .Values.ingressHosts }}
+    - host: {{ $h }}
       http:
         paths:
-  {{- if $val.tls }} #TODO workaround
-          - path: {{ $val.tls.service.path }}
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: {{ $val.tls.service.name }}
-                port:
-                  number: 8089
-  {{- end }}
           - path: /active/
             pathType: Prefix
             backend:

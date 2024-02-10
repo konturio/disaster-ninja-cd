@@ -29,15 +29,6 @@ spec:
     - host: {{ .Values.ingressHost }}
       http:
         paths:
-          {{- if .Values.tls }}
-          - backend:
-              service:
-                name: {{ .Values.tls.service.name }}
-                port:
-                  number: 8089
-            path: {{ .Values.tls.service.path }}
-            pathType: ImplementationSpecific
-          {{- end}}
           - path: /active/preview.png
             pathType: Prefix
             backend:
@@ -78,15 +69,6 @@ spec:
     - host: {{ .Values.ingressHost }}
       http:
         paths:
-          {{- if .Values.tls }}
-          - backend:
-              service:
-                name: {{ .Values.tls.service.name }}
-                port:
-                  number: 8089
-            path: {{ .Values.tls.service.path }}
-            pathType: ImplementationSpecific
-          {{- end}}
           - path: /active/preview.png
             pathType: Prefix
             backend:

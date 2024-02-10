@@ -32,15 +32,6 @@ spec:
     - host: {{ .Values.ingressHost }}
       http:
         paths:
-          {{- if .Values.tls }}
-          - backend:
-              service:
-                name: {{ .Values.tls.service.name }}
-                port:
-                  number: 8089
-            path: {{ .Values.tls.service.path }}
-            pathType: ImplementationSpecific
-          {{- end}}
           - backend:
               service:
                 name: {{ .Values.envName }}-user-profile-api
@@ -87,15 +78,6 @@ spec:
     - host: {{ .Values.ingressHost }}
       http:
         paths:
-          {{- if .Values.tls }}
-          - backend:
-              service:
-                name: {{ .Values.tls.service.name }}
-                port:
-                  number: 8089
-            path: {{ .Values.tls.service.path }}
-            pathType: ImplementationSpecific
-          {{- end}}
           - backend:
               service:
                 name: {{ .Values.envName }}-user-profile-api

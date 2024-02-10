@@ -51,8 +51,3 @@ resources:
      memory: 768Mi
 
 alertingTime: 5m
-
-tls:
-  service:
-    name: cm-acme-http-solver-jgzsp
-    path: /.well-known/acme-challenge/Ejpux15y9OfHZMUqqITE1rAAYxeybPczTopv__Uv6Bc

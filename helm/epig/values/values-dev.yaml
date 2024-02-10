@@ -32,8 +32,3 @@ resources:
       cpu: 500m
     limits:
       cpu: 1
-
-tls:
-  service:
-    name: cm-acme-http-solver-lnkv9
-    path: /.well-known/acme-challenge/ZLQiC-dhxv_K5uGTQpKjWbMvM5no6Faxp3svuGIgIBk

@@ -33,15 +33,6 @@ spec:
   - host: {{ .Values.ingressHost }}
     http:
       paths:
-      {{- if .Values.tls }}
-      - path: {{ .Values.tls.service.path }}
-        backend:
-          service:
-            name: {{ .Values.tls.service.name }}
-            port:
-              number: 8089
-        pathType: ImplementationSpecific
-      {{- end}}
       - path: /
         pathType: Prefix
         backend:
@@ -63,9 +54,9 @@ metadata:
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    nginx.ingress.kubernetes.io/enable-cors: "true"
     cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
     acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
-    nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/server-snippet: |
       proxy_bind off;
     {{ if .Values.isOfflineInstallation }}
@@ -93,13 +84,4 @@ spec:
             name: {{ .Values.envName }}-keycloak
             port:
               name: main
-      {{- if .Values.tls }}
-      - path: {{ .Values.tls.service.path }}
-        backend:
-          service:
-            name: {{ .Values.tls.service.name }}
-            port:
-              number: 8089
-        pathType: ImplementationSpecific
-      {{- end}}
 {{ end }}

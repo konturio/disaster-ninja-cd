@@ -11,26 +11,9 @@ image:
 replicaCount: 2
 envName: prod
 ingressHosts:
-  disaster.ninja:
-    tls:
-      service:
-        name: cm-acme-http-solver-rm822
-        path: /.well-known/acme-challenge/Dnmxqi3ukDwH3MYlhpsObVDKOK9a2AWM7xuZbYExLAc
-  maps.kontur.io:
-    tls:
-      service:
-        name: cm-acme-http-solver-9bnbt
-        path: /.well-known/acme-challenge/ZuBEsoZreUbEE8pHreLE7FdTI0xbZxBKKpdpZVblD8I
-  new.openaerialmap.org:
-    tls:
-      service:
-        name: cm-acme-http-solver-wk8qg
-        path: /.well-known/acme-challenge/61ekaoWaF2-63EbNRLU4J462QuZcs7Q31Lb2OR8rM00
-  prod-disaster-ninja.k8s-01.konturlabs.com:
-    tls:
-      service:
-        name: cm-acme-http-solver-lrt2k
-        path: /.well-known/acme-challenge/ms160a9xaoGC94aFtW73p9wjyan1tpRrn48Tq_4aTlY
+  - disaster.ninja
+  - maps.kontur.io
+  - prod-disaster-ninja.k8s-01.konturlabs.com
 
 createResource:
   ingress: true

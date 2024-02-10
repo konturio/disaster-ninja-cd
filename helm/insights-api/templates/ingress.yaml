@@ -81,7 +81,9 @@ metadata:
     {{- end }}
   {{- end }}
       client_max_body_size {{ .Values.client_max_body_size }};
-      proxy_read_timeout {{ .Values.proxy_read_timeout | quote }};
+      proxy_read_timeout {{ .Values.proxy_read_timeout }};
+      proxy_connect_timeout 75;
+      proxy_send_timeout 3600;
       proxy_bind off;
   labels:
     app.kubernetes.io/instance: {{ .Values.envName }}-insights-api

@@ -32,8 +32,3 @@ resources:
       cpu: 500m
     limits:
       cpu: 2
-
-tls:
-  service:
-    name: cm-acme-http-solver-pbl8f
-    path: /.well-known/acme-challenge/xTgMmcRP9O62F7psd6FyQnuiSVL4xO7ColK32-IGXn0
