@@ -96,6 +96,7 @@ spec:
           wal_compression: 'on'
           work_mem: 1GB
           jit: 'off'
+          wal_level: replica
   postGISVersion: '3.2'
   postgresVersion: 14
   users:
