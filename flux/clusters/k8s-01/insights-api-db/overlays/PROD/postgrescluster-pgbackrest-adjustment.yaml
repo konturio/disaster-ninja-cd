@@ -2,6 +2,6 @@
   path: /spec/backups/pgbackrest/global/archive-timeout
   value: '360'
 
-- op: add
+- op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/wal_level
   value: 'replica'
