@@ -18,9 +18,9 @@ metadata:
     # if set to "true" there is HTTP 500 for e.g. curl -v http://maps.kontur.io/active/
     # so we do check scheme and redirect manually
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
   {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/server-snippet: |
   {{- else }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
