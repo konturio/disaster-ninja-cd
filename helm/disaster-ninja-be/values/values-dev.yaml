@@ -19,7 +19,7 @@ image:
   be:
     tag: release-0.31.0.757f2a0.1
 
-keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
+keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
 eventApiUrl: 'http://dev-event-api.dev-event-api.svc:8624/events'
 kcApiUrl: 'https://test-api02.konturlabs.com/layers'
