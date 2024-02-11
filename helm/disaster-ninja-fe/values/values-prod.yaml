@@ -31,8 +31,3 @@ alertingTime: 5m
 ingressClass: ingress-nginx
 
 client_max_body_size: 100m
-
-tls:
-  service:
-    name: cm-acme-http-solver-lrt2k
-    path: /.well-known/acme-challenge/ms160a9xaoGC94aFtW73p9wjyan1tpRrn48Tq_4aTlY

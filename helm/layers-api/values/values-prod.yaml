@@ -30,8 +30,3 @@ alertingTime: 5m
 
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
-
-tls:
-  service:
-    name: cm-acme-http-solver-kcmb8
-    path: /.well-known/acme-challenge/S6KEC8PHSmbphnBa3zz9y5cETfSZRNq3xIFu2nzTHqY
