@@ -19,6 +19,8 @@ metadata:
     {{ if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
     {{ else }}
+    nginx.ingress.kubernetes.io/server-snippet: |
+      proxy_bind off;
     nginx.ingress.kubernetes.io/configuration-snippet: |
       if ($request_method = 'OPTIONS') {
         add_header Access-Control-Allow-Origin 'https://{{ .Values.dnsNameOuter }}';
