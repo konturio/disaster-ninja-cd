@@ -45,7 +45,7 @@ jmxEnabled: true
 dnsNameOuter: test-apps.konturlabs.com
 alertingTime: 5m
 
-keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
+keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
 
 otlpTracesExporter: otlp
