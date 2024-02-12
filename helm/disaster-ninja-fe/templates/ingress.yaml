@@ -2,10 +2,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.envName }}-disaster-ninja
+  name: {{ .Values.envName }}-disaster-ninja-ng
   namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: disaster-ninja
+    app.kubernetes.io/name: disaster-ninja-ng
     app.kubernetes.io/instance: {{ .Values.envName }}-disaster-ninja
     app.kubernetes.io/managed-by: "Helm"
     stage: {{ .Values.envName }}
@@ -15,57 +15,138 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
     acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
     nginx.ingress.kubernetes.io/use-forwarded-headers: "true" # allow X-Forwarded-Host for different hostnames
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      proxy_set_header Host $host;
-      proxy_set_header X-Forwarded-Host "https://www.example.com/fe";
+    # if set to "true" there is HTTP 500 for e.g. curl -v http://maps.kontur.io/active/
+    # so we do check scheme and redirect manually
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
   {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/server-snippet: |
   {{- else }}
-    nginx.org/client-max-body-size: 100m
-    nginx.org/proxy-read-timeout: 300s
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: {{ .Values.client_max_body_size }}
+    nginx.ingress.kubernetes.io/proxy-read-timeout: 300s
     {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
-    nginx.org/location-snippets: |
-      include CORS_02_location.inc.conf;
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      include /etc/nginx/CORS_02_location.inc.conf;
     {{- end }}
-    nginx.org/server-snippets: |
+    nginx.ingress.kubernetes.io/server-snippet: |
       {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
       set $cors_config_file '/etc/nginx/default.cors.json';
       {{- end }}
   {{- end }}
-      client_max_body_size 100m;
+
+      if ($scheme = "http") {
+        return 301 https://$host$request_uri;
+      }
+
+      expires $dn2021_expires;
+      more_set_headers "Strict-Transport-Security: max-age=31536000";
+      more_set_headers "X-Frame-Options: $dn2021_x_frame_options";
+      more_set_headers "X-Content-Type-Options: nosniff";
+
+      set $cors_config_file '/etc/nginx/disaster.ninja.cors.json';
+
+      proxy_bind off;
+      proxy_ssl_server_name on;
+
+      include /etc/nginx/ngx_http_proxy_module.conf;
+
+      proxy_set_header Host $proxy_host;
+
+      more_clear_headers "Cache-Control";
+
+      location @nonexistent {
+        rewrite "^/active(?=/).*/[^/.]+/{0,1}$" /active/ last;
+        return 404;
+      }
+
+      client_max_body_size {{ .Values.client_max_body_size }};
+
       proxy_read_timeout 300s;
+
+      location = /robots.txt {
+        return 200 $dn2021_robots_txt;
+      }
 
       location = / {
         return 302 /active/;
       }
+
       location ^~ /active/preview.png {
         resolver 1.1.1.1 1.0.0.1;
   {{- if not .Values.isOfflineInstallation }}
         {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
-        include CORS_02_location.inc.conf;
-        {{- end }}      
+        include /etc/nginx/CORS_02_location.inc.conf;
+        {{- end }}
   {{- end }}
         proxy_pass  {{ .Values.epigHost }}/active/preview.png;
       }
+
       location ~^/active/reports/(.*\..*)$ {
         resolver 1.1.1.1 1.0.0.1;
   {{- if not .Values.isOfflineInstallation }}
         {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
-        include CORS_02_location.inc.conf;
+        include /etc/nginx/CORS_02_location.inc.conf;
         {{- end }}
   {{- end }}
         proxy_pass  {{ .Values.reportsBucket }}$1;
       }
+
       location ~/active/reports[/]?[^/.]+$ {
         rewrite "^/active(?=/).*/[^/.]+/{0,1}$" /active/ last;
         return 404;
       }
+
       location /active/reports {
         rewrite "^/active(?=/).*/[^/.]+/{0,1}$" /active/ last;
         return 404;
       }
+
+      location /tiles/ {
+
+        location /tiles/users/ {
+          proxy_pass https://lima.kontur.io;
+        }
+
+        proxy_cache off;
+        proxy_cache_valid 600s;
+        proxy_cache_key 'layers-tiles-$request_method$host$uri$is_args$args$http_authorization$request_body';
+
+        more_set_headers "Strict-Transport-Security: max-age=31536000";
+        more_set_headers "X-Frame-Options: SAMEORIGIN";
+        more_set_headers "X-Content-Type-Options: nosniff";
+
+        include /etc/nginx/CORS_02_location.inc.conf;
+
+        location ~ ^(?:/layers)?/tiles/basemap/(sprite.*)$ {
+          rewrite ^ $request_uri;
+          rewrite ^(?:/layers)?/tiles/basemap/(sprite.*)$ $1 break;
+          return 400; # assertion checker
+
+          proxy_pass https://basemap-locker01.s3.eu-central-1.amazonaws.com/PROD/sprite/$1;
+          proxy_cache main1;
+        }
+
+        location ~ ^(?:/layers)?/tiles/basemap/glyphs/(.*)$ {
+          rewrite ^ $request_uri;
+          rewrite ^(?:/layers)?/tiles/basemap/glyphs/(.*)$ $1 break;
+          return 400; # assertion checker
+
+          proxy_pass https://basemap-locker01.s3.eu-central-1.amazonaws.com/PROD/glyphs/$uri;
+          proxy_cache main1;
+        }
+
+        location ~ ^(?:/layers)?/tiles/basemap/(style.*)$ {
+          rewrite ^ $request_uri;
+          rewrite ^(?:/layers)?/tiles/basemap/(style.*)$ $1 break;
+          return 400; # assertion checker
+
+          proxy_pass https://basemap-locker01.s3.eu-central-1.amazonaws.com/PROD/styles/$1;
+          proxy_cache main1;
+        }
+      }
+
   {{- if .Values.isOfflineInstallation }} #TODO workaround
       location /layers/tiles/basemap/style_ninja.json {
         resolver 1.1.1.1 1.0.0.1;
@@ -75,32 +156,37 @@ metadata:
 spec:
   tls:
     - hosts:
-        - {{ .Values.ingressHost }}
+      {{- range $i, $h := .Values.ingressHosts }}
+        - {{ $h }}
+      {{- end }}
       secretName: {{ .Values.envName }}-disaster-ninja-tls
-  ingressClassName: nginx
+  ingressClassName: {{ .Values.ingressClass }}
   rules:
-    - host: {{ .Values.ingressHost }}
+      {{$envName := .Values.envName }}
+      {{- range $i, $h := .Values.ingressHosts }}
+    - host: {{ $h }}
       http:
         paths:
           - path: /active/
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.envName }}-disaster-ninja-fe
+                name: {{ $envName }}-disaster-ninja-fe
                 port:
                   name: fe-main
           - path: /live/
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.envName }}-disaster-ninja-fe
+                name: {{ $envName }}-disaster-ninja-fe
                 port:
                   name: fe-main
           - path: /active/api/
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.envName }}-disaster-ninja-be
+                name: {{ $envName }}-disaster-ninja-be
                 port:
                   name: be-main
+      {{- end }}
 {{ end }}

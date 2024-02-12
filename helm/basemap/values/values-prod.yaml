@@ -4,6 +4,7 @@ createResource:
   ingress: true
 isOfflineInstallation: false
 ingressHost: prod-basemap-tileserver.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 tileserver:
   replicas: 1

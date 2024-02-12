@@ -9,6 +9,7 @@ image:
 
 envName: dev
 ingressHost: dev-titiler.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 createResource:
   ingress: true

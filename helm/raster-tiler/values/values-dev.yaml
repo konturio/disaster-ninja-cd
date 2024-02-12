@@ -10,6 +10,7 @@ db_disable_ssl: false
 replicas: 1
 envName: dev
 ingressHost: dev-raster-tiler.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 base_url: https://dev-raster-tiler.k8s-01.konturlabs.com
 titiler_url: http://dev-titiler.dev-titiler.svc
 pg_host: db-layers-primary.dev-layers-db.svc

@@ -10,7 +10,11 @@ image:
 
 replicaCount: 2
 envName: dev
-ingressHost: dev-disaster-ninja.k8s-01.konturlabs.com
+ingressHosts:
+  - dev-disaster-ninja.k8s-01.konturlabs.com
+  - dev-maps-kontur-io.k8s-01.konturlabs.com
+  - dev-new-openaerialmap-org.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 createResource:
   ingress: true
@@ -24,3 +28,4 @@ reportsBucket: "https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazo
 epigHost: "https://dev-epig.k8s-01.konturlabs.com"
 
 alertingTime: 10m
+client_max_body_size: 100m

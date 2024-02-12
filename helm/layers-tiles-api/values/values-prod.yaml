@@ -3,6 +3,7 @@
 # Declare variables to be passed into your templates.
 envName: prod
 ingressHost: prod-layers-tiles-api.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 replicas: 2
 

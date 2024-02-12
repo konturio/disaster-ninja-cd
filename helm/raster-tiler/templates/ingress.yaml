@@ -7,15 +7,17 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
   {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
   {{- else }}
     {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
-    nginx.org/server-snippets: |
+    nginx.ingress.kubernetes.io/server-snippet: |
+      proxy_bind off;
       set $cors_config_file '/etc/nginx/default.cors.json';
-    nginx.org/location-snippets: |
-      include CORS_02_location.inc.conf;
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      include /etc/nginx/CORS_02_location.inc.conf;
       proxy_set_header Origin ""; # Disable CORS processing by smart upstreams
       proxy_hide_header "Access-Control-Allow-Origin"; # hide CORS response of this specific app
     {{- end }}
@@ -24,13 +26,13 @@ metadata:
     app.kubernetes.io/component: backend
     app.kubernetes.io/instance: {{ .Values.envName }}-raster-tiler
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/name: raster-tiler
+    app.kubernetes.io/name: raster-tiler-ng
     app.kubernetes.io/part-of: backend
     stage: {{ .Values.envName }}
-  name: {{ .Values.envName }}-raster-tiler
+  name: {{ .Values.envName }}-raster-tiler-ng
   namespace: {{ .Release.Namespace }}
 spec:
-  ingressClassName: nginx
+  ingressClassName: {{ .Values.ingressClass }}
   rules:
     - host: {{ .Values.ingressHost }}
       http:
@@ -44,6 +46,6 @@ spec:
             pathType: Prefix
   tls:
     - hosts:
-        - {{ .Values.ingressHost }}
+      - {{ .Values.ingressHost }}
       secretName: {{ .Values.envName }}-raster-tiler-tls # < cert-manager will store the created certificate in this secret.
 {{ end }}

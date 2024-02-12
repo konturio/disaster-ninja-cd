@@ -9,6 +9,7 @@ image:
 replicas: 1
 envName: prod
 ingressHost: prod-isochrone-api.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 createResource:
   defaultSecrets: false

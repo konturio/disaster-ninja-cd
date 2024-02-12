@@ -29,6 +29,7 @@ ups:
 
 envName: test
 ingressHost: keycloak01.konturlabs.com
+ingressClass: ingress-nginx
 
 createResource:
   defaultSecrets: false

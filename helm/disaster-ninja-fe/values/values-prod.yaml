@@ -10,7 +10,10 @@ image:
 
 replicaCount: 2
 envName: prod
-ingressHost: prod-disaster-ninja.k8s-01.konturlabs.com
+ingressHosts:
+  - disaster.ninja
+  - maps.kontur.io
+  - prod-disaster-ninja.k8s-01.konturlabs.com
 
 createResource:
   ingress: true
@@ -24,3 +27,7 @@ reportsBucket: 'https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazo
 epigHost: 'https://prod-epig.k8s-01.konturlabs.com'
 
 alertingTime: 5m
+
+ingressClass: ingress-nginx
+
+client_max_body_size: 100m

@@ -10,7 +10,8 @@ image:
     
 replicaCount: 1
 envName: quickstart
-ingressHost: disaster-ninja.kontur
+ingressHosts:
+  - disaster-ninja.kontur
 
 createResource:
   ingress: true

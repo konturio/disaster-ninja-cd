@@ -6,6 +6,7 @@ probeInitialDelaySeconds: 15
 
 ENV_NAME: dev
 ingressHost: dev-epig.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 SITE_URL: https://test-apps-ninja02.konturlabs.com/active/
 APP_ID: 'c5ecc65b-1e7e-4e31-92a4-222fadeaeef0'
 TIMEOUT: 8000

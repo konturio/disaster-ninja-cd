@@ -2,33 +2,36 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.envName }}-keycloak
+  name: {{ .Values.envName }}-keycloak-ng
   namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: keycloak
+    app.kubernetes.io/name: keycloak-ng
     app.kubernetes.io/instance: {{ .Values.envName }}-keycloak
     app.kubernetes.io/managed-by: "Helm"
     stage: {{ .Values.envName }}
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    nginx.ingress.kubernetes.io/enable-cors: "true"
     cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
     acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
-    {{ if .Values.isOfflineInstallation }}
-    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/server-snippet: |
+      proxy_bind off;
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    {{ if .Values.isOfflineInstallation }}
     {{ else }}
-    nginx.org/location-snippets: |
-      proxy_buffer_size          128k;
-      proxy_buffers              4 256k;
-      proxy_busy_buffers_size    256k;
+    nginx.ingress.kubernetes.io/proxy-buffering: "on"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+    nginx.ingress.kubernetes.io/proxy-buffers: "4 256k"
+    nginx.ingress.kubernetes.io/proxy-busy-buffers-size: "4 256k"
     {{ end }}
 spec:
   tls:
   - hosts:
     - {{ .Values.ingressHost }}
     secretName: {{ .Values.envName }}-keycloak-tls # < cert-manager will store the created certificate in this secret.
-  ingressClassName: nginx
+  ingressClassName: {{ .Values.ingressClass }}
   rules:
   - host: {{ .Values.ingressHost }}
     http:
@@ -40,5 +43,4 @@ spec:
             name: {{ .Values.envName }}-keycloak
             port:
               name: main
----
 {{ end }}

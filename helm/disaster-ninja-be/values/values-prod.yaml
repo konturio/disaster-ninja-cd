@@ -3,6 +3,7 @@
 # Declare variables to be passed into your templates.
 envName: prod
 ingressHost: prod-disaster-ninja.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 createResource:
   defaultSecrets: false
