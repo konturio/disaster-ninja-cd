@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 1891-indicators-upload-public-fe-support.554b9fe.1
+  tag: 17757-get-city-split-tool-up-and-running-for-demo-on-franchise-expo-2024.8f6dc82.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
