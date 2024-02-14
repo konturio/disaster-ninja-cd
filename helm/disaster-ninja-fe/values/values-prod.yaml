@@ -6,11 +6,14 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: release-2.18.0.396a798.1 #this version will be automatically deployed by Flux
+    tag: release-2.20.0.5081925.1 #this version will be automatically deployed by Flux
 
 replicaCount: 2
 envName: prod
-ingressHost: prod-disaster-ninja.k8s-01.konturlabs.com
+ingressHosts:
+  - disaster.ninja
+  - maps.kontur.io
+  - prod-disaster-ninja.k8s-01.konturlabs.com
 
 createResource:
   ingress: true
@@ -24,3 +27,7 @@ reportsBucket: 'https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazo
 epigHost: 'https://prod-epig.k8s-01.konturlabs.com'
 
 alertingTime: 5m
+
+ingressClass: ingress-nginx
+
+client_max_body_size: 100m

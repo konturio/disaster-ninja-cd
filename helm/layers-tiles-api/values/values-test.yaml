@@ -3,6 +3,7 @@
 # Declare variables to be passed into your templates.
 envName: test
 ingressHost: test-layers-tiles-api.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 replicas: 1
 
@@ -10,8 +11,8 @@ image:
   tag: "20221019" #this version will be automatically deployed by Flux
 
 DbPoolMaxConnLifeTime: 10m
-DbPoolMaxConns: 10
-DbTimeout: 10
+DbPoolMaxConns: 20
+DbTimeout: 20
 CacheTTL: 10
 EnableMetrics: true
 Debug: true

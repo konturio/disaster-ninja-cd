@@ -7,27 +7,29 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
   {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
   {{- else }}
     {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
-    nginx.org/location-snippets: |
-      include CORS_02_location.inc.conf;
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      include /etc/nginx/CORS_02_location.inc.conf;
       proxy_set_header Origin ""; # Disable CORS processing by upstreams
-    nginx.org/server-snippets: |
+    nginx.ingress.kubernetes.io/server-snippet: |
+      proxy_bind off;
       set $cors_config_file '/etc/nginx/default.cors.json';
     {{- end }}
   {{- end }}
   labels:
     app.kubernetes.io/instance: {{ .Values.envName }}-user-profile-api
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/name: user-profile-api
+    app.kubernetes.io/name: user-profile-api-ng
     stage: {{ .Values.envName }}
-  name: {{ .Values.envName }}-user-profile-api
+  name: {{ .Values.envName }}-user-profile-api-ng
   namespace: {{ .Release.Namespace }}
 spec:
-  ingressClassName: nginx
+  ingressClassName: {{ .Values.ingressClass }}
   rules:
     - host: {{ .Values.ingressHost }}
       http:

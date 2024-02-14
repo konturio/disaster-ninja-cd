@@ -10,6 +10,7 @@ image:
 replicas: 2
 envName: dev
 ingressHost: dev-insights-api.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 createResource:
   defaultSecrets: false
@@ -50,7 +51,7 @@ jmxEnabled: true
 dnsNameOuter: test-apps02.konturlabs.com
 alertingTime: 10m
 
-keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
+keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
 
 otlpTracesExporter: otlp

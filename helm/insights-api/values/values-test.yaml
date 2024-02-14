@@ -10,6 +10,7 @@ image:
 replicas: 2
 envName: test
 ingressHost: test-insights-api.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 createResource:
   defaultSecrets: false
@@ -44,13 +45,13 @@ jmxEnabled: true
 dnsNameOuter: test-apps.konturlabs.com
 alertingTime: 5m
 
-keycloakUrl: 'https://keycloak01.konturlabs.com/auth'
+keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
 
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
 
-proxy_read_timeout: 21600s
+proxy_read_timeout: 21600
 jdbcTemplateQueryTimeout: "21600"
 
 tileSize: 512

@@ -7,32 +7,34 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
   {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/proxy-body-size: 5m
     nginx.ingress.kubernetes.io/server-snippet: |
   {{- else }}
-    nginx.org/client-max-body-size: 5m
+    nginx.ingress.kubernetes.io/proxy-body-size: 5m
     {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
-    nginx.org/location-snippets: |
-      include CORS_02_location.inc.conf;
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      include /etc/nginx/CORS_02_location.inc.conf;
     {{- end }}
-    nginx.org/server-snippets: |
+    nginx.ingress.kubernetes.io/server-snippet: |
       {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
       set $cors_config_file '/etc/nginx/default.cors.json';
       {{- end }}
   {{- end }}
       client_max_body_size 5m;
+      proxy_bind off;
   labels:
     app.kubernetes.io/instance: {{ .Values.envName }}-layers-api
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/name: layers-api
+    app.kubernetes.io/name: layers-api-ng
     stage: {{ .Values.envName }}
-  name: {{ .Values.envName }}-layers-api
+  name: {{ .Values.envName }}-layers-api-ng
   namespace: {{ .Release.Namespace }}
 spec:
-  ingressClassName: nginx
+  ingressClassName: {{ .Values.ingressClass }}
   rules:
     - host: {{ .Values.ingressHost }}
       http:

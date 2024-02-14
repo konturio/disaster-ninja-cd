@@ -11,6 +11,7 @@ replicas: 1
 envName: geocint
 ingressHost: geocint-raster-tiler.k8s-01.konturlabs.com
 base_url: https://geocint-raster-tiler.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 titiler_url: http://dev-titiler.dev-titiler.svc
 pg_host: db-layers-primary.dev-layers-db.svc
 storage_size: 100Gi

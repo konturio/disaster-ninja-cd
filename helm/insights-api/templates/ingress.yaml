@@ -7,36 +7,40 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
   {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/proxy-body-size: {{ .Values.client_max_body_size }}
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
     nginx.ingress.kubernetes.io/server-snippet: |
   {{- else }}
-    nginx.org/client-max-body-size: {{ .Values.client_max_body_size }}
+    nginx.ingress.kubernetes.io/proxy-body-size: {{ .Values.client_max_body_size }}
     {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
-    nginx.org/location-snippets: |
-      include CORS_02_location.inc.conf;
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      include /etc/nginx/CORS_02_location.inc.conf;
       proxy_set_header Origin ""; # Disable CORS processing by upstreams
     {{- end }}
-    nginx.org/proxy-read-timeout: {{ .Values.proxy_read_timeout | quote }}
-    nginx.org/server-snippets: |
+    nginx.ingress.kubernetes.io/proxy-read-timeout: {{ .Values.proxy_read_timeout | quote }}
+    nginx.ingress.kubernetes.io/server-snippet: |
     {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
       set $cors_config_file '/etc/nginx/default.cors.json';
     {{- end }}
   {{- end }}
       client_max_body_size {{ .Values.client_max_body_size }};
-      proxy_read_timeout {{ .Values.proxy_read_timeout | quote }};
+      proxy_read_timeout {{ .Values.proxy_read_timeout }};
+      proxy_connect_timeout 75;
+      proxy_send_timeout 3600;
+      proxy_bind off;
   labels:
     app.kubernetes.io/instance: {{ .Values.envName }}-insights-api
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/name: insights-api
+    app.kubernetes.io/name: insights-api-ng
     stage: {{ .Values.envName }}
-  name: {{ .Values.envName }}-insights-api
+  name: {{ .Values.envName }}-insights-api-ng
   namespace: {{ .Release.Namespace }}
 spec:
-  ingressClassName: nginx
+  ingressClassName: {{ .Values.ingressClass }}
   rules:
     - host: {{ .Values.ingressHost }}
       http:

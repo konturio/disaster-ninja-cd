@@ -10,6 +10,7 @@ image:
 replicas: 2
 envName: test
 ingressHost: test-layers-api.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 createResource:
   defaultSecrets: false
@@ -22,8 +23,8 @@ probeInitialDelaySeconds: 15
 
 databaseHost: db-layers-primary.test-layers-db.svc
 
-jwtIssuerUri: 'https://keycloak01.konturlabs.com/auth/realms/test'
-jwtJwkSetUri: 'https://keycloak01.konturlabs.com/auth/realms/test/protocol/openid-connect/certs'
+jwtIssuerUri: 'https://keycloak01.konturlabs.com/realms/test'
+jwtJwkSetUri: 'https://keycloak01.konturlabs.com/realms/test/protocol/openid-connect/certs'
 
 alertingTime: 5m
 

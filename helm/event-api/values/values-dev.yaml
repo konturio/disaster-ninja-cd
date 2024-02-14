@@ -9,6 +9,7 @@ image:
 replicas: 1
 envName: dev
 ingressHost: dev-event-api.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 createResource:
   defaultSecrets: false
@@ -28,8 +29,8 @@ databasePort: 5432
 
 alertingTime: 10m
 
-jwtIssuerUri: 'https://dev-keycloak.k8s-01.konturlabs.com/auth/realms/dev'
-jwtJwkSetUri: 'https://dev-keycloak.k8s-01.konturlabs.com/auth/realms/dev/protocol/openid-connect/certs'
+jwtIssuerUri: 'https://dev-keycloak.k8s-01.konturlabs.com/realms/dev'
+jwtJwkSetUri: 'https://dev-keycloak.k8s-01.konturlabs.com/realms/dev/protocol/openid-connect/certs'
 
 profiles: dev, cacheDisabled
 
