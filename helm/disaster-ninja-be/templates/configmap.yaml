@@ -33,4 +33,4 @@ data:
   #notifications.enabled: "false" #overridden by env var
   notifications.feed: {{ .Values.notificationsFeed }}
   notifications.alertUrlPattern: {{ .Values.notificationsAlertUrlPattern }}
-
+  sentry.environment: {{ .Values.envName }}

@@ -58,6 +58,7 @@ data:
   spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.jwtIssuerUri }}
   spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.jwtJwkSetUri }}
   staticdata.s3Folder: {{ .Values.staticdataS3Folder }}
+  sentry.environment: {{ .Values.envName }}
 kind: ConfigMap
 metadata:
   annotations:

@@ -25,6 +25,7 @@ data:
   calculations.tiles.min-h3-resolution: {{ .Values.minH3Resolution | quote }}
   calculations.tiles.max-zoom: {{ .Values.maxZoom | quote }}
   calculations.tiles.min-zoom: {{ .Values.minZoom | quote }}
+  sentry.environment: {{ .Values.envName }}
 
 kind: ConfigMap
 metadata:
