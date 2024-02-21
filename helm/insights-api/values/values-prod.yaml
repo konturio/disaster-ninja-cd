@@ -44,7 +44,7 @@ jmxEnabled: false
 dnsNameOuter: apps.kontur.io
 alertingTime: 5m
 
-keycloakUrl: 'https://keycloak01.kontur.io/auth'
+keycloakUrl: 'https://keycloak01.kontur.io'
 keycloakRealm: kontur
 
 otlpTracesExporter: otlp

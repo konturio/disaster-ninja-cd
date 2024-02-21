@@ -14,7 +14,7 @@ replicas: 1
 service:
   main: 8080
   management: 8080
-  kcFrontEndUrl: https://keycloak01.konturlabs.com/auth
+  kcFrontEndUrl: https://keycloak01.konturlabs.com
 
 keycloak:
   databaseHost: db-keycloak-primary.test-keycloak.svc

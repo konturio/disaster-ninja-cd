@@ -50,8 +50,8 @@ databaseMaximumPoolSize: 10
 
 alertingTime: 10m
 
-jwtIssuerUri: https://test-keycloak.k8s-01.konturlabs.com/auth/realms/test
-jwtJwkSetUri: https://test-keycloak.k8s-01.konturlabs.com/auth/realms/test/protocol/openid-connect/certs
+jwtIssuerUri: https://test-keycloak.k8s-01.konturlabs.com/realms/test
+jwtJwkSetUri: https://test-keycloak.k8s-01.konturlabs.com/realms/test/protocol/openid-connect/certs
 
 profiles: dev
 
