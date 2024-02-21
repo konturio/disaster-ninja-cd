@@ -10,6 +10,7 @@ data:
   spring.datasource.username: layers-api
   spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.jwtIssuerUri }}
   spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.jwtJwkSetUri }}
+  sentry.environment: {{ .Values.envName }}
 kind: ConfigMap
 metadata:
   annotations:
