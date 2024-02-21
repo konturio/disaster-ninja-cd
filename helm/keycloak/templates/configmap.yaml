@@ -38,6 +38,7 @@ data:
   USP_DB_PORT: {{ .Values.ups.databasePort | quote }}
   USP_DB_USER: {{ .Values.ups.databaseUser }}
   KEYCLOAK_STATISTICS: all #enables /metrics and /health on management port
+  sentry.environment: {{ .Values.envName }}
   {{ if .Values.disableSsl }}
   auth.server.ssl.required: "false"
   app.server.ssl.required: "false"
