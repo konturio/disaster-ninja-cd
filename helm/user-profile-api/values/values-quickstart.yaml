@@ -22,7 +22,7 @@ probeInitialDelaySeconds: 90
 databaseHost: host.docker.internal
 databaseMaximumPoolSize: 5
 
-jwtIssuerUri: http://keycloak.kontur/auth/realms/quickstart
-jwtJwkSetUri: http://keycloak.kontur/auth/realms/quickstart/protocol/openid-connect/certs
+jwtIssuerUri: http://keycloak.kontur/realms/quickstart
+jwtJwkSetUri: http://keycloak.kontur/realms/quickstart/protocol/openid-connect/certs
 
 otlpTracesExporter: none

@@ -48,7 +48,7 @@ databaseMaximumPoolSize: 20
 jmxEnabled: true
 alertingTime: 10m
 
-keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
+keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
 
 otlpTracesExporter: none

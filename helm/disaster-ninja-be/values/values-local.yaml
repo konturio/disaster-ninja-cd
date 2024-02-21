@@ -20,7 +20,7 @@ image:
     pullPolicy: IfNotPresent
     tag: latest
 
-keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com/auth'
+keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
 eventApiUrl: 'https://test-apps02.konturlabs.com/events'
 kcApiUrl: 'https://test-api02.konturlabs.com/layers'

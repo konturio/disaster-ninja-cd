@@ -5,7 +5,7 @@
 image:
   repository: nexus.kontur.io:8084/konturdev/keycloak-with-ups-spi
   pullPolicy: IfNotPresent
-  tag: release-0.5.2.9fb26d3.1
+  tag: 23.0.6-1
   pullSecretName: nexus8084
   usePullSecret: false
 
@@ -13,8 +13,8 @@ replicas: 1
 
 service:
   main: 8080
-  management: 9990
-  kcFrontEndUrl: https://keycloak01.kontur.io/auth
+  management: 8080
+  kcFrontEndUrl: https://keycloak01.kontur.io
 
 keycloak:
   databaseHost: db-keycloak-primary.prod-keycloak.svc

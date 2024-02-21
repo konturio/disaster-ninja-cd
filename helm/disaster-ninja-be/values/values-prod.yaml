@@ -20,7 +20,7 @@ image:
   be:
     tag: release-0.32.0.94b614d.1
 
-keycloakUrl: 'https://keycloak01.kontur.io/auth'
+keycloakUrl: 'https://keycloak01.kontur.io'
 keycloakRealm: kontur
 eventApiUrl: 'http://prod-event-api.prod-event-api.svc:8624/events'
 kcApiUrl: 'https://api.kontur.io/layers'

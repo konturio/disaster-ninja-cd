@@ -33,7 +33,7 @@ resources:
     limits:
       memory: 0
 
-keycloakUrl: 'http://keycloak.kontur/auth'
+keycloakUrl: 'http://keycloak.kontur'
 keycloakRealm: quickstart
 eventApiUrl: 'http://event-api.kontur/events'
 kcApiUrl: 'https://test-api02.konturlabs.com/layers' #TODO

@@ -32,8 +32,8 @@ databasePort: 5432
 
 alertingTime: 5m
 
-jwtIssuerUri: 'https://keycloak01.kontur.io/auth/realms/kontur'
-jwtJwkSetUri: 'https://keycloak01.kontur.io/auth/realms/kontur/protocol/openid-connect/certs'
+jwtIssuerUri: 'https://keycloak01.kontur.io/realms/kontur'
+jwtJwkSetUri: 'https://keycloak01.kontur.io/realms/kontur/protocol/openid-connect/certs'
 
 profiles: prod, cacheDisabled
 

@@ -14,7 +14,7 @@ replicas: 1
 service:
   main: 8080
   management: 9990
-  kcFrontEndUrl: http://keycloak.kontur/auth
+  kcFrontEndUrl: http://keycloak.kontur
 
 keycloak:
   databaseHost: host.docker.internal

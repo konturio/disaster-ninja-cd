@@ -45,7 +45,7 @@ databaseMaximumPoolSize: 5
 jmxEnabled: false
 alertingTime: 10m
 
-keycloakUrl: 'http://keycloak.kontur/auth'
+keycloakUrl: 'http://keycloak.kontur'
 keycloakRealm: quickstart
 
 otlpTracesExporter: none
