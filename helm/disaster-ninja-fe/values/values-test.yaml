@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: 17713-dn2-fe-invalid-lnglat-object-error-during-event-autofocus.93bdc25.1
+    tag: release-2.22.0.99a2e5d.1
 
 replicaCount: 2
 envName: test
