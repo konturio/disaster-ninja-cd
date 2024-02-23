@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: release-1.18.0.2dfd95f.1
+  tag: master.02d7d50.1
   pullSecretName: none
   usePullSecret: false
 
@@ -57,3 +57,6 @@ awsSqsDlqUrl: 'https://sqs.us-west-1.amazonaws.com/001426858141/SNS_messages_fro
 awsSqsEnabled: true
 
 feignUserAgent: Event API TEST
+
+normalizationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, cyclones.nhc-at.noaa, cyclones.nhc-ep.noaa, 
+  cyclones.nhc-cp.noaa
