@@ -18,6 +18,25 @@ spec:
     spec:
       template:
         spec:
+          initContainers:
+          - name: check-pvc-usage
+            image: nexus.kontur.io:8085/konturdev/check-pod-pvc:1.12
+            imagePullPolicy: IfNotPresent
+            volumeMounts:
+            - name: kubeconfig-volume
+              mountPath: "/root/.kube"
+              readOnly: true
+            env:
+            - name: KUBECONFIG
+              value: "/root/.kube/config"
+            - name: PVC_NAMESPACE
+              value: {{ .Release.Namespace }}
+            - name: PVC_NAME
+              value: {{ .Values.envName }}-basemap-postgres-pvc
+            - name: CURRENT_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
           shareProcessNamespace: true # required to shut down postgres when pipeline is done
           restartPolicy: Never
           {{ if .Values.images.usePullSecret }}
@@ -105,4 +124,7 @@ spec:
           - name: {{ .Values.envName }}-basemap-postgres-pvc
             persistentVolumeClaim:
               claimName: {{ .Values.envName }}-basemap-postgres-pvc
+          - name: kubeconfig-volume
+            secret:
+              secretName: {{ .Values.envName }}-basemap-kubeconfig
 ---
