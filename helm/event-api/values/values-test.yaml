@@ -58,5 +58,4 @@ awsSqsEnabled: true
 
 feignUserAgent: Event API TEST
 
-normalizationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, cyclones.nhc-at.noaa, cyclones.nhc-ep.noaa, 
-  cyclones.nhc-cp.noaa
+normalizationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events
