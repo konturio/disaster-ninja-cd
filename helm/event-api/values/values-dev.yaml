@@ -55,4 +55,4 @@ awsSqsEnabled: true
 
 feignUserAgent: Event API DEV
 
-normalizationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events
+normalizationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, pdcSqs, pdcMapSrv, pdcSqsNasa, pdcMapSrvNasa
