@@ -80,7 +80,7 @@ spec:
           log_error_verbosity: verbose
           log_line_prefix: '[%m u=%u d=%d h=%r p=%p l=%l trans_id=%x]: '
           maintenance_work_mem: 2GB
-          max_connections: 100 # don't lower max_connections below 100 - unused don't consume anything but you may be able to connect one day
+          max_connections: 200 # don't lower max_connections below 100 - unused don't consume anything but you may be able to connect one day
           max_parallel_maintenance_workers: 4
           max_parallel_workers: 16
           max_parallel_workers_per_gather: 4
