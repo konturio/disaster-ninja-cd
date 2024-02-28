@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 17541-create-pdc-feeds-in-event-api.61d0e03.1
+  tag: 17541-create-pdc-feeds-in-event-api.9a4da8c.1
   pullSecretName: none
   usePullSecret: false
 
@@ -26,7 +26,7 @@ databaseHost: db-event-api-primary.dev-event-api.svc
 databaseUser: event-api
 databaseName: event-api
 databasePort: 5432
-databaseMaximumPoolSize: 50
+databaseMaximumPoolSize: 100
 
 alertingTime: 10m
 
