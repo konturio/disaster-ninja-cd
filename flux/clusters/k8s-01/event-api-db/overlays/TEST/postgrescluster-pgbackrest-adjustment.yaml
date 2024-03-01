@@ -5,8 +5,3 @@
 - op: replace
   path: /spec/backups/pgbackrest/image
   value: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.47-2'
-
-#just for a test. will be deleted from this file.
-- op: add
-  path: /spec/patroni/failsafe_mode
-  value: true
