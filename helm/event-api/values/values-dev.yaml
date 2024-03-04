@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 14708-map-view-filter-shows-disasters-from-countries-which-are-not-in-bbox-of-chosen-area.77a6909.1
+  tag: release-1.19.0.7338344.1
   pullSecretName: none
   usePullSecret: false
 
