@@ -107,9 +107,6 @@ enrichmentEnable: true
 reEnrichmentEnable: true
 metricsEnable: true
 eventExpirationEnable: true
-normalizationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, pdcSqs, pdcMapSrv, em-dat, 
-  tornado.canada-gov, tornado.australian-bm, tornado.osm-wiki, tornado.des-inventar-sendai, storms.noaa, 
-  wildfire.frap.cal, wildfire.sa-gov, wildfire.qld-des-gov, wildfire.victoria-gov, wildfire.nsw-gov, 
-  wildfire.calfire, wildfire.perimeters.nifc, wildfire.locations.nifc
+normalizationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, pdcSqs, pdcMapSrv, pdcSqsNasa, pdcMapSrvNasa
 
 k8s_cluster_flavor: default # value may be substituted in a Flux pipeline
