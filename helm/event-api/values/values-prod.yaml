@@ -57,3 +57,5 @@ awsSqsDlqUrl: 'https://sqs.us-west-1.amazonaws.com/001426858141/SNS_messages_fro
 awsSqsEnabled: true
 
 feignUserAgent: 'Event API PROD'
+
+pdcMapSrvSearchEnable: false
