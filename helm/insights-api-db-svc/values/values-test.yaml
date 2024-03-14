@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: main.00f8489.1
+  tag: main.0376b1b.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
@@ -23,8 +23,7 @@ databaseUsername: insights-api
 
 resources:
   requests:
-    cpu: 1000m
+    cpu: 100m
     memory: 128Mi
   limits:
-    cpu: 4000m
     memory: 768Mi
