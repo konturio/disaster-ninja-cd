@@ -4,6 +4,7 @@ data:
   PGPORT: "{{ .Values.databasePort }}"
   PGDATABASE: "{{ .Values.databaseName }}"
   PGUSER: "{{ .Values.databaseUsername }}"
+  MAX_PARALLEL_TASKS: "{{ .Values.maxParallelTasks }}"
 kind: ConfigMap
 metadata:
   annotations:
