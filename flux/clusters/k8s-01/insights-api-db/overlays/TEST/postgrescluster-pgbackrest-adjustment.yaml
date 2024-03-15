@@ -5,7 +5,3 @@
 - op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/wal_level
   value: 'replica'
-
-- op: add
-  path: /spec/backups/pgbackrest/global/process-max
-  value: '32'
