@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 14031-add-aws-cli-to-layers-db-etl-dockerfile.8ff212c.1
+  tag: release-1.4.14.e8acca1.1
   usePullSecret: false
   pullSecretName: none
 
