@@ -1,8 +1,9 @@
 # PROD values for user-profile-api.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+
 image:
-  tag: release-0.6.2.fb90e2c.1
+  tag: release-0.6.3.5ff8e9f.1
   pullSecretName: none
   usePullSecret: false
 
