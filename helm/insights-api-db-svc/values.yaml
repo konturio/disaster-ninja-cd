@@ -9,7 +9,7 @@ image:
   pullSecretName: nexus8084
 
 port: 8625
-replicas: 1
+replicas: 0
 envName: local
 ingressHost: none
 
