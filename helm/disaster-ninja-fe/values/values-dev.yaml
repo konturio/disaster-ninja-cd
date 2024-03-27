@@ -14,6 +14,7 @@ ingressHosts:
   - dev-disaster-ninja.k8s-01.konturlabs.com
   - dev-maps-kontur-io.k8s-01.konturlabs.com
   - dev-new-openaerialmap-org.k8s-01.konturlabs.com
+  - dev-atlas-kontur-io.k8s-01.konturlabs.com
 ingressClass: ingress-nginx
 
 createResource:

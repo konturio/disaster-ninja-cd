@@ -13,6 +13,8 @@ envName: prod
 ingressHosts:
   - disaster.ninja
   - maps.kontur.io
+  - atlas.kontur.io
+  - prod-atlas-kontur-io.k8s-01.konturlabs.com
   - prod-disaster-ninja.k8s-01.konturlabs.com
 
 createResource:
