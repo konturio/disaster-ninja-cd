@@ -9,7 +9,7 @@ image:
   pullSecretName: nexus8084
 
 port: 8625
-replicas: 0
+replicas: 1
 envName: local
 ingressHost: none
 
@@ -34,4 +34,4 @@ databaseHost: host.docker.internal
 databasePort: 8900
 databaseName: insights-api
 databaseUsername: insights-api
-maxParallelTasks: 5
+maxParallelTasks: 30
