@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 18054-new-schema-add-field-to-store-emoji-in-bivariate_indicators-table-and-import-emojis.cc9b959.1
+  tag: 1891-indicators-upload-public-fe-support.df5c3c9.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
