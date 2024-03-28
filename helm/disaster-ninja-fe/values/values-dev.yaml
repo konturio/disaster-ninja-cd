@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: old-mcda-json-dialog.33ab851.1
+    tag: 17480-add-edit-layer-flow-in-mcda.cbf7be7.1
 
 replicaCount: 2
 envName: dev
