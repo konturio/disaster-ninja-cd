@@ -34,4 +34,5 @@ databaseHost: host.docker.internal
 databasePort: 8900
 databaseName: insights-api
 databaseUsername: insights-api
-maxParallelTasks: 30
+
+maxParallelTasks: 7
