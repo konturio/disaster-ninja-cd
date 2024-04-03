@@ -3,7 +3,8 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: main.fd80921.1
+  tag: 17999-configure-integration-of-new-database-parameters.6043dde.1
+
   pullSecretName: none
   usePullSecret: false
 
