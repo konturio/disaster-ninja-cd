@@ -3,9 +3,9 @@
 # Declare variables to be passed into your templates.
 
 image:
+  tag: 17999-configure-integration-of-new-database-parameters.17e51d7.1
   pullSecretName: none
   usePullSecret: false
-  tag: 17999-configure-integration-of-new-database-parameters.d2a0638.1
 
 replicas: 2
 envName: dev
