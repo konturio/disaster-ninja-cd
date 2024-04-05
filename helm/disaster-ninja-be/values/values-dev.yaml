@@ -18,7 +18,7 @@ replicas: 1
 
 image:
   be:
-    tag: 17999-configure-integration-of-new-database-parameters.8996828.1
+    tag: main.d75a11d.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
