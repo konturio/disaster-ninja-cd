@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: main.4ca05a9.1
+  tag: release-0.7.0.786cb02.1
   pullSecretName: none
   usePullSecret: false
 
