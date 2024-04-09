@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 1891-indicators-upload-public-fe-support.b0f731c.1
+  tag: 1891-indicators-upload-public-fe-support.9eabe67.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
@@ -61,4 +61,4 @@ minH3Resolution: 0
 maxZoom: 15
 minZoom: 0
 
-useStatSeparateTables: false
+useStatSeparateTables: true
