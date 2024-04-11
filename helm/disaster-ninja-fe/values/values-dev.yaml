@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 17480-add-edit-layer-flow-in-mcda.93d5c78.1
+    tag: main.c8ef3ed.1
 
 replicaCount: 2
 envName: dev
