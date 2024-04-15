@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: release-2.25.0.2f2cbdd.1
+    tag: 18214-fe-implement-documentrenderer-component-for-displaying-static-pages-content.94ca604.1
 
 replicaCount: 2
 envName: test
