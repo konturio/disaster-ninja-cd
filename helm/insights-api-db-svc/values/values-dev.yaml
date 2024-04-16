@@ -28,4 +28,4 @@ resources:
   limits:
     memory: 768Mi
 
-maxParallelTasks: 5
+maxParallelTasks: 4
