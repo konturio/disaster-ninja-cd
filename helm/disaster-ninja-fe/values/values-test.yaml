@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: 18214-fe-implement-documentrenderer-component-for-displaying-static-pages-content.94ca604.1
+    tag: 17354-edit-mode-on-toolbar-works-unstable.227e375.1
 
 replicaCount: 2
 envName: test
