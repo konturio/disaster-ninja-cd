@@ -1,9 +1,9 @@
 - op: replace
   path: /spec/instances/0/resources
   value:
-    limits:
-      memory: 24Gi
-      cpu: '4'
+    #limits:
+    #  memory: 24Gi
+    #  cpu: '4'
     requests:
       memory: 24Gi
       cpu: '2'
