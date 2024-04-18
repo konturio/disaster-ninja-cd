@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: 17354-edit-mode-on-toolbar-works-unstable.227e375.1
+    tag: main.e989333.1
 
 replicaCount: 2
 envName: test
