@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: release-0.19.0.427a4d0.1
+  tag: release-0.20.0.d38c542.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
@@ -59,3 +59,5 @@ maxH3Resolution: 8
 minH3Resolution: 0
 maxZoom: 15
 minZoom: 0
+
+useStatSeparateTables: false
