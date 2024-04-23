@@ -9,7 +9,7 @@ image:
 
 db_disable_ssl: true
 port: 80
-replicas: 1
+replicas: 4
 envName: local
 ingressHost: none
 base_url: https://local-raster-tiler.k8s-01.konturlabs.com
@@ -27,7 +27,7 @@ probeInitialDelaySeconds: 30
 
 resources:
   requests:
-    cpu: 4
+    cpu: 2
     memory: 4Gi
   limits:
     cpu: 8
