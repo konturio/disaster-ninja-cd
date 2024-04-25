@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: release-v.2.26.0.0afd20f.1
+    tag: 18360-fe-add-dynamic-app-icons-support.9076799.1
 
 replicaCount: 2
 envName: dev
