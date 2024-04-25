@@ -30,4 +30,4 @@ data:
   CACHE_TTL: "{{ .Values.CACHE_TTL }}"
   DEBUG: "{{ .Values.DEBUG }}"
   PORT: "{{ .Values.PORT }}"
-  ENV_NAME: "{{ .Values.ENV_NAME }}"
+  SENTRY_ENV: "{{ .Values.ENV_NAME }}"
