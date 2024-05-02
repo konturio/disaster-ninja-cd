@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: main.60febd9.1
+  tag: 12308-add-reference-area-crud.9a13f51.1
   pullSecretName: none
   usePullSecret: false
 
