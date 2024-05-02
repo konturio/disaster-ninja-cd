@@ -1,4 +1,10 @@
 - op: add
-  path: /spec/instances/0/nodeSelector
+  path: /spec/instances/0/affinity/nodeAffinity
   value:
-    kubernetes.io/hostname: hwn01.k8s-01.kontur.io
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - hwn01.k8s-01.kontur.io
