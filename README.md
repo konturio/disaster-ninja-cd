@@ -13,7 +13,7 @@ See in [helm/README.md](helm/README.md)
 
 ```helm``` folder contains Helm Charts for Kontur platform apps
 
----
+--- TEST TEST TEST
 Impact of helm upgrade on different stages
 ---
 ***Changes to helm charts will be applied to all helm releases (stages) sharing a single helm chart once merged to main.*** This is the price for maintaining just a single branch for multiple stages.
