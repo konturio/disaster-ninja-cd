@@ -16,6 +16,8 @@ probeInitialDelaySeconds: 15
 
 replicas: 2
 
+TEST TEST TEST
+
 image:
   be:
     tag: release-0.33.0.ce851bc.1
