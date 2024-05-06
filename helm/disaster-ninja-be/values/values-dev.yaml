@@ -18,7 +18,7 @@ replicas: 1
 
 image:
   be:
-    tag: 12308-add-reference-area-crud.0d98fdf.1
+    tag: main.23920f6.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
