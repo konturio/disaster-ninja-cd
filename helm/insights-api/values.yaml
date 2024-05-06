@@ -32,13 +32,13 @@ resources:
       cpu: 100m
       memory: 256Mi
     limits:
-      memory: 1Gi
+      memory: 16Gi
   redis:
     requests:
       cpu: 100m
       memory: 512M
     limits:
-      memory: 1G
+      memory: 16G
 
 databaseHost: host.docker.internal
 databasePort: 8900

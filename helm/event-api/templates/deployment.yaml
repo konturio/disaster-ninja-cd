@@ -87,7 +87,6 @@ spec:
             timeoutSeconds: 1
           resources:
             limits:
-              #TODO cpu
               memory: {{ .Values.resources.app.limits.memory | quote }}
             requests:
               cpu: {{ .Values.resources.app.requests.cpu | quote }}

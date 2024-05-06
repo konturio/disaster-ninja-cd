@@ -53,26 +53,22 @@ resources:
       cpu: 100m
       memory: 1Gi
     limits:
-      cpu: '1'
       memory: 1.5Gi
   renderer:
     limits:
-      memory: 128Gi # ~50Gb for osm2pgsql slim nodes cache + ~50Gb for keeping planet.osm in page cache
-      cpu: '32' # should match --number-processes in osm2pgsql and -j in tile_generator
+      memory: 512Gi # ~50Gb for osm2pgsql slim nodes cache + ~50Gb for keeping planet.osm in page cache
     requests:
       memory: 10Gi
       cpu: '2'
   db:
     limits:
-      memory: 256Gi 
-      cpu: '50' # should be higher than limit of renderer
+      memory: 512Gi
     requests:
       memory: 64Gi
       cpu: '10'
   check-pvc-usage:
     limits:
       memory: 200Mi
-      cpu: 200m
     requests:
       memory: 100Mi
       cpu: 100m

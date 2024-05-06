@@ -58,7 +58,6 @@ spec:
             cpu: {{ .Values.resources.preview_generator.requests.cpu | quote }}
             memory: {{ .Values.resources.preview_generator.requests.memory | quote }}
           limits:
-            cpu: {{ .Values.resources.preview_generator.limits.cpu | quote }}
             memory: {{ .Values.resources.preview_generator.limits.memory | quote }}
         livenessProbe:
           httpGet:

@@ -43,8 +43,8 @@ spec:
       replicas: 1
       resources:
         limits:
-          memory: 64Gi # # let Postres use the page cache
-          cpu: '16' # set as event-api pool size + autovacuum workers + a bit for parallel workers
+          memory: 512Gi # # let Postres use the page cache
+          cpu: '64' # set as event-api pool size + autovacuum workers + a bit for parallel workers
         requests:
           memory: 22Gi # roughly shared_buffers + pool size * work_mem
           cpu: '2' # if we don't have CPU we can run on potato

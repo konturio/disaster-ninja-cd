@@ -64,7 +64,6 @@ spec:
             memory: {{ .Values.resources.requests.memory | quote }}
           limits:
             memory: {{ .Values.resources.limits.memory | quote }}
-            cpu: {{ .Values.resources.limits.cpu | quote }}
         envFrom:
         - configMapRef:
             name: {{ .Values.envName }}-keycloak

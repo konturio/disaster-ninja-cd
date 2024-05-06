@@ -23,7 +23,7 @@ resources:
     cpu: 1
     memory: 4Gi
   limits:
-    memory: 4Gi
+    memory: 16Gi
 
 pgHost: host.docker.internal
 pgPort: 5432

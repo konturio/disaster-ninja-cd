@@ -28,7 +28,7 @@ resources:
       cpu: 100m
       memory: 256Mi
     limits:
-      memory: 1Gi
+      memory: 16Gi
 
 databaseHost: host.docker.internal
 databasePort: 8900

@@ -26,6 +26,6 @@ resources:
     cpu: 1
     memory: 1G
   limits:
-    memory: 2G
+    memory: 16G
 
 k8s_cluster_flavor: default # value may be substituted in a Flux pipeline

@@ -30,5 +30,3 @@ resources:
   chromium:
     requests:
       cpu: 500m
-    limits:
-      cpu: 2

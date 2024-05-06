@@ -195,7 +195,6 @@ spec:
             timeoutSeconds: 2
           resources:
             limits:
-              #TODO cpu
               memory: {{ .Values.resources.redis.limits.memory | quote }}
             requests:
               cpu: {{ .Values.resources.redis.requests.cpu | quote }}
