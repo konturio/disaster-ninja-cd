@@ -53,8 +53,7 @@ resources:
       cpu: 100m
       memory: 256Mi
     limits:
-      cpu: 1
-      memory: 16Gi #TODO check it should be lower
+      memory: 16Gi
   osrm_preprocessor:
     threads: 64
     requests:
