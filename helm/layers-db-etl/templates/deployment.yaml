@@ -75,5 +75,4 @@ spec:
               cpu: {{ .Values.resources.requests.cpu | quote }}
               memory: {{ .Values.resources.requests.memory | quote }}
             limits:
-              #TODO cpu
               memory: {{ .Values.resources.limits.memory | quote }}

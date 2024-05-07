@@ -29,7 +29,7 @@ resources:
     cpu: 1
     memory: 4Gi
   limits:
-    memory: 4Gi
+    memory: 16Gi
 
 databaseHost: host.docker.internal
 databasePort: 5432

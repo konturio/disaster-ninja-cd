@@ -50,7 +50,6 @@ spec:
                   cpu: {{ .Values.resources.pbf_downloader.requests.cpu | quote }}
                   memory: {{ .Values.resources.pbf_downloader.requests.memory | quote }}
                 limits:
-                  cpu: {{ .Values.resources.pbf_downloader.limits.cpu | quote }}
                   memory: {{ .Values.resources.pbf_downloader.limits.memory | quote }}
               env:
                 - name: SOURCE_URL

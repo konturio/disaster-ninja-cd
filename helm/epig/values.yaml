@@ -38,12 +38,10 @@ resources:
       cpu: 500m
       memory: 300Mi
     limits:
-      cpu: 1
-      memory: 800Mi
+      memory: 16Gi
   preview_generator:
     requests:
       cpu: 100m
       memory: 100Mi
     limits:
-      cpu: 200m
-      memory: 300Mi
+      memory: 16Gi

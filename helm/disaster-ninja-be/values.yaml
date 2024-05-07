@@ -32,7 +32,7 @@ resources:
       cpu: 1
       memory: 4G
     limits:
-      memory: 6G
+      memory: 16G
   notifier:
     requests:
       cpu: 1

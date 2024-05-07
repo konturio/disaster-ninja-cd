@@ -98,7 +98,6 @@ spec:
             cpu: {{ .Values.resources.osrm_backend.requests.cpu | quote }}
             memory: {{ .Values.resources.osrm_backend.requests.memory | quote }}
           limits:
-            cpu: {{ .Values.resources.osrm_backend.limits.cpu | quote }}
             memory: {{ .Values.resources.osrm_backend.limits.memory | quote }}
         #TODO livenessProbe for prod
         readinessProbe:

@@ -27,13 +27,13 @@ resources:
       cpu: 1
       memory: 7Gi
     limits:
-      memory: 7Gi
+      memory: 16Gi
   redis:
     requests:
       cpu: 100m
       memory: 512M
     limits:
-      memory: 1G
+      memory: 16Gi
 
 databaseHost: paris.k8s-01.kontur.io.
 databasePort: 5432
