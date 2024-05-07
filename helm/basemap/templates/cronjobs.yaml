@@ -120,6 +120,7 @@ spec:
             resources:
               limits:
                 memory: {{ .Values.resources.db.limits.memory | quote }}
+                cpu: {{ .Values.resources.db.limits.cpu | quote }}
               requests:
                 memory: {{ .Values.resources.db.requests.memory | quote }}
                 cpu: {{ .Values.resources.db.requests.cpu | quote }}

@@ -53,16 +53,19 @@ resources:
       cpu: 100m
       memory: 1Gi
     limits:
+      cpu: '1'
       memory: 1.5Gi
   renderer:
     limits:
-      memory: 512Gi # ~50Gb for osm2pgsql slim nodes cache + ~50Gb for keeping planet.osm in page cache
+      memory: 128Gi # ~50Gb for osm2pgsql slim nodes cache + ~50Gb for keeping planet.osm in page cache
+      cpu: '32'
     requests:
       memory: 10Gi
       cpu: '2'
   db:
     limits:
-      memory: 512Gi
+      memory: 256Gi
+      cpu: '50'
     requests:
       memory: 64Gi
       cpu: '10'
