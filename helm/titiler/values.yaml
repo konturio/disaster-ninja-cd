@@ -31,7 +31,7 @@ resources:
     cpu: 5
     memory: 5Gi
   limits:
-    cpu: 64
-    memory: 512Gi
+    cpu: 16
+    memory: 32Gi
 
 loglevel: info

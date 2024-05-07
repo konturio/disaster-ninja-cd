@@ -18,3 +18,11 @@ isOfflineInstallation: false
 probeInitialDelaySeconds: 5
 
 loglevel: error
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 5Gi
+  limits:
+    cpu: 5
+    memory: 10Gi

@@ -109,6 +109,7 @@ spec:
             cpu: {{ .Values.resources.tileserver.requests.cpu | quote }}
             memory: {{ .Values.resources.tileserver.requests.memory | quote }}
           limits:
+            cpu: {{ .Values.resources.tileserver.limits.cpu | quote }}
             memory: {{ .Values.resources.tileserver.limits.memory | quote }}
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
