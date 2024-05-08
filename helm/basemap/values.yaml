@@ -69,7 +69,7 @@ resources:
     requests:
       memory: 64Gi
       cpu: '10'
-  check-pvc-usage:
+  check_pvc:
     limits:
       memory: 200Mi
       cpu: 300m

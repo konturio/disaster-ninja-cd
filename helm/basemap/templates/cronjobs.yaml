@@ -28,11 +28,11 @@ spec:
               readOnly: true
             resources:
               limits:
-                memory: {{ .Values.resources.check-pvc-usage.limits.memory | quote }}
-                cpu: {{ .Values.resources.check-pvc-usage.limits.cpu | quote } }
+                memory: {{ .Values.resources.check_pvc.limits.memory | quote }}
+                cpu: {{ .Values.resources.check_pvc.limits.cpu | quote }}
               requests:
-                memory: {{ .Values.resources.check-pvc-usage.requests.memory | quote }}
-                cpu: {{ .Values.resources.check-pvc-usage.requests.cpu | quote }}
+                memory: {{ .Values.resources.check_pvc.requests.memory | quote }}
+                cpu: {{ .Values.resources.check_pvc.requests.cpu | quote }}
             env:
             - name: KUBECONFIG
               value: "/root/.kube/config"
