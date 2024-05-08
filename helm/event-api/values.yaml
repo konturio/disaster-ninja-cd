@@ -38,7 +38,7 @@ resources:
       cpu: 100m
       memory: 1Gi
     limits:
-      memory: 16i
+      memory: 16Gi
 
 databaseSecretName: db-event-api-pguser-event-api
 databaseSecretUriKey: jdbc-uri
