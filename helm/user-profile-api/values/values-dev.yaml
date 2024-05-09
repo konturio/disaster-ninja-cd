@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: release-0.7.5.6857771.1
+  tag: Add-logging-for-reference-area-update-requests.861356e.1
   pullSecretName: none
   usePullSecret: false
 
