@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 18358-make-an-endpoint-to-upload-assets-to-ups.264607d.1
+  tag: release-0.7.5.6857771.1
   pullSecretName: none
   usePullSecret: false
 
