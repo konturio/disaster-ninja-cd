@@ -22,6 +22,11 @@ probeInitialDelaySeconds: 15
 probeInitialDelaySecondsRedis: 15
 usePgDataSecret: true
 
+resources:
+  app:
+    limits:
+      memory: 64Gi
+
 databaseHost: db-event-api-primary.dev-event-api.svc
 databaseUser: event-api
 databaseName: event-api
