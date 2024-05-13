@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 18440-event-api-prod-leaks-memory-when-not-constrained-by-k8s-256gb.1c79875.1
+  tag: 18440-event-api-prod-leaks-memory-when-not-constrained-by-k8s-256gb.c5183f5.1
   pullSecretName: none
   usePullSecret: false
 
@@ -21,11 +21,6 @@ isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 probeInitialDelaySecondsRedis: 15
 usePgDataSecret: true
-
-resources:
-  app:
-    limits:
-      memory: 256Gi
 
 # databaseHost: orbit-20210525-01.cskt9jki4yd3.eu-central-1.rds.amazonaws.com
 # databaseUser: event_api_user01
