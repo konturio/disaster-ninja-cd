@@ -19,8 +19,8 @@ probeInitialDelaySeconds: 5
 
 resources:
   requests:
-    cpu: 500m
+    cpu: 5
     memory: 5Gi
   limits:
     cpu: 5
-    memory: 10Gi
+    memory: 512Gi
