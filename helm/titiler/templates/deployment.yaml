@@ -85,6 +85,6 @@ spec:
               cpu: {{ .Values.resources.requests.cpu | quote }}
               memory: {{ .Values.resources.requests.memory | quote }}
           command: ["uvicorn"]
-          args: ["main:app", "--host", "0.0.0.0", "--port", "8080", "--log-level", "{{ .Values.loglevel }}"]
+          args: ["main:app", "--host", "0.0.0.0", "--port", "80", "--log-level", "{{ .Values.loglevel }}"]
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
