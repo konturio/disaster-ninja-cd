@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 18060-save-as-reference-area-flow.3b26490.1
+    tag: 18060-save-as-reference-area-flow.8887e62.1
 
 replicaCount: 2
 envName: dev
