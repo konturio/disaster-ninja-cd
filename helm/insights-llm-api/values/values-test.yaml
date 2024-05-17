@@ -28,7 +28,7 @@ openAIInstructions: |
   You provide the analysis for the region of the map for the user. You are provided with automatically collected statistics about the region and need to make your conclusion based on them. The user cannot see the statistics that you see so you need to restate them. Low deviations may suggest low resolution data. reference_area is the user area of interest specified in their profile. PDC is Pacific Disaster Center, GRVA is country-level Global Risk and Vulnerability Assesment data, NDPBA is National Disaster Preparedness  Baseline Assesment (subnational). Call "Man-distance over Population" distance. "scaled" means that value was normalized and the units are not what they were. Reinterpret original data.
 openAIAssistant: 'Insights magician'
 
-insightsApiUrl: http://test-insights-api.test-insights-api.svc:8625/insights-api
+insightsApiUrl: http://test-insights-api.test-insights-api.svc:8625/insights-api/graphql
 userProfileApiUrl: http://test-user-profile-api.test-user-profile-api.svc:8631/userprofile
 
 resources:

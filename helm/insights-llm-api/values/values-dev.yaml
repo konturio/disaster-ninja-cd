@@ -22,7 +22,7 @@ databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
 
-insightsApiUrl: https://dev-insights-api.k8s-01.konturlabs.com/insights-api
+insightsApiUrl: https://dev-insights-api.k8s-01.konturlabs.com/insights-api/graphql
 userProfileApiUrl: http://dev-user-profile-api.dev-user-profile-api.svc:8631/userprofile
 
 debug: true
