@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    meta.helm.sh/release-name: {{ .Values.envName }}-insights-llm-api
+    meta.helm.sh/release-namespace: {{ .Values.envName }}-insights-api
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-insights-llm-api
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: insights-llm-api
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-insights-llm-api
+  namespace: {{ .Values.envName }}-insights-api
+spec:
+  internalTrafficPolicy: Cluster
+  ports:
+    - name: main
+      port: {{ .Values.port }}
+      protocol: TCP
+      targetPort: main
+  selector:
+    app.kubernetes.io/instance: {{ .Values.envName }}-insights-llm-api
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: insights-llm-api
+    stage: {{ .Values.envName }}
+  sessionAffinity: None
+  type: ClusterIP
