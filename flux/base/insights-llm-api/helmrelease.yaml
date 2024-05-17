@@ -1,11 +1,11 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: insights-api-llm
+  name: insights-llm-api
 spec:
   chart:
     spec:
-      chart: ./helm/insights-api-llm
+      chart: ./helm/insights-llm-api
       interval: 1m
       reconcileStrategy: Revision
       sourceRef:
@@ -13,7 +13,7 @@ spec:
         name: kontur-platform
         namespace: flux-system
       valuesFiles:
-        - ./helm/insights-api-llm/values.yaml
+        - ./helm/insights-llm-api/values.yaml
   interval: 5m
   suspend: false
   test:
