@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Values.envName }}-insights-api
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-insights-llm-api
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: insights-llm-api
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-insights-llm-api
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.replicas }}
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Values.envName }}-insights-llm-api
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: insights-llm-api
+      stage: {{ .Values.envName }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        meta.helm.sh/release-name: {{ .Release.Name }}
+        meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+      labels:
+        app.kubernetes.io/instance: {{ .Values.envName }}-insights-llm-api
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: insights-llm-api
+        stage: {{ .Values.envName }}
+    spec:
+      {{- if .Values.image.usePullSecret }}
+      imagePullSecrets:
+        - name: {{ .Values.image.pullSecretName }}
+      {{- end }}
+      containers:
+        - envFrom:
+            - configMapRef:
+                name: {{ .Values.envName }}-insights-llm-api
+            - secretRef:
+                name: {{ .Values.envName }}-insights-llm-api
+          image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+          imagePullPolicy: IfNotPresent
+
+          {{- if .Values.createResource.deploymentLivenessProbe }}
+          {{- end }}
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - cat start.sh
+            failureThreshold: 1
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
+            periodSeconds: 15
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: insights-llm-api
+          ports:
+            - containerPort: {{ .Values.port }}
+              name: main
+              protocol: TCP
+          resources:
+            requests:
+              cpu: {{ .Values.resources.requests.cpu | quote }}
+              memory: {{ .Values.resources.requests.memory | quote }}
+            limits:
+              memory: {{ .Values.resources.limits.memory | quote }}

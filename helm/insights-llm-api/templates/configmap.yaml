@@ -1,0 +1,27 @@
+apiVersion: v1
+data:
+  PGHOST: "{{ .Values.databaseHost }}"
+  PGPORT: "{{ .Values.databasePort }}"
+  PGDATABASE: "{{ .Values.databaseName }}"
+  PGUSER: "{{ .Values.databaseUsername }}"
+  DEBUG: "{{ .Values.debug }}"
+  PORT: "{{ .Values.port }}"
+  SENTRY_ENABLED: "{{ .Values.sentryEnabled }}"
+  SENTRY_ENV: "{{ .Values.envName }}"
+  INSIGHTS_API_URL: "{{ .Values.insightsApiUrl }}"
+  USER_PROFILE_API_URL: "{{ .Values.userProfileApiUrl }}"
+  OPENAI_INSTRUCTIONS: |
+    "{{ .Values.openAIInstructions | nindent 4 }}"
+  OPENAI_ASSISTANT: "{{ .Values.openAIAssistant }}"
+kind: ConfigMap
+metadata:
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-insights-llm-api
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: insights-llm-api
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-insights-llm-api
+  namespace: {{ .Release.Namespace }}
