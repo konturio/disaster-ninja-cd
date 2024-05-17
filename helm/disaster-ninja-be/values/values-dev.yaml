@@ -27,6 +27,7 @@ kcApiUrl: 'https://test-api02.konturlabs.com/layers'
 layersApiUrl: 'http://dev-layers-api.dev-layers-api.svc:8630/layers/v2/'
 insightsApiUrl: 'https://dev-insights-api.k8s-01.konturlabs.com/insights-api'
 userProfileApiUrl: 'http://dev-user-profile-api.dev-user-profile-api.svc:8631/userprofile'
+llmAnalyticsApiUrl: 'http://dev-insights-llm-api.dev-insights-api.svc.cluster.local:8000'
 tilesHost: 'https://sonic.kontur.io'
 
 useInsightsV2: true
