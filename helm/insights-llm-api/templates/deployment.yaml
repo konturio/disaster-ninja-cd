@@ -51,17 +51,22 @@ spec:
 
           {{- if .Values.createResource.deploymentLivenessProbe }}
           {{- end }}
-          readinessProbe:
-            exec:
-              command:
-                - /bin/sh
-                - -c
-                - cat start.sh
-            failureThreshold: 1
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.port }}
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
+            timeoutSeconds: 10
+            failureThreshold: 10
             periodSeconds: 15
-            successThreshold: 1
-            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.port }}
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
+            timeoutSeconds: 10
+            periodSeconds: 15
+            failureThreshold: 1
           name: insights-llm-api
           ports:
             - containerPort: {{ .Values.port }}
