@@ -1,0 +1,42 @@
+# TEST values for insights-llm-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+image:
+  tag: main.f07661d.1
+  tagType: ""
+  pullSecretName: none
+  usePullSecret: false
+
+replicas: 1
+envName: test
+port: 8000
+
+createResource:
+  defaultSecrets: false
+  deploymentLivenessProbe: false
+isOfflineInstallation: false
+probeInitialDelaySeconds: 15
+
+databaseHost: db-insights-api-primary.test-insights-api.svc
+databasePort: 5432
+databaseName: insights-api
+databaseUsername: insights-api
+
+debug: true
+sentryEnabled: true
+openAIInstructions: |
+  You provide the analysis for the region of the map for the user. You are provided with automatically collected statistics about the region and need to make your conclusion based on them. The user cannot see the statistics that you see so you need to restate them. Low deviations may suggest low resolution data. reference_area is the user area of interest specified in their profile. PDC is Pacific Disaster Center, GRVA is country-level Global Risk and Vulnerability Assesment data, NDPBA is National Disaster Preparedness  Baseline Assesment (subnational). Call "Man-distance over Population" distance. "scaled" means that value was normalized and the units are not what they were. Reinterpret original data.
+openAIAssistant: 'Insights magician'
+
+insightsApiUrl: http://test-insights-api.test-insights-api.svc:8625/insights-api
+userProfileApiUrl: http://test-user-profile-api.test-user-profile-api.svc:8631/userprofile
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 32
+    memory: 16Gi
+
+maxParallelTasks: 15
