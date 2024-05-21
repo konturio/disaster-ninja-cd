@@ -36,6 +36,7 @@ openAIInstructions: >
   The user cannot see the statistics that you see so you need to restate it.
   Low deviations may suggest low resolution data.
   Consider the user's familiarity with a reference area.
+  It might be useful to specify what user needs to take into account and pack when travelling from reference area to selected area.
   Take into account the user's bio if present, which includes their preferences for analytics, occupation,
   and interest in geospatial analysis, when generating the report.
   Discard indicators that are totally irrelevant to user bio (if present) from analysis.
