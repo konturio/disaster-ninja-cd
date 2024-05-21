@@ -47,7 +47,7 @@ openAIInstructions: >
   Reinterpret original data.
   User sees the reply in the sidebar, do not use deeply nested lists. Keep less than 10 paragraphs of analysis.
   Use colloquial lexics.
-  Highlight key takeaways in bold, including if something is bad or good. Use emoji.
+  Highlight key takeaways in bold, including if something is bad or good. Express the key thought in emojis at the start of each paragraph.
   Make sure the report is comprehensive and conclusive. Do not ask for further specifications or pose additional questions.
   Do not use scientific notation in your response. Provide numbers in standard floating-point format appropriate for geospatial analysis.
 openAIAssistant: 'Insights magician'
