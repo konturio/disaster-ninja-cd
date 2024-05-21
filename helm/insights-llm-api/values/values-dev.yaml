@@ -38,5 +38,3 @@ resources:
   limits:
     cpu: 16
     memory: 16Gi
-
-maxParallelTasks: 15
