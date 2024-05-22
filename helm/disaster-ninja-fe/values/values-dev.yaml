@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 18340-add-ai-insights-to-analytical-panel.3defa8e.1
+    tag: release-2.28.0.887b00d.1
 
 replicaCount: 2
 envName: dev
