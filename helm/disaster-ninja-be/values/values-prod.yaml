@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: release-0.33.3.9685229.1
+    tag: release-0.34.0.560707a.1
 
 keycloakUrl: 'https://keycloak01.kontur.io'
 keycloakRealm: kontur
@@ -27,6 +27,7 @@ kcApiUrl: 'https://api.kontur.io/layers'
 layersApiUrl: 'http://prod-layers-api.prod-layers-api.svc:8630/layers/v2/'
 insightsApiUrl: 'http://prod-insights-api.prod-insights-api.svc:8625/insights-api'
 userProfileApiUrl: 'http://prod-user-profile-api.prod-user-profile-api.svc:8631/userprofile'
+llmAnalyticsApiUrl: 'http://prod-insights-llm-api.prod-insights-api.svc.cluster.local:8000'
 tilesHost: 'https://disaster.ninja'
 
 notificationsEnabled: true
