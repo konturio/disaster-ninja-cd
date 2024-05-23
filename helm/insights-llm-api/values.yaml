@@ -17,6 +17,7 @@ management:
   port: 8082
 
 createResource:
+  ingress: false
   defaultSecrets: false
   deploymentLivenessProbe: true
 

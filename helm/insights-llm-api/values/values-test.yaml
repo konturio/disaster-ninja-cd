@@ -10,8 +10,10 @@ image:
 replicas: 1
 envName: test
 port: 8000
+ingressHost: none
 
 createResource:
+  ingress: false
   defaultSecrets: false
   deploymentLivenessProbe: false
 isOfflineInstallation: false
