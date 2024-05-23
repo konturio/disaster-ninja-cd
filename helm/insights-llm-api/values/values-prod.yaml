@@ -10,8 +10,10 @@ image:
 replicas: 1
 envName: prod
 port: 8000
+ingressHost: prod-insights-llm-api.k8s-01.konturlabs.com
 
 createResource:
+  ingress: true
   defaultSecrets: false
   deploymentLivenessProbe: false
 isOfflineInstallation: false
