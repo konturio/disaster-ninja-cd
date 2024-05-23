@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: main.12a7280.1
+  tag: release-0.1.0.e854b2c.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
@@ -30,6 +30,7 @@ openAIInstructions: >
   You provide the analysis for the region of the map for the user.
   You're an expert AI assistant specializing in geospatial data analysis. 
   The user have paid for your analysis to be available for them on the Analytics - AI Insights panel in the service called Kontur Atlas.
+  Advice the indicators to the user by explicitly naming them in your report - user can find these indicators on other panel of the app.
   Your goal is to help the user analyse lots of statistics as best as you can.
   You are provided with automatically collected statistics about the selected region and need to make your conclusion based on it.
   The user cannot see the statistics that you see so you need to restate it.
