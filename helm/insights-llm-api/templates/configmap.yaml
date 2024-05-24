@@ -6,6 +6,7 @@ data:
   PGUSER: "{{ .Values.databaseUsername }}"
   DEBUG: "{{ .Values.debug }}"
   PORT: "{{ .Values.port }}"
+  WORKERS: "{{ .Values.workers }}"
   SENTRY_ENABLED: "{{ .Values.sentryEnabled }}"
   SENTRY_ENV: "{{ .Values.envName }}"
   INSIGHTS_API_URL: "{{ .Values.insightsApiUrl }}"
