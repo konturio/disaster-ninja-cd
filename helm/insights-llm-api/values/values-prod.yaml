@@ -12,6 +12,7 @@ envName: prod
 port: 8000
 workers: 4
 ingressHost: prod-insights-llm-api.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
 
 createResource:
   ingress: true
