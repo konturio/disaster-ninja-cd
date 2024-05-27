@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 18492-be-correlationrates-null-in-api-bivariate_matrix-response-on-test.c406f05.1
+  tag: 18492-be-correlationrates-null-in-api-bivariate_matrix-response-on-test.f0b8732.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
