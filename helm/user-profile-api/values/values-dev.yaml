@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: release-0.7.7.e9976a3.1
+  tag: 18053-create-roles-that-will-allow-to-distinguish-atlas-beta-users.01f79d6.1
   pullSecretName: none
   usePullSecret: false
 
