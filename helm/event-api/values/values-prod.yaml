@@ -57,3 +57,6 @@ awsSqsDlqUrl: 'https://sqs.us-west-1.amazonaws.com/001426858141/SNS_messages_fro
 awsSqsEnabled: true
 
 feignUserAgent: 'Event API PROD'
+
+normalizationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events,
+  cyclones.nhc-at.noaa, cyclones.nhc-ep.noaa, cyclones.nhc-cp.noaa
