@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 18620-insights-api-update-axis-graphql-to-return-a-list-of-mcda-transformations.23f8653.1
+  tag: 18620-insights-api-update-axis-graphql-to-return-a-list-of-mcda-transformations.bac7c27.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
