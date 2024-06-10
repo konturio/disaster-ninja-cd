@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: release-0.34.1.d4a965b.1
+    tag: 18745-be-access-denied-for-user-with-added-role-row-in-db.b78042e.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
