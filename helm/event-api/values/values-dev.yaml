@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 18440-event-api-prod-leaks-memory-when-not-constrained-by-k8s-256gb.c5183f5.1
+  tag: release-1.19.6.e5e896f.1
   pullSecretName: none
   usePullSecret: false
 
