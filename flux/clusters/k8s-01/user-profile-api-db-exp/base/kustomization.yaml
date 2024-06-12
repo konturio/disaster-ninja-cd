@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - postgrescluster.yaml
+namespace: OVERRIDEME
+
+commonAnnotations:
+  # https://fluxcd.io/flux/components/kustomize/kustomization/#garbage-collection
+  kustomize.toolkit.fluxcd.io/prune: enabled # disable pruning for all resources here

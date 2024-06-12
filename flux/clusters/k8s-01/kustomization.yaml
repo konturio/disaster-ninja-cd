@@ -34,3 +34,4 @@ resources:
   - user-profile-api-db/overlays/DEV
   - user-profile-api-db/overlays/TEST
   - user-profile-api-db/overlays/PROD
+  - user-profile-api-db-exp/overlays/DEV # expiremental

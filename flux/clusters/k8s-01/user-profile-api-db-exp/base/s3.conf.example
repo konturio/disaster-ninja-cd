@@ -1,0 +1,6 @@
+[global]
+# Account ID: CHANGE_ME
+# IAM user name: CHANGE_ME
+[global]
+repo2-s3-key=<YOUR_AWS_S3_KEY>
+repo2-s3-key-secret=<YOUR_AWS_S3_KEY_SECRET>
