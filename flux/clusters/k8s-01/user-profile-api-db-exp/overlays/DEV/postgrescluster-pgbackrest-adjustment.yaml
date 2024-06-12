@@ -1,6 +1,6 @@
-- op: add
-  path: /spec/backups/pgbackrest/global/archive-timeout
-  value: '360'
+#- op: add
+#  path: /spec/backups/pgbackrest/global/archive-timeout
+#  value: '360'
 
 - op: replace
   path: /spec/backups/pgbackrest/image
