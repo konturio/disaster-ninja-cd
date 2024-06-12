@@ -1,0 +1,21 @@
+# https://access.crunchydata.com/documentation/postgres-operator/latest/tutorial/backups/#using-s3
+# https://pgbackrest.org/configuration.html
+
+- op: add
+  path: /spec/backups/pgbackrest/global
+  value:
+    log-level-file: info # enough to see WAL file names
+    log-level-stderr: info # enough to see WAL file names
+    # use /pgbackrest/$NAMESPACE/$CLUSTER_NAME/repoN
+    repo2-path: /pgbackrest/dev-user-profile-api/db-user-profile-api-exp/repo2
+    repo1-retention-full-type: 'count'
+    repo1-retention-full: '1'  # one full in-cluster backup max
+    repo2-retention-full-type: 'time'
+    repo2-retention-full: '30' # we aim to have the ability to restore backups from S3 within the past 30 days.
+
+- op: add
+  path: /spec/backups/pgbackrest/manual
+  value:
+    repoName: repo2
+    options:
+      - '--type=full'
