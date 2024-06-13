@@ -26,6 +26,51 @@ metadata:
   {{- end }}
       proxy_bind off;
       client_max_body_size 5m;
+
+      location /layers/tiles/ {
+            proxy_cache_valid 600s;
+            proxy_cache_key 'layers-tiles-$request_method$host$uri$is_args$args$http_authorization$request_body';
+
+            more_set_headers "Strict-Transport-Security: max-age=31536000";
+            more_set_headers "X-Frame-Options: SAMEORIGIN";
+            more_set_headers "X-Content-Type-Options: nosniff";
+
+            more_set_headers "Access-Control-Allow-Origin: $http_origin";
+            more_set_headers "Access-Control-Allow-Credentials: true";
+
+            more_set_headers "Access-Control-Allow-Methods: *";
+            more_set_headers "Access-Control-Allow-Headers: Authorization,Keep-Alive,User-Agent,If-Modified-Since,Cache-Control,Content-Type";
+
+            more_set_headers "Cache-Control: no-transform"; # workaround to Cloudflare's shady behavior when all content is decoded but only supported types are delivered compressed
+            #
+            #
+
+            # we have to use rewrite to use correctly encoded URL - proxy_pass won't do that for us
+            location ~ ^/layers/tiles/basemap/(sprite.*)$ {
+                rewrite ^ $request_uri;
+                rewrite ^/layers/tiles/basemap/(sprite.*)$ $1 break;
+                return 400; # assertion checker
+
+                proxy_pass {{ .Values.basemap.s3.url }}/sprite/$1;
+            }
+
+            location ~ ^/layers/tiles/basemap/glyphs/(.*)$ {
+                rewrite ^ $request_uri;
+                rewrite ^/layers/tiles/basemap/glyphs/(.*)$ $1 break;
+                return 400; # assertion checker
+
+                proxy_pass {{ .Values.basemap.s3.url }}/glyphs/$uri;
+            }
+
+            location ~ ^/layers/tiles/basemap/(style.*)$ {
+                rewrite ^ $request_uri;
+                rewrite ^/layers/tiles/basemap/(style.*)$ $1 break;
+                return 400; # assertion checker
+
+                proxy_pass {{ .Values.basemap.s3.url }}/styles/$1;
+            }
+      }
+
   labels:
     app.kubernetes.io/instance: {{ .Values.envName }}-basemap-tileserver
     app.kubernetes.io/managed-by: Helm

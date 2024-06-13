@@ -51,9 +51,11 @@ spec:
         - aws
         - s3
         - sync
-        - $(S3_BASEMAP_PATH)
+        - {{ .Values.basemap.s3.path }}
         - /data
         envFrom:
+        - configMapRef:
+            name: {{ .Values.envName }}-basemap
         - secretRef:
             name: {{ .Values.envName }}-basemap
         image: 'nexus.kontur.io:8084/amazon/aws-cli'

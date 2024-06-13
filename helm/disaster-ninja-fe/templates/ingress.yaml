@@ -103,50 +103,6 @@ metadata:
         return 404;
       }
 
-      location /tiles/ {
-
-        location /tiles/users/ {
-          proxy_pass https://lima.kontur.io;
-        }
-
-        proxy_cache off;
-        proxy_cache_valid 600s;
-        proxy_cache_key 'layers-tiles-$request_method$host$uri$is_args$args$http_authorization$request_body';
-
-        more_set_headers "Strict-Transport-Security: max-age=31536000";
-        more_set_headers "X-Frame-Options: SAMEORIGIN";
-        more_set_headers "X-Content-Type-Options: nosniff";
-
-        include /etc/nginx/CORS_02_location.inc.conf;
-
-        location ~ ^(?:/layers)?/tiles/basemap/(sprite.*)$ {
-          rewrite ^ $request_uri;
-          rewrite ^(?:/layers)?/tiles/basemap/(sprite.*)$ $1 break;
-          return 400; # assertion checker
-
-          proxy_pass https://basemap-locker01.s3.eu-central-1.amazonaws.com/PROD/sprite/$1;
-          proxy_cache main1;
-        }
-
-        location ~ ^(?:/layers)?/tiles/basemap/glyphs/(.*)$ {
-          rewrite ^ $request_uri;
-          rewrite ^(?:/layers)?/tiles/basemap/glyphs/(.*)$ $1 break;
-          return 400; # assertion checker
-
-          proxy_pass https://basemap-locker01.s3.eu-central-1.amazonaws.com/PROD/glyphs/$uri;
-          proxy_cache main1;
-        }
-
-        location ~ ^(?:/layers)?/tiles/basemap/(style.*)$ {
-          rewrite ^ $request_uri;
-          rewrite ^(?:/layers)?/tiles/basemap/(style.*)$ $1 break;
-          return 400; # assertion checker
-
-          proxy_pass https://basemap-locker01.s3.eu-central-1.amazonaws.com/PROD/styles/$1;
-          proxy_cache main1;
-        }
-      }
-
   {{- if .Values.isOfflineInstallation }} #TODO workaround
       location /layers/tiles/basemap/style_ninja.json {
         resolver 1.1.1.1 1.0.0.1;

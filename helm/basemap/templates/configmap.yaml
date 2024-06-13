@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.envName }}-basemap
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: basemap
+    app.kubernetes.io/instance: {{ .Values.envName }}-basemap
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+data:
+  S3_BASEMAP_PATH: {{ .Values.basemap.s3.path }}
