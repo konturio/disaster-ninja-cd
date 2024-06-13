@@ -1,0 +1,21 @@
+- op: replace
+  path: /spec/instances/0/resources
+  value:
+    limits:
+      memory: 12Gi
+      cpu: '8'
+    requests:
+      memory: 4Gi
+      cpu: '1'
+
+- op: replace
+  path: /spec/instances/0/dataVolumeClaimSpec/storageClassName
+  value: longhorn-single
+
+#- op: add
+#  path: /spec/dataSource
+#  value:
+#    volumes:
+#      pgDataVolume:
+#        pvcName: db-user-profile-api-exp-01-xxxx-pgdata
+#        directory: pg16

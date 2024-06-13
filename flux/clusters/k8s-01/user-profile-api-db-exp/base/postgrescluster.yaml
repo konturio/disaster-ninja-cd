@@ -1,0 +1,106 @@
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PostgresCluster
+metadata:
+  name: db-user-profile-api-exp
+  labels:
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: flux
+    app.kubernetes.io/name: db-user-profile-api-exp
+    app.kubernetes.io/part-of: user-profile-api
+spec:
+  backups:
+    pgbackrest:
+      image: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.40-1'
+      repos:
+        - name: repo1
+          volume:
+            volumeClaimSpec:
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 25Gi
+              storageClassName: local-path-regular
+  instances:
+    - affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              podAffinityTerm:
+                topologyKey: kubernetes.io/hostname
+                labelSelector:
+                  matchLabels:
+                    postgres-operator.crunchydata.com/cluster: db-user-profile-api-exp
+                    postgres-operator.crunchydata.com/instance-set: '01'
+      dataVolumeClaimSpec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 25Gi
+      name: '01'
+      replicas: 1
+      resources:
+        limits:
+          memory: 12Gi
+          cpu: '4'
+        requests:
+          memory: 4Gi
+          cpu: '1'
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              postgres-operator.crunchydata.com/instance-set: '01'
+  metadata:
+    labels:
+      app.kubernetes.io/component: database
+      app.kubernetes.io/managed-by: pgo
+      app.kubernetes.io/name: db-user-profile-api-exp
+      app.kubernetes.io/part-of: user-profile-api
+  patroni:
+    dynamicConfiguration:
+      postgresql:
+        parameters:
+          auto_explain.log_min_duration: 1s
+          auto_explain.log_nested_statements: 'on'
+          auto_explain.log_verbose: 'on'
+          autovacuum_analyze_scale_factor: 0.005
+          autovacuum_naptime: 15s
+          autovacuum_vacuum_cost_limit: 1000
+          autovacuum_vacuum_insert_scale_factor: 0.01
+          autovacuum_vacuum_scale_factor: 0.01
+          effective_cache_size: 18GB
+          effective_io_concurrency: 200
+          log_autovacuum_min_duration: 250ms
+          log_checkpoints: 'on'
+          log_error_verbosity: verbose
+          log_line_prefix: '[%m u=%u d=%d h=%r p=%p l=%l trans_id=%x]: '
+          maintenance_work_mem: 1536MB
+          max_connections: 50
+          max_parallel_maintenance_workers: 2
+          max_parallel_workers: 4
+          max_parallel_workers_per_gather: 2
+          max_worker_processes: 4
+          max_prepared_transactions: 100
+          random_page_cost: 1.1
+          shared_buffers: 6GB
+          shared_preload_libraries: 'auto_explain,pg_stat_statements'
+          track_activity_query_size: 4kB
+          track_functions: pl
+          track_io_timing: 'on'
+          vacuum_cost_page_miss: 5
+          wal_compression: 'on'
+          work_mem: 1GB
+  postGISVersion: '3.2'
+  postgresVersion: 14
+  users:
+    - name: postgres
+    - name: user-profile-api
+      databases:
+        - user-profile-api-db
+      options: SUPERUSER
+      password:
+        type: AlphaNumeric

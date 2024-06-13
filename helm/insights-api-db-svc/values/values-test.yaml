@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: main.d68e82a.1
+  tag: main.9ddeb0d.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
@@ -28,4 +28,4 @@ resources:
   limits:
     memory: 16Gi
 
-maxParallelTasks: 25
+maxParallelTasks: 15
