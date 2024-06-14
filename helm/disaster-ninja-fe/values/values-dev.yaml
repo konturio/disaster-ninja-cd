@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 18607-nulls-in-mcda-layer-are-red-instead-of-transparent.8d4610e.1
+    tag: release-2.29.1.8f156ca.1
 
 replicaCount: 2
 envName: dev
