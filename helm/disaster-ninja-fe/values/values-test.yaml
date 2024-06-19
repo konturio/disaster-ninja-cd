@@ -15,6 +15,7 @@ ingressHosts:
   - test-maps-kontur-io.k8s-01.konturlabs.com
   - test-new-openaerialmap-org.k8s-01.konturlabs.com
   - test-atlas-kontur-io.k8s-01.konturlabs.com
+  - test-oasis-kontur-io.k8s-01.konturlabs.com
 ingressClass: ingress-nginx
 
 createResource:
