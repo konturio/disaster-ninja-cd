@@ -26,6 +26,8 @@ metadata:
   {{- end }}
       proxy_bind off;
       client_max_body_size 5m;
+      proxy_hide_header Vary;
+      more_set_headers "Vary: Origin";
 
       location /layers/tiles/ {
             proxy_cache_valid 600s;
