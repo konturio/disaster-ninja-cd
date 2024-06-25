@@ -67,4 +67,4 @@ minH3Resolution: 0
 maxZoom: 15
 minZoom: 0
 
-useStatSeparateTables: false
+useStatSeparateTables: true
