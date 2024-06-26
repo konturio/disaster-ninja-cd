@@ -16,7 +16,7 @@ type: application
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
 
-version: 0.2.226
+version: 0.2.227
 
 #Don't use appVersion, use {{ .Values.image.be.tag }} instead. That's required for Flux automation - so that different
 # stages can have different versions within the same branch watched by Flux.
