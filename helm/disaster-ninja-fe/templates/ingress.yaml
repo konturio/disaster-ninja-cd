@@ -147,6 +147,7 @@ metadata:
         }
       }
 
+
   {{- if .Values.isOfflineInstallation }} #TODO workaround
       location /layers/tiles/basemap/style_ninja.json {
         resolver 1.1.1.1 1.0.0.1;
