@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 18845-insights-api-getunit-fails-if-unit_id-of-indicator-is-empty-or-doesn-t-exist-in-bivariate_unit.25ffb8e.1
+  tag: 18845-insights-api-getunit-fails-if-unit_id-of-indicator-is-empty-or-doesn-t-exist-in-bivariate_unit.7dbc777.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
