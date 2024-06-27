@@ -7,3 +7,7 @@
     requests:
       memory: 4Gi
       cpu: '1'
+
+- op: replace
+  path: /spec/instances/0/dataVolumeClaimSpec/storageClassName
+  value: longhorn-single
