@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: master.6764ea8.1
+  tag: 18808-multiple-duplicated-long-running-requests-to-insights-run-multiple-times.a6f702c.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
