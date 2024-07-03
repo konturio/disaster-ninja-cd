@@ -5,8 +5,8 @@
 image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
-    algorithm: ''
-    tag: release-2.29.1.8f156ca.1
+    algorithm: ""
+    tag: 18701-access-token-on-test-doesn-t-refresh.f381653.1
 
 replicaCount: 2
 envName: test
@@ -25,9 +25,9 @@ createResource:
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 
-reportsBucket: 'https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazonaws.com/kontur_reports/test/'
+reportsBucket: "https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazonaws.com/kontur_reports/test/"
 
-epigHost: 'https://test-epig.k8s-01.konturlabs.com'
+epigHost: "https://test-epig.k8s-01.konturlabs.com"
 
 alertingTime: 5m
 
