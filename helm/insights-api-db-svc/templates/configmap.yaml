@@ -5,6 +5,7 @@ data:
   PGDATABASE: "{{ .Values.databaseName }}"
   PGUSER: "{{ .Values.databaseUsername }}"
   MAX_PARALLEL_TASKS: "{{ .Values.maxParallelTasks }}"
+  INSIGHTS_API_URL: "{{ .Values.insightsApiUrl }}"
 kind: ConfigMap
 metadata:
   annotations:
