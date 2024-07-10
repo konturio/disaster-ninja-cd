@@ -27,6 +27,10 @@ databaseName: user-profile-api-db
 jwtIssuerUri: 'https://keycloak01.kontur.io/realms/kontur'
 jwtJwkSetUri: 'https://keycloak01.kontur.io/realms/kontur/protocol/openid-connect/certs'
 
+paypal:
+  webhookID: '4XB10777S9076735P'
+  host: 'https://api.paypal.com'
+
 alertingTime: 5m
 
 otlpTracesExporter: otlp
