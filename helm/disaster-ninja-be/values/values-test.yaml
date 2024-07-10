@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: main.68d8e1a.1
+    tag: main.1b1e545.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
