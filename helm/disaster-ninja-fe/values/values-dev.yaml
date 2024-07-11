@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 18788-fe-integrate-paypal-sdk-for-subscription-payments.178f0cb.1
+    tag: main.707dd7d.1
 
 replicaCount: 2
 envName: dev
