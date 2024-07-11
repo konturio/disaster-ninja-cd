@@ -67,6 +67,7 @@ spec:
           auto_explain.log_min_duration: 1s
           auto_explain.log_nested_statements: 'on'
           auto_explain.log_verbose: 'on'
+          auto_explain.log_settings: 'on'
           autovacuum_analyze_scale_factor: 0.005
           autovacuum_naptime: 15s
           autovacuum_vacuum_cost_limit: -1
