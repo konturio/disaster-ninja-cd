@@ -13,6 +13,8 @@ data:
   spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.jwtIssuerUri }}
   spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.jwtJwkSetUri }}
   sentry.environment: {{ .Values.envName }}
+  payments.paypal.webhook-id: {{ .Values.paypal.webhookID }}
+  payments.paypal.host: {{ .Values.paypal.host }}
 kind: ConfigMap
 metadata:
   annotations:

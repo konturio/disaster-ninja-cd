@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 18487-be-implement-web-hooks-for-paypal.8ed6dbd.1
+  tag: 18487-be-implement-web-hooks-for-paypal.e4af3e4.1
   pullSecretName: none
   usePullSecret: false
 
@@ -26,6 +26,10 @@ databaseName: user-profile-api-db
 
 jwtIssuerUri: 'https://dev-keycloak.k8s-01.konturlabs.com/realms/dev'
 jwtJwkSetUri: 'https://dev-keycloak.k8s-01.konturlabs.com/realms/dev/protocol/openid-connect/certs'
+
+paypal:
+  webhookID: '5FN15003WM978772N'
+  host: 'https://api.sandbox.paypal.com'
 
 alertingTime: 10m
 
