@@ -39,6 +39,11 @@ alertingTime: 10m
 jwtIssuerUri: https://dev-keycloak.k8s-01.konturlabs.com/realms/dev
 jwtJwkSetUri: https://dev-keycloak.k8s-01.konturlabs.com/realms/dev/protocol/openid-connect/certs
 
+# dev values as the defaults
+paypal:
+  webhookID: '5FN15003WM978772N'
+  host: 'https://api.sandbox.paypal.com'
+
 otlpTracesExporter: none
 otlpTracesPort: 4317
 
