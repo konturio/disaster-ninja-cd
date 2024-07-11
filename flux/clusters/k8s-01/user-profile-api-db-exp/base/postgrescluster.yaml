@@ -94,6 +94,7 @@ spec:
           vacuum_cost_page_miss: 5
           wal_compression: 'on'
           work_mem: 1GB
+          wal_level: replica
   postGISVersion: '3.2'
   postgresVersion: 14
   users:
