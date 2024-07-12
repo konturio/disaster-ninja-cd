@@ -15,12 +15,12 @@ patchesJson6902:
       kind: PostgresCluster
       name: db-user-profile-api-exp
     path: postgrescluster-resource-adjustment.yaml
-  - target:
-      group: postgres-operator.crunchydata.com
-      version: v1beta1
-      kind: PostgresCluster
-      name: db-user-profile-api-exp
-    path: postgrescluster-onsite-backups.yaml
+#  - target:
+#      group: postgres-operator.crunchydata.com
+#      version: v1beta1
+#      kind: PostgresCluster
+#      name: db-user-profile-api-exp
+#    path: postgrescluster-onsite-backups.yaml
   - target:
       group: postgres-operator.crunchydata.com
       version: v1beta1

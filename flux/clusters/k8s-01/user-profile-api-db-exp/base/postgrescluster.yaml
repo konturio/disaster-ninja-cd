@@ -11,16 +11,16 @@ spec:
   backups:
     pgbackrest:
       image: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.40-1'
-      repos:
-        - name: repo1
-          volume:
-            volumeClaimSpec:
-              accessModes:
-                - ReadWriteOnce
-              resources:
-                requests:
-                  storage: 25Gi
-              storageClassName: local-path-regular
+#      repos:
+#        - name: repo1
+#          volume:
+#            volumeClaimSpec:
+#              accessModes:
+#                - ReadWriteOnce
+#              resources:
+#                requests:
+#                  storage: 25Gi
+#              storageClassName: local-path-regular
   instances:
     - affinity:
         podAntiAffinity:
