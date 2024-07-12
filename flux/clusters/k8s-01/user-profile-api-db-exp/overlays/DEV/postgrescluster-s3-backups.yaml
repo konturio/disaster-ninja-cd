@@ -30,8 +30,8 @@
 - op: add
   path: /spec/backups/pgbackrest/configuration
   value:
-    name: db-user-profile-api-exp-pgo-s3-credentials
-
+    - secret:
+        name: db-user-profile-api-exp-pgo-s3-credentials
 
 - op: add
   path: /spec/backups/pgbackrest/manual
