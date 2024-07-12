@@ -3,12 +3,12 @@ bases:
 namespace: dev-user-profile-api-exp
 
 patchesJson6902:
-#  - target:
-#      group: postgres-operator.crunchydata.com
-#      version: v1beta1
-#      kind: PostgresCluster
-#      name: db-user-profile-api-exp
-#    path: postgrescluster-s3-backups.yaml
+  - target:
+      group: postgres-operator.crunchydata.com
+      version: v1beta1
+      kind: PostgresCluster
+      name: db-user-profile-api-exp
+    path: postgrescluster-s3-backups.yaml
   - target:
       group: postgres-operator.crunchydata.com
       version: v1beta1
