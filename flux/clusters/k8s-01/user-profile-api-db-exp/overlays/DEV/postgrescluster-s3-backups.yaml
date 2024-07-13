@@ -2,38 +2,34 @@
 # https://pgbackrest.org/configuration.html
 
 - op: add
+  path: /spec/backups
+  value:
+    pgbackrest:
+      repos:
+        - name: repo2
+          s3:
+            bucket: pgbackrest
+            endpoint: prod-minio.kontur.io
+            region: eu-central-1
+          schedules:
+            full: 0 18 * * 3
+            differential: 0 18 * * 6
+            incremental: '0 20 * * 3,4,5,0,1'
+      configuration:
+        - secret:
+            name: db-user-profile-api-exp-pgo-s3-credentials
+
+- op: add
   path: /spec/backups/pgbackrest/global
   value:
-    log-level-file: info # enough to see WAL file names
-    log-level-stderr: info # enough to see WAL file names
-    # use /pgbackrest/$NAMESPACE/$CLUSTER_NAME/repoN
+    log-level-file: info
+    log-level-stderr: info
     repo2-path: /pgbackrest/dev-user-profile-api/db-user-profile-api-exp/repo2
-#    repo1-retention-full-type: 'count'
-#    repo1-retention-full: '1'  # one full in-cluster backup max
-#    repo2-retention-full-type: 'time'
-#    repo2-retention-full: '30' # we aim to have the ability to restore backups from S3 within the past 30 days.
+    repo2-retention-full-type: 'time'
+    repo2-retention-full: '30'
     repo2-storage-verify-tls: 'n'
     repo2-s3-uri-style: path
     repo2-storage-port: '32000'
-
-- op: add
-  path: /spec/backups/pgbackrest/repos/1
-  value:
-    name: repo2
-    s3:
-      bucket: pgbackrest
-      endpoint: prod-minio.kontur.io
-      region: eu-central-1
-    schedules:
-      full: 0 18 * * 3
-      differential: 0 18 * * 6
-      incremental: '0 20 * * 3,4,5,0,1'
-
-- op: add
-  path: /spec/backups/pgbackrest/configuration
-  value:
-    - secret:
-        name: db-user-profile-api-exp-pgo-s3-credentials
 
 - op: add
   path: /spec/backups/pgbackrest/manual
