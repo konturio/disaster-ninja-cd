@@ -1,6 +1,0 @@
-
-- op: add
-  path: /spec/backups/pgbackrest/repos/0/schedules
-  value:
-    full: 30 2 1 * *
-    differential: 30 2 15 * *
