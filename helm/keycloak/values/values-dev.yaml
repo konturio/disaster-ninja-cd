@@ -5,7 +5,7 @@
 image:
   repository: nexus.kontur.io:8084/konturdev/keycloak-with-ups-spi
   pullPolicy: IfNotPresent
-  tag: 18487-be-implement-web-hooks-for-paypal.8ed6dbd.1
+  tag: release-0.8.2.c79c581.1
   pullSecretName: nexus8084
   usePullSecret: false
 
