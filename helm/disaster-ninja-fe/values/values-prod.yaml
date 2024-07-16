@@ -12,6 +12,7 @@ replicaCount: 2
 envName: prod
 ingressHosts:
   - disaster.ninja
+  - new.openaerialmap.org
   - maps.kontur.io
   - atlas.kontur.io
   - prod-atlas-kontur-io.k8s-01.konturlabs.com
