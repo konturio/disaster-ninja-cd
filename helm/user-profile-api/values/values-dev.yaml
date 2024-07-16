@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 18487-be-implement-web-hooks-for-paypal.e4af3e4.1
+  tag: 18487-be-implement-web-hooks-for-paypal.0fef3b4.1
   pullSecretName: none
   usePullSecret: false
 
