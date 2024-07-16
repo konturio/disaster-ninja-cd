@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 19020-insights-api-llm-analytics-returns-504-on-dev-test-for-large-geometries.946ca86.1
+  tag: main.f8e3873.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
