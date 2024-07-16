@@ -22,4 +22,3 @@ basemap:
   db:
     image: "nexus.kontur.io:8084/postgis/postgis"
     tag: "15-3.3"
-k8s_cluster_flavor: k8s-01.kontur.io # value may be substituted in a Flux pipeline

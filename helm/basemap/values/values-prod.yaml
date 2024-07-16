@@ -13,9 +13,12 @@ tileserver:
 
 basemap:
   processingSchedule: "0 0 */2 * *" # Run once in 2 days at midnight
+  s3:
+    path: s3://basemap-locker01/PROD
+    url: https://basemap-locker01.s3.eu-central-1.amazonaws.com/PROD
   renderer:
     image: "nexus.kontur.io:8084/konturdev/build-basemap"
-    tag: "master.5c667f1.1"
+    tag: "be6b952b"
   db:
     image: "nexus.kontur.io:8084/postgis/postgis"
     tag: "15-3.3"
