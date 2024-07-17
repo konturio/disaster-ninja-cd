@@ -21,3 +21,7 @@
 - op: add
   path: /spec/backups/pgbackrest/global/archive-async
   value: 'y'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/max_wal_size
+  value: '30GB'
