@@ -9,7 +9,7 @@
         - name: repo2
           s3:
             bucket: pgbackrest
-            endpoint: prod-minio.kontur.io
+            endpoint: s3.kontur.io
             region: eu-central-1
           schedules:
             full: 0 18 * * 3
@@ -27,9 +27,8 @@
     repo2-path: /pgbackrest/dev-user-profile-api/db-user-profile-api-exp/repo2
     repo2-retention-full-type: 'time'
     repo2-retention-full: '30'
-    repo2-storage-verify-tls: 'n'
     repo2-s3-uri-style: path
-    repo2-storage-port: '32000'
+    repo2-storage-port: '443'
 
 - op: add
   path: /spec/backups/pgbackrest/manual
