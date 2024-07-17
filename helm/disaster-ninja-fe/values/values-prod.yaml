@@ -11,6 +11,7 @@ image:
 replicaCount: 2
 envName: prod
 ingressHosts:
+  - apps.disaster.ninja
   - disaster.ninja
   - new.openaerialmap.org
   - maps.kontur.io
