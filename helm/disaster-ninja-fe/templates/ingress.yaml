@@ -19,11 +19,12 @@ metadata:
     # so we do check scheme and redirect manually
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
-  {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-headers: DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,User-Language
+    nginx.ingress.kubernetes.io/cors-allow-credentials: "false"
+  {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/server-snippet: |
   {{- else }}
-    nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/proxy-body-size: {{ .Values.client_max_body_size }}
     nginx.ingress.kubernetes.io/proxy-read-timeout: 300s
     {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
