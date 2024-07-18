@@ -12,6 +12,12 @@
   path: /spec/instances/0/dataVolumeClaimSpec/storageClassName
   value: longhorn-single
 
+- op: add
+  path: /spec/instances/0/dataVolumeClaimSpec/selector
+  value:
+    matchLabels:
+      pgo-postgres-cluster: db-user-profile-api-exp
+
 #- op: add
 #  path: /spec/dataSource
 #  value:
