@@ -21,4 +21,3 @@
 - op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/max_wal_size
   value: '10GB'
-
