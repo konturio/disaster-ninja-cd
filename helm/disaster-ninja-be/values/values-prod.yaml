@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: release-0.34.4.7b2e4b9.1
+    tag: release-0.34.5.dbb8f4e.1
 
 keycloakUrl: 'https://keycloak01.kontur.io'
 keycloakRealm: kontur
