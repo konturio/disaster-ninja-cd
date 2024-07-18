@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: main.aa96887.1
+    tag: release-0.34.5.dbb8f4e.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
