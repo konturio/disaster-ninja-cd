@@ -65,6 +65,19 @@ metadata:
 
       proxy_read_timeout 300s;
 
+      # for DN-prod until user-tiles are on lima
+      location /tiles/ {
+        location /tiles/users/ {
+          proxy_pass https://lima.kontur.io;
+        }
+
+        more_set_headers "Strict-Transport-Security: max-age=31536000";
+        more_set_headers "X-Frame-Options: SAMEORIGIN";
+        more_set_headers "X-Content-Type-Options: nosniff";
+
+        include /etc/nginx/CORS_02_location.inc.conf;
+      }
+
       location = /robots.txt {
         return 200 $dn2021_robots_txt;
       }
