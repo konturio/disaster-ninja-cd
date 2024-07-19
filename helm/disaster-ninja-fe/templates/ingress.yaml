@@ -117,6 +117,8 @@ metadata:
       }
 
       location /active/api/tiles/bivariate/ {
+          if_modified_since before;
+
           proxy_cache api01;
           proxy_cache_use_stale error timeout http_500 http_502 http_503 http_504;
           proxy_cache_background_update on;
