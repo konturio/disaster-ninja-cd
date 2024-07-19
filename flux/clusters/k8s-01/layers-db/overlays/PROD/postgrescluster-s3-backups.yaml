@@ -2,35 +2,33 @@
 # https://pgbackrest.org/configuration.html
 
 - op: add
+  path: /spec/backups
+  value:
+    pgbackrest:
+      repos:
+        - name: repo2
+          s3:
+            bucket: pgbackrest
+            endpoint: s3.kontur.io
+            region: eu-central-1
+          schedules:
+            full: 15 2 * * 6
+            differential: 15 2 * * 3
+            incremental: '15 2 * * 0,1,2,4,5'
+      configuration:
+        - secret:
+            name: db-layers-pgo-s3-credentials
+
+- op: add
   path: /spec/backups/pgbackrest/global
   value:
-    log-level-file: info # enough to see WAL file names
-    log-level-stderr: info # enough to see WAL file names
-    # use /pgbackrest/$NAMESPACE/$CLUSTER_NAME/repoN
+    log-level-file: info
+    log-level-stderr: info
     repo2-path: /pgbackrest/prod-layers-db/db-layers/repo2
-    repo1-retention-full-type: 'count'
-    repo1-retention-full: '1'  # one full in-cluster backup max
     repo2-retention-full-type: 'time'
-    repo2-retention-full: '30' # we aim to have the ability to restore backups from S3 within the past 30 days.
-
-- op: add
-  path: /spec/backups/pgbackrest/repos/1
-  value:
-    name: repo2
-    s3:
-      bucket: k8s-01-kontur-io--pgbackrest-backups
-      endpoint: s3.eu-central-1.amazonaws.com
-      region: eu-central-1
-    schedules:
-      full: 15 2 * * 6
-      differential: 15 2 * * 3
-      incremental: '15 2 * * 0,1,2,4,5'
-
-- op: add
-  path: /spec/backups/pgbackrest/configuration
-  value:
-    - secret:
-        name: db-layers-pgo-s3-credentials
+    repo2-retention-full: '30'
+    repo2-s3-uri-style: path
+    repo2-storage-port: '443'
 
 - op: add
   path: /spec/backups/pgbackrest/manual
