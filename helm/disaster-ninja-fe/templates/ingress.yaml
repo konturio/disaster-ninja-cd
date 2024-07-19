@@ -41,7 +41,7 @@ metadata:
         return 301 https://$host$request_uri;
       }
 
-      expires $dn2021_expires;
+      more_set_headers "Cache-Control: $dn_cache_control";
       more_set_headers "Strict-Transport-Security: max-age=31536000";
       more_set_headers "X-Frame-Options: $dn2021_x_frame_options";
       more_set_headers "X-Content-Type-Options: nosniff";
@@ -54,8 +54,6 @@ metadata:
       include /etc/nginx/ngx_http_proxy_module.conf;
 
       proxy_set_header Host $proxy_host;
-
-      more_clear_headers "Cache-Control";
 
       location @nonexistent {
         rewrite "^/active(?=/).*/[^/.]+/{0,1}$" /active/ last;
