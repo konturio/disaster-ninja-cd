@@ -16,3 +16,7 @@
     resources:
       requests:
         storage: 300Gi
+
+- op: replace
+  path: /spec/instances/0/dataVolumeClaimSpec/storageClassName
+  value: longhorn-single
