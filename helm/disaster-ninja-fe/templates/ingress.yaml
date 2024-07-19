@@ -22,6 +22,7 @@ metadata:
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/cors-allow-headers: DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,User-Language
     nginx.ingress.kubernetes.io/cors-allow-credentials: "false"
+    nginx.ingress.kubernetes.io/proxy-buffering: "on"
   {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/server-snippet: |
   {{- else }}
@@ -102,8 +103,17 @@ metadata:
         return 404;
       }
 
+      location /active/api/tiles/bivariate/ {
+          proxy_cache api01;
+          proxy_cache_use_stale error timeout http_500 http_502 http_503 http_504;
+          proxy_cache_background_update on;
+          proxy_cache_revalidate on;
+          proxy_cache_valid {{ .Values.proxy_cache_valid }};
+          proxy_cache_lock on;
 
+          proxy_pass http://{{ .Values.envName }}-disaster-ninja-be.{{ .Release.Namespace }}.svc.cluster.local:8627;
 
+          add_header X-Cache-Status $upstream_cache_status;
       }
 
 spec:

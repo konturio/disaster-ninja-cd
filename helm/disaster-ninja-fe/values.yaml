@@ -25,3 +25,4 @@ epigHost: 'https://dev-epig.k8s-01.konturlabs.com'
 
 alertingTime: 10m
 client_max_body_size: 5m
+proxy_cache_valid: 43200
