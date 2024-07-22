@@ -21,7 +21,7 @@ createResource:
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 
-databaseHost: paris.k8s-01.kontur.io.
+databaseHost: db-insights-api-primary.prod-insights-api.svc
 databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
