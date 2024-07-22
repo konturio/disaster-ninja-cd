@@ -21,3 +21,15 @@
 - op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/max_wal_size
   value: '30GB'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/synchronous_commit
+  value: 'off'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/effective_cache_size
+  value: '384GB'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/shared_buffers
+  value: '128GB'
