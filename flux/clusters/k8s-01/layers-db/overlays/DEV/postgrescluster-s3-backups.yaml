@@ -12,7 +12,7 @@
             endpoint: s3.kontur.io
             region: eu-central-1
           schedules:
-            full: 0 20 * * 3
+            full: 0 20 */14 * *
             differential: 0 20 * * 6
             incremental: '0 22 * * 3,4,5,0,1'
       configuration:
@@ -25,8 +25,8 @@
     log-level-file: info
     log-level-stderr: info
     repo2-path: /pgbackrest/dev-layers-db/db-layers/repo2
-    repo2-retention-full-type: 'time'
-    repo2-retention-full: '30'
+    repo2-retention-full-type: 'count'
+    repo2-retention-full: '1'
     repo2-s3-uri-style: path
     repo2-storage-port: '443'
 
