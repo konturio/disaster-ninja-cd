@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: release-0.20.7.d4114f3.1
+  tag: release-0.20.8.b925c7d.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
@@ -35,10 +35,12 @@ resources:
     limits:
       memory: 16Gi
 
-databaseHost: paris.k8s-01.kontur.io.
+databaseHost: db-insights-api-primary.prod-insights-api.svc
 databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
+databaseMaximumPoolSize: 200
+
 jmxEnabled: false
 
 dnsNameOuter: apps.kontur.io
@@ -60,4 +62,4 @@ minH3Resolution: 0
 maxZoom: 15
 minZoom: 0
 
-useStatSeparateTables: false
+useStatSeparateTables: true
