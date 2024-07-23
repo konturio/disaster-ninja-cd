@@ -33,3 +33,7 @@
 - op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/shared_buffers
   value: '128GB'
+
+- op: add
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/shared_buffers
+  value: '128MB'
