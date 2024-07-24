@@ -8,7 +8,7 @@
 
 - op: add
   path: /spec/backups/pgbackrest/global/archive-push-queue-max
-  value: '6TiB'
+  value: '400GB'
 
 - op: add
   path: /spec/backups/pgbackrest/global/spool-path
@@ -21,3 +21,19 @@
 - op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/max_wal_size
   value: '30GB'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/synchronous_commit
+  value: 'off'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/effective_cache_size
+  value: '384GB'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/shared_buffers
+  value: '128GB'
+
+- op: add
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/temp_buffers
+  value: '128MB'
