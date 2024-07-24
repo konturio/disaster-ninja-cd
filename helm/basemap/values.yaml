@@ -76,3 +76,5 @@ resources:
     requests:
       memory: 100Mi
       cpu: 100m
+proxy_cache_valid: 3600
+

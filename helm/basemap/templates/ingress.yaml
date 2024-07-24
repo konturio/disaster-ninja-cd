@@ -28,49 +28,43 @@ metadata:
       client_max_body_size 5m;
       proxy_hide_header Vary;
       more_set_headers "Vary: Origin";
+      more_set_headers "Cache-Control: $basemap_cache_control";
 
       location /layers/tiles/ {
-            proxy_cache_valid 600s;
-            proxy_cache_key 'layers-tiles-$request_method$host$uri$is_args$args$http_authorization$request_body';
+          if_modified_since before;
 
-            more_set_headers "Strict-Transport-Security: max-age=31536000";
-            more_set_headers "X-Frame-Options: SAMEORIGIN";
-            more_set_headers "X-Content-Type-Options: nosniff";
+          proxy_cache api01;
+          proxy_cache_use_stale error timeout http_500 http_502 http_503 http_504;
+          proxy_cache_background_update on;
+          proxy_cache_revalidate on;
+          proxy_cache_valid {{ .Values.proxy_cache_valid }};
+          proxy_cache_lock on;
 
-            more_set_headers "Access-Control-Allow-Origin: $http_origin";
-            more_set_headers "Access-Control-Allow-Credentials: true";
+          add_header X-Cache-Status $upstream_cache_status;
 
-            more_set_headers "Access-Control-Allow-Methods: *";
-            more_set_headers "Access-Control-Allow-Headers: Authorization,Keep-Alive,User-Agent,If-Modified-Since,Cache-Control,Content-Type";
+          add_header access-control-allow-headers "DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,User-Language";
+          add_header access-control-allow-methods "GET, PUT, POST, DELETE, PATCH, OPTIONS";
+          add_header access-control-allow-origin "*";
+          add_header access-control-max-age 1728000;
 
-            more_set_headers "Cache-Control: no-transform"; # workaround to Cloudflare's shady behavior when all content is decoded but only supported types are delivered compressed
-            #
-            #
+          more_set_headers "Strict-Transport-Security: max-age=31536000";
+          more_set_headers "X-Frame-Options: SAMEORIGIN";
+          more_set_headers "X-Content-Type-Options: nosniff";
 
-            # we have to use rewrite to use correctly encoded URL - proxy_pass won't do that for us
-            location ~ ^/layers/tiles/basemap/(sprite.*)$ {
-                rewrite ^ $request_uri;
-                rewrite ^/layers/tiles/basemap/(sprite.*)$ $1 break;
-                return 400; # assertion checker
+          location ~ ^/layers/tiles/basemap/(sprite.*)$ {
+              set $url $1;
+              proxy_pass {{ .Values.basemap.s3.url }}/sprite/$url;
+          }
 
-                proxy_pass {{ .Values.basemap.s3.url }}/sprite/$1;
-            }
+          location ~ ^/layers/tiles/basemap/glyphs/(.*)$ {
+              set $url $1;
+              proxy_pass {{ .Values.basemap.s3.url }}/glyphs/$url;
+          }
 
-            location ~ ^/layers/tiles/basemap/glyphs/(.*)$ {
-                rewrite ^ $request_uri;
-                rewrite ^/layers/tiles/basemap/glyphs/(.*)$ $1 break;
-                return 400; # assertion checker
-
-                proxy_pass {{ .Values.basemap.s3.url }}/glyphs/$uri;
-            }
-
-            location ~ ^/layers/tiles/basemap/(style.*)$ {
-                rewrite ^ $request_uri;
-                rewrite ^/layers/tiles/basemap/(style.*)$ $1 break;
-                return 400; # assertion checker
-
-                proxy_pass {{ .Values.basemap.s3.url }}/styles/$1;
-            }
+          location ~ ^/layers/tiles/basemap/(style.*)$ {
+              set $url $1;
+              proxy_pass {{ .Values.basemap.s3.url }}/styles/$url;
+          }
       }
 
   labels:

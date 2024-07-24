@@ -14,10 +14,14 @@ metadata:
   {{- else }}
     nginx.ingress.kubernetes.io/server-snippet: |
       proxy_bind off;
+
+      more_set_headers "Cache-Control: $layers_tiles_cache_control";
+
       location ~* "^/tiles/metrics" {
           deny all;
           return 403;
-        }
+      }
+
     {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
       set $cors_config_file '/etc/nginx/default.cors.json';
     nginx.ingress.kubernetes.io/configuration-snippet: |
