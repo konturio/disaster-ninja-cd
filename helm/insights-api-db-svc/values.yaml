@@ -36,3 +36,4 @@ databaseName: insights-api
 databaseUsername: insights-api
 
 maxParallelTasks: 7
+runCorrelations: true

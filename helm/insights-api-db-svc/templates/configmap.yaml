@@ -6,6 +6,7 @@ data:
   PGUSER: "{{ .Values.databaseUsername }}"
   MAX_PARALLEL_TASKS: "{{ .Values.maxParallelTasks }}"
   INSIGHTS_API_URL: "{{ .Values.insightsApiUrl }}"
+  RUN_CORRELATIONS: "{{ .Values.runCorrelations }}"
 kind: ConfigMap
 metadata:
   annotations:
