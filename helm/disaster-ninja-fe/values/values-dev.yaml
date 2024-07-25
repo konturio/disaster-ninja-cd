@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: main.c27787c.1
+    tag: 18652-new-mcda-layer-edit-layout-no-chart.ea26549.1
 
 replicaCount: 2
 envName: dev
