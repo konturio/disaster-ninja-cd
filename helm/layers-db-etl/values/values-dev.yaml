@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 18536-oam-global-coverage-h3-layer-hotfix.489249d.1
+  tag: main.65b178a.1
   usePullSecret: false
   pullSecretName: none
 
