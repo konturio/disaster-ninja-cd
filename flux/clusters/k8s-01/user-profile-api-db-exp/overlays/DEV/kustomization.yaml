@@ -37,7 +37,7 @@ patchesJson6902:
       group: postgres-operator.crunchydata.com
       version: v1beta1
       kind: PostgresCluster
-      name: db-insights-api
+      name: db-user-profile-api-exp
     path: postgrescluster-assigning.yaml
 
 generatorOptions:
