@@ -25,10 +25,14 @@
     log-level-file: info
     log-level-stderr: info
     repo2-path: /pgbackrest/prod-insights-api/db-insights-api/repo2
-    repo2-retention-full-type: 'count'
-    repo2-retention-full: '1'
     repo2-s3-uri-style: path
     repo2-storage-port: '443'
+    repo2-retention-full-type: 'count'
+    repo2-retention-full: '1'
+    repo2-retention-archive-type: full
+    repo2-retention-archive: "1"
+    repo2-retention-diff-type: count
+    repo2-retention-diff: "1"
 
 - op: add
   path: /spec/backups/pgbackrest/manual
