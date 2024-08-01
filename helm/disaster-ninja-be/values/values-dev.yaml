@@ -18,7 +18,7 @@ replicas: 1
 
 image:
   be:
-    tag: 19208-add-mean-and-sigma-for-mcda-value-range.524fc0f.1
+    tag: 18365-layers-api-sends-partial-config-for-sea-level-rise-layer.9730f33.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
