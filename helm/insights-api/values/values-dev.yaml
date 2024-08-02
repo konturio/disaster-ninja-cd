@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 19208-add-mean-and-sigma-for-mcda-value-range.a9b8bc5.1
+  tag: release-0.20.11.56560c2.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
