@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 19218-add-range-preset-buttons-to-mcda-layer-edit.ffc28bb.1
+    tag: 19218-add-range-preset-buttons-to-mcda-layer-edit.07fc8c3.1
 
 replicaCount: 2
 envName: dev
