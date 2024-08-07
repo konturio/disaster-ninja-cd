@@ -39,7 +39,7 @@ databaseHost: paris.k8s-01.kontur.io
 databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
-databaseMaximumPoolSize: 450
+databaseMaximumPoolSize: 200
 
 jmxEnabled: false
 
