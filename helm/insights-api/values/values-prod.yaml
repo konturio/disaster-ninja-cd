@@ -35,7 +35,7 @@ resources:
     limits:
       memory: 16Gi
 
-databaseHost: db-insights-api-primary.prod-insights-api.svc
+databaseHost: paris.k8s-01.kontur.io
 databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
@@ -62,4 +62,4 @@ minH3Resolution: 0
 maxZoom: 15
 minZoom: 0
 
-useStatSeparateTables: true
+useStatSeparateTables: false
