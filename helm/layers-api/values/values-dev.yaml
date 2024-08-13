@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 14420-layers-api-self-links-lead-to-internal-k8s-host.20372bc.1
+  tag: 14420-layers-api-self-links-lead-to-internal-k8s-host.fff8d30.1
   usePullSecret: false
   pullSecretName: none
 
