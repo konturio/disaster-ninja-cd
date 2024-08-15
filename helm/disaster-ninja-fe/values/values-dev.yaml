@@ -11,6 +11,10 @@ image:
 replicaCount: 2
 envName: dev
 ingressHosts:
+  - test-apps-ninja02.konturlabs.com
+  - dev-disaster-ninja.konturlabs.com
+  - test-emb-apps-ninja02.konturlabs.com
+  - dev-emb-disaster-ninja.konturlabs.com
   - dev-disaster-ninja.k8s-01.konturlabs.com
   - dev-maps-kontur-io.k8s-01.konturlabs.com
   - dev-new-openaerialmap-org.k8s-01.konturlabs.com

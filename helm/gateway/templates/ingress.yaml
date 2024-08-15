@@ -1,0 +1,174 @@
+{{ if .Values.createResource.ingress }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.envName }}-{{ .Values.name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.name }}
+    app.kubernetes.io/instance: {{ .Values.envName }}-{{ .Values.name }}
+    app.kubernetes.io/managed-by: "Helm"
+    stage: {{ .Values.envName }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
+    acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
+    nginx.ingress.kubernetes.io/use-forwarded-headers: "true" # allow X-Forwarded-Host for different hostnames
+    # if set to "true" there is HTTP 500 for e.g. curl -v http://maps.kontur.io/active/
+    # so we do check scheme and redirect manually
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-headers: DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,User-Language
+    nginx.ingress.kubernetes.io/cors-allow-credentials: "false"
+    nginx.ingress.kubernetes.io/proxy-buffering: "on"
+  {{- if .Values.isOfflineInstallation }}
+    nginx.ingress.kubernetes.io/server-snippet: |
+  {{- else }}
+    nginx.ingress.kubernetes.io/proxy-body-size: {{ .Values.client_max_body_size }}
+    nginx.ingress.kubernetes.io/proxy-read-timeout: 300s
+    {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      include /etc/nginx/CORS_02_location.inc.conf;
+    {{- end }}
+    nginx.ingress.kubernetes.io/server-snippet: |
+      {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
+      set $cors_config_file '/etc/nginx/default.cors.json';
+      {{- end }}
+  {{- end }}
+
+      if ($scheme = "http") {
+        return 301 https://$host$request_uri;
+      }
+
+      more_set_headers "Cache-Control: $dn_cache_control";
+      more_set_headers "Strict-Transport-Security: max-age=31536000";
+      more_set_headers "X-Frame-Options: $dn2021_x_frame_options";
+      more_set_headers "X-Content-Type-Options: nosniff";
+
+      set $cors_config_file '/etc/nginx/disaster.ninja.cors.json';
+
+      proxy_bind off;
+      proxy_ssl_server_name on;
+
+      include /etc/nginx/ngx_http_proxy_module.conf;
+
+      proxy_set_header Host $proxy_host;
+      client_max_body_size {{ .Values.client_max_body_size }};
+      proxy_read_timeout 300s;
+
+      proxy_set_header X-Forwarded-Host $host;
+      proxy_set_header X-Forwarded-Proto https;
+      proxy_set_header X-Forwarded-Scheme https;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+      # APPS
+      location = / {
+          return 302 https://www.kontur.io/portfolio/;
+      }
+
+      location /events {
+          return 302   https://$host/events/;
+      }
+
+      location /events/ {
+          proxy_set_header Host $proxy_host;
+          proxy_pass https://{{ .Values.envName }}-event-api.k8s-01.konturlabs.com/events/;
+      }
+
+      location /insights-api {
+          return 302   https://$host/insights-api/;
+      }
+
+      location /insights-api/ {
+          proxy_pass https://{{ .Values.envName }}-insights-api.k8s-01.konturlabs.com;
+      }
+
+      location /insights-llm-api {
+          return 302   https://$host/insights-llm-api/;
+      }
+
+      location /insights-llm-api/ {
+          proxy_pass https://{{ .Values.envName }}-insights-llm-api.k8s-01.konturlabs.com;
+      }
+
+      location /tileserver {
+          return 302   https://$host/tileserver/;
+      }
+
+      location /tileserver/ {
+          proxy_set_header Host $proxy_host;
+          proxy_pass https://{{ .Values.envName }}-basemap-tileserver.k8s-01.konturlabs.com/;
+      }
+
+      location /userprofile {
+          return 302   https://$host/userprofile/;
+      }
+
+      location /userprofile/ {
+          proxy_set_header Host $proxy_host;
+          proxy_pass https://{{ .Values.envName }}-user-profile.k8s-01.konturlabs.com;
+      }
+
+      location /titiler {
+          return 302   https://$host/titiler/;
+      }
+
+      location /titiler/ {
+          proxy_set_header Host $proxy_host;
+          proxy_pass https://{{ .Values.envName }}-titiler.k8s-01.konturlabs.com/;
+      }
+
+      location /raster-tiler {
+          return 302   https://$host/raster-tiler/;
+      }
+
+      location /raster-tiler/ {
+          proxy_set_header Host $proxy_host;
+          proxy_pass https://{{ .Values.envName }}-raster-tiler.k8s-01.konturlabs.com/;
+      }
+
+      # API
+      location = /layers/v2 {
+          return 302   https://$host/layers/v2/;
+      }
+
+      location /layers/v2/ {
+          proxy_set_header Host $proxy_host;
+          proxy_pass https://{{ .Values.envName }}-layers-api.k8s-01.konturlabs.com;
+      }
+
+      location /layers/tiles {
+          proxy_set_header Host $proxy_host;
+          proxy_pass https://{{ .Values.envName }}-basemap-tileserver.k8s-01.konturlabs.com;
+      }
+
+      location /tiles/ {
+          proxy_set_header Host $proxy_host;
+          proxy_pass https://{{ .Values.envName }}-layers-tiles-api.k8s-01.konturlabs.com;
+      }
+
+spec:
+  tls:
+    - hosts:
+      {{- range $i, $h := .Values.ingressHosts }}
+        - {{ $h }}
+      {{- end }}
+      secretName: {{ .Values.envName }}-gateway
+  ingressClassName: {{ .Values.ingressClass }}
+  rules:
+      {{$envName := .Values.envName }}
+      {{- range $i, $h := .Values.ingressHosts }}
+    - host: {{ $h }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $envName }}-gateway
+                port:
+                  name: main
+      {{- end }}
+{{- end }}
