@@ -8,7 +8,8 @@ ingressClass: ingress-nginx
 replicas: 1
 
 image:
-  tag: "20221019" #this version will be automatically deployed by Flux
+  repository: nexus.kontur.io:8085/konturdev/pg_tileserv
+  tag: 14864-downgrade-pg_tileserv-error-level-to-warning #this version will be automatically deployed by Flux
 
 DbPoolMaxConnLifeTime: 10m
 DbPoolMaxConns: 10
