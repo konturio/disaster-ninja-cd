@@ -14,7 +14,6 @@ metadata:
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
     cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
     acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
-    nginx.ingress.kubernetes.io/use-forwarded-headers: "true" # allow X-Forwarded-Host for different hostnames
     # if set to "true" there is HTTP 500 for e.g. curl -v http://maps.kontur.io/active/
     # so we do check scheme and redirect manually
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
@@ -54,7 +53,6 @@ metadata:
 
       include /etc/nginx/ngx_http_proxy_module.conf;
 
-      proxy_set_header Host $proxy_host;
       client_max_body_size {{ .Values.client_max_body_size }};
       proxy_read_timeout 300s;
 
@@ -73,7 +71,6 @@ metadata:
       }
 
       location /events/ {
-          proxy_set_header Host $proxy_host;
           proxy_pass https://{{ .Values.envName }}-event-api.k8s-01.konturlabs.com/events/;
       }
 
@@ -98,7 +95,6 @@ metadata:
       }
 
       location /tileserver/ {
-          proxy_set_header Host $proxy_host;
           proxy_pass https://{{ .Values.envName }}-basemap-tileserver.k8s-01.konturlabs.com/;
       }
 
@@ -107,7 +103,6 @@ metadata:
       }
 
       location /userprofile/ {
-          proxy_set_header Host $proxy_host;
           proxy_pass https://{{ .Values.envName }}-user-profile.k8s-01.konturlabs.com;
       }
 
@@ -116,7 +111,6 @@ metadata:
       }
 
       location /titiler/ {
-          proxy_set_header Host $proxy_host;
           proxy_pass https://{{ .Values.envName }}-titiler.k8s-01.konturlabs.com/;
       }
 
@@ -125,7 +119,6 @@ metadata:
       }
 
       location /raster-tiler/ {
-          proxy_set_header Host $proxy_host;
           proxy_pass https://{{ .Values.envName }}-raster-tiler.k8s-01.konturlabs.com/;
       }
 
@@ -135,17 +128,14 @@ metadata:
       }
 
       location /layers/v2/ {
-          proxy_set_header Host $proxy_host;
           proxy_pass https://{{ .Values.envName }}-layers-api.k8s-01.konturlabs.com;
       }
 
       location /layers/tiles {
-          proxy_set_header Host $proxy_host;
           proxy_pass https://{{ .Values.envName }}-basemap-tileserver.k8s-01.konturlabs.com;
       }
 
       location /tiles/ {
-          proxy_set_header Host $proxy_host;
           proxy_pass https://{{ .Values.envName }}-layers-tiles-api.k8s-01.konturlabs.com;
       }
 

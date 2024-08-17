@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 2
-envName: dev
+envName: prod
 ingressHosts:
   - test-api.konturlabs.com
 ingressClass: ingress-nginx
