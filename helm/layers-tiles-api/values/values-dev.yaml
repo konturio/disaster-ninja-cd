@@ -8,7 +8,7 @@ ingressClass: ingress-nginx
 replicas: 1
 
 image:
-  tag: "20221019" #this version will be automatically deployed by Flux
+  tag: "20240614"
 
 DbPoolMaxConnLifeTime: 10m
 DbPoolMaxConns: 10

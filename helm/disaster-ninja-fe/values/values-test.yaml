@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 18784-be-default-osm-editor-usage-causes-unknown-editor-error-1.e6fd9a4.1
+    tag: main.79e7605.1
 
 replicaCount: 2
 envName: test
@@ -16,6 +16,10 @@ ingressHosts:
   - test-new-openaerialmap-org.k8s-01.konturlabs.com
   - test-atlas-kontur-io.k8s-01.konturlabs.com
   - test-oasis-kontur-io.k8s-01.konturlabs.com
+  - test-apps-ninja01.konturlabs.com
+  - test-disaster-ninja.konturlabs.com
+  - test-emb-apps-ninja01.konturlabs.com
+  - test-emb-disaster-ninja.konturlabs.com
 ingressClass: ingress-nginx
 
 createResource:

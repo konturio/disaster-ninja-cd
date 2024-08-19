@@ -22,6 +22,27 @@ metadata:
           return 403;
       }
 
+
+      location /tiles/ {
+
+          proxy_cache api01;
+          proxy_cache_use_stale error timeout http_500 http_502 http_503 http_504;
+          proxy_cache_background_update on;
+          proxy_cache_revalidate on;
+          proxy_cache_valid 60s;
+          proxy_cache_lock on;
+
+          proxy_pass http://{{ .Values.envName }}-layers-tiles-api.{{ .Release.Namespace }}.svc.cluster.local:8629;
+
+          add_header X-Cache-Status $upstream_cache_status;
+
+          add_header access-control-allow-headers "DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,User-Language";
+          add_header access-control-allow-methods "GET, PUT, POST, DELETE, PATCH, OPTIONS";
+          add_header access-control-allow-origin "*";
+          add_header access-control-max-age 1728000;
+      }
+
+
     {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
       set $cors_config_file '/etc/nginx/default.cors.json';
     nginx.ingress.kubernetes.io/configuration-snippet: |
@@ -47,7 +68,7 @@ spec:
             name: {{ .Values.envName }}-layers-tiles-api
             port:
               name: lrs-tiles-api
-        path: /tiles/
+        path: /
         pathType: Prefix
   tls:
   - hosts:

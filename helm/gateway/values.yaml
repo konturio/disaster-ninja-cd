@@ -1,0 +1,15 @@
+# Default values for disaster-ninja-be.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+envName: local
+name: gateway
+ingressHost: none
+
+createResource:
+  defaultSecrets: false
+  ingress: false
+  prometheusRule: false
+  serviceMonitor: false
+  deploymentLivenessProbe: false
+isOfflineInstallation: false
