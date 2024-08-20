@@ -19,4 +19,4 @@
 
 - op: replace
   path: /spec/instances/0/replicas
-  value: 2
+  value: 1
