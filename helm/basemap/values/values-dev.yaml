@@ -22,3 +22,5 @@ basemap:
   db:
     image: "nexus.kontur.io:8084/postgis/postgis"
     tag: "15-3.3"
+
+tiering_enabled: true

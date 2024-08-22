@@ -1,0 +1,30 @@
+
+{{- define "tiering.labels.interactive" }}
+{{- if .Values.tiering_enabled }}
+kontur.io/stage: {{ .Values.envName }}
+kontur.io/tier: interactive
+{{- end -}}
+{{- end -}}
+
+{{- define "tiering.labels.hpc" }}
+{{- if .Values.tiering_enabled }}
+kontur.io/stage: {{ .Values.envName }}
+kontur.io/tier: HPC
+{{- end -}}
+{{- end -}}
+
+{{- define "tiering.metadata.interactive" }}
+{{- if .Values.tiering_enabled }}
+metadata:
+  labels:
+    {{- include "tiering.labels.interactive" . | indent 4}}
+{{- end -}}
+{{- end -}}
+
+{{- define "tiering.metadata.hpc" }}
+{{- if .Values.tiering_enabled }}
+metadata:
+  labels:
+    {{- include "tiering.labels.hpc" . | indent 4}}
+{{- end -}}
+{{- end -}}

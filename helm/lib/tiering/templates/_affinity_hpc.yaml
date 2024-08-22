@@ -1,0 +1,84 @@
+{{- define "tiering.affinity.hpc" }}
+{{- if .Values.tiering_enabled }}
+{{ $tiering_stage_prod := "prod" }}
+{{ $tiering_stage_test := "test" }}
+{{ $tiering_stage_dev := "dev" }}
+{{ $tiering_tier_hpc   := "HPC" }}
+{{ $tiering_tier_interactive   := "interactive" }}
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kontur.io/tier
+          operator: In
+          values:
+          - {{ $tiering_tier_hpc  }}
+        {{ if ( ne .Values.envName $tiering_stage_prod ) }}
+        - key: kontur.io/stage
+          operator: NotIn
+          values: 
+          - {{ $tiering_stage_prod }}
+        {{ end }}
+    {{ if ( eq .Values.envName $tiering_stage_prod )  }}
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 50
+      preference:
+        - key: kontur.io/stage
+          operator: In
+          values: 
+          - {{ $tiering_stage_prod }}
+    {{ end }}
+  podAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 100
+      podAffinityTerm:
+        labelSelector:
+          matchExpressions:
+          - key: kontur.io/tier
+            operator: In
+            values:
+            - {{ $tiering_tier_hpc }}
+        topologyKey: kubernetes.io/hostname
+    - weight: 50
+      podAffinityTerm:
+        labelSelector:
+          matchExpressions:
+          - key: kontur.io/stage
+            operator: In
+            values:
+            - {{ .Values.envName }}
+        topologyKey: kubernetes.io/hostname
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchExpressions:
+        - key: kontur.io/tier
+          operator: In
+          values:
+          - {{ $tiering_tier_interactive }}
+      topologyKey: kubernetes.io/hostname
+    {{ if ( ne .Values.envName $tiering_stage_prod ) -}}
+    - labelSelector:
+        matchExpressions:
+        - key: kontur.io/stage
+          operator: In
+          values:
+          - {{ $tiering_stage_prod }}
+      topologyKey: kubernetes.io/hostname
+    {{ end }}
+    {{- if ( eq .Values.envName $tiering_stage_prod ) -}}
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 50
+      podAffinityTerm:
+        topologyKey: kubernetes.io/hostname
+        labelSelector:
+          matchExpressions:
+          - key: kontur.io/tier
+            operator: In
+            values:
+              - {{ $tiering_stage_dev }}
+              - {{ $tiering_stage_test }}
+    {{ end }}
+{{- end -}}
+{{- end -}}

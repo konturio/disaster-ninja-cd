@@ -17,7 +17,9 @@ spec:
   jobTemplate:
     spec:
       template:
+        {{- include "tiering.metadata.hpc" . | indent 8 }}
         spec:
+          {{- include "tiering.affinity.hpc" . | indent 10 }}
           initContainers:
           - name: check-pvc-usage
             image: nexus.kontur.io:8085/konturdev/check-pod-pvc:1.12

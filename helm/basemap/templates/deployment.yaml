@@ -34,10 +34,12 @@ spec:
         app.kubernetes.io/instance: {{ .Values.envName }}-basemap-tileserver
         app.kubernetes.io/managed-by: "Helm"
         stage: {{ .Values.envName }}
+        {{- include "tiering.labels.interactive" . | indent 8}}
       annotations:
         meta.helm.sh/release-name: {{ .Release.Name }}
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
     spec:
+      {{- include "tiering.affinity.interactive" . | indent 6}}
       {{ if .Values.images.usePullSecret }}
       imagePullSecrets:
       - name: {{ .Values.images.pullSecretName }}
@@ -115,4 +117,3 @@ spec:
             memory: {{ .Values.resources.tileserver.limits.memory | quote }}
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
----

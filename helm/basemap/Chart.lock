@@ -1,0 +1,6 @@
+dependencies:
+- name: tiering
+  repository: file://../lib/tiering
+  version: 0.0.1
+digest: sha256:f04af6def652253c391fdfbf1481064c15a366f723ef0f455a2313204dcc1238
+generated: "2024-08-23T16:39:24.254478926+04:00"
