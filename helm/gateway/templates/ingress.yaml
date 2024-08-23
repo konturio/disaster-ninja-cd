@@ -66,6 +66,24 @@ metadata:
           return 302 https://www.kontur.io/portfolio/;
       }
 
+      location /geocoder/ {
+          proxy_pass https://lima.kontur.io;
+          proxy_ssl_name api.kontur.io ;
+          proxy_set_header Host api.kontur.io;
+      }
+
+      location /route {
+          proxy_pass https://lima.kontur.io;
+          proxy_ssl_name api.kontur.io ;
+          proxy_set_header Host api.kontur.io;
+      }
+
+      location /layers {
+          proxy_pass https://lima.kontur.io;
+          proxy_ssl_name api.kontur.io ;
+          proxy_set_header Host api.kontur.io;
+      }
+
       location /events {
           return 302   https://$host/events/;
       }
@@ -153,7 +171,7 @@ spec:
     - host: {{ $h }}
       http:
         paths:
-          - path: /
+          - path: /nonexistentt
             pathType: Prefix
             backend:
               service:
