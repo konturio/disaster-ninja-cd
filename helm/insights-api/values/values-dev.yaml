@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: fix-advanced-analytics-for-overlapping-geometries.4dc62b7.1
+  tag: release-0.20.12.a51dc4a.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
