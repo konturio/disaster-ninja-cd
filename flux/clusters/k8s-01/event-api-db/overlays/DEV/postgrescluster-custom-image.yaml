@@ -1,0 +1,16 @@
+- op: add
+  path: /spec/image
+  value: nexus.kontur.io:8085/konturdev/crunchy-postgres-gis-h3:2.0
+
+- op: replace
+  path: /spec/postgresVersion
+  value: 16
+
+- op: replace
+  path: /spec/postGISVersion
+  value: '3.4'
+
+- op: replace
+  path: /spec/backups/pgbackrest/image
+  value: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.47-2'
+
