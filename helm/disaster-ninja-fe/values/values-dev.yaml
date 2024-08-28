@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 18784-be-default-osm-editor-usage-causes-unknown-editor-error-1.e6fd9a4.1
+    tag: main.8f91d1f.1
 
 replicaCount: 2
 envName: dev
