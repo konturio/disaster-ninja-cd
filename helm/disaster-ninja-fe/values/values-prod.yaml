@@ -19,10 +19,11 @@ ingressHosts:
   - prod-atlas-kontur-io.k8s-01.konturlabs.com
   - oasis.kontur.io
   - prod-oasis-kontur-io.k8s-01.konturlabs.com
+  - odin.kontur.io
+  - prod-odin-kontur-io.k8s-01.konturlabs.com
   - prod-disaster-ninja.k8s-01.konturlabs.com
   - prod-disaster-ninja.konturlabs.com
   - prod-emb-disaster-ninja.konturlabs.com
-  - apps.disaster.ninja
 
 createResource:
   ingress: true
