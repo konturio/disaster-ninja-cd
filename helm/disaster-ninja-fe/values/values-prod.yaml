@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ''
-    tag: release-2.30.2.93c295f.1
+    tag: release-2.31.0.020ab0f.1
 
 replicaCount: 2
 envName: prod
