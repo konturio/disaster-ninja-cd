@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 19077-check-billingsubscriptionid-for-being-adequate.c2a44d0.1
+  tag: main.93dbdbb.1
   pullSecretName: none
   usePullSecret: false
 
