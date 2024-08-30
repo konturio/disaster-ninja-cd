@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: Switch-off-loading-with-api-to-test.33fa05d.1
+  tag: main.62ef9ef.1
   usePullSecret: false
   pullSecretName: none
 
