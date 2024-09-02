@@ -20,6 +20,7 @@ version: 0.0.38
 #Don't use appVersion, use {{ .Values.images...tag's. }} instead. That's required for Flux automation - so that different
 # stages can have different versions within the same branch watched by Flux.
 
+# NOTE: its not clear yet if dependency defined this way will be handled properly by Flux/Kustomize workflow. We opt to test in the battlefield
 dependencies:
 - name: tiering
   version: 0.0.1
