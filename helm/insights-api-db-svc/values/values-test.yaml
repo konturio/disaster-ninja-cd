@@ -7,7 +7,7 @@ image:
   pullSecretName: none
   usePullSecret: false
 
-replicas: 0
+replicas: 1
 envName: test
 
 createResource:
@@ -28,6 +28,6 @@ resources:
   limits:
     memory: 16Gi
 
-maxParallelTasks: 15
+maxParallelTasks: 8
 runCorrelations: false
 insightsApiUrl: http://test-insights-api.test-insights-api.svc:8625/insights-api
