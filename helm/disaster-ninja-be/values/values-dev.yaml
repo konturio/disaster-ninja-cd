@@ -18,7 +18,7 @@ replicas: 1
 
 image:
   be:
-    tag: release-0.35.1.e6cc6fd.1
+    tag: 19520-new-transformation-functions-don-t-work-from-database-stored-config.c64669c.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
