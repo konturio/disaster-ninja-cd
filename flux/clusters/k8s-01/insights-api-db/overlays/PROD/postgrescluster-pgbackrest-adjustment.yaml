@@ -28,7 +28,7 @@
 
 - op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/synchronous_commit
-  value: 'off'
+  value: 'on'
 
 - op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/effective_cache_size
