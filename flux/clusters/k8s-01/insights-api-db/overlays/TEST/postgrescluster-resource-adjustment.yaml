@@ -2,7 +2,7 @@
   path: /spec/instances/0/resources
   value:
     limits:
-      memory: 32Gi
+      memory: 256Gi
       cpu: '32'
     requests:
       memory: 22Gi
