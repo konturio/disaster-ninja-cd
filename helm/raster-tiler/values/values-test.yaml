@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 7a142b040a61d43ae915ec8e5d6d40fcacfc93f0
+  tag: 86734ee907dccb3b214c1ad38070a48fbee04ec8
   pullSecretName: none
   usePullSecret: false
 
@@ -13,7 +13,7 @@ ingressHost: test-raster-tiler.k8s-01.konturlabs.com
 ingressClass: ingress-nginx
 base_url: https://test-raster-tiler.k8s-01.konturlabs.com
 titiler_url: http://test-titiler.test-titiler.svc
-pg_host: db-layers-primary.test-layers-db.svc
+pg_host: db-layers-primary.prod-layers-db.svc
 storage_size: 100Gi
 storageClass: local-path
 db_pool_size: 16
@@ -28,8 +28,8 @@ probeInitialDelaySeconds: 30
 
 resources:
   requests:
-    cpu: 500m
-    memory: 4Gi
+    cpu: 4
+    memory: 8Gi
   limits:
     memory: 512Gi
 
