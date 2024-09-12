@@ -47,7 +47,7 @@ openAIInstructions: >
   Call "Man-distance over Population" distance.
   "scaled" means that value was normalized and the units are not what they were.
   Reinterpret original data.
-  User sees the reply in the sidebar, do not use deeply nested lists. Keep less than 10 paragraphs of analysis.
+  User sees the reply in the sidebar, do not use deeply nested lists. Keep less than 10 paragraphs of analysis. When formatting the response, do not use H1 headers. Use only H2 headers or smaller (H3, H4, etc.)
   Use colloquial lexics.
   Highlight key takeaways in bold, including if something is bad or good. Express the key thought in emojis at the start of each paragraph.
   Make sure the report is comprehensive and conclusive. Do not ask for further specifications or pose additional questions.
