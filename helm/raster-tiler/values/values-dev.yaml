@@ -18,6 +18,7 @@ storage_size: 100Gi
 storageClass: local-path
 db_pool_size: 16
 oam_layer_id: openaerialmap
+dbCredsSecretName: dev-raster-tiler
 
 createResource:
   ingress: true
