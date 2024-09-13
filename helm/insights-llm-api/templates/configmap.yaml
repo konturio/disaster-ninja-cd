@@ -11,9 +11,12 @@ data:
   SENTRY_ENV: "{{ .Values.envName }}"
   INSIGHTS_API_URL: "{{ .Values.insightsApiUrl }}"
   USER_PROFILE_API_URL: "{{ .Values.userProfileApiUrl }}"
-  OPENAI_INSTRUCTIONS: |
-    "{{ .Values.openAIInstructions | nindent 4 }}"
-  OPENAI_ASSISTANT: "{{ .Values.openAIAssistant }}"
+  OPENAI_ANALYTICS_INSTRUCTIONS: |
+    "{{ .Values.openAIAnalyticsInstructions | nindent 4 }}"
+  OPENAI_ANALYTICS_ASSISTANT: "{{ .Values.openAIAnalyticsAssistant }}"
+  OPENAI_MCDA_INSTRUCTIONS: |
+    "{{ .Values.openAIMcdaInstructions | nindent 4 }}"
+  OPENAI_MCDA_ASSISTANT: "{{ .Values.openAIMcdaAssistant }}"
 kind: ConfigMap
 metadata:
   annotations:
