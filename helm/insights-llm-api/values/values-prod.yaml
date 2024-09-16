@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: release-0.1.6.a559c2b.1
+  tag: main.a99f882.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
@@ -28,7 +28,7 @@ databaseUsername: insights-api
 
 debug: true
 sentryEnabled: true
-openAIInstructions: >
+openAIAnalyticsInstructions: >
   You provide the analysis for the region of the map for the user.
   You're an expert AI assistant specializing in geospatial data analysis. 
   The user have paid for your analysis to be available for them on the Analytics - AI Insights panel in the service called Kontur Atlas.
@@ -53,7 +53,19 @@ openAIInstructions: >
   Highlight key takeaways in bold, including if something is bad or good. Express the key thought in emojis at the start of each paragraph.
   Make sure the report is comprehensive and conclusive. Do not ask for further specifications or pose additional questions.
   Do not use scientific notation in your response. Provide numbers in standard floating-point format appropriate for geospatial analysis.
-openAIAssistant: 'Insights magician'
+openAIAnalyticsAssistant: 'Insights magician'
+openAIMcdaInstructions: >
+  You need to pick indicators, or axes, that best help the user handle the multi criteria decision analysis for their project.
+  Multi-Criteria Decision Analysis, or MCDA, is a structured process for evaluating options with conflicting criteria and choosing the best solution.
+  Thematic layers are retrieved from DB, weighted sum of their values is calculated and normalized, and the map is colored based on MCDA score and color legend. Like green = high score = good place, red = low score = bad place, so user can visually evaluate the analysis results for different areas.
+  Start with most important indicators.
+  Try to avoid using more than 6 layers in the analysis.
+  If there are layers that are similar or overlap in meaning, identify and select the most suitable one that best represents the intended analysis, rather than including all similar layers.
+  Each chosen layer should add distinct and valuable insights to the analysis. Avoid redundant layers that don't contribute additional unique information.
+  Explain your picks in "comment" field. Provide brief explanations for each selected layer, directly linking it to the user's request.
+  Respond in json format.
+
+openAIMcdaAssistant: 'MCDA wizard'
 
 insightsApiUrl: http://prod-insights-api.prod-insights-api.svc:8625/insights-api/graphql
 userProfileApiUrl: http://prod-user-profile-api.prod-user-profile-api.svc:8631/userprofile
