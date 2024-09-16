@@ -17,7 +17,6 @@ storage_size: 5Gi
 storageClass: standard
 db_pool_size: 4
 oam_layer_id: openaerialmap
-dbCredsSecretName: quickstart-raster-tiler
 
 createResource:
   ingress: true

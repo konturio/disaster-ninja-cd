@@ -68,12 +68,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: username
-                  name: {{ .Values.dbCredsSecretName }}
+                  name: {{ .Values.envName }}-raster-tiler
             - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:
                   key: password
-                  name: {{ .Values.dbCredsSecretName }}
+                  name: {{ .Values.envName }}-raster-tiler
             - name: OAM_LAYER_ID
               value: {{ .Values.oam_layer_id }}
           {{- if .Values.db_disable_ssl }}
