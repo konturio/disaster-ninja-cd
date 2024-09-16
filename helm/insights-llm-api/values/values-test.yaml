@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 19589-insights-llm-api-generate-mcda-json-using-llm.947d42b.1
+  tag: 19589-insights-llm-api-generate-mcda-json-using-llm-1.c060bda.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
