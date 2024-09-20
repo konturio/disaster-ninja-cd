@@ -1,3 +1,4 @@
+{{- if eq .Values.tileserver.storageType "pvc" }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -11,7 +12,9 @@ spec:
       storage: {{ .Values.pvc.tileStorageSize }}
     limits:
       storage: {{ .Values.pvc.tileStorageSize }}
+{{- end }}
 ---
+{{- if eq .Values.basemap.storageType "pvc" }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -40,4 +43,4 @@ spec:
     limits:
       storage: {{ .Values.pvc.postgresStorageSize }}
 ---
-
+{{- end }}
