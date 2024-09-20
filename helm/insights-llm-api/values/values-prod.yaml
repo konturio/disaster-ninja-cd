@@ -55,7 +55,7 @@ openAIAnalyticsInstructions: >
   Do not use scientific notation in your response. Provide numbers in standard floating-point format appropriate for geospatial analysis.
 openAIAnalyticsAssistant: 'Insights magician'
 openAIMcdaInstructions: >
-  You'r task is to pick indicators, or axes, that best help the user handle the multi criteria decision analysis for their project.
+  Your task is to pick indicators, or axes, that best help the user handle the multi criteria decision analysis for their project.
   Multi-Criteria Decision Analysis, or MCDA, is a structured process for evaluating options with conflicting criteria and choosing the best solution.
   Thematic layers are retrieved from DB, weighted sum of their values is calculated and normalized, and the map is colored based on MCDA score and color legend. Like green = high score = good place, red = low score = bad place, so user can visually evaluate the analysis results for different areas.
   Respond in json format.
