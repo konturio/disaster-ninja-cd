@@ -43,9 +43,14 @@ spec:
       - name: {{ .Values.images.pullSecretName }}
       {{ end }}
       volumes:
-      - name: {{ .Values.envName }}-basemap-tileserver-pvc
+      - name: {{ .Values.envName }}-basemap-tileserver-{{ .Values.tileserver.storageType }}
+        {{- if eq .Values.tileserver.storageType "pvc" }}
         persistentVolumeClaim:
-          claimName: {{ .Values.envName }}-basemap-tileserver-pvc
+          claimName: {{ .Values.envName }}-basemap-tileserver-{{ .Values.tileserver.storageType }}
+        {{- else }}
+        emptyDir:
+          sizeLimit: {{ .Values.pvc.tileStorageSize }}
+        {{- end }}
       initContainers:
       - command:
         - aws
@@ -63,7 +68,7 @@ spec:
         name: download-basemap-from-s3
         volumeMounts:
         - mountPath: /data
-          name: {{ .Values.envName }}-basemap-tileserver-pvc
+          name: {{ .Values.envName }}-basemap-tileserver-{{ .Values.tileserver.storageType }}
       containers:
       - name: tileserver-gl
         args:
@@ -105,7 +110,7 @@ spec:
           protocol: TCP
         volumeMounts:
         - mountPath: /data
-          name: {{ .Values.envName }}-basemap-tileserver-pvc
+          name: {{ .Values.envName }}-basemap-tileserver-{{ .Values.tileserver.storageType }}
         resources:
           requests:
             cpu: {{ .Values.resources.tileserver.requests.cpu | quote }}
