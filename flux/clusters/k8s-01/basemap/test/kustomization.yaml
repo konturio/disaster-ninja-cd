@@ -16,4 +16,20 @@ patches:
         value:
           - ./helm/basemap/values.yaml
           - ./helm/basemap/values/values-test.yaml
+  - target: # temporary move out from hwn01
+      kind: Deployment
+      name: 'test-basemap-tileserver'
+      group: apps
+      version: v1
+    patch: |-
+      - op: add
+        path: /spec/template/spec/affinity/nodeAffinity
+        value:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: NotIn
+                    values:
+                      - hwn01.k8s-01.kontur.io
 ---
