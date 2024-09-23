@@ -42,6 +42,10 @@ spec:
         app.kubernetes.io/part-of: backend
         stage: {{ .Values.envName }}
     spec:
+    {{- if .Values.affinity }}
+      affinity:
+        {{- toYaml .Values.affinity | nindent 8 }}
+    {{- end }}
     {{- if .Values.image.usePullSecret }}
       imagePullSecrets: #TODO remove once image is on ghcr.io
         - name: {{ .Values.image.pullSecretName }}
