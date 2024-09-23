@@ -16,4 +16,20 @@ patches:
         value:
           - ./helm/basemap/values.yaml
           - ./helm/basemap/values/values-dev.yaml
+  - target:
+      kind: CronJob
+      name: 'dev-basemap'
+      group: batch
+      version: v1
+    patch: |-
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/affinity/nodeAffinity
+        value:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - hwn02.k8s-01.kontur.io
 ---
