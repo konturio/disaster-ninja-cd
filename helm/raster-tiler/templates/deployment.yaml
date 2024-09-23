@@ -125,5 +125,10 @@ spec:
       terminationGracePeriodSeconds: 30
       volumes:
         - name: raster-tiler-storage-vol
+          {{- if eq .Values.storageType "pvc" }}
           persistentVolumeClaim:
             claimName: {{ .Values.envName }}-raster-tiler
+          {{- else }}
+          emptyDir:
+            sizeLimit: {{ .Values.storage_size }}
+          {{- end }}
