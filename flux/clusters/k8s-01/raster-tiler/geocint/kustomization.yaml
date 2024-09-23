@@ -16,4 +16,20 @@ patches:
         value:
           - ./helm/raster-tiler/values.yaml
           - ./helm/raster-tiler/values/values-geocint.yaml
+  - target:
+      kind: Deployment
+      name: 'geocint-raster-tiler'
+      group: apps
+      version: v1
+    patch: |-
+      - op: add
+        path: /spec/template/spec/affinity/nodeAffinity
+        value:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: NotIn
+                    values:
+                      - hwn01.k8s-01.kontur.io
 ---

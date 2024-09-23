@@ -32,3 +32,5 @@ resources:
     memory: 4Gi
   limits:
     memory: 512Gi
+
+storageType: emptydir
