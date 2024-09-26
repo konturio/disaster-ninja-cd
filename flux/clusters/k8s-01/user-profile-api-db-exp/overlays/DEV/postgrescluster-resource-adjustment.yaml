@@ -8,13 +8,9 @@
       memory: 4Gi
       cpu: '1'
 
-- op: add
-  path: /spec/instances/0/dataVolumeClaimSpec/storageClassName
-  value: longhorn-single
-
 - op: replace
   path: /spec/instances/0/replicas
-  value: 0
+  value: 2
 
 #- op: add
 #  path: /spec/instances/0/dataVolumeClaimSpec/selector
