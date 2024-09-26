@@ -7,4 +7,4 @@
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - hwn03.k8s-01.kontur.io
+                - hwn02.k8s-01.kontur.io
