@@ -16,6 +16,22 @@ patches:
         value:
           - ./helm/basemap/values.yaml
           - ./helm/basemap/values/values-test.yaml
+  - target: # temporary stick to hwn02
+      kind: CronJob
+      name: 'test-basemap'
+      group: batch
+      version: v1
+    patch: |-
+      - op: add
+        path: /spec/jobTemplate/spec/template/spec/affinity/nodeAffinity
+        value:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - hwn02.k8s-01.kontur.io
   - target: # temporary move out from hwn01
       kind: Deployment
       name: 'test-basemap-tileserver'
