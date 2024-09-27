@@ -11,39 +11,7 @@ spec:
   backups:
     pgbackrest:
       image: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.40-1'
-  instances:
-    - affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 1
-              podAffinityTerm:
-                topologyKey: kubernetes.io/hostname
-                labelSelector:
-                  matchLabels:
-                    postgres-operator.crunchydata.com/cluster: db-user-profile-api-exp
-                    postgres-operator.crunchydata.com/instance-set: '01'
-      dataVolumeClaimSpec:
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 25Gi
-      name: '01'
-      replicas: 1
-      resources:
-        limits:
-          memory: 12Gi
-          cpu: '4'
-        requests:
-          memory: 4Gi
-          cpu: '1'
-      topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
-          whenUnsatisfiable: DoNotSchedule
-          labelSelector:
-            matchLabels:
-              postgres-operator.crunchydata.com/instance-set: '01'
+  instances: [] # placeholder, to be filled in overlays
   metadata:
     labels:
       app.kubernetes.io/component: database
