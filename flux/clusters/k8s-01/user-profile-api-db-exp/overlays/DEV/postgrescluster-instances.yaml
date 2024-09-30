@@ -26,6 +26,7 @@
                   operator: In
                   values:
                     - hwn04.k8s-01.kontur.io
+### NOTE: Section disabled as its not recognized by current CRD
 # Switchover section
 # https://access.crunchydata.com/documentation/postgres-operator/latest/tutorials/cluster-management/administrative-tasks#changing-the-primary
 # https://access.crunchydata.com/documentation/postgres-operator/latest/tutorials/cluster-management/administrative-tasks#targeting-an-instance
@@ -36,6 +37,12 @@
   path: /spec/patroni/switchover
   value:
     enabled: true
-    trigger-switchover: "2024-09-30 [01]"
     targetInstance: db-user-profile-api-exp-hwn04-5hmq
     #type: Failover
+# trigger-switchover annotation triggers actual switchover whenever its updated
+# value is arbitrary, but it's recommended to reference the date of switchover
+# special syntax is used to escape slash with sequence ~1
+# See https://windsock.io/json-pointer-syntax-in-json-patches-with-kustomize/
+- op: add
+  path: /metadata/annotations/postgres-operator.crunchydata.com~1trigger-switchover
+  value: "2024-09-30 [01]"
