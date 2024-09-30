@@ -31,7 +31,6 @@
     repo2-retention-full: '1'
     repo2-retention-archive-type: full
     repo2-retention-archive: "1"
-    repo2-retention-diff-type: count
     repo2-retention-diff: "1"
 
 - op: add
