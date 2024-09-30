@@ -1,0 +1,28 @@
+# eventually it should be op: replace
+- op: add
+  path: /spec/instances/-
+  value:
+    name: hwn04
+    replicas: 1
+    resources:
+      limits:
+        memory: 12Gi
+        cpu: '4'
+      requests:
+        memory: 4Gi
+        cpu: '1'
+    dataVolumeClaimSpec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 25Gi
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                    - hwn04.k8s-01.kontur.io
