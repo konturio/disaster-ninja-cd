@@ -1,58 +1,55 @@
-# eventually it should be op: replace
-- op: add
-  path: /spec/instances/-
+# Always replace placeholder instances from `base`
+- op: replace 
+  path: /spec/instances
   value:
-    name: hwn04
-    replicas: 1
-    resources:
-      limits:
-        memory: 12Gi
-        cpu: '4'
-      requests:
-        memory: 4Gi
-        cpu: '1'
-    dataVolumeClaimSpec:
-      accessModes:
-        - ReadWriteOnce
+    - name: hwn04
+      replicas: 1
       resources:
+        limits:
+          memory: 12Gi
+          cpu: '4'
         requests:
-          storage: 25Gi
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: kubernetes.io/hostname
-                  operator: In
-                  values:
-                    - hwn04.k8s-01.kontur.io
-- op: add
-  path: /spec/instances/-
-  value:
-    name: hwn03
-    replicas: 1
-    resources:
-      limits:
-        memory: 12Gi
-        cpu: '4'
-      requests:
-        memory: 4Gi
-        cpu: '1'
-    dataVolumeClaimSpec:
-      accessModes:
-        - ReadWriteOnce
+          memory: 4Gi
+          cpu: '1'
+      dataVolumeClaimSpec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 25Gi
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - hwn04.k8s-01.kontur.io
+    - name: hwn03
+      replicas: 1
       resources:
+        limits:
+          memory: 12Gi
+          cpu: '4'
         requests:
-          storage: 25Gi
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: kubernetes.io/hostname
-                  operator: In
-                  values:
-                    - hwn03.k8s-01.kontur.io
+          memory: 4Gi
+          cpu: '1'
+      dataVolumeClaimSpec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 25Gi
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - hwn03.k8s-01.kontur.io
 # Switchover section
 # https://access.crunchydata.com/documentation/postgres-operator/latest/tutorials/cluster-management/administrative-tasks#changing-the-primary
 # https://access.crunchydata.com/documentation/postgres-operator/latest/tutorials/cluster-management/administrative-tasks#targeting-an-instance
