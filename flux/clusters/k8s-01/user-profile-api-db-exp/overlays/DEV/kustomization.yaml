@@ -9,14 +9,6 @@ patchesJson6902:
       kind: PostgresCluster
       name: db-user-profile-api-exp
     path: postgrescluster-s3-backups.yaml
-  # NOTE: legacy, to be removed
-  - target:
-      group: postgres-operator.crunchydata.com
-      version: v1beta1
-      kind: PostgresCluster
-      name: db-user-profile-api-exp
-    path: postgrescluster-resource-adjustment.yaml
-  # NOTE: new config, to replace adjustment/assignment
   - target:
       group: postgres-operator.crunchydata.com
       version: v1beta1
@@ -41,13 +33,6 @@ patchesJson6902:
       kind: PostgresCluster
       name: db-user-profile-api-exp
     path: postgrescluster-custom-image.yaml
-  # NOTE: legacy, to be removed
-  - target:
-      group: postgres-operator.crunchydata.com
-      version: v1beta1
-      kind: PostgresCluster
-      name: db-user-profile-api-exp
-    path: postgrescluster-assigning.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
