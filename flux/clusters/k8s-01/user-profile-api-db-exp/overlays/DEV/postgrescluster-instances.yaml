@@ -41,7 +41,7 @@
                     operator: In
                     values:
                       - hwn03.k8s-01.kontur.io
-    - name: hwn02
+    - name: hwn02-pgbr
       replicas: 1
       resources:
         <<: *resources
