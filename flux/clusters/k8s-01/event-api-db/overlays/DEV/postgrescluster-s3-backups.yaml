@@ -29,7 +29,9 @@
     repo2-retention-full: '30'
     repo2-storage-verify-tls: 'n'
     repo2-s3-uri-style: path
-    repo2-storage-port: '32000'
+    repo2-storage-port: '443'
+    repo2-retention-archive: "1"
+    repo2-retention-diff: "1"
 
 - op: add
   path: /spec/backups/pgbackrest/manual
