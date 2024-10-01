@@ -1,0 +1,5 @@
+# Always replace placeholder instances from `base`
+- op: add
+  path: /spec/patroni/dynamicConfiguration/postgresql/create_replica_methods
+  value: 
+    - pgbackrest

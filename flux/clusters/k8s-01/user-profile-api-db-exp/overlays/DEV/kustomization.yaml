@@ -14,6 +14,12 @@ patchesJson6902:
       version: v1beta1
       kind: PostgresCluster
       name: db-user-profile-api-exp
+    path: postgrescluster-replication.yaml
+  - target:
+      group: postgres-operator.crunchydata.com
+      version: v1beta1
+      kind: PostgresCluster
+      name: db-user-profile-api-exp
     path: postgrescluster-instances.yaml
 #  - target:
 #      group: postgres-operator.crunchydata.com
