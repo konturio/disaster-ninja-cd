@@ -2,4 +2,5 @@
 - op: add
   path: /spec/patroni/dynamicConfiguration/postgresql/create_replica_methods
   value: 
-    - pgbackrest
+    #- pgbackrest
+    - basebackup
