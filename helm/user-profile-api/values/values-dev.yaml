@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 19222-create-billing-charts-in-grafana.62db8c6.1
+  tag: release-0.9.1.75c9ada.1
   pullSecretName: none
   usePullSecret: false
 
