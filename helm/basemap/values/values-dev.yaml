@@ -13,6 +13,7 @@ tileserver:
   storageType: emptydir
 
 basemap:
+  suspend: true
   processingSchedule: "0 0 */2 * *" # Run once in 2 days at midnight
   s3:
     path: s3://basemap-locker01/DEV
