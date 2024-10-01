@@ -21,18 +21,6 @@ patchesJson6902:
       kind: PostgresCluster
       name: db-event-api
     path: postgrescluster-custom-image.yaml
-#  - target:
-#      group: postgres-operator.crunchydata.com
-#      version: v1beta1
-#      kind: PostgresCluster
-#      name: db-event-api
-#    path: postgrescluster-resource-adjustment.yaml
-  - target: # Legacy, to be removed
-      group: postgres-operator.crunchydata.com
-      version: v1beta1
-      kind: PostgresCluster
-      name: db-event-api
-    path: postgrescluster-assigning.yaml
   - target: # new config for instances management
       group: postgres-operator.crunchydata.com
       version: v1beta1
