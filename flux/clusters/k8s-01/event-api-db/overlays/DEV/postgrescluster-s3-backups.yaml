@@ -8,8 +8,8 @@
       repos:
         - name: repo2
           s3:
-            bucket: k8s-01-kontur-io--pgbackrest-backups
-            endpoint: prod-minio.kontur.io
+            bucket: pgbackrest
+            endpoint: s3.kontur.io
             region: eu-central-1
           schedules:
             full: 0 18 * * 2
