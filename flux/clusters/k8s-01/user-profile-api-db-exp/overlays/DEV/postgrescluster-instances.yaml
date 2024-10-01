@@ -26,7 +26,7 @@
                     operator: In
                     values:
                       - hwn04.k8s-01.kontur.io
-    - name: hwn03-bbkp
+    - name: hwn03-bbkp2
       replicas: 1
       resources:
         <<: *resources
