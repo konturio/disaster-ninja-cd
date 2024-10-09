@@ -23,8 +23,10 @@ tileserver:
   image: 'nexus.kontur.io:8084/maptiler/tileserver-gl'
   tag: 'v4.4.0'
   port: 8080
+  storageType: pvc
 
 basemap:
+  storageType: pvc
   processingSchedule: "0 0 */2 * *" # Run once in 2 days at midnight
   renderer:
     image: "nexus.kontur.io:8084/konturdev/build-basemap"

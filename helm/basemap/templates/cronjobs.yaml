@@ -18,6 +18,7 @@ spec:
     spec:
       template:
         spec:
+          {{- if eq .Values.basemap.storageType "pvc" }}
           initContainers:
           - name: check-pvc-usage
             image: nexus.kontur.io:8085/konturdev/check-pod-pvc:1.12
@@ -44,6 +45,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
+          {{- end }}
           shareProcessNamespace: true # required to shut down postgres when pipeline is done
           restartPolicy: Never
           {{ if .Values.images.usePullSecret }}
@@ -55,7 +57,7 @@ spec:
             image: {{ .Values.basemap.renderer.image }}:{{ .Values.basemap.renderer.tag }}
             imagePullPolicy: Always
             volumeMounts:
-            - name: {{ .Values.envName }}-basemap-processor-pvc
+            - name: {{ .Values.envName }}-basemap-processor-{{ .Values.basemap.storageType }}
               mountPath: /persisted-volume
             env:
             - name: ENV_NAME
@@ -115,7 +117,7 @@ spec:
             - name: PGDATA
               value: /var/lib/postgresql/data/pgdata
             volumeMounts:
-            - name: {{ .Values.envName }}-basemap-postgres-pvc
+            - name: {{ .Values.envName }}-basemap-postgres-{{ .Values.basemap.storageType }}
               mountPath: /var/lib/postgresql/data
             resources:
               limits:
@@ -125,12 +127,22 @@ spec:
                 memory: {{ .Values.resources.db.requests.memory | quote }}
                 cpu: {{ .Values.resources.db.requests.cpu | quote }}
           volumes:
-          - name: {{ .Values.envName }}-basemap-processor-pvc
+          - name: {{ .Values.envName }}-basemap-processor-{{ .Values.basemap.storageType }}
+            {{- if eq .Values.basemap.storageType "pvc" }}
             persistentVolumeClaim:
-              claimName: {{ .Values.envName }}-basemap-processor-pvc
-          - name: {{ .Values.envName }}-basemap-postgres-pvc
+              claimName: {{ .Values.envName }}-basemap-processor-{{ .Values.basemap.storageType }}
+            {{- else }}
+            emptyDir:
+              sizeLimit: {{ .Values.pvc.processorStorageSize }}
+            {{- end }}
+          - name: {{ .Values.envName }}-basemap-postgres-{{ .Values.basemap.storageType }}
+            {{- if eq .Values.basemap.storageType "pvc" }}
             persistentVolumeClaim:
-              claimName: {{ .Values.envName }}-basemap-postgres-pvc
+              claimName: {{ .Values.envName }}-basemap-postgres-{{ .Values.basemap.storageType }}
+            {{- else }}
+            emptyDir:
+              sizeLimit: {{ .Values.pvc.postgresStorageSize }}
+            {{- end }}
           - name: kubeconfig-volume
             secret:
               secretName: {{ .Values.envName }}-basemap-kubeconfig
