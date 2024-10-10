@@ -29,7 +29,7 @@
     repo2-storage-port: '443'
     repo2-retention-full-type: 'count'
     repo2-retention-full: '1'
-    repo2-retention-archive-type: full
+    repo2-retention-archive-type: incr
     repo2-retention-archive: "1"
     repo2-retention-diff: "1"
 
