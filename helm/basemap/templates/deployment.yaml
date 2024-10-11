@@ -38,6 +38,10 @@ spec:
         meta.helm.sh/release-name: {{ .Release.Name }}
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
     spec:
+      {{- if .Values.tileserver.affinity }}
+      affinity:
+        {{- toYaml .Values.tileserver.affinity | nindent 8 }}
+      {{- end }}
       {{ if .Values.images.usePullSecret }}
       imagePullSecrets:
       - name: {{ .Values.images.pullSecretName }}
