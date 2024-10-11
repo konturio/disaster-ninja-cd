@@ -12,7 +12,7 @@
 
 - op: add
   path: /spec/backups/pgbackrest/global/archive-push-queue-max
-  value: '100GB'
+  value: '400GB'
 
 - op: add
   path: /spec/backups/pgbackrest/global/spool-path
@@ -24,4 +24,4 @@
 
 - op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/max_wal_size
-  value: '10GB'
+  value: '30GB'
