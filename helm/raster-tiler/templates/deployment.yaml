@@ -120,7 +120,7 @@ spec:
               memory: {{ .Values.resources.requests.memory | quote }}
           volumeMounts:
             - mountPath: /tiles
-              name: raster-tiler-storage-vol
+              name: raster-tiler-storage-{{ if eq .Values.storageType "pvc" }}vol{{else}}emptyDir{{end}}
       dnsConfig:
         options:
           - name: ndots
@@ -128,11 +128,12 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       volumes:
+        {{- if eq .Values.storageType "pvc" }}
         - name: raster-tiler-storage-vol
-          {{- if eq .Values.storageType "pvc" }}
           persistentVolumeClaim:
             claimName: {{ .Values.envName }}-raster-tiler
-          {{- else }}
+        {{- else }}
+        - name: raster-tiler-storage-emptydir
           emptyDir:
             sizeLimit: {{ .Values.storage_size }}
-          {{- end }}
+        {{- end }}
