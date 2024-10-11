@@ -32,3 +32,14 @@ resources:
     memory: 4Gi
   limits:
     memory: 512Gi
+
+storageType: emptydir
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: NotIn
+              values:
+                - hwn01.k8s-01.kontur.io

@@ -17,6 +17,7 @@ pg_database: layers-db
 pg_host: milan.k8s-01.kontur.io
 storage_size: 5Gi
 storageClass: standard
+storageType: pvc
 
 createResource:
   ingress: false

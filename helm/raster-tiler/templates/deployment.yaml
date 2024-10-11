@@ -42,6 +42,10 @@ spec:
         app.kubernetes.io/part-of: backend
         stage: {{ .Values.envName }}
     spec:
+    {{- if .Values.affinity }}
+      affinity:
+        {{- toYaml .Values.affinity | nindent 8 }}
+    {{- end }}
     {{- if .Values.image.usePullSecret }}
       imagePullSecrets: #TODO remove once image is on ghcr.io
         - name: {{ .Values.image.pullSecretName }}
@@ -116,7 +120,7 @@ spec:
               memory: {{ .Values.resources.requests.memory | quote }}
           volumeMounts:
             - mountPath: /tiles
-              name: raster-tiler-storage-vol
+              name: raster-tiler-storage-{{ if eq .Values.storageType "pvc" }}vol{{else}}emptyDir{{end}}
       dnsConfig:
         options:
           - name: ndots
@@ -124,6 +128,12 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       volumes:
+        {{- if eq .Values.storageType "pvc" }}
         - name: raster-tiler-storage-vol
           persistentVolumeClaim:
             claimName: {{ .Values.envName }}-raster-tiler
+        {{- else }}
+        - name: raster-tiler-storage-emptydir
+          emptyDir:
+            sizeLimit: {{ .Values.storage_size }}
+        {{- end }}
