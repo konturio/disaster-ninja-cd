@@ -120,7 +120,7 @@ spec:
               memory: {{ .Values.resources.requests.memory | quote }}
           volumeMounts:
             - mountPath: /tiles
-              name: raster-tiler-storage-{{ if eq .Values.storageType "pvc" }}vol{{else}}emptyDir{{end}}
+              name: raster-tiler-storage-{{ if eq .Values.storageType "pvc" }}vol{{else}}emptydir{{end}}
       dnsConfig:
         options:
           - name: ndots
