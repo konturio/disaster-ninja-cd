@@ -10,6 +10,15 @@ tileserver:
   replicas: 1
   image: 'nexus.kontur.io:8084/maptiler/tileserver-gl'
   tag: 'v4.4.0'
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: NotIn
+                values:
+                  - hwn01.k8s-01.kontur.io
 
 basemap:
   processingSchedule: "0 0 */2 * *" # Run once in 2 days at midnight
