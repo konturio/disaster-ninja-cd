@@ -10,7 +10,6 @@ tileserver:
   replicas: 1
   image: 'nexus.kontur.io:8084/maptiler/tileserver-gl'
   tag: 'v4.4.0'
-  storageType: emptydir
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
