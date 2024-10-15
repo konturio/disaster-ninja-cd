@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: main.fef9a69.1
+    tag: 18906-redirect-to-plans-page-after-login-on-atlas.744fcb9.1
 
 replicaCount: 2
 envName: test
