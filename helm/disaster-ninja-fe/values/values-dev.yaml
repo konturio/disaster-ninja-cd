@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 19871-add-user-guide-subtab-to-about-page.39cf61b.1
+    tag: release-2.33.2.f28c621.2
 
 replicaCount: 2
 envName: dev
