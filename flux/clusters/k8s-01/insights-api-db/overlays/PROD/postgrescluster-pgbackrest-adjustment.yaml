@@ -20,7 +20,7 @@
 
 - op: add
   path: /spec/backups/pgbackrest/global/archive-mode
-  value: 'off'
+  value: 'on'
 
 - op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/max_wal_size
