@@ -21,6 +21,7 @@ ingressHosts:
   - dev-atlas-kontur-io.k8s-01.konturlabs.com
   - dev-oasis-kontur-io.k8s-01.konturlabs.com
   - dev-odin-kontur-io.k8s-01.konturlabs.com
+  - dev-globalgiving-kontur-io.k8s-01.konturlabs.com
 ingressClass: ingress-nginx
 
 createResource:
