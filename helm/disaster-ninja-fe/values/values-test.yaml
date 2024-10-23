@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: main.1a42326.1
+    tag: 19969-fe-layer-features-panel-for-globalgiving.1eba339.1
 
 replicaCount: 2
 envName: test
