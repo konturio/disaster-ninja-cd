@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 19739-add-acaps-original-data-to-the-layers-db.f0ea16b.1
+  tag: 19739-add-acaps-original-data-to-the-layers-db.e98247c.1
   usePullSecret: false
   pullSecretName: none
 
