@@ -18,7 +18,7 @@ replicas: 1
 
 image:
   be:
-    tag: 19846-implement-basic-email-notifications-in-disaster-ninja-be-for-gg.1f1bcc7.1
+    tag: main.694c3d8.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
