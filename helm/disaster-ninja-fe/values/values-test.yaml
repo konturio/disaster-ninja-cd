@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 20021-fe-show-acaps-layer-features-even-if-acaps-layer-is-disabled.c4a4570.1
+    tag: main.a0a7a33.1
 
 replicaCount: 2
 envName: test
