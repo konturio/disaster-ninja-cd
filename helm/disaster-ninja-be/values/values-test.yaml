@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: 20025-add-gg-partners-to-email-notifications.c5d662e.1
+    tag: 20025-add-gg-partners-to-email-notifications.30ab900.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
