@@ -34,4 +34,6 @@ data:
   #notifications.enabled: "false" #overridden by env var
   notifications.feed: {{ .Values.notificationsFeed }}
   notifications.alertUrlPattern: {{ .Values.notificationsAlertUrlPattern }}
+  notifications.relevantLocationsLayer: {{ .Values.notificationsRelevantLocationsLayer }}
+  notifications.relevantLocationsLayerAppId: {{ .Values.notificationsRelevantLocationsLayerAppId }}
   sentry.environment: {{ .Values.envName }}
