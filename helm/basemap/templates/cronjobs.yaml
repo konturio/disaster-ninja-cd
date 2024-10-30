@@ -14,10 +14,17 @@ metadata:
 spec:
   schedule: {{ .Values.basemap.processingSchedule | quote }}
   concurrencyPolicy: "Forbid"
+  {{- if .Values.basemap.suspend }}
+  suspend: true
+  {{- end }}
   jobTemplate:
     spec:
       template:
         spec:
+          {{- if .Values.basemap.affinity }}
+          affinity:
+            {{- toYaml .Values.basemap.affinity | nindent 12 }}
+          {{- end }}
           {{- if eq .Values.basemap.storageType "pvc" }}
           initContainers:
           - name: check-pvc-usage
