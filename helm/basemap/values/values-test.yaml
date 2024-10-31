@@ -26,7 +26,8 @@ basemap:
   processingSchedule: "0 0 */2 * *" # Run once in 2 days at midnight
   s3:
     path: s3://basemap-locker01/TEST
-    url: https://basemap-locker01.s3.eu-central-1.amazonaws.com/TEST
+    url: https://s3.kontur.io/basemap-locker01/TEST
+    endpoint: https://s3.kontur.io
   renderer:
     image: "nexus.kontur.io:8084/konturdev/build-basemap"
     tag: "7631b004"
