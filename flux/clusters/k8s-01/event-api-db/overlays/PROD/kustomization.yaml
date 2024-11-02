@@ -20,7 +20,7 @@ patchesJson6902:
       version: v1beta1
       kind: PostgresCluster
       name: db-event-api
-      path: postgrescluster-instances.yaml
+    path: postgrescluster-instances.yaml
   - target:
       group: postgres-operator.crunchydata.com
       version: v1beta1
