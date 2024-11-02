@@ -9,18 +9,19 @@ patchesJson6902:
       kind: PostgresCluster
       name: db-event-api
     path: postgrescluster-s3-backups.yaml
-  - target: # Legacy, to be removed
+  - target: # Legacy, to be removed but not until new replicas are set up
       group: postgres-operator.crunchydata.com
       version: v1beta1
       kind: PostgresCluster
       name: db-event-api
     path: postgrescluster-resource-adjustment.yaml
-  - target: # new config for instances management
-      group: postgres-operator.crunchydata.com
-      version: v1beta1
-      kind: PostgresCluster
-      name: db-event-api
-    path: postgrescluster-instances.yaml
+  ### FIXME: bring back when we can reliably spin new replicas without WAL loss preventing replica spawn
+  #- target: # new config for instances management
+  #    group: postgres-operator.crunchydata.com
+  #    version: v1beta1
+  #    kind: PostgresCluster
+  #    name: db-event-api
+  #  path: postgrescluster-instances.yaml
   - target:
       group: postgres-operator.crunchydata.com
       version: v1beta1
