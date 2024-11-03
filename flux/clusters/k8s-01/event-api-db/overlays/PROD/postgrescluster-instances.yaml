@@ -4,7 +4,7 @@
   value:
     name: hwn02 # see #19803
     replicas: 1
-    resources:
+    resources: &resources
       limits:
         memory: 512Gi # # let Postres use the page cache
         cpu: '64' # set as event-api pool size + autovacuum workers + a bit for parallel workers
@@ -17,7 +17,7 @@
         # empyrical recommendations below
         # memory: 7Gi
         # cpu: '1' 
-    dataVolumeClaimSpec:
+    dataVolumeClaimSpec: &pvc
       accessModes:
         - ReadWriteOnce
       resources:
@@ -34,3 +34,21 @@
                   operator: In
                   values:
                     - hwn02.k8s-01.kontur.io
+- op: add
+  path: /spec/instances/-
+  value:
+    name: hwn03 # see #19803
+    replicas: 1
+    resources:
+      <<: *resources
+    dataVolumeClaimSpec:
+      <<: *pvc
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                    - hwn03.k8s-01.kontur.io
