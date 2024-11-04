@@ -1,57 +1,55 @@
-# eventually it should be op: replace
-- op: add
-  path: /spec/instances/-
+# Always replace placeholder instances from `base`
+- op: replace 
+  path: /spec/instances
   value:
-    name: hwn02 # see #19803
-    replicas: 1
-    resources: &resources
-      limits:
-        memory: 512Gi # # let Postres use the page cache
-        cpu: '64' # set as event-api pool size + autovacuum workers + a bit for parallel workers
-        # empyrical recommendations below
-        # memory: 100Gi 
-        # cpu: '5' 
-      requests:
-        memory: 22Gi # roughly shared_buffers + pool size * work_mem
-        cpu: '2' # if we don't have CPU we can run on potato
-        # empyrical recommendations below
-        # memory: 7Gi
-        # cpu: '1' 
-    dataVolumeClaimSpec: &pvc
-      accessModes:
-        - ReadWriteOnce
-      resources:
+    - name: hwn02 # see #19803
+      replicas: 1
+      resources: &resources
+        limits:
+          memory: 512Gi # # let Postres use the page cache
+          cpu: '64' # set as event-api pool size + autovacuum workers + a bit for parallel workers
+          # empyrical recommendations below
+          # memory: 100Gi 
+          # cpu: '5' 
         requests:
-          storage: 100Gi
-          # empyrical recommendations below -- actual storage varies from 2300Gi to 6200Gi
-          # storage: 2500Gi
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: kubernetes.io/hostname
-                  operator: In
-                  values:
-                    - hwn02.k8s-01.kontur.io
-- op: add
-  path: /spec/instances/-
-  value:
-    name: hwn03 # see #19803
-    replicas: 1
-    resources:
-      <<: *resources
-    dataVolumeClaimSpec:
-      <<: *pvc
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: kubernetes.io/hostname
-                  operator: In
-                  values:
-                    - hwn03.k8s-01.kontur.io
+          memory: 22Gi # roughly shared_buffers + pool size * work_mem
+          cpu: '2' # if we don't have CPU we can run on potato
+          # empyrical recommendations below
+          # memory: 7Gi
+          # cpu: '1' 
+      dataVolumeClaimSpec: &pvc
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 100Gi
+            # empyrical recommendations below -- actual storage varies from 2300Gi to 6200Gi
+            # storage: 2500Gi
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - hwn02.k8s-01.kontur.io
+    - name: hwn03 # see #19803
+      replicas: 1
+      resources:
+        <<: *resources
+      dataVolumeClaimSpec:
+        <<: *pvc
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - hwn03.k8s-01.kontur.io
+
 #### switchover section ####
 # 2024-11-04: Switchover to hwn02 as a part of moving from legacy unnamed instances (#19803)
 
