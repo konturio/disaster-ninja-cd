@@ -52,3 +52,24 @@
                   operator: In
                   values:
                     - hwn03.k8s-01.kontur.io
+#### switchover section ####
+# 2024-11-04: Switchover to hwn02 as a part of moving from legacy unnamed instances (#19803)
+
+# https://access.crunchydata.com/documentation/postgres-operator/latest/tutorials/cluster-management/administrative-tasks#changing-the-primary
+# https://access.crunchydata.com/documentation/postgres-operator/latest/tutorials/cluster-management/administrative-tasks#targeting-an-instance
+# 1. Requires fully-qualified instance id of new master
+# 2. New master must be in sink with current master (check via `patronictl list`)
+# 3. Its recommended to retain switchover section, to keep track of last desired master both in code and k8s
+- op: add
+  path: /spec/patroni/switchover
+  value:
+    enabled: true
+    targetInstance: db-event-api-hwn02-5b7m
+    #type: Failover
+# trigger-switchover annotation triggers actual switchover whenever its updated
+# value is arbitrary, but it's recommended to reference the date of switchover
+# special syntax is used to escape slash with sequence ~1
+# See https://windsock.io/json-pointer-syntax-in-json-patches-with-kustomize/
+- op: add
+  path: /metadata/annotations/postgres-operator.crunchydata.com~1trigger-switchover
+  value: 2024-11-04-19803-1   # reason: preparing to eliminate old unnamed instances (#19803)
