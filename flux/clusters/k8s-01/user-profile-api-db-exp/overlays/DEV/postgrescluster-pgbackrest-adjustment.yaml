@@ -5,3 +5,7 @@
 - op: replace
   path: /spec/backups/pgbackrest/image
   value: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.47-2'
+
+- op: add
+  path: /spec/backups/pgbackrest/global/log-level-file
+  value: 'detail'
