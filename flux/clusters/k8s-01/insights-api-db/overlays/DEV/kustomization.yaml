@@ -18,12 +18,12 @@ patchesJson6902:
       kind: PostgresCluster
       name: db-insights-api
     path: postgrescluster-resource-adjustment.yaml
-  - target:
-      group: postgres-operator.crunchydata.com
-      version: v1beta1
-      kind: PostgresCluster
-      name: db-insights-api
-    path: postgrescluster-onsite-backups.yaml
+#  - target:
+#      group: postgres-operator.crunchydata.com
+#      version: v1beta1
+#      kind: PostgresCluster
+#      name: db-insights-api
+#    path: postgrescluster-onsite-backups.yaml
   - target:
       group: postgres-operator.crunchydata.com
       version: v1beta1
