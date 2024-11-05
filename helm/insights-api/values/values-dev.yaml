@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 19204-wrong-value-range-for-populated-area-to-area-layer.e546310.1
+  tag: release-0.21.0.8340da8.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
