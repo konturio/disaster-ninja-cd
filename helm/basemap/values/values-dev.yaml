@@ -22,14 +22,14 @@ tileserver:
 
 basemap:
   # WARNING: job requires about 60G RAM and is stick to hwn02. Do not unsuspend without node capacity analysis!
-  suspend: true # until image will be fixed, see #19951 and #19959
-  processingSchedule: "0 0 */2 * *" # Run once in 2 days at midnight
+  # suspend: true # until image will be fixed, see #19951 and #19959
+  processingSchedule: "0 19 * * *" # Run once in 2 days at midnight
   s3:
     path: s3://basemap-locker01/DEV
     url: https://basemap-locker01.s3.eu-central-1.amazonaws.com/DEV
   renderer:
     image: "nexus.kontur.io:8084/konturdev/build-basemap"
-    tag: "7631b004"
+    tag: "19959-basemap-generator-image-is-broken-in-dev-test-prod.f0af3fc.1"
   db:
     image: "nexus.kontur.io:8084/postgis/postgis"
     tag: "15-3.3"
