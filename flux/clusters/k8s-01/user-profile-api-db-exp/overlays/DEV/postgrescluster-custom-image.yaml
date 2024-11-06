@@ -12,4 +12,4 @@
 
 - op: replace
   path: /spec/backups/pgbackrest/image
-  value: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.47-2'
+  value: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.53.1-0'
