@@ -31,6 +31,7 @@ resources:
     cpu: 500m
     memory: 4Gi
   limits:
+    cpu: 2
     memory: 512Gi
 
 storageType: emptydir

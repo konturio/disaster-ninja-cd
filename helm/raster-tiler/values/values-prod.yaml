@@ -26,4 +26,12 @@ createResource:
 isOfflineInstallation: false
 probeInitialDelaySeconds: 30
 
+resources:
+  requests:
+    cpu: 200m
+    memory: 4Gi
+  limits:
+    cpu: 8
+    memory: 512Gi
+
 log_level: info

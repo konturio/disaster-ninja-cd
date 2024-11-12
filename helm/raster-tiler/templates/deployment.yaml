@@ -116,8 +116,10 @@ spec:
           resources:
             limits:
               memory: {{ .Values.resources.limits.memory | quote }}
+              cpu: {{ .Values.resources.limits.cpu | quote }}
             requests:
               memory: {{ .Values.resources.requests.memory | quote }}
+              cpu: {{ .Values.resources.requests.cpu | quote }}
           volumeMounts:
             - mountPath: /tiles
               name: raster-tiler-storage-{{ if eq .Values.storageType "pvc" }}vol{{else}}emptydir{{end}}
