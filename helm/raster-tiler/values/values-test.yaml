@@ -28,9 +28,10 @@ probeInitialDelaySeconds: 30
 
 resources:
   requests:
-    cpu: 4
+    cpu: 500m
     memory: 8Gi
   limits:
+    cpu: 2
     memory: 512Gi
 
 log_level: info
