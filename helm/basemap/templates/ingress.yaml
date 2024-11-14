@@ -50,6 +50,7 @@ metadata:
           more_set_headers "Strict-Transport-Security: max-age=31536000";
           more_set_headers "X-Frame-Options: SAMEORIGIN";
           more_set_headers "X-Content-Type-Options: nosniff";
+          proxy_set_header Host {{ .Values.basemap.s3.host }};
 
           location ~ ^/layers/tiles/basemap/(sprite.*)$ {
               set $url $1;

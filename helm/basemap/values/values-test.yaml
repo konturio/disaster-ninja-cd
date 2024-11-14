@@ -27,6 +27,7 @@ basemap:
   s3:
     path: s3://basemap-locker01/TEST
     url: https://basemap-locker01.s3.eu-central-1.amazonaws.com/TEST
+    host: basemap-locker01.s3.eu-central-1.amazonaws.com
   renderer:
     image: "nexus.kontur.io:8084/konturdev/build-basemap"
     tag: "7631b004"
