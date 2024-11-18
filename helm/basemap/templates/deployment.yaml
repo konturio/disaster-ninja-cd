@@ -62,6 +62,10 @@ spec:
         - sync
         - {{ .Values.basemap.s3.path }}
         - /data
+        {{- if .Values.basemap.s3.endpoint }}
+        - --endpoint-url
+        - {{ .Values.basemap.s3.endpoint }}
+        {{- end }}
         envFrom:
         - configMapRef:
             name: {{ .Values.envName }}-basemap
