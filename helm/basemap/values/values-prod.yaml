@@ -31,7 +31,7 @@ basemap:
     host: basemap-locker01.s3.eu-central-1.amazonaws.com
   renderer:
     image: "nexus.kontur.io:8084/konturdev/build-basemap"
-    tag: "be6b952b"
+    tag: "master.bded5c2.1"
   db:
     image: "nexus.kontur.io:8084/postgis/postgis"
     tag: "15-3.3"
