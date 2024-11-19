@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 20072-insights-api-should-not-allow-creating-multiple-indicators-with-equal-param_id-2.a46ebb6.1
+  tag: 20072-insights-api-should-not-allow-creating-multiple-indicators-with-equal-param_id-2.e0504da.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
