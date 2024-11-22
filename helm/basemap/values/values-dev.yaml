@@ -33,7 +33,7 @@ basemap:
     endpoint: https://s3.kontur.io
   renderer:
     image: "nexus.kontur.io:8084/konturdev/build-basemap"
-    tag: "master.bded5c2.1"
+    tag: "11454-add-s3-minio-endpoint-url.74789fc.1"
   db:
     image: "nexus.kontur.io:8084/postgis/postgis"
     tag: "15-3.3"
