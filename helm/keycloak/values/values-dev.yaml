@@ -5,7 +5,7 @@
 image:
   repository: nexus.kontur.io:8084/konturdev/keycloak-with-ups-spi
   pullPolicy: IfNotPresent
-  tag: 20166-add-country-code-for-phone-number-in-kontur-registration-form.a18a378.1
+  tag: 20166-add-country-code-for-phone-number-in-kontur-registration-form.d90b169.1
   pullSecretName: nexus8084
   usePullSecret: false
 
