@@ -58,7 +58,7 @@ notificationsAlertUrlPattern: disabled
 notificationsSlackWebHook: disabled
 notificationsRelevantLocationsLayer: "global_giving_partners"
 notificationsRelevantLocationsLayerAppId: "52b9efd2-0527-4236-9bb6-9677bea1d790"
-notificationsEmailNotificationsFrequencyMs: 28800000
+notificationsEmailNotificationsFrequencyMs: "28800000"
 
 alertingTime: 10m
 
