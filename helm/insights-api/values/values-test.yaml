@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: reduce-loops-in-mvt-generation.cc55c3c.1
+  tag: 14407-change-tiles-endpoint-logic-to-return-better-resolution-for-data-insights-api.335cd1a.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
