@@ -36,4 +36,5 @@ data:
   notifications.alertUrlPattern: {{ .Values.notificationsAlertUrlPattern }}
   notifications.relevantLocationsLayer: {{ .Values.notificationsRelevantLocationsLayer }}
   notifications.relevantLocationsLayerAppId: {{ .Values.notificationsRelevantLocationsLayerAppId }}
+  notifications.emailNotificationsFrequencyMs: {{ .Values.notificationsEmailNotificationsFrequencyMs | quote }}
   sentry.environment: {{ .Values.envName }}

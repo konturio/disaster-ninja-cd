@@ -18,7 +18,7 @@ replicas: 1
 
 image:
   be:
-    tag: 20203-layers-api-send-partial-color-section-for-mcda.46276b7.1
+    tag: 20282-reduce-per-event-frequency-for-notifications.3db6f3e.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
