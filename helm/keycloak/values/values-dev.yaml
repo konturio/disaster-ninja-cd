@@ -5,7 +5,7 @@
 image:
   repository: nexus.kontur.io:8084/konturdev/keycloak-with-ups-spi
   pullPolicy: IfNotPresent
-  tag: 20226-collect-consents-during-registration.156ccaa.1
+  tag: 20226-collect-consents-during-registration.9063b07.1
   pullSecretName: nexus8084
   usePullSecret: false
 
