@@ -24,7 +24,7 @@ basemap:
   # NOTE: when cluster runs on 3 nodes, to avoid resources starvation:
   #   1) either only *one* of dev/test/prod could be unsuspended
   #   2) or processing schedules of dev/test/prod should be coordinated to prevent simultaneous execution
-  # suspend: true # until image will be fixed, see #19951 and #19959
+  suspend: true # until image will be fixed, see #19951 and #19959
   processingSchedule: "40 19 * * *" # Run once in 2 days at midnight
   s3:
     path: s3://basemap-locker01/DEV
@@ -33,7 +33,7 @@ basemap:
     endpoint: https://s3.kontur.io
   renderer:
     image: "nexus.kontur.io:8084/konturdev/build-basemap"
-    tag: "11454-add-s3-minio-endpoint-url.74789fc.1"
+    tag: "master.030fa6d.1"
   db:
     image: "nexus.kontur.io:8084/postgis/postgis"
     tag: "15-3.3"

@@ -22,7 +22,7 @@ tileserver:
 
 basemap:
   # NOTE: see values-dev for information on special conditions for suspend/processingSchedule
-  suspend: true # until image will be fixed, see #19951 and #19959
+  # suspend: true # until image will be fixed, see #19951 and #19959
   processingSchedule: "0 0 */2 * *" # Run once in 2 days at midnight
   s3:
     path: s3://basemap-locker01/TEST
@@ -31,7 +31,7 @@ basemap:
     endpoint: https://s3.kontur.io
   renderer:
     image: "nexus.kontur.io:8084/konturdev/build-basemap"
-    tag: "master.bded5c2.1"
+    tag: "master.030fa6d.1"
   db:
     image: "nexus.kontur.io:8084/postgis/postgis"
     tag: "15-3.3"
