@@ -59,7 +59,7 @@ notificationsSlackWebHook: disabled
 notificationsRelevantLocationsLayer: "global_giving_partners"
 notificationsRelevantLocationsLayerAppId: "52b9efd2-0527-4236-9bb6-9677bea1d790"
 notificationsEmailNotificationsFrequencyMs: "28800000"
-notificationsKonturUrlPattern: 'https://dev-globalgiving-kontur-io.k8s-01.konturlabs.com/active/map?event=%s&feed=%s'
+notificationsKonturUrlPattern: 'test'
 notificationsSmtpHost: 'email-smtp.eu-central-1.amazonaws.com'
 notificationsSmtpPort: '587'
 
