@@ -33,6 +33,11 @@ tilesHost: 'https://sonic.kontur.io'
 notificationsEnabled: true
 notificationsFeed: 'kontur-public'
 notificationsAlertUrlPattern: 'https://test-apps-ninja01.konturlabs.com/active/?event=%s&utm_source=slack'
+notificationsKonturUrlPattern: 'https://test-globalgiving-kontur-io.k8s-01.konturlabs.com/active/map?event=%s&feed=%s'
+notificationsSmtpHost: 'email-smtp.eu-central-1.amazonaws.com'
+notificationsSmtpPort: '587'
+notificationsSender: 'hello@kontur.io'
+notificationsRecipients: 'test_crisisalerts_globalgiving@kontur.io'
 
 alertingTime: 5m
 
