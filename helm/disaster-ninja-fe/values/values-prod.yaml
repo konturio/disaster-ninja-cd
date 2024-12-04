@@ -22,9 +22,11 @@ ingressHosts:
   - odin.kontur.io
   - terrain.kontur.io
   - globalgiving.kontur.io
+  - horam.kontur.io
   - prod-odin-kontur-io.k8s-01.konturlabs.com
   - prod-terrain-kontur-io.k8s-01.konturlabs.com
   - prod-globalgiving-kontur-io.k8s-01.konturlabs.com
+  - prod-horam-kontur-io.k8s-01.konturlabs.com
   - prod-disaster-ninja.k8s-01.konturlabs.com
   - prod-disaster-ninja.konturlabs.com
   - prod-emb-disaster-ninja.konturlabs.com
