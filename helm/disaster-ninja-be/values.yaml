@@ -62,8 +62,6 @@ notificationsEmailNotificationsFrequencyMs: "28800000"
 notificationsKonturUrlPattern: 'https://dev-globalgiving-kontur-io.k8s-01.konturlabs.com/active/map?event=%s&feed=%s'
 notificationsSmtpHost: 'email-smtp.eu-central-1.amazonaws.com'
 notificationsSmtpPort: '587'
-notificationsSender: 'hello@kontur.io'
-notificationsRecipients: 'test_crisisalerts_globalgiving@kontur.io'
 
 alertingTime: 10m
 
