@@ -37,4 +37,9 @@ data:
   notifications.relevantLocationsLayer: {{ .Values.notificationsRelevantLocationsLayer }}
   notifications.relevantLocationsLayerAppId: {{ .Values.notificationsRelevantLocationsLayerAppId }}
   notifications.emailNotificationsFrequencyMs: {{ .Values.notificationsEmailNotificationsFrequencyMs | quote }}
+  notifications.konturUrlPattern: {{ .Values.notificationsKonturUrlPattern }}
+  notifications.smtpHost: {{ .Values.notificationsSmtpHost }}
+  notifications.smtpPort: {{ .Values.notificationsSmtpPort }}
+  notifications.sender: {{ .Values.notificationsSender }}
+  notifications.recipients: {{ .Values.notificationsRecipients }}
   sentry.environment: {{ .Values.envName }}

@@ -33,7 +33,11 @@ tilesHost: 'https://disaster.ninja'
 notificationsEnabled: true
 notificationsFeed: kontur-public
 notificationsAlertUrlPattern: 'https://disaster.ninja/active/?event=%s&utm_source=slack'
-notificationsKonturUrlPattern: 'https://prod-globalgiving-kontur-io.k8s-01.konturlabs.com/active/map?event=%s&feed=%s&utm_source=email'
+notificationsKonturUrlPattern: 'https://globalgiving.kontur.io/active/map?event=%s&feed=%s&utm_source=email'
+notificationsSmtpHost: 'email-smtp.eu-central-1.amazonaws.com'
+notificationsSmtpPort: '587'
+notificationsSender: 'hello@kontur.io'
+notificationsRecipients: 'crisisalerts_globalgiving@kontur.io, crisisalerts@globalgiving.org'
 
 alertingTime: 5m
 alertingMaxResponseTime: 10s
