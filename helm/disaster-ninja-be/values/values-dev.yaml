@@ -18,7 +18,7 @@ replicas: 1
 
 image:
   be:
-    tag: 20282-reduce-per-event-frequency-for-notifications.3db6f3e.1
+    tag: main.02a5898.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
