@@ -38,8 +38,6 @@ notificationsAlertUrlPattern: 'https://test-apps-ninja02.konturlabs.com/active/?
 notificationsKonturUrlPattern: 'https://dev-globalgiving-kontur-io.k8s-01.konturlabs.com/active/map?event=%s&feed=%s&utm_source=email'
 notificationsSmtpHost: 'email-smtp.eu-central-1.amazonaws.com'
 notificationsSmtpPort: '587'
-notificationsSender: 'hello@kontur.io'
-notificationsRecipients: 'test_crisisalerts_globalgiving@kontur.io'
 
 alertingTime: 10m
 
