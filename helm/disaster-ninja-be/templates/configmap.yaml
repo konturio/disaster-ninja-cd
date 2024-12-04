@@ -33,7 +33,7 @@ data:
   kontur.platform.tiles.host: {{ .Values.tilesHost }}
   #notifications.enabled: "false" #overridden by env var
   notifications.feed: {{ .Values.notificationsFeed }}
-  notifications.alertUrlPattern: {{ .Values.notificationsAlertUrlPattern }}
+  notifications.alertUrlPattern: {{ .Values.notificationsAlertUrlPattern | quote }}
   notifications.relevantLocationsLayer: {{ .Values.notificationsRelevantLocationsLayer }}
   notifications.relevantLocationsLayerAppId: {{ .Values.notificationsRelevantLocationsLayerAppId }}
   notifications.emailNotificationsFrequencyMs: {{ .Values.notificationsEmailNotificationsFrequencyMs | quote }}
