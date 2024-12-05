@@ -82,11 +82,11 @@ spec:
               value: {{ .Values.oam_layer_id }}
           {{- if .Values.fetch_queue_ttl_ms }}
             - name: FETCH_QUEUE_TTL_MS
-              value: {{ .Values.fetch_queue_ttl_ms }}
+              value: {{ .Values.fetch_queue_ttl_ms | quote }}
           {{- end }}
           {{- if .Values.tile_fetch_timeout_ms }}
             - name: TILE_FETCH_TIMEOUT_MS
-              value: {{ .Values.tile_fetch_timeout_ms }}
+              value: {{ .Values.tile_fetch_timeout_ms | quote }}
           {{- end }}
           {{- if .Values.db_disable_ssl }}
             - name: DB_DISABLE_SSL
