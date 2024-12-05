@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: release-0.37.2.515d97a.1
+    tag: release-0.37.3.834b286.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
@@ -33,6 +33,7 @@ tilesHost: 'https://sonic.kontur.io'
 notificationsEnabled: true
 notificationsFeed: 'kontur-public'
 notificationsAlertUrlPattern: 'https://test-apps-ninja01.konturlabs.com/active/?event=%s&utm_source=slack'
+notificationsKonturUrlPattern: 'https://test-globalgiving-kontur-io.k8s-01.konturlabs.com/active/map?event=%s&feed=%s&utm_source=email'
 
 alertingTime: 5m
 

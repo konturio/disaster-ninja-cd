@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: release-0.21.0.8340da8.1
+  tag: refactor-remove-quotient-type.6bc7447.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
@@ -56,7 +56,7 @@ jdbcTemplateQueryTimeout: "21600"
 
 tileSize: 512
 hexEdgePixels: 5
-maxH3Resolution: 8
+maxH3Resolution: 11
 minH3Resolution: 0
 maxZoom: 15
 minZoom: 0

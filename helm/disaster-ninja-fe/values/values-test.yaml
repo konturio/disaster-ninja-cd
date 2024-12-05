@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: release-2.35.0.3983b5c.1
+    tag: release-2.36.1.fcc48ba.1
 
 replicaCount: 2
 envName: test
@@ -19,6 +19,7 @@ ingressHosts:
   - test-odin-kontur-io.k8s-01.konturlabs.com
   - test-terrain-kontur-io.k8s-01.konturlabs.com
   - test-globalgiving-kontur-io.k8s-01.konturlabs.com
+  - test-horam-kontur-io.k8s-01.konturlabs.com
   - test-apps-ninja01.konturlabs.com
   - test-disaster-ninja.konturlabs.com
   - test-emb-apps-ninja01.konturlabs.com

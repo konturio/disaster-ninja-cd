@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: main.e5b299f.1
+    tag: release-2.36.1.fcc48ba.1
 
 replicaCount: 2
 envName: dev
@@ -23,6 +23,7 @@ ingressHosts:
   - dev-odin-kontur-io.k8s-01.konturlabs.com
   - dev-terrain-kontur-io.k8s-01.konturlabs.com
   - dev-globalgiving-kontur-io.k8s-01.konturlabs.com
+  - dev-horam-kontur-io.k8s-01.konturlabs.com
 ingressClass: ingress-nginx
 
 createResource:

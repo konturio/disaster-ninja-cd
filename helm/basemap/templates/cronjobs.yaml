@@ -75,10 +75,12 @@ spec:
               value: gis
             - name: PGDATABASE
               value: gis
+            - name: S3_BASEMAP_PATH
+              value: {{ .Values.basemap.s3.path }}
+            - name: S3_ENDPOINT
+              value: {{ .Values.basemap.s3.endpoint }}
             envFrom:
               - secretRef:
-                  name: {{ .Values.envName }}-basemap
-              - configMapRef:
                   name: {{ .Values.envName }}-basemap
             resources:
               limits:
