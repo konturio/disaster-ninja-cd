@@ -80,6 +80,14 @@ spec:
                   name: {{ .Values.envName }}-raster-tiler
             - name: OAM_LAYER_ID
               value: {{ .Values.oam_layer_id }}
+          {{- if .Values.fetch_queue_ttl_ms }}
+            - name: FETCH_QUEUE_TTL_MS
+              value: {{ .Values.fetch_queue_ttl_ms }}
+          {{- end }}
+          {{- if .Values.tile_fetch_timeout_ms }}
+            - name: TILE_FETCH_TIMEOUT_MS
+              value: {{ .Values.tile_fetch_timeout_ms }}
+          {{- end }}
           {{- if .Values.db_disable_ssl }}
             - name: DB_DISABLE_SSL
               value: "true"
