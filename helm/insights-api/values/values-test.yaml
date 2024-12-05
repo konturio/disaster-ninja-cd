@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: refactor-remove-quotient-type.6bc7447.1
+  tag: master.7d65b55.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
