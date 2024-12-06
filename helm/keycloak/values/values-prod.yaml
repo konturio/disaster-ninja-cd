@@ -5,7 +5,7 @@
 image:
   repository: nexus.kontur.io:8084/konturdev/keycloak-with-ups-spi
   pullPolicy: IfNotPresent
-  tag: release-0.9.2.cbf0380.1
+  tag: main.355c72a.1
   pullSecretName: nexus8084
   usePullSecret: false
 
