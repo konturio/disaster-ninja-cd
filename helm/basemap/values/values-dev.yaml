@@ -56,4 +56,4 @@ basemap:
   # additionally:
   #     after space on /var will be increased (#20191),
   #     storage type could be permanently set to emptydir
-  storageType: pvc
+  storageType: emptydir
