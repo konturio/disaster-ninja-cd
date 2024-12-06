@@ -48,7 +48,7 @@ basemap:
               - key: kubernetes.io/hostname
                 operator: In
                 values:
-                  - hwn02.k8s-01.kontur.io
+                  - hwn01.k8s-01.kontur.io
   # NOTE: according to #20190, as a short-term fix
   # storage type should be set to
   #   PVC for normal operation,
@@ -56,4 +56,4 @@ basemap:
   # additionally:
   #     after space on /var will be increased (#20191),
   #     storage type could be permanently set to emptydir
-  storageType: pvc
+  storageType: emptydir
