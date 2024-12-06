@@ -92,6 +92,10 @@ spec:
             - name: DB_DISABLE_SSL
               value: "true"
           {{- end }}
+          {{- if .Values.num_cpus }}
+            - name: NUM_CPUS
+              value: {{ .Values.num_cpus | quote }}
+          {{- end }}
           image: {{ .Values.image.name }}:{{ .Values.image.tag }}
           imagePullPolicy: Always
         {{- if .Values.createResource.deploymentLivenessProbe }}
