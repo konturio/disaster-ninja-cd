@@ -45,6 +45,6 @@ basemap:
               - key: kubernetes.io/hostname
                 operator: In
                 values:
-                  - hwn02.k8s-01.kontur.io
+                  - hwn01.k8s-01.kontur.io
   # NOTE: see values-dev for more information on storagetype
   storageType: emptydir
