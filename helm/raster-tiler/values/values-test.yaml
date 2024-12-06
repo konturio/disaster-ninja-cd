@@ -16,8 +16,9 @@ titiler_url: http://test-titiler.test-titiler.svc
 pg_host: db-layers-primary.prod-layers-db.svc
 storage_size: 100Gi
 storageClass: local-path
-db_pool_size: 16
+db_pool_size: 8
 oam_layer_id: openaerialmap
+num_cpus: 4
 
 createResource:
   ingress: true
@@ -31,7 +32,7 @@ resources:
     cpu: 500m
     memory: 8Gi
   limits:
-    cpu: 4
+    cpu: 8
     memory: 512Gi
 
 log_level: info

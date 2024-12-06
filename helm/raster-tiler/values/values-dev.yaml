@@ -16,7 +16,7 @@ titiler_url: http://dev-titiler.dev-titiler.svc
 pg_host: db-layers-primary.dev-layers-db.svc
 storage_size: 100Gi
 storageClass: local-path
-db_pool_size: 16
+db_pool_size: 8
 oam_layer_id: openaerialmap
 
 createResource:
@@ -25,13 +25,14 @@ createResource:
   deploymentLivenessProbe: true
 isOfflineInstallation: false
 probeInitialDelaySeconds: 30
+num_cpus: 4
 
 resources:
   requests:
     cpu: 500m
     memory: 4Gi
   limits:
-    cpu: 4
+    cpu: 8
     memory: 512Gi
 
 storageType: emptydir
