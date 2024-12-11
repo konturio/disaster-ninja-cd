@@ -1,0 +1,27 @@
+- op: add
+  path: /spec/instances/-
+  value:
+    name: hwn03
+    replicas: 1
+    resources:
+      limits:
+        memory: 512Gi
+        cpu: '64'
+      requests:
+        memory: 22Gi
+        cpu: '2'
+    dataVolumeClaimSpec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 100Gi
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                    - hwn03.k8s-01.kontur.io
