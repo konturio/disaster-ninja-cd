@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: release-0.37.3.834b286.1
+    tag: 20307-api-add-maxzoom-field-for-axis.1530626.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
