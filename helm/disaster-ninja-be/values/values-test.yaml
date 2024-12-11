@@ -18,22 +18,22 @@ replicas: 2
 
 image:
   be:
-    tag: release-0.37.3.834b286.1
+    tag: 20364-dn-be-return-event-start-date-event-type.fda8c74.1
 
-keycloakUrl: 'https://keycloak01.konturlabs.com'
+keycloakUrl: "https://keycloak01.konturlabs.com"
 keycloakRealm: test
-eventApiUrl: 'http://test-event-api.test-event-api.svc:8624/events'
-kcApiUrl: 'https://test-api.konturlabs.com/layers'
-layersApiUrl: 'http://test-layers-api.test-layers-api.svc:8630/layers/v2/'
-insightsApiUrl: 'http://test-insights-api.test-insights-api.svc:8625/insights-api'
-userProfileApiUrl: 'http://test-user-profile-api.test-user-profile-api.svc:8631/userprofile'
-llmAnalyticsApiUrl: 'http://test-insights-llm-api.test-insights-api.svc.cluster.local:8000'
-tilesHost: 'https://sonic.kontur.io'
+eventApiUrl: "http://test-event-api.test-event-api.svc:8624/events"
+kcApiUrl: "https://test-api.konturlabs.com/layers"
+layersApiUrl: "http://test-layers-api.test-layers-api.svc:8630/layers/v2/"
+insightsApiUrl: "http://test-insights-api.test-insights-api.svc:8625/insights-api"
+userProfileApiUrl: "http://test-user-profile-api.test-user-profile-api.svc:8631/userprofile"
+llmAnalyticsApiUrl: "http://test-insights-llm-api.test-insights-api.svc.cluster.local:8000"
+tilesHost: "https://sonic.kontur.io"
 
 notificationsEnabled: true
-notificationsFeed: 'kontur-public'
-notificationsAlertUrlPattern: 'https://test-apps-ninja01.konturlabs.com/active/?event=%s&utm_source=slack'
-notificationsKonturUrlPattern: 'https://test-globalgiving-kontur-io.k8s-01.konturlabs.com/active/map?event=%s&feed=%s&utm_source=email'
+notificationsFeed: "kontur-public"
+notificationsAlertUrlPattern: "https://test-apps-ninja01.konturlabs.com/active/?event=%s&utm_source=slack"
+notificationsKonturUrlPattern: "https://test-globalgiving-kontur-io.k8s-01.konturlabs.com/active/map?event=%s&feed=%s&utm_source=email"
 
 alertingTime: 5m
 
