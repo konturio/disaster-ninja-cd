@@ -18,7 +18,7 @@ replicas: 1
 
 image:
   be:
-    tag: release-0.37.3.834b286.1
+    tag: 20364-dn-be-return-event-start-date-event-type.fda8c74.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
