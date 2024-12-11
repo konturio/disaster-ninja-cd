@@ -62,7 +62,7 @@
   path: /spec/patroni/switchover
   value:
     enabled: true
-    targetInstance: db-event-api-hwn02-5b7m
+    targetInstance: db-event-api-hwn03-l8jw
     #type: Failover
 # trigger-switchover annotation triggers actual switchover whenever its updated
 # value is arbitrary, but it's recommended to reference the date of switchover
