@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: main.a1b0668.1
+    tag: 20278-fe-default-sorting-for-gg-app.510b43e.1
 
 replicaCount: 2
 envName: dev
