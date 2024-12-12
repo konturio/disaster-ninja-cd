@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: release-2.36.2.05bf58d.1
+    tag: 20221-fe-apply-maxzoom-for-bivariate-mcda-layers-based-on-indicators-metadata.c8d7e66.1
 
 replicaCount: 2
 envName: test
