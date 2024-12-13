@@ -24,6 +24,7 @@ ingressHosts:
   - dev-terrain-kontur-io.k8s-01.konturlabs.com
   - dev-globalgiving-kontur-io.k8s-01.konturlabs.com
   - dev-horam-kontur-io.k8s-01.konturlabs.com
+  - dev-waldoair-kontur-io.k8s-01.konturlabs.com
 ingressClass: ingress-nginx
 
 createResource:
