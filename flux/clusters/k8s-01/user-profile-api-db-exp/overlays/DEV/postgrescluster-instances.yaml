@@ -2,7 +2,7 @@
 - op: replace 
   path: /spec/instances
   value:
-    - name: hwn04
+    - name: hwn03-bbkp2
       replicas: 1
       resources: &resources
         limits:
@@ -17,21 +17,6 @@
         resources:
           requests:
             storage: 25Gi
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: kubernetes.io/hostname
-                    operator: In
-                    values:
-                      - hwn04.k8s-01.kontur.io
-    - name: hwn03-bbkp2
-      replicas: 1
-      resources:
-        <<: *resources
-      dataVolumeClaimSpec:
-        <<: *storage
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
