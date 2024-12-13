@@ -85,4 +85,4 @@
 # See https://windsock.io/json-pointer-syntax-in-json-patches-with-kustomize/
 - op: add
   path: /metadata/annotations/postgres-operator.crunchydata.com~1trigger-switchover
-  value: 2024-11-04-19803-1   # reason: preparing to eliminate old unnamed instances (#19803)
+  value: 2024-12-12-1 # reason: replica migration (#20407)
