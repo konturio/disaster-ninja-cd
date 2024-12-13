@@ -2,7 +2,7 @@
 - op: replace 
   path: /spec/instances
   value:
-    - name: hwn03 # see #19803
+    - name: hwn02
       replicas: 1
       resources: &resources
         limits:
@@ -14,6 +14,24 @@
       dataVolumeClaimSpec: &pvc
         accessModes:
           - ReadWriteOnce
+        resources:
+          requests:
+            storage: 100Gi
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - hwn02.k8s-01.kontur.io
+    - name: hwn03 # see #19803
+      replicas: 1
+      resources:
+        <<: *resources
+      dataVolumeClaimSpec:
+        <<: *pvc
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
