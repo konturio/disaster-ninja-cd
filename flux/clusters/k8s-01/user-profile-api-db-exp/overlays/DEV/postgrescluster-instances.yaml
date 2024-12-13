@@ -41,21 +41,6 @@
                     operator: In
                     values:
                       - hwn03.k8s-01.kontur.io
-    - name: hwn02-pgbr
-      replicas: 1
-      resources:
-        <<: *resources
-      dataVolumeClaimSpec:
-        <<: *storage
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: kubernetes.io/hostname
-                    operator: In
-                    values:
-                      - hwn02.k8s-01.kontur.io
 # Switchover section
 # https://access.crunchydata.com/documentation/postgres-operator/latest/tutorials/cluster-management/administrative-tasks#changing-the-primary
 # https://access.crunchydata.com/documentation/postgres-operator/latest/tutorials/cluster-management/administrative-tasks#targeting-an-instance
