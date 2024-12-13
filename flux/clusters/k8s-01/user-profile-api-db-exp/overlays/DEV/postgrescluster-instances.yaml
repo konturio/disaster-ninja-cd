@@ -74,4 +74,4 @@
 # See https://windsock.io/json-pointer-syntax-in-json-patches-with-kustomize/
 - op: add
   path: /metadata/annotations/postgres-operator.crunchydata.com~1trigger-switchover
-  value: "2024-09-30 [01]"
+  value: "2024-12-13-1"
