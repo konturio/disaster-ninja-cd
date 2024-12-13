@@ -4,10 +4,16 @@
   value:
     - name: hwn03 # see #19803
       replicas: 1
-      resources:
-        <<: *resources
-      dataVolumeClaimSpec:
-        <<: *pvc
+      resources: &resources
+        limits:
+          memory: 512Gi
+          cpu: '64'
+        requests:
+          memory: 22Gi
+          cpu: '2'
+      dataVolumeClaimSpec: &pvc
+        accessModes:
+          - ReadWriteOnce
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
