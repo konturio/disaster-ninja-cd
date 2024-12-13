@@ -24,6 +24,7 @@ ingressHosts:
   - test-disaster-ninja.konturlabs.com
   - test-emb-apps-ninja01.konturlabs.com
   - test-emb-disaster-ninja.konturlabs.com
+  - test-waldoair-kontur-io.k8s-01.konturlabs.com
 ingressClass: ingress-nginx
 
 createResource:
