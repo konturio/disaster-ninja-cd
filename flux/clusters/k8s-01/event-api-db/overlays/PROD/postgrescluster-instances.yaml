@@ -4,49 +4,19 @@
   value:
     - name: hwn02
       replicas: 1
-      resources: &resources
+      resources:
         limits:
           memory: 512Gi
           cpu: '64'
         requests:
           memory: 22Gi
           cpu: '2'
-      dataVolumeClaimSpec: &pvc
+      dataVolumeClaimSpec:
         accessModes:
           - ReadWriteOnce
         resources:
           requests:
             storage: 100Gi
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: kubernetes.io/hostname
-                    operator: In
-                    values:
-                      - hwn02.k8s-01.kontur.io
-    - name: hwn03 # see #19803
-      replicas: 1
-      resources:
-        <<: *resources
-      dataVolumeClaimSpec:
-        <<: *pvc
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: kubernetes.io/hostname
-                    operator: In
-                    values:
-                      - hwn03.k8s-01.kontur.io
-    - name: hwn01
-      replicas: 1
-      resources:
-        <<: *resources
-      dataVolumeClaimSpec:
-        <<: *pvc
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -65,16 +35,20 @@
 # 1. Requires fully-qualified instance id of new master
 # 2. New master must be in sink with current master (check via `patronictl list`)
 # 3. Its recommended to retain switchover section, to keep track of last desired master both in code and k8s
-- op: add
-  path: /spec/patroni/switchover
-  value:
-    enabled: true
-    targetInstance: db-event-api-hwn03-l8jw
-    #type: Failover
+### Commented out because replicas are absent.
+#- op: add
+#  path: /spec/patroni/switchover
+#  value:
+#    enabled: true
+#    targetInstance: db-event-api-hwn03-l8jw
+#    #type: Failover
+###
 # trigger-switchover annotation triggers actual switchover whenever its updated
 # value is arbitrary, but it's recommended to reference the date of switchover
 # special syntax is used to escape slash with sequence ~1
 # See https://windsock.io/json-pointer-syntax-in-json-patches-with-kustomize/
-- op: add
-  path: /metadata/annotations/postgres-operator.crunchydata.com~1trigger-switchover
-  value: 2024-12-12-1 # reason: replica migration (#20407)
+### Commented out because replicas are absent.
+#- op: add
+#  path: /metadata/annotations/postgres-operator.crunchydata.com~1trigger-switchover
+#  value: 2024-12-12-1 # reason: replica migration (#20407)
+###
