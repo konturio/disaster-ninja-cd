@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 20307-api-add-maxzoom-field-for-axis-1.1447af7.1
+  tag: 20352-api-add-maxzoom-field-for-layers-details.f84be2d.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
