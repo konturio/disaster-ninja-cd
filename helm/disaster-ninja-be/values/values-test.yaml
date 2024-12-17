@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: 20352-api-add-maxzoom-field-for-layers-details.5350d26.1
+    tag: release-0.37.4.0626f5c.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
