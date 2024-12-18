@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 20213-implement-mcda-sorting-for-disasters-panel-at-gg-app.5376da1.1
+    tag: main.638b048.1
 
 replicaCount: 2
 envName: dev
