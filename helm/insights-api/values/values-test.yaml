@@ -2,7 +2,8 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 19319-improve-man-distance-unit-display.21e6805.1
+  tag: 20307-api-add-maxzoom-field-for-axis-1.6961eda.1
+  #tag: 19319-improve-man-distance-unit-display.21e6805.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
