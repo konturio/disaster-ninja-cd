@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: fix-advanced-analytics-max-res.f3398e0.1
+  tag: master.cb86d29.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
