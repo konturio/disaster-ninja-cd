@@ -9,7 +9,7 @@
         - name: repo2
           s3:
             bucket: pgbackrest-k8s-01
-            endpoint: pgbackrest-k8s-01.hel1.your-objectstorage.com
+            endpoint: hel1.your-objectstorage.com
             region: eu-central-1
           schedules:
             full: 0 18 * * 3
