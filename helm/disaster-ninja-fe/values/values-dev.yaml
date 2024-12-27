@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 20410-fix-fe-load-times-reporting-to-grafana.03a8a06.1
+    tag: main.737f42f.1
 
 replicaCount: 2
 envName: dev
