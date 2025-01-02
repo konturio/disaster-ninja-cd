@@ -54,8 +54,8 @@
   path: /spec/patroni/switchover
   value:
     enabled: true
-    targetInstance: db-event-api-hwn03-r24d
+    targetInstance: db-event-api-hwn01-n2ts
 
 - op: add
   path: /metadata/annotations/postgres-operator.crunchydata.com~1trigger-switchover
-  value: 2024-12-12-1 # reason: replica migration (#20406)
+  value: 2025-01-03-1 # reason: replica migration
