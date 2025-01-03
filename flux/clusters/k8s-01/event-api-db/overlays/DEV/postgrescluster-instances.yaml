@@ -2,59 +2,21 @@
 - op: replace
   path: /spec/instances
   value:
-    - name: hwn04
+    - name: hwn01
       replicas: 1
-      resources: &resources
+      resources:
         limits:
-          memory: 512Gi # # let Postres use the page cache
-          cpu: '64' # set as event-api pool size + autovacuum workers + a bit for parallel workers
-          # empyrical recommendations below
-          # memory: 100Gi
-          # cpu: '5'
+          memory: 512Gi
+          cpu: '64'
         requests:
-          memory: 22Gi # roughly shared_buffers + pool size * work_mem
-          cpu: '2' # if we don't have CPU we can run on potato
-          # empyrical recommendations below
-          # memory: 7Gi
-          # cpu: '1'
-      dataVolumeClaimSpec: &storage
+          memory: 22Gi
+          cpu: '2'
+      dataVolumeClaimSpec:
         accessModes:
           - ReadWriteOnce
         resources:
           requests:
             storage: 100Gi
-            # empyrical recommendations below -- actual storage varies from 2300Gi to 6200Gi
-            # storage: 2500Gi
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: kubernetes.io/hostname
-                    operator: In
-                    values:
-                      - hwn04.k8s-01.kontur.io
-    - name: hwn03
-      replicas: 1
-      resources:
-        <<: *resources
-      dataVolumeClaimSpec:
-        <<: *storage
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: kubernetes.io/hostname
-                    operator: In
-                    values:
-                      - hwn03.k8s-01.kontur.io
-    - name: hwn01
-      replicas: 1
-      resources:
-        <<: *resources
-      dataVolumeClaimSpec:
-        <<: *storage
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
