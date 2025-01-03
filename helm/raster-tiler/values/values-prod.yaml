@@ -14,7 +14,7 @@ ingressClass: ingress-nginx
 base_url: https://prod-raster-tiler.k8s-01.konturlabs.com
 titiler_url: http://prod-titiler.prod-titiler.svc
 pg_host: db-layers-primary.prod-layers-db.svc
-storage_size: 500Gi
+storage_size: 300Gi
 storageClass: local-path
 db_pool_size: 8
 oam_layer_id: openaerialmap
