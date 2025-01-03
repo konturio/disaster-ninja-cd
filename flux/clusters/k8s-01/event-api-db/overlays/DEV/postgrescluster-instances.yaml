@@ -75,7 +75,7 @@
   path: /spec/patroni/switchover
   value:
     enabled: true
-    targetInstance: db-event-api-hwn04-dpzz
+    targetInstance: db-event-api-hwn01-ws4q
     #type: Failover
 # trigger-switchover annotation triggers actual switchover whenever its updated
 # value is arbitrary, but it's recommended to reference the date of switchover
@@ -83,4 +83,4 @@
 # See https://windsock.io/json-pointer-syntax-in-json-patches-with-kustomize/
 - op: add
   path: /metadata/annotations/postgres-operator.crunchydata.com~1trigger-switchover
-  value: "2024-10-09 14:33:00+00 (#19851)"
+  value: "2025-01-03-1"
