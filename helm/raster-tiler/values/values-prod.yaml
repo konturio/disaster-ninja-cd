@@ -18,8 +18,8 @@ storage_size: 500Gi
 storageClass: local-path
 db_pool_size: 8
 oam_layer_id: openaerialmap
-tile_fetch_timeout_ms: 1800000
-fetch_queue_ttl_ms: 3600000
+tile_fetch_timeout_ms: '1800000'
+fetch_queue_ttl_ms: '3600000'
 num_cpus: 24
 
 createResource:
