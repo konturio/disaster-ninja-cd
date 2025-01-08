@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 24282c8dc36214a685ad8c9f9f3c50fb15cdb204
+  tag: 94557fdad46bb83770e946002f246bc2e46a6d6f
   pullSecretName: none
   usePullSecret: false
 
@@ -18,8 +18,8 @@ storage_size: 300Gi
 storageClass: local-path
 db_pool_size: 8
 oam_layer_id: openaerialmap
-tile_fetch_timeout_ms: '1800000'
-fetch_queue_ttl_ms: '3600000'
+tile_fetch_timeout_ms: "1800000"
+fetch_queue_ttl_ms: "3600000"
 num_cpus: 24
 
 createResource:
