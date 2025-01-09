@@ -30,8 +30,6 @@ userProfileApiUrl: 'http://dev-user-profile-api.dev-user-profile-api.svc:8631/us
 llmAnalyticsApiUrl: 'http://dev-insights-llm-api.dev-insights-api.svc.cluster.local:8000'
 tilesHost: 'https://sonic.kontur.io'
 
-useInsightsV2: true
-
 notificationsEnabled: true
 notificationsFeed: kontur-public
 notificationsAlertUrlPattern: 'https://test-apps-ninja02.konturlabs.com/active/?event=%s&utm_source=slack'

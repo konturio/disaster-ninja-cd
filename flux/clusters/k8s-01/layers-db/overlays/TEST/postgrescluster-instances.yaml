@@ -30,8 +30,8 @@
   path: /spec/patroni/switchover
   value:
     enabled: true
-    targetInstance: db-layers-hwn01-gfvt
+    targetInstance: db-layers-hwn01-ntht
 
 - op: add
   path: /metadata/annotations/postgres-operator.crunchydata.com~1trigger-switchover
-  value: "2025-01-08-1"
+  value: "2025-01-09-1"
