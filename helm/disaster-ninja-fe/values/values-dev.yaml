@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 19288-mobile-version-for-search-on-kontur-apps.22c7658.1
+    tag: 19288-mobile-version-for-search-on-kontur-apps.33ea5b9.1
 
 replicaCount: 2
 envName: dev
