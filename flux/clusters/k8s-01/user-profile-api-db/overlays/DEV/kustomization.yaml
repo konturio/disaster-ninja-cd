@@ -42,6 +42,12 @@ patchesJson6902:
       kind: PostgresCluster
       name: db-user-profile-api
     path: postgrescluster-assigning.yaml
+  - target:
+      group: postgres-operator.crunchydata.com
+      version: v1beta1
+      kind: PostgresCluster
+      name: db-user-profile-api
+    path: postgrescluster-instances.yaml
   # - target:
   #     group: postgres-operator.crunchydata.com
   #     version: v1beta1
