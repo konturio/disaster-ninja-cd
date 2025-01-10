@@ -17,12 +17,6 @@ patchesJson6902:
       version: v1beta1
       kind: PostgresCluster
       name: db-keycloak
-    path: postgrescluster-resource-adjustment.yaml
-  - target:
-      group: postgres-operator.crunchydata.com
-      version: v1beta1
-      kind: PostgresCluster
-      name: db-keycloak
     path: postgrescluster-onsite-backups.yaml
   - target:
       group: postgres-operator.crunchydata.com
@@ -30,12 +24,6 @@ patchesJson6902:
       kind: PostgresCluster
       name: db-keycloak
     path: postgrescluster-pgbackrest-adjustment.yaml
-  - target:
-      group: postgres-operator.crunchydata.com
-      version: v1beta1
-      kind: PostgresCluster
-      name: db-keycloak
-    path: postgrescluster-assigning.yaml
   - target:
       group: postgres-operator.crunchydata.com
       version: v1beta1
