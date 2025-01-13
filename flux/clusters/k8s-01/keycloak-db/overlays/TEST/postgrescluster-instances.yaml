@@ -1,4 +1,4 @@
-- op: repalce
+- op: replace
   path: /spec/instances
   value:
     - name: hwn01
