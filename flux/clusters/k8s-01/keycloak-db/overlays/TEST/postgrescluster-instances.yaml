@@ -25,3 +25,13 @@
                   operator: In
                   values:
                     - hwn01.k8s-01.kontur.io
+
+- op: add
+  path: /spec/patroni/switchover
+  value:
+    enabled: true
+    targetInstance: db-keycloak-hwn01-s9j7
+
+- op: add
+  path: /metadata/annotations/postgres-operator.crunchydata.com~1trigger-switchover
+  value: "2025-01-13-1"
