@@ -37,3 +37,7 @@
 - op: add
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/temp_buffers
   value: '128MB'
+
+- op: add
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/hot_standby_feedback
+  value: 'on'
