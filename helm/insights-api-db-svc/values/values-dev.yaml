@@ -7,7 +7,7 @@ image:
   pullSecretName: none
   usePullSecret: false
 
-replicas: 0
+replicas: 1
 envName: dev
 
 createResource:
