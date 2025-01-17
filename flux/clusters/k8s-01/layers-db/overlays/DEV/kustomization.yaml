@@ -12,12 +12,6 @@ patchesJson6902:
       kind: PostgresCluster
       name: db-layers
     path: postgrescluster-s3-backups.yaml
-  - target:
-      group: postgres-operator.crunchydata.com
-      version: v1beta1
-      kind: PostgresCluster
-      name: db-layers
-    path: postgrescluster-resource-adjustment.yaml
 #  - target:
 #      group: postgres-operator.crunchydata.com
 #      version: v1beta1
@@ -36,12 +30,6 @@ patchesJson6902:
       kind: PostgresCluster
       name: db-layers
     path: postgrescluster-pgbackrest-adjustment.yaml
-  - target:
-      group: postgres-operator.crunchydata.com
-      version: v1beta1
-      kind: PostgresCluster
-      name: db-layers
-    path: postgrescluster-assigning.yaml
   - target:
       group: postgres-operator.crunchydata.com
       version: v1beta1
