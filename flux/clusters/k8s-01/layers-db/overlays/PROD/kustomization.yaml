@@ -39,6 +39,12 @@ patchesJson6902:
       kind: PostgresCluster
       name: db-layers
     path: postgrescluster-assigning.yaml
+  - target:
+      group: postgres-operator.crunchydata.com
+      version: v1beta1
+      kind: PostgresCluster
+      name: db-layers
+    path: postgrescluster-instances.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
