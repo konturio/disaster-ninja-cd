@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: release-2.40.1.3613ef6.1
+    tag: 20565-improve-coverage-for-auth-and-api-clients.3dff59f.1
 
 replicaCount: 2
 envName: dev
