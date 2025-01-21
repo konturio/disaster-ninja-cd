@@ -5,7 +5,7 @@
 image:
   repository: nexus.kontur.io:8084/konturdev/keycloak-with-ups-spi
   pullPolicy: IfNotPresent
-  tag: 19613-add-new-columns-into-users-table-in-ups.6416a53.1
+  tag: 19613-add-new-columns-into-users-table-in-ups.a08890c.1
   pullSecretName: nexus8084
   usePullSecret: false
 
