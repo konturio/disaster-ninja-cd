@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 19613-add-new-columns-into-users-table-in-ups.7a0e62a.1
+  tag: 19613-add-new-columns-into-users-table-in-ups.09caccf.1
   pullSecretName: none
   usePullSecret: false
 
