@@ -41,3 +41,15 @@
 - op: add
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/temp_buffers
   value: '128MB'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/vacuum_buffer_usage_limit
+  value: '0'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/maintenance_work_mem
+  value: '16GB'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/wal_compression
+  value: 'off'
