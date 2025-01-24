@@ -53,3 +53,31 @@
 - op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/wal_compression
   value: 'off'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/autovacuum_vacuum_cost_delay
+  value: '0'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/autovacuum_vacuum_scale_factor
+  value: '0.0001'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/autovacuum_analyze_scale_factor
+  value: '0.0001'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/max_parallel_maintenance_workers
+  value: '16'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/maintenance_io_concurrency
+  value: '1000'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/autovacuum_max_workers
+  value: '8'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/autovacuum_vacuum_insert_scale_factor
+  value: '0.0001'
