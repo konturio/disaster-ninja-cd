@@ -8,8 +8,8 @@
       repos:
         - name: repo2
           s3:
-            bucket: pgbackrest
-            endpoint: s3.kontur.io
+            bucket: pgbackrest-k8s-01
+            endpoint: hel1.your-objectstorage.com
             region: eu-central-1
           schedules:
             full: '0 21 */14 * *'
