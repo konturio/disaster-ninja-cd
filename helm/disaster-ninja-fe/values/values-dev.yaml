@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 20565-improve-coverage-for-auth-and-api-clients.3dff59f.1
+    tag: 16348-http-url-query-contains-semicolon-which-is-no-longer-a-supported-separator-1.7aaca2a.1
 
 replicaCount: 2
 envName: dev
