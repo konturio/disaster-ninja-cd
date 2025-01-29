@@ -9,3 +9,23 @@
 - op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/wal_level
   value: 'logical'
+
+- op: add
+  path: /spec/backups/pgbackrest/global/process-max
+  value: '16'
+
+- op: add
+  path: /spec/backups/pgbackrest/global/archive-push-queue-max
+  value: '400GB'
+
+- op: add
+  path: /spec/backups/pgbackrest/global/spool-path
+  value: '/pgdata/pgbackrest'
+
+- op: add
+  path: /spec/backups/pgbackrest/global/archive-async
+  value: 'y'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/max_wal_size
+  value: '30GB'
