@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 20441-geocint-move-prompt-hint-for-safety_index-from-llm-api-to-indicator-description.64bc583.1
+  tag: release-0.2.5.e35e484.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
