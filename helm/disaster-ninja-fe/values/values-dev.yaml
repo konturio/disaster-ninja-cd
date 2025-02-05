@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 16348-http-url-query-contains-semicolon-which-is-no-longer-a-supported-separator-1.7aaca2a.1
+    tag: 17352-hide-button-group-on-toolbar-if-it-s-empty.18699d9.1
 
 replicaCount: 2
 envName: dev
