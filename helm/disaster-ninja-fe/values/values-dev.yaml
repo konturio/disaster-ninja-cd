@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 17352-hide-button-group-on-toolbar-if-it-s-empty.18699d9.1
+    tag: main.49bfe9e.1
 
 replicaCount: 2
 envName: dev

@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 20145-analyze-multivariate-mcda-fe-implementation.0e0cb61.1
+    tag: main.49bfe9e.1
 
 replicaCount: 2
 envName: test
