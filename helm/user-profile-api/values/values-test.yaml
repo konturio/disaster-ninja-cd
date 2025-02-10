@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 20431-add-objectives-column-in-ups-users-table.ac2e6fd.1
+  tag: main.185aebc.1 
   pullSecretName: none
   usePullSecret: false
 
