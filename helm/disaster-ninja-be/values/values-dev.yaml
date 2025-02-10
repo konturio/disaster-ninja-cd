@@ -18,7 +18,7 @@ replicas: 1
 
 image:
   be:
-    tag: 20675-add-new-user-fields-to-dn-be.9c82c75.1
+    tag: main.d707561.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
