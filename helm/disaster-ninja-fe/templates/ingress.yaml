@@ -22,7 +22,11 @@ metadata:
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/cors-allow-headers: DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,User-Language
     nginx.ingress.kubernetes.io/cors-allow-credentials: "false"
-    nginx.ingress.kubernetes.io/proxy-buffering: "on"
+    nginx.ingress.kubernetes.io/proxy-buffering: "off"
+    nginx.ingress.kubernetes.io/proxy-http-version: "1.1"
+    nginx.ingress.kubernetes.io/upstream-keepalive-connections: "32"
+
+
   {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/server-snippet: |
   {{- else }}
