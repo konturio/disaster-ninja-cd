@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 14398-add-metadata-about-downscaling-mechanism-for-indicator-geocint.09b4810.1
+  tag: 14398-add-metadata-about-downscaling-mechanism-for-indicator-geocint.2f3c4b5.1
   usePullSecret: false
   pullSecretName: none
 
