@@ -18,7 +18,7 @@ replicas: 1
 
 image:
   be:
-    tag: release-0.37.5.503a45b.1
+    tag: 20721-be-turn-off-layer-configs-validation-in-api-layers-details-endpoint.be9eabc.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
