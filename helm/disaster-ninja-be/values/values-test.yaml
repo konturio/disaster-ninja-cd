@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: 20721-be-turn-off-layer-configs-validation-in-api-layers-details-endpoint.be9eabc.1
+    tag: 20721-be-turn-off-layer-configs-validation-in-api-layers-details-endpoint.d62ddbd.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
