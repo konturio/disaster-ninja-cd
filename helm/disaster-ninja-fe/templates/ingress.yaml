@@ -51,7 +51,7 @@ metadata:
         set $frame_options $dn2021_x_frame_options;
       }
 
-      more_set_headers "Cache-Control: $dn_cache_control";
+      # more_set_headers "Cache-Control: $dn_cache_control";
       more_set_headers "Strict-Transport-Security: max-age=31536000";
       more_set_headers "X-Frame-Options: $frame_options";
       more_set_headers "X-Content-Type-Options: nosniff";
