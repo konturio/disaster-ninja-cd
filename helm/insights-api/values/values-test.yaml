@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: release-0.22.3.f06e714.1
+  tag: 20563-urban-core-is-bigger-than-total-population-in-slack-and-email-notifications-4.a1c4991.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
