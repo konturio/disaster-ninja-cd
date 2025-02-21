@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 20661-fe-implement-multivariate-layers-with-bivariate-style.016e85d.1
+    tag: main.69479a2.1
 
 replicaCount: 2
 envName: dev
