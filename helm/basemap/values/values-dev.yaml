@@ -25,7 +25,7 @@ basemap:
   #   1) either only *one* of dev/test/prod could be unsuspended
   #   2) or processing schedules of dev/test/prod should be coordinated to prevent simultaneous execution
   # suspend: true # until image will be fixed, see #19951 and #19959
-  processingSchedule: "0 13 * * *" # Run once in 2 days at midnight
+  processingSchedule: "0 13 */2 * *" # Run once in 2 days at midnight
   s3:
     path: s3://basemap-locker01/DEV
     url: https://s3.kontur.io/basemap-locker01/DEV
