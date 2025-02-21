@@ -23,7 +23,7 @@ tileserver:
 basemap:
   # WARNING: job requires about 200G RAM and is stick to hwn02. Do not unsuspend without node capacity analysis!
   # NOTE: see values-dev for information on special conditions for suspend/processingSchedule
-  # suspend: true # until image will be fixed, see #19951 and #19959
+  suspend: true # until image will be fixed, see #19951 and #19959
   processingSchedule: "0 0 */2 * *" # Run once in 2 days at midnight
   s3:
     path: s3://basemap-locker01/PROD
