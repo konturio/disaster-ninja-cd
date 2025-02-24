@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: release-2.42.0.938b665.1
+    tag: 20907-implement-glass-style.e89f601.1
 
 replicaCount: 2
 envName: dev
