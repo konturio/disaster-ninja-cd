@@ -17,6 +17,7 @@ resources:
   - basemap
   - insights-api-db-svc
   - insights-llm-api
+  - job-watcher-controller
 
 # Do not comment or remove any lines below unless you intend to kill a few databases
   - event-api-db/overlays/DEV
