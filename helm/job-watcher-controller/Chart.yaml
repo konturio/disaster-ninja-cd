@@ -1,0 +1,6 @@
+apiVersion: v2
+name: job-watcher-controller
+description: Controller to watch k8s jobs and trigger custom actions based on their status
+type: application
+
+version: 1.0.0

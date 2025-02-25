@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../base/job-watcher-controller
+namePrefix: test-
+namespace: test-basemap
+patches:
+  - target:
+      kind: HelmRelease
+      name: job-watcher-controller
+      group: helm.toolkit.fluxcd.io
+      version: v2beta1
+    patch: |-
+      - op: replace
+        path: /spec/chart/spec/valuesFiles
+        value:
+          - ./helm/job-watcher-controller/values.yaml
+          - ./helm/job-watcher-controller/values/values-test.yaml
+---

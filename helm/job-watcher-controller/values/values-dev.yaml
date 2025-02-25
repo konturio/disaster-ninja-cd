@@ -1,0 +1,11 @@
+envName: dev
+
+replicas: 1
+
+monitoredNamespace: dev-basemap
+targetDeploymentName: dev-basemap-tileserver
+jobNamePattern: dev-basemap
+
+image:
+  tag: main.5315afc.1
+  name: nexus.kontur.io:8084/konturdev/job-watcher-controller

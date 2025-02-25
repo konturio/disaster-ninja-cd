@@ -1,0 +1,28 @@
+envName: dev
+
+images:
+  pullSecretName: nexus8084
+  usePullSecret: true
+
+replicas: 1
+healthPort: 9440
+
+monitoredNamespace: dev-basemap
+targetDeploymentName: dev-basemap-tileserver
+jobNamePattern: dev-basemap
+
+imagePullPolicy: IfNotPresent
+
+image:
+  tag: latest
+  name: nexus.kontur.io:8084/konturdev/job-watcher-controller
+  pullSecretName: nexus8084
+  usePullSecret: true
+
+resources:
+  requests:
+    memory: 250Mi
+    cpu: 250m
+  limits:
+    memory: 500Mi
+    cpu: 500m
