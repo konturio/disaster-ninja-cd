@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: job-watcher-controller
+spec:
+  chart:
+    spec:
+      chart: ./helm/job-watcher-controller
+      interval: 1m
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: kontur-platform
+        namespace: flux-system
+      valuesFiles:
+        - ./helm/job-watcher-controller/values.yaml
+  interval: 5m
+  suspend: false
+  test:
+    enable: true
+  upgrade:
+    remediation:
+      remediateLastFailure: true

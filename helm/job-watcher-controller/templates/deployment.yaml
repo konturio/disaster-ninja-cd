@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-job-watcher-controller
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: job-watcher-controller
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-job-watcher-controller
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.replicas }}
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Values.envName }}-job-watcher-controller
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: job-watcher-controller
+      stage: {{ .Values.envName }}
+  template:
+    metadata:
+      annotations:
+        meta.helm.sh/release-name: {{ .Release.Name }}
+        meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+      labels:
+        app.kubernetes.io/instance: {{ .Values.envName }}-job-watcher-controller
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: job-watcher-controller
+        stage: {{ .Values.envName }}
+    spec:
+      serviceAccountName: {{ .Values.envName }}-job-watcher-controller-sa
+      {{- if .Values.image.usePullSecret }}
+      imagePullSecrets:
+        - name: {{ .Values.image.pullSecretName }}
+      {{- end }}
+      containers:
+        - name: job-watcher-controller
+          image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MONITORED_NAMESPACE
+              value: {{ .Values.monitoredNamespace | quote }}
+            - name: TARGET_DEPLOYMENT_NAME
+              value: {{ .Values.targetDeploymentName | quote }}
+            - name: JOB_NAME_PATTERN
+              value: {{ .Values.jobNamePattern | quote }}
+          ports:
+            - name: health
+              containerPort: {{ .Values.healthPort }}
+          resources:
+            limits:
+              cpu: {{ .Values.resources.requests.cpu | quote }}
+              memory: {{ .Values.resources.limits.memory | quote }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu | quote }}
+              memory: {{ .Values.resources.requests.memory | quote }}
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: {{ .Values.healthPort }}
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: {{ .Values.healthPort }}
+            initialDelaySeconds: 5
+            periodSeconds: 10
