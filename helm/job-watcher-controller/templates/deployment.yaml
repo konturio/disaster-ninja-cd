@@ -52,7 +52,7 @@ spec:
               containerPort: {{ .Values.healthPort }}
           resources:
             limits:
-              cpu: {{ .Values.resources.requests.cpu | quote }}
+              cpu: {{ .Values.resources.limits.cpu | quote }}
               memory: {{ .Values.resources.limits.memory | quote }}
             requests:
               cpu: {{ .Values.resources.requests.cpu | quote }}
