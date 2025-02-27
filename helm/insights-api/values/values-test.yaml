@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 20861-remove-insights-v1-code.9ca8bdd.1
+  tag: master.8960778.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
@@ -60,5 +60,3 @@ maxH3Resolution: 11
 minH3Resolution: 0
 maxZoom: 15
 minZoom: 0
-
-useStatSeparateTables: true
