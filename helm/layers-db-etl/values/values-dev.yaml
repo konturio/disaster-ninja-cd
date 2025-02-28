@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 20664-add-a-single-multivariate-layer-preset-for-testing-oasis-app.2a3882f.1 
+  tag: release-1.4.20.73159d1.1
   usePullSecret: false
   pullSecretName: none
 
