@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 18967-openaerialmap-user-count-stat-h3-layer.53f7301.1
+  tag: 18967-openaerialmap-user-count-stat-h3-layer.e5fc1b2.1
   usePullSecret: false
   pullSecretName: none
 
