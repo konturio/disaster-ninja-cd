@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 20895-ups-assign-trial-role-to-all-registered-users-on-atlas.37835cb.1 
+  tag: revert-171-20756-provide-all-authorized-registered-users-with-access-to-all-atlas-features.bd7e026.1 
   pullSecretName: none
   usePullSecret: false
 
