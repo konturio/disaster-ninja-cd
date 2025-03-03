@@ -18,7 +18,6 @@ data:
   spring.redis.host: {{ .Values.envName }}-insights-api-redis
   spring.security.oauth2.resourceserver.jwt.issuer-uri: {{ .Values.keycloakUrl }}/realms/{{ .Values.keycloakRealm }}
   spring.security.oauth2.resourceserver.jwt.jwk-set-uri: {{ .Values.keycloakUrl }}/realms/{{ .Values.keycloakRealm }}/protocol/openid-connect/certs
-  calculations.useStatSeparateTables: {{ .Values.useStatSeparateTables | quote }}
   calculations.tiles.tile-size: {{ .Values.tileSize | quote }}
   calculations.tiles.hex-edge-pixels: {{ .Values.hexEdgePixels | quote }}
   calculations.tiles.max-h3-resolution: {{ .Values.maxH3Resolution | quote }}
