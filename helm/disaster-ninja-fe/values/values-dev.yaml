@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: main.ee61189.1
+    tag: 20955-add-belarusian-and-russian-languages-to-profile.b36efc6.1
 replicaCount: 2
 envName: dev
 ingressHosts:
