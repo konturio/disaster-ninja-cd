@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: ghcr.io/konturio/disaster-ninja-fe:18305-simplifying-dn-deployment-process-4.88f0f9f.1
+    tag: main.ee61189.1
 replicaCount: 2
 envName: dev
 ingressHosts:
