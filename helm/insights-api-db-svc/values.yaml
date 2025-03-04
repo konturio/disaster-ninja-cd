@@ -35,5 +35,6 @@ databasePort: 8900
 databaseName: insights-api
 databaseUsername: insights-api
 
+taskTimeout: 1h
 maxParallelTasks: 7
 runCorrelations: true
