@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 21021-population-gdp-query-is-slow-on-partitions.90f44fb.1
+  tag: 21021-population-gdp-query-is-slow-on-partitions.62bdebf.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
