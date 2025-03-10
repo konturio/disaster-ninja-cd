@@ -61,7 +61,7 @@ spec:
         - -c
         - |
           echo "Downloading basemap.mbtiles, glyphs, sprite and styles from S3..." &&
-          aws s3 cp {{ .Values.basemap.s3.path }}/basemap.mbtiles /data
+          aws s3 cp {{ .Values.basemap.s3.path }}basemap.mbtiles /data
           {{- if .Values.basemap.s3.endpoint }} --endpoint-url {{ .Values.basemap.s3.endpoint }} {{- end }} &&
           aws s3 cp --recursive {{ .Values.basemap.s3.path }}/styles /data/styles
           {{- if .Values.basemap.s3.endpoint }} --endpoint-url {{ .Values.basemap.s3.endpoint }} {{- end }} &&
