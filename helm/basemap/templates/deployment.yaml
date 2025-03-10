@@ -63,11 +63,11 @@ spec:
           echo "Downloading basemap.mbtiles, glyphs, sprite and styles from S3..." &&
           aws s3 cp {{ .Values.basemap.s3.path }}basemap.mbtiles /data
           {{- if .Values.basemap.s3.endpoint }} --endpoint-url {{ .Values.basemap.s3.endpoint }} {{- end }} &&
-          aws s3 cp --recursive {{ .Values.basemap.s3.path }}/styles /data/styles
+          aws s3 cp --recursive {{ .Values.basemap.s3.path }}styles /data/styles
           {{- if .Values.basemap.s3.endpoint }} --endpoint-url {{ .Values.basemap.s3.endpoint }} {{- end }} &&
-          aws s3 cp --recursive {{ .Values.basemap.s3.path }}/glyphs /data/glyphs
+          aws s3 cp --recursive {{ .Values.basemap.s3.path }}glyphs /data/glyphs
           {{- if .Values.basemap.s3.endpoint }} --endpoint-url {{ .Values.basemap.s3.endpoint }} {{- end }} &&
-          aws s3 cp --recursive {{ .Values.basemap.s3.path }}/sprite /data/sprite
+          aws s3 cp --recursive {{ .Values.basemap.s3.path }}sprite /data/sprite
           {{- if .Values.basemap.s3.endpoint }} --endpoint-url {{ .Values.basemap.s3.endpoint }} {{- end }}
         envFrom:
         - configMapRef:
