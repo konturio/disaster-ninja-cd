@@ -7,5 +7,5 @@ targetDeploymentName: test-basemap-tileserver
 jobNamePattern: test-basemap
 
 image:
-  tag: main.5315afc.1
   name: nexus.kontur.io:8084/konturdev/job-watcher-controller
+  tag: main.e4c26a4.1
