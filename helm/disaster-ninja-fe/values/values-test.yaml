@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 21063-use-maxzoom-based-on-indicators-in-multivariate-config.f103cf4.1
+    tag: main.6bec1d2.1
 replicaCount: 2
 envName: test
 ingressHosts:
