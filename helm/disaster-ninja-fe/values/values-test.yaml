@@ -6,8 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: main.6bec1d2.1
-
+    tag: 21063-use-maxzoom-based-on-indicators-in-multivariate-config.f103cf4.1
 replicaCount: 2
 envName: test
 ingressHosts:
@@ -26,18 +25,13 @@ ingressHosts:
   - test-emb-disaster-ninja.konturlabs.com
   - test-waldoair-kontur-io.k8s-01.konturlabs.com
 ingressClass: ingress-nginx
-
 createResource:
   ingress: true
   prometheusRule: true
   serviceMonitor: true
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
-
 reportsBucket: "https://geodata-eu-central-1-kontur-public.s3.eu-central-1.amazonaws.com/kontur_reports/test/"
-
 epigHost: "https://test-epig.k8s-01.konturlabs.com"
-
 alertingTime: 5m
-
 client_max_body_size: 100m
