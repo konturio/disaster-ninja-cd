@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 12805-open-panels-as-bottom-sheets-on-mobile-kontur-apps-v2.912664d.1
+    tag: main.3b62d41.1
 replicaCount: 2
 envName: dev
 ingressHosts:
