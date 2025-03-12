@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: master.bca4e10.1
+  tag: 21075-ai-analytics-fails-if-no-overlays.19a46a1.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
