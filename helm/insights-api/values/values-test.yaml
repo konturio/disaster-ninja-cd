@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: release-0.22.6.639f277.1
+  tag: 20707-add-a-field-for-indicators-hash-to-upload-and-indicators-endpoints-in-insights-1.c97a273.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
