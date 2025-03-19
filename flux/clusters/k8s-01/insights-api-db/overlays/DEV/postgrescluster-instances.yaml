@@ -6,7 +6,7 @@
       resources:
         limits:
           memory: 512Gi
-          cpu: '64'
+          cpu: '32'
         requests:
           memory: 24Gi
           cpu: '2'
