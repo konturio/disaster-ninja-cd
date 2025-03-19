@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: master.5378196.1
+  tag: 21156-insights-api-504-from-tiles-endpoint-4.8faffcf.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
