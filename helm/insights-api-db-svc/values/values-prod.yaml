@@ -28,7 +28,7 @@ resources:
   limits:
     memory: 16Gi
 
-taskTimeout: 3h
+taskTimeout: 48h
 maxParallelTasks: 12
 runCorrelations: false
 insightsApiUrl: http://prod-insights-api.prod-insights-api.svc:8625/insights-api
