@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 19710-geocint-uploads-indicator-even-if-it-s-the-same-as-prev-version.ea906cc.1
+  tag: main.10a4712.1
   usePullSecret: false
   pullSecretName: none
 
