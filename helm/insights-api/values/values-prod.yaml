@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 21156-insights-api-504-from-tiles-endpoint.2c7ae4d.1
+  tag: master.734da15.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
@@ -52,6 +52,7 @@ keycloakRealm: kontur
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
 
+client_max_body_size: 200g
 proxy_read_timeout: 21600s
 jdbcTemplateQueryTimeout: "21600"
 
