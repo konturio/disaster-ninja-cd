@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: master.734da15.1
+  tag: 19237-research-possibility-of-insights-api-refactoring-to-use-separate-database-endpoints-for-reading-and-writing.bdc31b1.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
@@ -36,6 +36,8 @@ resources:
       memory: 16G
 
 databaseHost: db-insights-api-primary.test-insights-api.svc
+# TODO: replace with secondary replica URL once ready
+databaseHostSecondary: db-insights-api-primary.test-insights-api.svc
 databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
