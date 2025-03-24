@@ -5,7 +5,7 @@
 image:
   repository: nexus.kontur.io:8084/konturdev/keycloak-with-ups-spi
   pullPolicy: IfNotPresent
-  tag: main.1da5671.1
+  tag: 20895-fix-trial-role-setup-keycloak.68f3043.1
   pullSecretName: nexus8084
   usePullSecret: false
 
