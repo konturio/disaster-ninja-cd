@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: release-2.43.0.4e6c17d.1
+    tag: 20961-mobile-atlas-service-pages-have-horizontal-scroll.3d1df95.1
 replicaCount: 2
 envName: test
 ingressHosts:
