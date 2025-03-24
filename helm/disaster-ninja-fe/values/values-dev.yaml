@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: "21040-dn-fe-improve-slack-notifications.a6686f7.1"
+    tag: "21040-dn-fe-improve-slack-notifications.8905ebb.1"
 replicaCount: 2
 envName: dev
 ingressHosts:
