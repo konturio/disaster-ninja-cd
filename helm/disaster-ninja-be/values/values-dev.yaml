@@ -18,7 +18,7 @@ replicas: 1
 
 image:
   be:
-    tag: release-0.37.6.3ff5dcc.1
+    tag: main.d9f2081.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
@@ -31,6 +31,8 @@ llmAnalyticsApiUrl: 'http://dev-insights-llm-api.dev-insights-api.svc.cluster.lo
 tilesHost: 'https://sonic.kontur.io'
 
 notificationsEnabled: true
+notificationsSlackEnabled: true
+notificationsEmailEnabled: false
 notificationsFeed: kontur-public
 notificationsAlertUrlPattern: 'https://test-apps-ninja02.konturlabs.com/active/?event=%s&utm_source=slack'
 notificationsKonturUrlPattern: 'https://dev-globalgiving-kontur-io.k8s-01.konturlabs.com/active/map?event=%s&feed=%s&utm_source=email'
