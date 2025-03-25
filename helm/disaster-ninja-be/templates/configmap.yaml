@@ -32,6 +32,8 @@ data:
   kontur.platform.llmAnalyticsApi.url: {{ .Values.llmAnalyticsApiUrl }}
   kontur.platform.tiles.host: {{ .Values.tilesHost }}
   #notifications.enabled: "false" #overridden by env var
+  notifications.slack.enabled: {{ .Values.notificationsSlackEnabled }}
+  notifications.email.enabled: {{ .Values.notificationsEmailEnabled }}
   notifications.feed: {{ .Values.notificationsFeed }}
   notifications.alertUrlPattern: {{ .Values.notificationsAlertUrlPattern }}
   notifications.konturUrlPattern: {{ .Values.notificationsKonturUrlPattern }}
