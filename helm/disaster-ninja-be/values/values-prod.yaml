@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: release-0.37.6.3ff5dcc.1
+    tag: release-0.38.0.d9f2081.1
 
 keycloakUrl: 'https://keycloak01.kontur.io'
 keycloakRealm: kontur
@@ -31,6 +31,8 @@ llmAnalyticsApiUrl: 'http://prod-insights-llm-api.prod-insights-api.svc.cluster.
 tilesHost: 'https://disaster.ninja'
 
 notificationsEnabled: true
+notificationsSlackEnabled: true
+notificationsEmailEnabled: false
 notificationsFeed: kontur-public
 notificationsAlertUrlPattern: 'https://disaster.ninja/active/?event=%s&utm_source=slack'
 notificationsKonturUrlPattern: 'https://globalgiving.kontur.io/active/map?event=%s&feed=%s&utm_source=email'
