@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 20961-mobile-atlas-service-pages-have-horizontal-scroll.3d1df95.1
+    tag: 21227-mcda-based-presets-are-displayed-at-a-maximum-of-9-zoom.298a84a.1
 replicaCount: 2
 envName: test
 ingressHosts:
