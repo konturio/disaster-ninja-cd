@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 21219-oam-indicators-reload-into-database-too-often.e9a2dcb.1
+  tag: main.92c976f.1
   usePullSecret: false
   pullSecretName: none
 
