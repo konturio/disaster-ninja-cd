@@ -36,8 +36,7 @@ resources:
       memory: 16G
 
 databaseHost: db-insights-api-primary.test-insights-api.svc
-# TODO: replace with secondary replica URL once ready
-databaseHostSecondary: db-insights-api-primary.test-insights-api.svc
+databaseHostSecondary: db-insights-api-replicas.test-insights-api.svc
 databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
