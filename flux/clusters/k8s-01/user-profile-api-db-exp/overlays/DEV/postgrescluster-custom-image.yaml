@@ -9,7 +9,3 @@
 - op: replace
   path: /spec/postGISVersion
   value: '3.4'
-
-- op: replace
-  path: /spec/backups/pgbackrest/image
-  value: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.53.1-0'

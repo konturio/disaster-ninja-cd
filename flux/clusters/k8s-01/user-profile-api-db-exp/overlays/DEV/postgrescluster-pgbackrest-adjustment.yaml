@@ -1,7 +1,3 @@
-#- op: add
-#  path: /spec/backups/pgbackrest/global/archive-timeout
-#  value: '360'
-
 - op: add
   path: /spec/backups/pgbackrest/global/log-level-file
   value: 'debug'
