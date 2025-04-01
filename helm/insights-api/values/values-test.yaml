@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 19237-research-possibility-of-insights-api-refactoring-to-use-separate-database-endpoints-for-reading-and-writing.9f8a399.1
+  tag: 19237-research-possibility-of-insights-api-refactoring-to-use-separate-database-endpoints-for-reading-and-writing.fad13b9.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
