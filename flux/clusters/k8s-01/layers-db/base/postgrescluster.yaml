@@ -13,7 +13,6 @@ spec:
   #   name: layers-db-init-sql
   backups:
     pgbackrest:
-      image: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.40-1'
       repos:
         - name: repo1
           volume:

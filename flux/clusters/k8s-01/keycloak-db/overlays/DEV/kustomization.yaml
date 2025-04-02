@@ -2,9 +2,6 @@ bases:
   - ../../base
 namespace: dev-keycloak
 
-# patchesStrategicMerge:
-#   - postgrescluster-WIP-merge.yaml
-
 patchesJson6902:
   - target:
       group: postgres-operator.crunchydata.com
@@ -30,23 +27,6 @@ patchesJson6902:
       kind: PostgresCluster
       name: db-keycloak
     path: postgrescluster-instances.yaml
-  # - target:
-  #     group: postgres-operator.crunchydata.com
-  #     version: v1beta1
-  #     kind: PostgresCluster
-  #     name: db-keycloak
-  #   path: postgrescluster-WIP-jsonpatch.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
-
-# secretGenerator:
-# - name: db-keycloak-pgo-s3-credentials
-#   files:
-#   - s3.conf
-#   options:
-#     labels:
-#       app.kubernetes.io/component: database
-#       app.kubernetes.io/managed-by: manually
-#       app.kubernetes.io/name: db-keycloak
-#       app.kubernetes.io/part-of: keycloak

@@ -1,4 +1,3 @@
-
 - op: add
   path: /spec/backups/pgbackrest/repos/0/schedules
   value:

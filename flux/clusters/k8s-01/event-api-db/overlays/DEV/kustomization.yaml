@@ -21,7 +21,7 @@ patchesJson6902:
       kind: PostgresCluster
       name: db-event-api
     path: postgrescluster-custom-image.yaml
-  - target: # new config for instances management
+  - target:
       group: postgres-operator.crunchydata.com
       version: v1beta1
       kind: PostgresCluster
@@ -30,4 +30,3 @@ patchesJson6902:
 
 generatorOptions:
   disableNameSuffixHash: true
-
