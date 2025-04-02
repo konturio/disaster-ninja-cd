@@ -4,9 +4,8 @@
 - op: add
   path: /spec/backups/pgbackrest/global
   value:
-    log-level-file: info # enough to see WAL file names
-    log-level-stderr: info # enough to see WAL file names
-    # use /pgbackrest/$NAMESPACE/$CLUSTER_NAME/repoN
+    log-level-file: info
+    log-level-stderr: info
     repo2-path: /pgbackrest/prod-user-profile-api/db-user-profile-api/repo2
     repo1-retention-full-type: 'count'
     repo1-retention-full: '1'  # one full in-cluster backup max

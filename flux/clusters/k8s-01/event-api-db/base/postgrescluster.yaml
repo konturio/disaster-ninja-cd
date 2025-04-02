@@ -10,7 +10,6 @@ metadata:
 spec:
   backups:
     pgbackrest:
-      image: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.40-1'
       repos:
         - name: repo1
           volume:
@@ -19,9 +18,8 @@ spec:
                 - ReadWriteOnce
               resources:
                 requests:
-                  storage: 100Gi # FIXME after 2/1/2023
+                  storage: 100Gi
               storageClassName: local-path-regular
-  # image: 'nexus.kontur.io:8084/konturdev/crunchy-postgres-gis:test'
   instances:
     - affinity:
         podAntiAffinity:
@@ -38,7 +36,7 @@ spec:
           - ReadWriteOnce
         resources:
           requests:
-            storage: 100Gi # FIXME after 12/20/2022
+            storage: 100Gi
       name: '01'
       replicas: 1
       resources:
@@ -103,4 +101,3 @@ spec:
       databases:
         - event-api
       options: SUPERUSER
-#

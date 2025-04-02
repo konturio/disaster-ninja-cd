@@ -3,10 +3,6 @@
   value: '360'
 
 - op: replace
-  path: /spec/backups/pgbackrest/image
-  value: 'registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.47-2'
-
-- op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/wal_level
   value: 'logical'
 
