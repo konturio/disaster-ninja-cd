@@ -4,8 +4,8 @@ data:
   OTEL_METRICS_EXPORTER: none
   OTEL_TRACES_EXPORTER: {{ .Values.otlpTracesExporter }}
   SPRING_DATASOURCE_URL: jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/{{ .Values.databaseName }}
-  spring.datasource.primary-url: jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/{{ .Values.databaseName }}
-  spring.datasource.secondary-url: jdbc:postgresql://{{ .Values.databaseHostSecondary }}:{{ .Values.databasePort }}/{{ .Values.databaseName }}
+  spring.datasource.leader-url: jdbc:postgresql://{{ .Values.databaseHost }}:{{ .Values.databasePort }}/{{ .Values.databaseName }}
+  spring.datasource.replica-url: jdbc:postgresql://{{ .Values.databaseHostSecondary }}:{{ .Values.databasePort }}/{{ .Values.databaseName }}
   SPRING_DATASOURCE_USERNAME: {{ .Values.databaseUsername }}
   SPRING_JDBC_TEMPLATE_QUERY_TIMEOUT: {{ .Values.jdbcTemplateQueryTimeout | quote }}
   SPRING_JMX_ENABLED: {{ .Values.jmxEnabled | quote }}
