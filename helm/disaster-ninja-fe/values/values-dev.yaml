@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 20910-update-layers-api-to-support-json-type-for-copyrights-field-data.5b54fa3.1
+    tag: release-2.44.0.23502e5.1
 replicaCount: 2
 envName: dev
 ingressHosts:
