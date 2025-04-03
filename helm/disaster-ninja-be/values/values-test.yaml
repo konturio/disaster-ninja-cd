@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: release-0.38.0.d9f2081.1
+    tag: 20910-update-layers-api-to-support-json-type-for-copyrights-field-data.5b54fa3.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
