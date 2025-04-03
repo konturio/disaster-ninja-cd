@@ -4,7 +4,7 @@
 
 - op: add
   path: /spec/backups/pgbackrest/global/process-max
-  value: '32'
+  value: '8'
 
 - op: add
   path: /spec/backups/pgbackrest/global/archive-push-queue-max
