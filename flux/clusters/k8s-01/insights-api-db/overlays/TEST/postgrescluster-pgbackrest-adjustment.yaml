@@ -8,7 +8,7 @@
 
 - op: add
   path: /spec/backups/pgbackrest/global/archive-push-queue-max
-  value: '400GB'
+  value: '1200GB'
 
 - op: add
   path: /spec/backups/pgbackrest/global/spool-path
