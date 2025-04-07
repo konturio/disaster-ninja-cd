@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 19201-copyrights-in-mcda-presets-are-formatted-as-json.b8850c6.1
+  tag: 19201-copyrights-in-mcda-presets-are-formatted-as-json.82a2c1a.1
   usePullSecret: false
   pullSecretName: none
 
