@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 21321-urban-core-analytics-60-secs-are-not-enough-to-get-response.5351bb1.1
+  tag: release-0.22.7.426763c.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
@@ -36,6 +36,8 @@ resources:
       memory: 16Gi
 
 databaseHost: db-insights-api-primary.prod-insights-api.svc
+# currently no replica for prod
+databaseHostSecondary: db-insights-api-primary.prod-insights-api.svc
 databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
