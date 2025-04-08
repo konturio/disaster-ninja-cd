@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 21305-investigate-current-user-layer-creation-flow.0e96680.1
+    tag: main.9dfeea1.1
 replicaCount: 2
 envName: dev
 ingressHosts:
