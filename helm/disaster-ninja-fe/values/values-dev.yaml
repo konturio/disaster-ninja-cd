@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: main.9dfeea1.1
+    tag: 21214-simplified-multivariate-analysis-dialog.32b97fa.1
 replicaCount: 2
 envName: dev
 ingressHosts:
