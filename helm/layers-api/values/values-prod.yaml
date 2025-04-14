@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: release-1.17.0.588dd66.1
+  tag: 20910-update-layers-api-to-support-json-type-for-copyrights-field-data-v2.1a241be.1
   usePullSecret: false
   pullSecretName: none
 
