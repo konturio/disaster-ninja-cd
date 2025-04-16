@@ -8,7 +8,7 @@
   "KEYCLOAK_URL": "https://keycloak01.konturlabs.com",
   "KEYCLOAK_REALM": "test",
   "KEYCLOAK_CLIENT_ID": "kontur_platform",
-  "SENTRY_DSN": "https://82a788726e8b5cafa3306f7e5d1b78a7@o4506761881255936.ingest.sentry.io/4506770155765760",
+  "SENTRY_DSN": "https://66698b40dc6a427120c291043952384d@o4508966960300032.ingest.de.sentry.io/4509162771841104",
   "AUTOFOCUS_PADDINGS": [16, 300, 16, 336],
   "AUTOFOCUS_ZOOM": 13,
   "INTERCOM_DEFAULT_NAME": null,
