@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 20860-remove-outdated-tables-from-insights.903b529.1
+  tag: master.0ba8795.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
