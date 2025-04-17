@@ -31,9 +31,6 @@ paypal:
   webhookID: '5P639910MG425770T'
   host: 'https://api.sandbox.paypal.com'
 
-intercom:
-  enabled: true
-
 alertingTime: 5m
 
 otlpTracesExporter: otlp
