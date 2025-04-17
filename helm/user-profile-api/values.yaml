@@ -44,6 +44,9 @@ paypal:
   webhookID: '5FN15003WM978772N'
   host: 'https://api.sandbox.paypal.com'
 
+intercom:
+  enabled: true
+
 otlpTracesExporter: none
 otlpTracesPort: 4317
 
