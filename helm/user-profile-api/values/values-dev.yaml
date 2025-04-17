@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: release-0.12.1.370e540.1
+  tag: 20990-integrate-ups-user-roles-to-intercom.f11c0c7.1
   pullSecretName: none
   usePullSecret: false
 
@@ -30,6 +30,9 @@ jwtJwkSetUri: 'https://dev-keycloak.k8s-01.konturlabs.com/realms/dev/protocol/op
 paypal:
   webhookID: '5FN15003WM978772N'
   host: 'https://api.sandbox.paypal.com'
+
+intercom:
+  enabled: false
 
 alertingTime: 10m
 
