@@ -15,6 +15,7 @@ data:
   sentry.environment: {{ .Values.envName }}
   payments.paypal.webhook-id: {{ .Values.paypal.webhookID }}
   payments.paypal.host: {{ .Values.paypal.host }}
+  intercom.enabled: {{ .Values.intercom.enabled | quote }}
 kind: ConfigMap
 metadata:
   annotations:

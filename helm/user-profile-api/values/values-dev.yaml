@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 20990-fix-intercom-sync.0c015b4.1
+  tag: 20990-fix-intercom-sync.8fcad36.1
   pullSecretName: none
   usePullSecret: false
 
