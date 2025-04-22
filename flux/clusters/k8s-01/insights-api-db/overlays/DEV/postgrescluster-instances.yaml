@@ -26,12 +26,12 @@
                     values:
                       - hwn01.k8s-01.kontur.io
 
-- op: add
-  path: /spec/patroni/switchover
-  value:
-    enabled: true
-    targetInstance: db-insights-api-hwn01-f77c
-
-- op: add
-  path: /metadata/annotations/postgres-operator.crunchydata.com~1trigger-switchover
-  value: "2025-01-16-1"
+#- op: add
+#  path: /spec/patroni/switchover
+#  value:
+#    enabled: true
+#    targetInstance: db-insights-api-hwn01-f77c
+#
+#- op: add
+#  path: /metadata/annotations/postgres-operator.crunchydata.com~1trigger-switchover
+#  value: "2025-01-16-1"
