@@ -7,7 +7,7 @@ image:
   pullSecretName: none
   usePullSecret: false
 
-replicas: 2
+replicas: 0
 envName: dev
 ingressHost: dev-insights-api.k8s-01.konturlabs.com
 ingressClass: ingress-nginx

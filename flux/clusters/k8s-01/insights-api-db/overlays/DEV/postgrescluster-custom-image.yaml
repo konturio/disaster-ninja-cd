@@ -1,11 +1,11 @@
 - op: add
   path: /spec/image
-  value: nexus.kontur.io:8085/konturdev/crunchy-postgres-gis-h3:2.0
+  value: nexus.kontur.io:8085/konturdev/crunchy-postgres-gis-h3-17.4_3.5-0:1.5
 
 - op: replace
   path: /spec/postgresVersion
-  value: 16
+  value: 17
 
 - op: replace
   path: /spec/postGISVersion
-  value: '3.4'
+  value: '3.5'

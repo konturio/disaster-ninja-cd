@@ -16,6 +16,6 @@ type: application
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
 
-version: 0.0.408
+version: 0.0.409
 
 # don't use appVersion, use {{Values.image.tag}} instead
