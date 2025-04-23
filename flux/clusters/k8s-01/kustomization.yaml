@@ -31,6 +31,7 @@ resources:
   - keycloak-db/overlays/PROD
   - insights-api-db/overlays/DEV
   - insights-api-db/overlays/TEST
+  - insights-api-db/overlays/TEST-PG17
   - insights-api-db/overlays/PROD
   - user-profile-api-db/overlays/DEV
   - user-profile-api-db/overlays/TEST

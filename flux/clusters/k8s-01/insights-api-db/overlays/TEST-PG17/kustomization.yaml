@@ -1,0 +1,40 @@
+bases:
+  - ../../base
+namespace: test-insights-api
+
+nameSuffix: -pg17
+
+patchesJson6902:
+  - target:
+      group: postgres-operator.crunchydata.com
+      version: v1beta1
+      kind: PostgresCluster
+      name: db-insights-api-pg17
+    path: postgrescluster-s3-backups.yaml
+  - target:
+      group: postgres-operator.crunchydata.com
+      version: v1beta1
+      kind: PostgresCluster
+      name: db-insights-api-pg17
+    path: postgrescluster-custom-image.yaml
+  - target:
+      group: postgres-operator.crunchydata.com
+      version: v1beta1
+      kind: PostgresCluster
+      name: db-insights-api-pg17
+    path: postgrescluster-pgbackrest-adjustment.yaml
+  - target:
+      group: postgres-operator.crunchydata.com
+      version: v1beta1
+      kind: PostgresCluster
+      name: db-insights-api-pg17
+    path: postgrescluster-instances.yaml
+  - target:
+      group: postgres-operator.crunchydata.com
+      version: v1beta1
+      kind: PostgresCluster
+      name: db-insights-api-pg17
+    path: postgrescluster-metadata.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
