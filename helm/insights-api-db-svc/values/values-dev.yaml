@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: main.9a7f91e.1
+  tag: 21258-add-coverage-generation-and-indicators-coverage-endpoint-to-insights-api.b40a147.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
