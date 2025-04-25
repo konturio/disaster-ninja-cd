@@ -20,7 +20,7 @@ createResource:
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 
-databaseHost: db-insights-api-primary.test-insights-api.svc
+databaseHost: db-insights-api-pg17-primary.test-insights-api.svc
 databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
