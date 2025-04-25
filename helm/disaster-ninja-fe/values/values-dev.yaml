@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: main.7610631.1
+    tag: 21206-opacity-hide-area-dimension-in-multivariate-layers.324b256.1
 replicaCount: 2
 envName: dev
 ingressHosts:
