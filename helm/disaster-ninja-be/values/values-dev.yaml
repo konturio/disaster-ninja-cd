@@ -18,7 +18,7 @@ replicas: 1
 
 image:
   be:
-    tag: 21266-dn-be-change-event-shape-color-to-red.3fcf9a4.1
+    tag: 21266-dn-be-change-event-shape-color-to-red.6d87d1d.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
