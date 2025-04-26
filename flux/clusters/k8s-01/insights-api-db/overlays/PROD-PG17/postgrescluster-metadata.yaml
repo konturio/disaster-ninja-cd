@@ -1,0 +1,7 @@
+- op: replace
+  path: /metadata/labels/app.kubernetes.io~1name
+  value: db-insights-api-pg17
+
+- op: replace
+  path: /spec/metadata/labels/app.kubernetes.io~1name
+  value: db-insights-api-pg17
