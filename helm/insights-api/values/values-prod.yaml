@@ -37,7 +37,7 @@ resources:
 
 databaseHost: db-insights-api-primary.prod-insights-api.svc
 # currently no replica for prod
-databaseHostSecondary: db-insights-api-primary.prod-insights-api.svc
+databaseHostSecondary: db-insights-api-pg17-primary.prod-insights-api.svc
 databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
