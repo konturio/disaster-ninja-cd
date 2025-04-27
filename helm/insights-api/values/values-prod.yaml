@@ -35,7 +35,7 @@ resources:
     limits:
       memory: 16Gi
 
-databaseHost: db-insights-api-primary.prod-insights-api.svc
+databaseHost: db-insights-api-pg17-primary.prod-insights-api.svc
 # currently no replica for prod
 databaseHostSecondary: db-insights-api-pg17-primary.prod-insights-api.svc
 databasePort: 5432
