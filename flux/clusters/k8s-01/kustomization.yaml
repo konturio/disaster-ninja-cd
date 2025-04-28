@@ -21,6 +21,7 @@ resources:
 
 # Do not comment or remove any lines below unless you intend to kill a few databases
   - event-api-db/overlays/DEV
+  - event-api-db/overlays/DEV-PG17
   - event-api-db/overlays/TEST
   - event-api-db/overlays/PROD
   - layers-db/overlays/DEV
