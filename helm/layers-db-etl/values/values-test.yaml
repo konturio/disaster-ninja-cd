@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 21480-update-hot_projects-data-flow-to-support-hot-api-migration-to-v5.c3f61f8.1
+  tag: 21480-update-hot_projects-data-flow-to-support-hot-api-migration-to-v5.bfccd6b.1
   usePullSecret: false
   pullSecretName: none
 
