@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: release-0.22.8.0300e7f.1
+  tag: master.4b6c15a.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
@@ -36,8 +36,8 @@ resources:
       memory: 16G
 
 databaseHost: db-insights-api-pg17-primary.test-insights-api.svc
-databaseHostSecondary: db-insights-api-pg17-primary.test-insights-api.svc
 #databaseHostSecondary: db-insights-api-pg17-replicas.test-insights-api.svc
+databaseHostSecondary: db-insights-api-pg17-primary.test-insights-api.svc
 databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
