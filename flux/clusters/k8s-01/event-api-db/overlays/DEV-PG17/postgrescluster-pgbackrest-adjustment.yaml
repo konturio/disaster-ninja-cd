@@ -21,3 +21,19 @@
 - op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/max_wal_size
   value: '10GB'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/work_mem
+  value: '64MB'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/maintenance_work_mem
+  value: '1GB'
+
+- op: add
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/max_parallel_workers_per_gather
+  value: '0'
+
+- op: add
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/max_parallel_maintenance_workers
+  value: '0'
