@@ -20,7 +20,7 @@ data:
   KC_DB: postgres
   KC_DB_URL: jdbc:postgresql://{{ .Values.keycloak.databaseHost }}:{{ .Values.keycloak.databasePort }}/{{ .Values.keycloak.databaseName }}
   KC_DB_USERNAME: {{ .Values.keycloak.databaseUser }}
-  #JAVA_OPTS
+  JAVA_OPTS: "-Xmx2048m -Xms2048m"
   #JAVA_OPTS_APPEND
   #JDBC_PARAMS
   #JGROUPS_DISCOVERY_PROTOCOL
