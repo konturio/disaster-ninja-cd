@@ -22,7 +22,7 @@ probeInitialDelaySeconds: 15
 probeInitialDelaySecondsRedis: 15
 usePgDataSecret: true
 
-databaseHost: db-event-api-primary.dev-event-api.svc
+databaseHost: db-event-api-pg17-primary.dev-event-api.svc
 databaseUser: event-api
 databaseName: event-api
 databasePort: 5432
