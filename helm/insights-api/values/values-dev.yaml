@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: release-0.22.9.0df04f8.1
+  tag: 21023-need-to-unify-sql-queries-in-insights-api.c752b28.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
