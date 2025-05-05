@@ -19,10 +19,10 @@ containers:
   usePullSecret: false
   chromium_headless:
     replicas: 1
-    tag: release-1.3.0.4dc453f.1
+    tag: release-1.4.0.97915b7.1
   preview_generator:
     replicas: 1
-    tag: release-1.3.0.4dc453f.1
+    tag: release-1.4.0.97915b7.1
   redis:
     replicas: 1
     tag: "7-alpine3.16"
