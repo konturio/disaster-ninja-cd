@@ -21,6 +21,7 @@ isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 probeInitialDelaySecondsRedis: 15
 usePgDataSecret: true
+databaseSecretName: db-event-api-pg17-pguser-event-api
 
 databaseHost: db-event-api-pg17-primary.dev-event-api.svc
 databaseUser: event-api
