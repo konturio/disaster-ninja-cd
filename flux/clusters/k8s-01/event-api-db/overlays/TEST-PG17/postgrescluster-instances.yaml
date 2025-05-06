@@ -1,0 +1,38 @@
+# Always replace placeholder instances from `base`
+- op: replace
+  path: /spec/instances
+  value:
+    - name: hwn03
+      replicas: 1
+      resources:
+        limits:
+          memory: 512Gi
+          cpu: '64'
+        requests:
+          memory: 22Gi
+          cpu: '2'
+      dataVolumeClaimSpec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 100Gi
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - hwn03.k8s-01.kontur.io
+
+#- op: add
+#  path: /spec/patroni/switchover
+#  value:
+#    enabled: true
+#    targetInstance: db-event-api-hwn01-ws4q
+#
+#- op: add
+#  path: /metadata/annotations/postgres-operator.crunchydata.com~1trigger-switchover
+#  value: "2025-01-03-1"
