@@ -30,8 +30,8 @@
     repo2-retention-full-type: 'count'
     repo2-retention-full: '1'
     repo2-retention-archive-type: incr
-    repo2-retention-archive: "1"
-    repo2-retention-diff: "1"
+    repo2-retention-archive: "3"
+    repo2-retention-diff: "2"
 
 - op: add
   path: /spec/backups/pgbackrest/manual
