@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 21438-config-new-feed-for-mic-global.d91a927.1
+  tag: 21438-config-new-feed-for-mic-global.3bc7b16.1
   pullSecretName: none
   usePullSecret: false
 
