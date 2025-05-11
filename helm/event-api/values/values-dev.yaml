@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: 21438-config-new-feed-for-mic-global.0768560.1
+  tag: release-1.21.0.22110a4.1
   pullSecretName: none
   usePullSecret: false
 
@@ -56,4 +56,5 @@ awsSqsEnabled: true
 
 feignUserAgent: Event API DEV
 
-normalizationProviders: kontur.events
+normalizationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, storms.noaa, wildfire.calfire,
+  wildfire.perimeters.nifc, wildfire.locations.nifc, cyclones.nhc-at.noaa, cyclones.nhc-ep.noaa, cyclones.nhc-cp.noaa
