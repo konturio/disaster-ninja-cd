@@ -58,6 +58,4 @@ awsSqsEnabled: true
 
 feignUserAgent: 'Event API PROD'
 
-normalizationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events,
-  cyclones.nhc-at.noaa, cyclones.nhc-ep.noaa, cyclones.nhc-cp.noaa, wildfire.calfire,
-  wildfire.perimeters.nifc, wildfire.locations.nifc, firms.modis-c6, firms.suomi-npp-viirs-c2, firms.noaa-20-viirs-c2
+normalizationProviders: kontur.events
