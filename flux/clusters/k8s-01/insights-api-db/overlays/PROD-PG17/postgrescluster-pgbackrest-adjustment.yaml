@@ -85,3 +85,7 @@
 - op: add
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/primary_slot_name
   value: 'hwn02'
+
+- op: add
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/hot_standby_feedback
+  value: 'on'

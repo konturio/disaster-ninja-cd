@@ -77,3 +77,7 @@
 - op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/autovacuum_vacuum_insert_scale_factor
   value: '0.0001'
+
+- op: add
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/hot_standby_feedback
+  value: 'on'
