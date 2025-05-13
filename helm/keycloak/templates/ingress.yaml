@@ -31,6 +31,12 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-buffers: "4 256k"
     nginx.ingress.kubernetes.io/proxy-busy-buffers-size: "4 256k"
     {{ end }}
+    {{- if .Values.stickySessions }}
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "KEYCLOAK_AFFINITY"
+    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+    {{- end }}
 spec:
   tls:
   - hosts:
