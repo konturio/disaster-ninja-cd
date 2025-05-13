@@ -9,7 +9,7 @@ image:
   pullSecretName: nexus8084
   usePullSecret: false
 
-replicas: 2
+replicas: 1
 
 service:
   main: 8080
@@ -30,7 +30,6 @@ ups:
 envName: prod
 ingressHost: keycloak01.kontur.io
 ingressClass: ingress-nginx
-stickySessions: true
 
 createResource:
   defaultSecrets: false
