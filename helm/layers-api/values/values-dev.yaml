@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: codex-implement-reverse-sorting-for-items-search.8f12a60.1
+  tag: codex-implement-reverse-sorting-for-items-search.da1f5f4.1
   usePullSecret: false
   pullSecretName: none
 
