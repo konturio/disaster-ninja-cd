@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: release-2.47.0.98fff5c.1
+    tag: 21490-customize-layers-feature-panel-for-new-openarialmap-org.76a8dc1.1
 replicaCount: 2
 envName: test
 ingressHosts:
