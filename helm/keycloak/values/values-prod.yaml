@@ -42,6 +42,8 @@ isOfflineInstallation: false
 probeInitialDelaySeconds: 180
 disableSsl: false
 
+proxy_read_timeout: 300s
+
 resources:
    requests:
      cpu: 100m
