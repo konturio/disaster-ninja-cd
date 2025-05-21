@@ -31,6 +31,8 @@ envName: prod
 ingressHost: keycloak01.kontur.io
 ingressClass: ingress-nginx
 
+proxy_read_timeout: 300s
+
 createResource:
   defaultSecrets: false
   ingress: true
@@ -41,8 +43,6 @@ createResource:
 isOfflineInstallation: false
 probeInitialDelaySeconds: 180
 disableSsl: false
-
-proxy_read_timeout: 300s
 
 resources:
    requests:
