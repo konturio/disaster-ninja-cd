@@ -18,7 +18,7 @@ replicas: 1
 
 image:
   be:
-    tag: 21558-add-order-parameter-to-layer-features-endpoint.37bd1b6.1
+    tag: release-0.38.3.cbf6075.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
