@@ -9,6 +9,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production #use letsencrypt-staging for testing
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
   {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
   {{- else }}

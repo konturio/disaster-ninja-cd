@@ -9,6 +9,7 @@ metadata:
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
     nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
   {{- if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
   {{- else }}

@@ -16,6 +16,7 @@ metadata:
     acme.cert-manager.io/http01-edit-in-place: "true" #required otherwise ACME challenge can't be completed
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
     {{ if .Values.isOfflineInstallation }}
     nginx.ingress.kubernetes.io/enable-cors: "true"
     {{ else }}
