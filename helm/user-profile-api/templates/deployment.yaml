@@ -72,6 +72,7 @@ spec:
               path: /health/liveness
               port: {{ .Values.management.port }}
             periodSeconds: 15
+            timeoutSeconds: 5
           {{- end }}
           name: user-profile-api
           ports:
@@ -82,7 +83,7 @@ spec:
               name: management
               protocol: TCP
           readinessProbe:
-            failureThreshold: 1
+            failureThreshold: 3
             httpGet:
               path: /health/readiness
               port: {{ .Values.management.port }}
@@ -90,7 +91,7 @@ spec:
             initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
             periodSeconds: 15
             successThreshold: 1
-            timeoutSeconds: 1
+            timeoutSeconds: 5
           resources:
             limits:
               memory: {{ .Values.resources.limits.memory }}
