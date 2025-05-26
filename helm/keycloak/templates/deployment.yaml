@@ -73,16 +73,18 @@ spec:
           httpGet:
             path: /health
             port: {{ .Values.service.management }}
-          failureThreshold: 1
+          failureThreshold: 6
           periodSeconds: 15
+          timeoutSeconds: 5
           initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
         {{ if .Values.createResource.deploymentLivenessProbe }}
         livenessProbe:
           httpGet:
             path: /health
             port: {{ .Values.service.management }}
-          failureThreshold: 10
-          periodSeconds: 15
+          failureThreshold: 3
+          periodSeconds: 20
+          timeoutSeconds: 5
           initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
         {{ end }}
       {{ if .Values.createResource.importDefaultRealm }}
