@@ -24,6 +24,7 @@ metadata:
       }
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
     {{ if .Values.isOfflineInstallation }}
     {{ else }}
     nginx.ingress.kubernetes.io/proxy-buffering: "on"
