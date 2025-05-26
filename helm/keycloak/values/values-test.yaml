@@ -9,7 +9,7 @@ image:
   pullSecretName: nexus8084
   usePullSecret: false
 
-replicas: 1
+replicas: 1 # do not scale above 1, because keycloak doesn't support it due to issues with session stickiness and non-shared state
 
 service:
   main: 8080
