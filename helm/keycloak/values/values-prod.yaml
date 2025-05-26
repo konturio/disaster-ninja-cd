@@ -47,7 +47,7 @@ disableSsl: false
 resources:
    requests:
      cpu: 100m
-     memory: 128Mi
+     memory: 4Gi
    limits:
      memory: 16Gi
 
