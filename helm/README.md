@@ -105,4 +105,8 @@ Address: 192.168.64.2
 **- Further steps:**
 
 - If you don't want to reinstall the entire platform but just want to deploy your changes, use
-```make helm-install-quickstart-all``` to upgrade all helm releases or ```make disaster-ninja-fe``` to upgrade a single release. See the list of available goals in ```Makefile``` 
+```make helm-install-quickstart-all``` to upgrade all helm releases or ```make disaster-ninja-fe``` to upgrade a single release. See the list of available goals in ```Makefile```
+
+## Sentry
+
+Several charts include placeholders to enable [Sentry](https://sentry.io) error reporting. The DSN string is expected in a Kubernetes Secret under the key `SENTRY_DSN`. Replace the default value in `templates/secret.yaml` of each chart (for example `keycloak` and `user-profile-api`) with the DSN from your Sentry project before deploying.
