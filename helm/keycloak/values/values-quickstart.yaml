@@ -42,9 +42,9 @@ probeInitialDelaySeconds: 360
 disableSsl: true
 
 resources:
-   requests:
-     cpu: 100m
-     memory: 128Mi
+  requests:
+     cpu: 1000m
+     memory: 2Gi
    limits:
      memory: 16Gi
 

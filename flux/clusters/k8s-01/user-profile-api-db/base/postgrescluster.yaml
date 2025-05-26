@@ -44,8 +44,8 @@ spec:
           memory: 512Gi
           cpu: '64'
         requests:
-          memory: 4Gi
-          cpu: '1'
+          memory: 16Gi
+          cpu: '4'
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: kubernetes.io/hostname

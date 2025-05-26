@@ -8,8 +8,8 @@
           memory: 512Gi
           cpu: '64'
         requests:
-          memory: 2Gi
-          cpu: '1'
+          memory: 64Gi
+          cpu: '4'
       dataVolumeClaimSpec:
         accessModes:
           - ReadWriteOnce
