@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: release-2.48.0.ab1f684.1
+    tag: 21207-extrusion-3d-dimension-in-multivariate-layers.1a68a7c.1
 replicaCount: 2
 envName: dev
 ingressHosts:
