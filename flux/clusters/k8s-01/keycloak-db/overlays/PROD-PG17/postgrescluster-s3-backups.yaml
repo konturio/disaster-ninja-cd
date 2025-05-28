@@ -1,0 +1,45 @@
+# https://access.crunchydata.com/documentation/postgres-operator/latest/tutorial/backups/#using-s3
+# https://pgbackrest.org/configuration.html
+
+- op: add
+  path: /spec/backups
+  value:
+    pgbackrest:
+      repos:
+        - name: repo2
+          s3:
+            bucket: pgbackrest-k8s-01
+            endpoint: hel1.your-objectstorage.com
+            region: eu-central-1
+          schedules:
+            full: 0 22 * * 3
+            differential: 0 22 * * 6
+            incremental: '0 0 * * 4,5,6,0,1'
+      configuration:
+        - secret:
+            name: db-keycloak-pg17-pgo-s3-credentials
+
+- op: add
+  path: /spec/backups/pgbackrest/global
+  value:
+    log-level-file: info
+    log-level-stderr: info
+    repo2-path: /pgbackrest/prod-keycloak/db-keycloak-pg17/repo2
+    repo2-retention-full-type: 'time'
+    repo2-retention-full: '30'
+    repo2-storage-verify-tls: 'n'
+    repo2-s3-uri-style: path
+    repo2-storage-port: '443'
+
+- op: add
+  path: /spec/backups/pgbackrest/configuration
+  value:
+    - secret:
+        name: db-keycloak-pg17-pgo-s3-credentials
+
+- op: add
+  path: /spec/backups/pgbackrest/manual
+  value:
+    repoName: repo2
+    options:
+      - '--type=full'
