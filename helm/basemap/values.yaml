@@ -8,7 +8,7 @@ k8s_cluster_flavor: default # value may be substituted in a Flux pipeline
 ingressHost: none
 
 pvc:
-  tileStorageSize: 150Gi
+  tileStorageSize: 1000Gi
   processorStorageSize: 500Gi
   postgresStorageSize: 1800Gi
 
