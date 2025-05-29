@@ -17,7 +17,7 @@ service:
   kcFrontEndUrl: https://dev-keycloak.k8s-01.konturlabs.com
 
 keycloak:
-  databaseHost: db-keycloak-primary.dev-keycloak.svc
+  databaseHost: db-keycloak-pg17-primary.dev-keycloak.svc
   databasePort: 5432
   databaseName: keycloak-db
   databaseUser: keycloak
