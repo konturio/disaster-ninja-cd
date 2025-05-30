@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: abort-upload-if-indicators-endpoint-output-is-wrong.31895d8.1
+  tag: 21624-layers-db-create-layer-with-hydrosheds.ed4fd15.1
   usePullSecret: false
   pullSecretName: none
 
