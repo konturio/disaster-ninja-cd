@@ -1,0 +1,46 @@
+bases:
+  - ../../base
+namespace: test-user-profile-api
+
+nameSuffix: -pg17
+
+patchesJson6902:
+  - target:
+      group: postgres-operator.crunchydata.com
+      version: v1beta1
+      kind: PostgresCluster
+      name: db-user-profile-api
+    path: postgrescluster-s3-backups.yaml
+  - target:
+      group: postgres-operator.crunchydata.com
+      version: v1beta1
+      kind: PostgresCluster
+      name: db-user-profile-api
+    path: postgrescluster-onsite-backups.yaml
+  - target:
+      group: postgres-operator.crunchydata.com
+      version: v1beta1
+      kind: PostgresCluster
+      name: db-user-profile-api
+    path: postgrescluster-pgbackrest-adjustment.yaml
+  - target:
+      group: postgres-operator.crunchydata.com
+      version: v1beta1
+      kind: PostgresCluster
+      name: db-user-profile-api
+    path: postgrescluster-custom-image.yaml
+  - target:
+      group: postgres-operator.crunchydata.com
+      version: v1beta1
+      kind: PostgresCluster
+      name: db-user-profile-api
+    path: postgrescluster-instances.yaml
+  - target:
+      group: postgres-operator.crunchydata.com
+      version: v1beta1
+      kind: PostgresCluster
+      name: db-user-profile-api
+    path: postgrescluster-metadata.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true

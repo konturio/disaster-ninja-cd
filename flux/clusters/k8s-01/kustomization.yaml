@@ -40,4 +40,7 @@ resources:
   - user-profile-api-db/overlays/DEV
   - user-profile-api-db/overlays/TEST
   - user-profile-api-db/overlays/PROD
+  - user-profile-api-db/overlays/DEV-PG17
+  - user-profile-api-db/overlays/TEST-PG17
+  - user-profile-api-db/overlays/PROD-PG17
   - user-profile-api-db-exp/overlays/DEV # experimental
