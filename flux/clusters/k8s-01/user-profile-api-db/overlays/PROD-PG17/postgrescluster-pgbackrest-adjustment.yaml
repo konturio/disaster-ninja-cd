@@ -1,0 +1,23 @@
+- op: add
+  path: /spec/backups/pgbackrest/global/archive-timeout
+  value: '360'
+
+- op: add
+  path: /spec/backups/pgbackrest/global/process-max
+  value: '8'
+
+- op: add
+  path: /spec/backups/pgbackrest/global/archive-push-queue-max
+  value: '50GB'
+
+- op: add
+  path: /spec/backups/pgbackrest/global/spool-path
+  value: '/pgdata/pgbackrest'
+
+- op: add
+  path: /spec/backups/pgbackrest/global/archive-async
+  value: 'y'
+
+- op: replace
+  path: /spec/patroni/dynamicConfiguration/postgresql/parameters/max_wal_size
+  value: '10GB'

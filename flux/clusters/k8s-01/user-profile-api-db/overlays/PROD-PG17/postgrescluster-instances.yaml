@@ -1,0 +1,37 @@
+- op: replace
+  path: /spec/instances
+  value:
+    - name: hwn02
+      replicas: 1
+      resources:
+        limits:
+          memory: 512Gi
+          cpu: '64'
+        requests:
+          memory: 4Gi
+          cpu: '1'
+      dataVolumeClaimSpec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 25Gi
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - hwn02.k8s-01.kontur.io
+
+#- op: add
+#  path: /spec/patroni/switchover
+#  value:
+#    enabled: true
+#    targetInstance: db-user-profile-api-hwn01-xmfb
+#
+#- op: add
+#  path: /metadata/annotations/postgres-operator.crunchydata.com~1trigger-switchover
+#  value: "2025-01-10-1"
