@@ -39,7 +39,7 @@ patchesJson6902:
       group: postgres-operator.crunchydata.com
       version: v1beta1
       kind: PostgresCluster
-      name: db-keycloak-pg17
+      name: db-user-profile-api
     path: postgrescluster-metadata.yaml
 
 generatorOptions:
