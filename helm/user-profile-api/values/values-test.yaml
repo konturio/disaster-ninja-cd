@@ -21,7 +21,7 @@ createResource:
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 
-databaseHost: db-user-profile-api-primary.test-user-profile-api.svc
+databaseHost: db-user-profile-api-pg17-primary.test-user-profile-api.svc
 databaseName: user-profile-api-db
 
 jwtIssuerUri: 'https://keycloak01.konturlabs.com/realms/test'
