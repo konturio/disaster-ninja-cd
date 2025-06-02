@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 21624-layers-db-create-layer-with-hydrosheds.8d48e8a.1
+  tag: 21624-layers-db-create-layer-with-hydrosheds.d265b79.1
   usePullSecret: false
   pullSecretName: none
 
