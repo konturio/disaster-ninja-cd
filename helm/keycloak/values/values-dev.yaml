@@ -22,7 +22,7 @@ keycloak:
   databaseName: keycloak-db
   databaseUser: keycloak
 ups:
-  databaseHost: db-user-profile-api-primary.dev-user-profile-api.svc
+  databaseHost: db-user-profile-api-pg17-primary.dev-user-profile-api.svc
   databasePort: 5432
   databaseName: user-profile-api-db
   databaseUser: user-profile-api
