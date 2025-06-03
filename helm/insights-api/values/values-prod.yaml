@@ -53,7 +53,7 @@ keycloakRealm: kontur
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
 
-client_max_body_size: 200g
+client_max_body_size: 500g
 proxy_read_timeout: 21600s
 jdbcTemplateQueryTimeout: "21600"
 
