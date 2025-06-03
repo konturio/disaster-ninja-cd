@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: release-0.22.12.10d303c.1
+  tag: 21706-insights-api-always-update-indicator-if-the-same-param_id-is-specified-from-user
   tagType: ""
   pullSecretName: none
   usePullSecret: false
