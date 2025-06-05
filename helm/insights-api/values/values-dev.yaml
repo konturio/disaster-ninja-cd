@@ -2,16 +2,14 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: release-0.22.12.10d303c.1
+  tag: master.ab1b4eb.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
-
 replicas: 2
 envName: dev
 ingressHost: dev-insights-api.k8s-01.konturlabs.com
 ingressClass: ingress-nginx
-
 createResource:
   defaultSecrets: false
   ingress: true
@@ -20,7 +18,6 @@ createResource:
   deploymentLivenessProbe: false
 isOfflineInstallation: false
 probeInitialDelaySeconds: 90
-
 resources:
   app:
     requests:
@@ -34,7 +31,6 @@ resources:
       memory: 512M
     limits:
       memory: 16G
-
 #NEON data:
 #databaseHost: ep-twilight-cake-951994.cloud.neon.tech
 #databaseName: main
@@ -49,20 +45,15 @@ databaseUsername: insights-api
 databaseMaximumPoolSize: 200
 databasePort: 5432
 jmxEnabled: true
-
 dnsNameOuter: test-apps02.konturlabs.com
 alertingTime: 10m
-
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
-
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
-
 client_max_body_size: 500g
 proxy_read_timeout: 21600s
 jdbcTemplateQueryTimeout: "21600"
-
 tileSize: 512
 hexEdgePixels: 5
 maxH3Resolution: 11
