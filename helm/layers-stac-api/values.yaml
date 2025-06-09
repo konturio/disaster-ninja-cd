@@ -1,0 +1,33 @@
+# Default values for layers-stac-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: ghcr.io/stac-utils/stac-fastapi
+  pullPolicy: IfNotPresent
+  tag: latest
+
+containerPort: 8080
+replicas: 1
+envName: local
+
+enabledExtensions: free_text,filter,sort,query,collection_search,pagination,fields
+
+createResource:
+  defaultSecrets: false
+isOfflineInstallation: false
+probeInitialDelaySeconds: 15
+
+resources:
+  requests:
+    cpu: 1
+    memory: 1Gi
+  limits:
+    memory: 2Gi
+
+pgHost: host.docker.internal
+pgPort: 5432
+pgDatabase: layers-db
+pgUser: layers-db
+
+k8s_cluster_flavor: default

@@ -8,6 +8,7 @@ resources:
   - layers-api
   - layers-db-etl
   - layers-tiles-api
+  - layers-stac-api
   - osrm
   - raster-tiler
   - titiler

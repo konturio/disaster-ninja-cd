@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../base/layers-stac-api
+namePrefix: test-
+namespace: test-layers-stac-api
+patches:
+  - target:
+      kind: HelmRelease
+      name: layers-stac-api
+      group: helm.toolkit.fluxcd.io
+      version: v2beta1
+    patch: |-
+      - op: replace
+        path: /spec/chart/spec/valuesFiles
+        value:
+          - ./helm/layers-stac-api/values.yaml
+          - ./helm/layers-stac-api/values/values-test.yaml

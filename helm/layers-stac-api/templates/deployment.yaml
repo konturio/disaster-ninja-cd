@@ -1,0 +1,96 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-layers-stac-api
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: layers-stac-api
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-layers-stac-api
+  namespace: {{ .Release.Namespace }}
+spec:
+  progressDeadlineSeconds: 600
+  replicas: {{ .Values.replicas }}
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Values.envName }}-layers-stac-api
+      app.kubernetes.io/managed-by: Helm
+      app.kubernetes.io/name: layers-stac-api
+      stage: {{ .Values.envName }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        meta.helm.sh/release-name: {{ .Release.Name }}
+        meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+        checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+      labels:
+        app.kubernetes.io/instance: {{ .Values.envName }}-layers-stac-api
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: layers-stac-api
+        stage: {{ .Values.envName }}
+    spec:
+      containers:
+        - envFrom:
+            - configMapRef:
+                name: {{ .Values.envName }}-layers-stac-api
+            - secretRef:
+                name: {{ .Values.envName }}-layers-stac-api
+          env:
+            - name: ENABLED_EXTENSIONS
+              value: "{{ .Values.enabledExtensions }}"
+            - name: POSTGRES_USER
+              value: $(PGUSER)
+            - name: POSTGRES_PASS
+              value: $(PGPASSWORD)
+            - name: POSTGRES_HOST_READER
+              value: $(PGHOST)
+            - name: POSTGRES_HOST_WRITER
+              value: $(PGHOST)
+            - name: POSTGRES_PORT
+              value: $(PGPORT)
+            - name: POSTGRES_DBNAME
+              value: $(PGDATABASE)
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["uvicorn"]
+          args: ["stac_fastapi.pgstac.app:app","--host","0.0.0.0","--port","{{ .Values.containerPort }}","--workers","4"]
+          livenessProbe:
+            httpGet:
+              path: /
+              port: {{ .Values.containerPort }}
+            failureThreshold: 10
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /
+              port: {{ .Values.containerPort }}
+            failureThreshold: 1
+            initialDelaySeconds: {{ .Values.probeInitialDelaySeconds }}
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: layers-stac-api
+          ports:
+            - containerPort: {{ .Values.containerPort }}
+              name: stac
+              protocol: TCP
+          resources:
+            limits:
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu | quote }}
+              memory: {{ .Values.resources.requests.memory }}
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
