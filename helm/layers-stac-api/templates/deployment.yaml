@@ -38,27 +38,12 @@ spec:
         app.kubernetes.io/name: layers-stac-api
         stage: {{ .Values.envName }}
     spec:
-      containers:
-        - envFrom:
-            - configMapRef:
-                name: {{ .Values.envName }}-layers-stac-api
-            - secretRef:
-                name: {{ .Values.envName }}-layers-stac-api
-          env:
-            - name: ENABLED_EXTENSIONS
-              value: "{{ .Values.enabledExtensions }}"
-            - name: POSTGRES_USER
-              value: $(PGUSER)
-            - name: POSTGRES_PASS
-              value: $(PGPASSWORD)
-            - name: POSTGRES_HOST_READER
-              value: $(PGHOST)
-            - name: POSTGRES_HOST_WRITER
-              value: $(PGHOST)
-            - name: POSTGRES_PORT
-              value: $(PGPORT)
-            - name: POSTGRES_DBNAME
-              value: $(PGDATABASE)
+        containers:
+          - envFrom:
+              - configMapRef:
+                  name: {{ .Values.envName }}-layers-stac-api
+              - secretRef:
+                  name: {{ .Values.envName }}-layers-stac-api
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["uvicorn"]

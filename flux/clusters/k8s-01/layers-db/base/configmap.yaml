@@ -15,11 +15,6 @@ data:
     GRANT SELECT ON layers_features TO "layers-tiles-api";
     GRANT EXECUTE ON FUNCTION hot_projects(integer, integer, integer) TO "layers-tiles-api";
     GRANT EXECUTE ON FUNCTION hot_projects_outlines(integer, integer, integer) TO "layers-tiles-api";
-
-    GRANT SELECT ON layers TO "layers-stac-api";
-    GRANT SELECT ON layers_features TO "layers-stac-api";
-    GRANT EXECUTE ON FUNCTION hot_projects(integer, integer, integer) TO "layers-stac-api";
-    GRANT EXECUTE ON FUNCTION hot_projects_outlines(integer, integer, integer) TO "layers-stac-api";
      
     ALTER TABLE layers                     OWNER TO "layers-api";
     ALTER TABLE apps                       OWNER TO "layers-api";

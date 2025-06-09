@@ -1,6 +1,6 @@
 # QUICKSTART values for layers-stac-api.
 image:
-  tag: latest
+  tag: main-pgstac
 replicas: 1
 envName: quickstart
 createResource:

@@ -5,6 +5,7 @@ data:
   PGDATABASE: "{{ .Values.pgDatabase }}"
   PGUSER: "{{ .Values.pgUser }}"
   LAYERSDBSTAGE: "{{ .Values.envName }}"
+  ENABLED_EXTENSIONS: "{{ .Values.enabledExtensions }}"
 kind: ConfigMap
 metadata:
   annotations:
