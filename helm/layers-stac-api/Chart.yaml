@@ -1,0 +1,8 @@
+apiVersion: v2
+name: layers-stac-api
+description: A Helm chart for Layers STAC API
+
+type: application
+
+version: 0.1.0
+# don't use appVersion, use {{Values.image.tag}} instead

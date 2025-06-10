@@ -1,0 +1,20 @@
+apiVersion: v1
+data:
+  PGHOST: "{{ .Values.pgHost }}"
+  PGPORT: "{{ .Values.pgPort }}"
+  PGDATABASE: "{{ .Values.pgDatabase }}"
+  PGUSER: "{{ .Values.pgUser }}"
+  LAYERSDBSTAGE: "{{ .Values.envName }}"
+  ENABLED_EXTENSIONS: "{{ .Values.enabledExtensions }}"
+kind: ConfigMap
+metadata:
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-layers-stac-api
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: layers-stac-api
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-layers-stac-api
+  namespace: {{ .Release.Namespace }}

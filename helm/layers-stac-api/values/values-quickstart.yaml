@@ -1,0 +1,10 @@
+# QUICKSTART values for layers-stac-api.
+image:
+  tag: main-pgstac
+replicas: 1
+envName: quickstart
+createResource:
+  defaultSecrets: true
+isOfflineInstallation: true
+probeInitialDelaySeconds: 90
+pgHost: host.docker.internal

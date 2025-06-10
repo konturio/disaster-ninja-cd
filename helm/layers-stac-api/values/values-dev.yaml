@@ -1,0 +1,10 @@
+# DEV values for layers-stac-api.
+image:
+  tag: main-pgstac
+replicas: 1
+envName: dev
+createResource:
+  defaultSecrets: false
+isOfflineInstallation: false
+probeInitialDelaySeconds: 15
+pgHost: db-layers-primary.dev-layers-db.svc
