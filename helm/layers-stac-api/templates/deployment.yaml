@@ -38,16 +38,21 @@ spec:
         app.kubernetes.io/name: layers-stac-api
         stage: {{ .Values.envName }}
     spec:
-        containers:
-          - envFrom:
-              - configMapRef:
-                  name: {{ .Values.envName }}-layers-stac-api
-              - secretRef:
-                  name: {{ .Values.envName }}-layers-stac-api
+      containers:
+        - name: layers-stac-api
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["uvicorn"]
-          args: ["stac_fastapi.pgstac.app:app","--host","0.0.0.0","--port","{{ .Values.containerPort }}","--workers","4"]
+          args: ["stac_fastapi.pgstac.app:app", "--host", "0.0.0.0", "--port", "{{ .Values.containerPort }}", "--workers", "4"]
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.envName }}-layers-stac-api
+            - secretRef:
+                name: {{ .Values.envName }}-layers-stac-api
+          ports:
+            - containerPort: {{ .Values.containerPort }}
+              name: stac
+              protocol: TCP
           livenessProbe:
             httpGet:
               path: /
@@ -66,11 +71,6 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
-          name: layers-stac-api
-          ports:
-            - containerPort: {{ .Values.containerPort }}
-              name: stac
-              protocol: TCP
           resources:
             limits:
               memory: {{ .Values.resources.limits.memory }}
