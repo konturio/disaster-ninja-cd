@@ -1,6 +1,6 @@
 # TEST values for layers-stac-api.
 image:
-  tag: main-pgstac
+  tag: 5.2.1
 replicas: 1
 envName: test
 createResource:
