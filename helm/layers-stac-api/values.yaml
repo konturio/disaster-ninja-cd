@@ -3,9 +3,9 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: ghcr.io/stac-utils/stac-fastapi
+  repository: nexus.kontur.io:8085/konturdev/stac-fastapi
   pullPolicy: IfNotPresent
-  tag: main-pgstac
+  tag: 5.2.1
 
 containerPort: 8080
 replicas: 1
