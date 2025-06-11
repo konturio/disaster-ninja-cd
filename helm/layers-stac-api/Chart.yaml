@@ -4,5 +4,5 @@ description: A Helm chart for Layers STAC API
 
 type: application
 
-version: 1.0.0
+version: 1.0.1
 # don't use appVersion, use {{Values.image.tag}} instead

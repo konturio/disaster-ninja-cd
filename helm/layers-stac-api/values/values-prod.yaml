@@ -1,10 +1,18 @@
 # PROD values for layers-stac-api.
 image:
   tag: 5.2.1
+
 replicas: 1
+
 envName: prod
+ingressHost: prod-layers-stac-api.k8s-01.konturlabs.com
+ingressClass: ingress-nginx
+
 createResource:
   defaultSecrets: false
+  ingress: true
+
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
+
 pgHost: db-layers-primary.prod-layers-db.svc
