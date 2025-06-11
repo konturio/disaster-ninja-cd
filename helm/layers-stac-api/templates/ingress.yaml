@@ -1,0 +1,49 @@
+{{ if .Values.createResource.ingress }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+  {{- if .Values.isOfflineInstallation }}
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+  {{- else }}
+    nginx.ingress.kubernetes.io/server-snippet: |
+      proxy_bind off;
+    {{- if or (eq .Values.k8s_cluster_flavor "k8s-01.kontur.io") (eq .Values.k8s_cluster_flavor "k8s-02.kontur.io") }}
+      set $cors_config_file '/etc/nginx/default.cors.json';
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      include /etc/nginx/CORS_02_location.inc.conf;
+      proxy_set_header Origin ""; # Disable CORS processing by upstreams
+    {{- end }}
+  {{- end }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.envName }}-layers-stac-api
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: layers-stac-api-ng
+    stage: {{ .Values.envName }}
+  name: {{ .Values.envName }}-layers-stac-api-ng
+  namespace: {{ .Release.Namespace }}
+spec:
+  ingressClassName: {{ .Values.ingressClass }}
+  rules:
+  - host: {{ .Values.ingressHost }}
+    http:
+      paths:
+      - backend:
+          service:
+            name: {{ .Values.envName }}-layers-stac-api
+            port:
+              name: stac
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - {{ .Values.ingressHost }}
+    secretName: {{ .Values.envName }}-layers-stac-api-tls
+{{ end }}
