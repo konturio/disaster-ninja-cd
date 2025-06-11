@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 21025-dn-fe-implement-create-user-layer-flow-mvp.d45e601.1
+    tag: 21025-dn-fe-implement-create-user-layer-flow-mvp.0d5dc1a.1
 replicaCount: 2
 envName: dev
 ingressHosts:
