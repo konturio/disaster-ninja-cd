@@ -36,7 +36,8 @@ resources:
       memory: 16Gi
 
 databaseHost: db-insights-api-pg17-primary.prod-insights-api.svc
-databaseHostSecondary: db-insights-api-pg17-replicas.prod-insights-api.svc
+databaseHostSecondary: db-insights-api-pg17-primary.prod-insights-api.svc
+#databaseHostSecondary: db-insights-api-pg17-replicas.prod-insights-api.svc
 databasePort: 5432
 databaseName: insights-api
 databaseUsername: insights-api
