@@ -33,7 +33,7 @@ resources:
     memory: 4Gi
   limits:
     cpu: 8
-    memory: 512Gi
+    memory: 511Gi
 
 storageType: emptydir
 affinity:
