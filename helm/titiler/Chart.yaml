@@ -1,4 +1,4 @@
 apiVersion: v2
 description: A dynamic Web Map tile server
 name: titiler
-version: 1.0.14
+version: 1.0.15
