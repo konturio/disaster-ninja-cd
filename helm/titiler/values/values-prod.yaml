@@ -5,7 +5,7 @@
 replicaCount: 3
 
 image:
-  tag: 0.7.1
+  tag: 0.22.3
 
 envName: prod
 ingressHost: prod-titiler.k8s-01.konturlabs.com
@@ -22,5 +22,5 @@ resources:
     cpu: 5
     memory: 5Gi
   limits:
-    cpu: 5
-    memory: 10Gi
+    cpu: 32
+    memory: 20Gi
