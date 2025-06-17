@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 13437-create-univariate-layers-in-layers-db.8de28ad.1
+  tag: main.2e3a5e0.1
   usePullSecret: false
   pullSecretName: none
 
