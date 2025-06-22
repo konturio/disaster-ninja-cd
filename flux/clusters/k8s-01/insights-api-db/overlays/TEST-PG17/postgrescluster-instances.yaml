@@ -25,30 +25,6 @@
                     operator: In
                     values:
                       - hwn03.k8s-01.kontur.io
-    - name: hwn04
-      replicas: 1
-      resources:
-        limits:
-          memory: 512Gi
-          cpu: '48'
-        requests:
-          memory: 24Gi
-          cpu: '2'
-      dataVolumeClaimSpec:
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 300Gi
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: kubernetes.io/hostname
-                    operator: In
-                    values:
-                      - hwn04.k8s-01.kontur.io
 
 #- op: add
 #  path: /spec/patroni/switchover
