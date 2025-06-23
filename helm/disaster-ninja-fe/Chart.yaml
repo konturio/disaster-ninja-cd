@@ -13,6 +13,6 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.3.426
+version: 0.3.427
 # Don't use appVersion, use {{ .Values.image.fe.tag }} instead. That's required for Flux automation - so that different
 # stages can have different versions within the same branch watched by Flux.
