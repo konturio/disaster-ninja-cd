@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 13621-fe-implement-map-popup-component.8974916.1
+    tag: main.40863c4.1
 replicaCount: 2
 envName: dev
 ingressHosts:
