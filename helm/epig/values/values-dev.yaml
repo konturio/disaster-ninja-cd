@@ -18,10 +18,10 @@ containers:
   usePullSecret: false
   chromium_headless:
     replicas: 1
-    tag: codex-improve-chromium-start-options.bddf3a0.1
+    tag: codex-improve-chromium-start-options.eefc2bc.1
   preview_generator:
     replicas: 1
-    tag: codex-improve-chromium-start-options.bddf3a0.1
+    tag: codex-improve-chromium-start-options.eefc2bc.1
   redis:
     replicas: 1
     tag: "7-alpine3.16"
