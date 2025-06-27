@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: main.40863c4.1
+    tag: codex-fix-768px-white-space-in-preview-mode.277bfb9.1
 replicaCount: 2
 envName: dev
 ingressHosts:
