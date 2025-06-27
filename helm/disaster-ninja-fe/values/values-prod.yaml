@@ -25,12 +25,14 @@ ingressHosts:
   - horam.kontur.io
   - waldoair.kontur.io
   - floodmodel.kontur.io
+  - risks.kontur.io
   - prod-odin-kontur-io.k8s-01.konturlabs.com
   - prod-terrain-kontur-io.k8s-01.konturlabs.com
   - prod-globalgiving-kontur-io.k8s-01.konturlabs.com
   - prod-horam-kontur-io.k8s-01.konturlabs.com
   - prod-waldoair-kontur-io.k8s-01.konturlabs.com
   - prod-floodmodel-kontur-io.k8s-01.konturlabs.com
+  - prod-risks-kontur-io.k8s-01.konturlabs.com
   - prod-disaster-ninja.k8s-01.konturlabs.com
   - prod-disaster-ninja.konturlabs.com
   - prod-emb-disaster-ninja.konturlabs.com
