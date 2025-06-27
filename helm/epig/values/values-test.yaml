@@ -3,7 +3,6 @@ createResource:
   ingress: true
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
-
 ENV_NAME: test
 ingressHost: test-epig.k8s-01.konturlabs.com
 ingressClass: ingress-nginx
@@ -19,10 +18,10 @@ containers:
   usePullSecret: false
   chromium_headless:
     replicas: 1
-    tag: codex-fix-screenshot-white-stripe-issue.37388bf.1
+    tag: main.0be7352.1
   preview_generator:
     replicas: 1
-    tag: codex-fix-screenshot-white-stripe-issue.37388bf.1
+    tag: main.0be7352.1
   redis:
     replicas: 1
     tag: "7-alpine3.16"
