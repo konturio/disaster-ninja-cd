@@ -18,7 +18,7 @@ replicas: 1
 
 image:
   be:
-    tag: release-0.38.3.cbf6075.1
+    tag: codex-fix-event-shape-legend-opacity-display.982e17d.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
