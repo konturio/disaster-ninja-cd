@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: release-1-19-0.e5e1e6e.1
+  tag: create-index-on-layers_features.c8726b2.1
   usePullSecret: false
   pullSecretName: none
 
