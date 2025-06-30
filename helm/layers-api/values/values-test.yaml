@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: create-index-on-layers_features.c8726b2.1
+  tag: codex-fix-slow-geojson-layer-rendering.0a2b825.1
   usePullSecret: false
   pullSecretName: none
 
