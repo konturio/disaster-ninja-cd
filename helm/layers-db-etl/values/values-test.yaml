@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 21521-ingest-and-aggregate-gfw-vessel-events-data.11f8514.1
+  tag: release-1.4.22.b65548f.1
   usePullSecret: false
   pullSecretName: none
 
