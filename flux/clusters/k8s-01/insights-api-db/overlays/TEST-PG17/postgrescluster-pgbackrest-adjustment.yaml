@@ -4,7 +4,7 @@
 
 - op: add
   path: /spec/backups/pgbackrest/global/process-max
-  value: '8'
+  value: '2'
 
 - op: add
   path: /spec/backups/pgbackrest/global/archive-push-queue-max
@@ -48,7 +48,7 @@
 
 - op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/wal_compression
-  value: 'off'
+  value: 'on'
 
 - op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/autovacuum_vacuum_cost_delay
@@ -72,7 +72,7 @@
 
 - op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/autovacuum_max_workers
-  value: '8'
+  value: '4'
 
 - op: replace
   path: /spec/patroni/dynamicConfiguration/postgresql/parameters/autovacuum_vacuum_insert_scale_factor
