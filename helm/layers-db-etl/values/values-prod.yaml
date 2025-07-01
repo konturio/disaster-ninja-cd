@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: main.1a0a29d.1
+  tag: adjust-gfw-flags-layer.2a5af94.1
   usePullSecret: false
   pullSecretName: none
 
