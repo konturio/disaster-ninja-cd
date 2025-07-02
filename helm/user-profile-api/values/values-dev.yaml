@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 21414-create-risk-assessment-app.dcff9cd.1
+  tag: main.0661dc9.1
   pullSecretName: none
   usePullSecret: false
 
