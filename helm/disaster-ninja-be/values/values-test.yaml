@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: codex-add-detailed-logging-to-notifications-module.38d508b.1
+    tag: main.fd1d90e.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
