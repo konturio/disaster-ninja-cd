@@ -13,16 +13,15 @@ CACHE_TTL: 120
 DEBUG: TRUE
 #DEFAULT_IMAGE_URL: "https://test-apps-ninja02.konturlabs.com/active/static/assets/preview_screenshot.png"
 CHROMIUM_GPU_MODE: vulkan
-
 containers:
   pullSecretName: none
   usePullSecret: false
   chromium_headless:
     replicas: 1
-    tag: codex-enable-gpu-for-epig-s-chromium.5c27abf.1
+    tag: main.c4a9046.1
   preview_generator:
     replicas: 1
-    tag: codex-enable-gpu-for-epig-s-chromium.5c27abf.1
+    tag: main.c4a9046.1
   redis:
     replicas: 1
     tag: "7-alpine3.16"
