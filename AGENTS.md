@@ -1,0 +1,1 @@
+- When changing something in the charts, bump chart version to trigger deployment too.
