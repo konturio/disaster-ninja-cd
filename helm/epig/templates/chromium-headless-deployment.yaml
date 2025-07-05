@@ -55,6 +55,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ .Values.ENV_NAME }}-epig
+            - secretRef:
+                name: {{ .Values.ENV_NAME }}-preview-generator-secret
           ports:
             - containerPort: {{ .Values.CHROMIUM_PORT }}
           resources:
