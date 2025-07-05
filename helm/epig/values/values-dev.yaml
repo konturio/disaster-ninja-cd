@@ -18,10 +18,10 @@ containers:
   usePullSecret: false
   chromium_headless:
     replicas: 1
-    tag: main.c4a9046.1
+    tag: main.1b1cf3e.1
   preview_generator:
     replicas: 1
-    tag: main.c4a9046.1
+    tag: main.1b1cf3e.1
   redis:
     replicas: 1
     tag: "7-alpine3.16"
