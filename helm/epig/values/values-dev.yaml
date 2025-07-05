@@ -18,10 +18,10 @@ containers:
   usePullSecret: false
   chromium_headless:
     replicas: 1
-    tag: main.0be7352.1
+    tag: codex-enable-gpu-for-epig-s-chromium.5c27abf.1
   preview_generator:
     replicas: 1
-    tag: main.0be7352.1
+    tag: codex-enable-gpu-for-epig-s-chromium.5c27abf.1
   redis:
     replicas: 1
     tag: "7-alpine3.16"
