@@ -56,6 +56,13 @@ spec:
         - name: chromium-headless
           image: {{ .Values.containers.chromium_headless.repository }}:{{ .Values.containers.chromium_headless.tag }}
           imagePullPolicy: {{ .Values.containers.chromium_headless.pullPolicy }}
+          {{- if or (.Values.resources.chromium.requests.nvidia_gpu) (.Values.resources.chromium.limits.nvidia_gpu) }}
+          env:
+            - name: NVIDIA_VISIBLE_DEVICES
+              value: "all"
+            - name: NVIDIA_DRIVER_CAPABILITIES
+              value: "all"
+          {{- end }}
           envFrom:
             - configMapRef:
                 name: {{ .Values.ENV_NAME }}-epig
