@@ -4,6 +4,7 @@ createResource:
 isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 
+
 ingressHost: none
 EVENT_NAME: "event_ready_for_screenshot"
 IMAGE_FORMAT: png
@@ -13,6 +14,7 @@ HEIGHT: 630
 CHROMIUM_HOST: "chromium-headless"
 CHROMIUM_PORT: 9222
 CHROMIUM_CACHE_SIZE: 104857600
+CHROMIUM_GPU_MODE: software
 
 containers:
   pullSecretName: nexus8084

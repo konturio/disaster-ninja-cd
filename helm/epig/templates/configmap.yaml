@@ -16,6 +16,7 @@ data:
   CHROMIUM_HOST: "{{ .Values.ENV_NAME }}-{{ .Values.CHROMIUM_HOST }}"
   CHROMIUM_PORT: "{{ .Values.CHROMIUM_PORT }}"
   CHROMIUM_CACHE_SIZE: "{{ .Values.CHROMIUM_CACHE_SIZE }}"
+  CHROMIUM_GPU_MODE: "{{ .Values.CHROMIUM_GPU_MODE }}"
   USE_HEADERS: "FALSE"
   SITE_URL: "{{ .Values.SITE_URL }}"
   EVENT_NAME: "{{ .Values.EVENT_NAME }}"
