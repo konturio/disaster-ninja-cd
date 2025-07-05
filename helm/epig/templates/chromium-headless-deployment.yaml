@@ -42,6 +42,12 @@ spec:
       {{ if .Values.containers.usePullSecret }}
       imagePullSecrets: #TODO remove once image is on ghcr.io
         - name: {{ .Values.containers.pullSecretName }}{{ end }}
+      {{- if .Values.resources.chromium.requests.nvidia_gpu }}
+      tolerations:
+        - key: nvidia.com/gpu
+          operator: Exists
+          effect: NoSchedule
+      {{- end }}
       containers:
         - name: chromium-headless
           image: {{ .Values.containers.chromium_headless.repository }}:{{ .Values.containers.chromium_headless.tag }}
@@ -55,8 +61,14 @@ spec:
             requests:
               cpu: {{ .Values.resources.chromium.requests.cpu | quote }}
               memory: {{ .Values.resources.chromium.requests.memory | quote }}
+              {{- if .Values.resources.chromium.requests.nvidia_gpu }}
+              nvidia.com/gpu: {{ .Values.resources.chromium.requests.nvidia_gpu }}
+              {{- end }}
             limits:
               memory: {{ .Values.resources.chromium.limits.memory | quote }}
+              {{- if .Values.resources.chromium.limits.nvidia_gpu }}
+              nvidia.com/gpu: {{ .Values.resources.chromium.limits.nvidia_gpu }}
+              {{- end }}
           livenessProbe:
             httpGet:
               path: /json

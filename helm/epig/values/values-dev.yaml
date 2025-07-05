@@ -12,6 +12,7 @@ TIMEOUT: 8000
 CACHE_TTL: 120
 DEBUG: TRUE
 #DEFAULT_IMAGE_URL: "https://test-apps-ninja02.konturlabs.com/active/static/assets/preview_screenshot.png"
+CHROMIUM_GPU_MODE: gl
 
 containers:
   pullSecretName: none
@@ -29,3 +30,6 @@ resources:
   chromium:
     requests:
       cpu: 500m
+      nvidia_gpu: 1
+    limits:
+      nvidia_gpu: 1
