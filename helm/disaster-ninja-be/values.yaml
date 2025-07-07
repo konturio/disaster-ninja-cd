@@ -54,6 +54,7 @@ useInsightsV2: false
 
 notificationsEnabled: false
 notificationsFeed: disabled
+notificationsFeed2: disabled
 notificationsAlertUrlPattern: disabled
 notificationsSlackWebHook: disabled
 notificationsRelevantLocationsLayer: "global_giving_partners"
