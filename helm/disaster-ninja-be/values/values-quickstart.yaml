@@ -44,6 +44,7 @@ tilesHost: 'https://sonic.kontur.io' #TODO
 
 notificationsEnabled: false
 notificationsFeed: none
+notificationsFeed2: none
 notificationsAlertUrlPattern: none
 notificationsKonturUrlPattern: none
 

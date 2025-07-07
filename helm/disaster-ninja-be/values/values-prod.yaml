@@ -34,6 +34,7 @@ notificationsEnabled: true
 notificationsSlackEnabled: true
 notificationsEmailEnabled: false
 notificationsFeed: kontur-public
+notificationsFeed2: none
 notificationsAlertUrlPattern: 'https://disaster.ninja/active/?event=%s&utm_source=slack'
 notificationsKonturUrlPattern: 'https://globalgiving.kontur.io/active/map?event=%s&feed=%s&utm_source=email'
 
