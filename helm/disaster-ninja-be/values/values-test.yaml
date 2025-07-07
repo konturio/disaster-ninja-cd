@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: codex-add-second-slackwebhook-support-and-eventapiclient-options.3471097.1
+    tag: codex-add-second-slackwebhook-support-and-eventapiclient-options.0164708.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
