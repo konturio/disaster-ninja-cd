@@ -1,6 +1,6 @@
 - op: add
   path: /spec/backups/pgbackrest/global/archive-timeout
-  value: '360'
+  value: '1200'
 
 - op: add
   path: /spec/backups/pgbackrest/global/process-max
