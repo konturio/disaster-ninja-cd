@@ -18,7 +18,7 @@ replicas: 1
 
 image:
   be:
-    tag: main.fd1d90e.1
+    tag: release-0.39.0.b6a2f4b.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
