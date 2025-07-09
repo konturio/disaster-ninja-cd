@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: release-0.38.3.cbf6075.1
+    tag: release-0.39.0.b6a2f4b.1
 
 keycloakUrl: 'https://keycloak01.kontur.io'
 keycloakRealm: kontur
@@ -34,7 +34,7 @@ notificationsEnabled: true
 notificationsSlackEnabled: true
 notificationsEmailEnabled: false
 notificationsFeed: kontur-public
-notificationsFeed2: none
+notificationsFeed2: 'micglobal'
 notificationsAlertUrlPattern: 'https://disaster.ninja/active/?event=%s&utm_source=slack'
 notificationsKonturUrlPattern: 'https://globalgiving.kontur.io/active/map?event=%s&feed=%s&utm_source=email'
 
