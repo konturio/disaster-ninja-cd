@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 22118-ups-assign-trial-role-to-all-registered-users-on-risk-compass.93ae00f.1
+  tag: codex-update-user-registration-for-risk_compass_trial-role.654f600.1
   pullSecretName: none
   usePullSecret: false
 
