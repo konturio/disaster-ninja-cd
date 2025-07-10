@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: ri1pln-codex-add-usgs-earthquake-provider-to-event-api.f23c383f.1
+  tag: ri1pln-codex-add-usgs-earthquake-provider-to-event-api.6bfc3f24.1
   pullSecretName: none
   usePullSecret: false
 
