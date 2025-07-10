@@ -18,7 +18,7 @@ replicas: 1
 
 image:
   be:
-    tag: codex-fix-emailnotificationservice-bean-definition.6a6f5bc.1
+    tag: codex-fix-emailnotificationservice-bean-definition.d1af4b4.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
