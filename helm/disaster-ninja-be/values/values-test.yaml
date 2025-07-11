@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: codex-add-magnitude-and-category-from-event-api.641e7eb.1
+    tag: release-0.39.1.3c73421.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
