@@ -64,3 +64,5 @@ maxH3Resolution: 11
 minH3Resolution: 0
 maxZoom: 15
 minZoom: 0
+
+java_tool_options: "-XX:MaxRAMPercentage=50"

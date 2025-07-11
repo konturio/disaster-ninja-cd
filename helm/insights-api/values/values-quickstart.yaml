@@ -54,3 +54,5 @@ otlpTracesPort: 4317
 client_max_body_size: 5g
 
 jdbcTemplateQueryTimeout: "600"
+
+java_tool_options: "-XX:MaxRAMPercentage=50"

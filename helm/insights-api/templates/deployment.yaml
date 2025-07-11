@@ -45,6 +45,8 @@ spec:
     {{- end }}
       containers:
         - env:
+            - name: JAVA_TOOL_OPTIONS
+              value: -XX:MaxRAMPercentage=50
             - name: OTEL_SERVICE_NAME
               valueFrom:
                 fieldRef:
