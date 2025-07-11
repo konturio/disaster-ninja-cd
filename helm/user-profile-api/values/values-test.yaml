@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: codex-update-user-registration-for-risk_compass_trial-role.654f600.1
+  tag: codex-update-user-registration-for-risk_compass_trial-role.374747f.1
   pullSecretName: none
   usePullSecret: false
 
