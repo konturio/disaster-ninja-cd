@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: release-0.39.1.3c73421.1
+    tag: codex-patch-notification-service-for-feed2.048714e.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
