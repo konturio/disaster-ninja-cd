@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: codex-add-shakemap-geometry-transformation.aae276ab.1
+  tag: bytkl7-codex-add-shakemap-geometry-transformation.aa3cf293.1
   pullSecretName: none
   usePullSecret: false
 
