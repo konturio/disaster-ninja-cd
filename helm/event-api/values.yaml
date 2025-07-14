@@ -25,6 +25,7 @@ isOfflineInstallation: false
 probeInitialDelaySeconds: 15
 probeInitialDelaySecondsRedis: 15
 usePgDataSecret: false
+vmMaxMapCount: 262144
 
 resources:
   app:
