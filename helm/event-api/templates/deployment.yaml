@@ -39,10 +39,6 @@ spec:
       imagePullSecrets: #TODO remove once image is on ghcr.io
         - name: {{ .Values.image.pullSecretName }}
       {{- end }}
-      securityContext:
-        sysctls:
-          - name: vm.max_map_count
-            value: "{{ .Values.vmMaxMapCount }}"
       containers:
         - env:
             - name: OTEL_SERVICE_NAME
