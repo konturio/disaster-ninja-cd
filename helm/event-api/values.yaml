@@ -111,4 +111,7 @@ eventExpirationEnable: true
 normalizationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, pdcSqs, pdcMapSrv, pdcSqsNasa, pdcMapSrvNasa,
   cyclones.nhc-at.noaa, cyclones.nhc-ep.noaa, cyclones.nhc-cp.noaa
 
+eventCombinationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, storms.noaa, wildfire.calfire,
+  wildfire.perimeters.nifc, wildfire.locations.nifc, cyclones.nhc-at.noaa, cyclones.nhc-ep.noaa, cyclones.nhc-cp.noaa
+
 k8s_cluster_flavor: default # value may be substituted in a Flux pipeline

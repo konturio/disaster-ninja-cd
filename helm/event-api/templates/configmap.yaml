@@ -26,6 +26,7 @@ data:
   scheduler.emDatImport.enable: {{ .Values.emDatImportEnable | quote }}
   scheduler.enrichment.enable: {{ .Values.enrichmentEnable | quote }}
   scheduler.eventCombination.enable: {{ .Values.eventCombinationEnable | quote }}
+  scheduler.eventCombination.providers: {{ .Values.eventCombinationProviders | quote }}
   scheduler.feedComposition.enable: {{ .Values.feedCompositionEnable | quote }}
   scheduler.firmsModisImport.enable: {{ .Values.firmsModisImportEnable | quote }}
   scheduler.firmsNoaaImport.enable: {{ .Values.firmsNoaaImportEnable | quote }}
