@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: codex-fix-axis-layers-insertion-with--multivariate--type-and--univ.162f339.1
+  tag: main.cfb5717.1
   usePullSecret: false
   pullSecretName: none
 
