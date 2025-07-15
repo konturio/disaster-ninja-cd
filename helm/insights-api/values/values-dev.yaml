@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: release-0.22.13.563bac8.1
+  tag: master.cb1bd2d.1
   tagType: ""
   pullSecretName: none
   usePullSecret: false
@@ -60,5 +60,4 @@ maxH3Resolution: 11
 minH3Resolution: 0
 maxZoom: 15
 minZoom: 0
-
 java_tool_options: "-XX:MaxRAMPercentage=50"
