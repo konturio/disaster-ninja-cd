@@ -11,7 +11,7 @@ metadata:
     stage: {{ .Values.ENV_NAME }}
     {{- if or (.Values.resources.chromium.requests.gpu_fraction) (.Values.resources.chromium.requests.gpu_memory) }}
     kai.scheduler/queue: gpu-share
-    {{- else }}
+    {{- end }}
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
