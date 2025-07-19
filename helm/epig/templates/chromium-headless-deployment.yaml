@@ -51,15 +51,16 @@ spec:
         meta.helm.sh/release-namespace: {{ .Release.Namespace }}
         checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }} #only roll pods if config (rendered!) changed
     spec:
-      {{ if .Values.containers.usePullSecret }}
-      imagePullSecrets: #TODO remove once image is on ghcr.io
-        - name: {{ .Values.containers.pullSecretName }}{{ end }}
       {{- if or (.Values.resources.chromium.requests.gpu_fraction) (.Values.resources.chromium.requests.gpu_memory) }}
+      schedulerName: kai-scheduler
       tolerations:
         - key: nvidia.com/gpu
           operator: Exists
           effect: NoSchedule
       {{- end }}
+      {{ if .Values.containers.usePullSecret }}
+      imagePullSecrets: #TODO remove once image is on ghcr.io
+        - name: {{ .Values.containers.pullSecretName }}{{ end }}
       containers:
         - name: chromium-headless
           image: {{ .Values.containers.chromium_headless.repository }}:{{ .Values.containers.chromium_headless.tag }}
