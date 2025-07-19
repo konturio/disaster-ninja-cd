@@ -29,6 +29,4 @@ resources:
   chromium:
     requests:
       cpu: 500m
-      nvidia_gpu: 1
-    limits:
-      nvidia_gpu: 1
+      gpu_memory: "2000"
