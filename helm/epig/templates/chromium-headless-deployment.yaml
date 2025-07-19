@@ -9,9 +9,17 @@ metadata:
     #don't add app.kubernetes.io/version
     app.kubernetes.io/managed-by: "Helm"
     stage: {{ .Values.ENV_NAME }}
+    {{- if or (.Values.resources.chromium.requests.gpu_fraction) (.Values.resources.chromium.requests.gpu_memory) }}
+    kai.scheduler/queue: gpu-share
+    {{- else }}
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }}
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    {{- if .Values.resources.chromium.requests.gpu_fraction }}
+    gpu-fraction: "{{ .Values.resources.chromium.requests.gpu_fraction }}"
+    {{- else if .Values.resources.chromium.requests.gpu_memory }}
+    gpu-memory: "{{ .Values.resources.chromium.requests.gpu_memory }}"
+    {{- end }}
 spec:
   selector:
     matchLabels:
@@ -22,7 +30,7 @@ spec:
       stage: {{ .Values.ENV_NAME }}
   replicas: {{ .Values.containers.chromium_headless.replicas }}
   strategy:
-    {{- if or (.Values.resources.chromium.requests.nvidia_gpu) (.Values.resources.chromium.limits.nvidia_gpu) }}
+    {{- if or (.Values.resources.chromium.requests.gpu_fraction) (.Values.resources.chromium.requests.gpu_memory) }}
     type: Recreate
     {{- else }}
     type: RollingUpdate
@@ -46,7 +54,7 @@ spec:
       {{ if .Values.containers.usePullSecret }}
       imagePullSecrets: #TODO remove once image is on ghcr.io
         - name: {{ .Values.containers.pullSecretName }}{{ end }}
-      {{- if .Values.resources.chromium.requests.nvidia_gpu }}
+      {{- if or (.Values.resources.chromium.requests.gpu_fraction) (.Values.resources.chromium.requests.gpu_memory) }}
       tolerations:
         - key: nvidia.com/gpu
           operator: Exists
@@ -56,7 +64,7 @@ spec:
         - name: chromium-headless
           image: {{ .Values.containers.chromium_headless.repository }}:{{ .Values.containers.chromium_headless.tag }}
           imagePullPolicy: {{ .Values.containers.chromium_headless.pullPolicy }}
-          {{- if or (.Values.resources.chromium.requests.nvidia_gpu) (.Values.resources.chromium.limits.nvidia_gpu) }}
+          {{- if or (.Values.resources.chromium.requests.gpu_fraction) (.Values.resources.chromium.requests.gpu_memory) }}
           env:
             - name: NVIDIA_VISIBLE_DEVICES
               value: "all"
@@ -74,14 +82,8 @@ spec:
             requests:
               cpu: {{ .Values.resources.chromium.requests.cpu | quote }}
               memory: {{ .Values.resources.chromium.requests.memory | quote }}
-              {{- if .Values.resources.chromium.requests.nvidia_gpu }}
-              nvidia.com/gpu: {{ .Values.resources.chromium.requests.nvidia_gpu }}
-              {{- end }}
             limits:
               memory: {{ .Values.resources.chromium.limits.memory | quote }}
-              {{- if .Values.resources.chromium.limits.nvidia_gpu }}
-              nvidia.com/gpu: {{ .Values.resources.chromium.limits.nvidia_gpu }}
-              {{- end }}
           livenessProbe:
             httpGet:
               path: /json
