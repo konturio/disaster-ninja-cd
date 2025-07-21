@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: release-0.39.2.cd8fdcf.1
+    tag: codex-filter-feed2-notifications-for-us-events.52f30e1.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
