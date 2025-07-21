@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 21948-add-dataset-category-to-file-we-show-on-website.317a1db.1
+  tag: 21948-add-dataset-category-to-file-we-show-on-website.1495411.1
   usePullSecret: false
   pullSecretName: none
 
