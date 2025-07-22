@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: release-2.52.0.6d270ab.1
+    tag: 22156-setup-matomo-tag-manager-to-apps.d9e7382.1
 replicaCount: 2
 envName: dev
 ingressHosts:
