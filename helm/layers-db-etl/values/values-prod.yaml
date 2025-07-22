@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 22247-layers-db-add-all-univariate-layers-to-csv.edb7f22.1
+  tag: main.3d8102e.1
   usePullSecret: false
   pullSecretName: none
 
