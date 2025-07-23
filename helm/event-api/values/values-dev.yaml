@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: codex-replace-multiple-test-files-with-one.6e023826.1
+  tag: codex-add-event-data-download-validation.82506cab.1
   pullSecretName: none
   usePullSecret: false
 
