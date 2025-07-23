@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: codex-filter-micglobal-feed-to-usa-events.31021828.1
+  tag: codex-fix-null-pointer-exception-in-normalization.cead5673.1
   pullSecretName: none
   usePullSecret: false
 
