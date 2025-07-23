@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: codex-update-normalization-for-usgs.eartquake.a40de040.1
+  tag: codex-replace-multiple-test-files-with-one.6e023826.1
   pullSecretName: none
   usePullSecret: false
 
