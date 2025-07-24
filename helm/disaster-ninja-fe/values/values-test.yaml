@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: 21210-fe-multivariate-analysis-legend.a4bbaea.1
+    tag: main.0f02213.1
 replicaCount: 2
 envName: test
 ingressHosts:
