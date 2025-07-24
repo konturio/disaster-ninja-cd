@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: codex-update-graphql-schema-for-new-fields.2ceef2d.1
+    tag: release-0.40.0.82ae580.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
