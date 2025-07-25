@@ -35,7 +35,6 @@ data:
   notifications.slack.enabled: {{ .Values.notificationsSlackEnabled | quote }}
   notifications.email.enabled: {{ .Values.notificationsEmailEnabled | quote }}
   notifications.feed: {{ .Values.notificationsFeed }}
-  notifications.feed2: {{ .Values.notificationsFeed2 }}
   notifications.alertUrlPattern: {{ .Values.notificationsAlertUrlPattern }}
   notifications.konturUrlPattern: {{ .Values.notificationsKonturUrlPattern }}
   notifications.relevantLocationsLayer: {{ .Values.notificationsRelevantLocationsLayer }}

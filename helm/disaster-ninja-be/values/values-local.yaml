@@ -31,7 +31,6 @@ tilesHost: 'https://zigzag.kontur.io'
 
 notificationsEnabled: false
 notificationsFeed: kontur-public
-notificationsFeed2: none
 notificationsAlertUrlPattern: 'https://test-apps-ninja02.konturlabs.com/active/?event=%s'
 notificationsKonturUrlPattern: 'https://dev-globalgiving-kontur-io.k8s-01.konturlabs.com/active/map?event=%s&feed=%s&utm_source=email'
 
