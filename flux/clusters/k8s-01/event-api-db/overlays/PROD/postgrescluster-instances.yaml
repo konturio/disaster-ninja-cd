@@ -26,7 +26,8 @@
                     operator: In
                     values:
                       - hwn01.k8s-01.kontur.io
-    - name: hwn02a
+    - &base
+      name: hwn02a
       replicas: 1
       resources:
         limits:
@@ -50,6 +51,18 @@
                     operator: In
                     values:
                       - hwn02.k8s-01.kontur.io
+
+    - <<: *base
+      name: hwn04
+      affinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - hwn04.k8s-01.kontur.io
+      
 
 #### switchover section ####
 # 2024-11-04: Switchover to hwn02 as a part of moving from legacy unnamed instances (#19803)
