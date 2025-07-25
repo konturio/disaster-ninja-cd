@@ -55,6 +55,7 @@
     - <<: *base
       name: hwn04
       affinity:
+        nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
               - matchExpressions:
