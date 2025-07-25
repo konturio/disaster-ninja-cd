@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: codex-fix-nullpointerexception-in-earthquake-normalization.33fe520d.1
+  tag: codex-update-normalization-for-usgs.eartquake.a40de040.1
   pullSecretName: none
   usePullSecret: false
 
