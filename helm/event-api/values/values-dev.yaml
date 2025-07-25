@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: codex-investigate-data-insertion-issue-in-data_lake.12a664a2.1
+  tag: codex-fix-nullpointerexception-in-earthquake-normalization.33fe520d.1
   pullSecretName: none
   usePullSecret: false
 
