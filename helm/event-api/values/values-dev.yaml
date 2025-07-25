@@ -27,7 +27,6 @@ databaseHost: db-event-api-pg17-primary.dev-event-api.svc
 databaseUser: event-api
 databaseName: event-api
 databasePort: 5432
-databaseMaximumPoolSize: 120
 
 alertingTime: 10m
 
