@@ -63,6 +63,10 @@
                     operator: In
                     values:
                       - hwn04.k8s-01.kontur.io
+      tolerations:
+        - key: "prevent-new-pods"
+          operator: "Exists"
+          effect: "NoSchedule"
       
 
 #### switchover section ####
