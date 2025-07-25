@@ -18,7 +18,7 @@ replicas: 2
 
 image:
   be:
-    tag: 21984-mg-filter-incoming-events-based-on-alert-triggers.18cd6eb.1
+    tag: 21984-mg-filter-incoming-events-based-on-alert-triggers.0167c86.1
 
 keycloakUrl: 'https://keycloak01.konturlabs.com'
 keycloakRealm: test
@@ -34,7 +34,6 @@ notificationsEnabled: true
 notificationsSlackEnabled: true
 notificationsEmailEnabled: true
 notificationsFeed: kontur-public
-notificationsFeed2: 'micglobal'
 notificationsAlertUrlPattern: 'https://test-apps-ninja01.konturlabs.com/active/?event=%s&utm_source=slack'
 notificationsKonturUrlPattern: 'https://test-globalgiving-kontur-io.k8s-01.konturlabs.com/active/map?event=%s&feed=%s&utm_source=email'
 
