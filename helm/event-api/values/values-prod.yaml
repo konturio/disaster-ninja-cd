@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: release-1.22.0.30d384e1.1
+  tag: master.7c69b899.1
   pullSecretName: none
   usePullSecret: false
 
@@ -58,8 +58,8 @@ awsSqsEnabled: true
 
 feignUserAgent: 'Event API PROD'
 
-normalizationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, storms.noaa, wildfire.calfire,
+normalizationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, storms.noaa, wildfire.calfire, usgs.earthquake,
   wildfire.perimeters.nifc, wildfire.locations.nifc, cyclones.nhc-at.noaa, cyclones.nhc-ep.noaa, cyclones.nhc-cp.noaa
 
-eventCombinationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, storms.noaa, wildfire.calfire,
+eventCombinationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, storms.noaa, wildfire.calfire, usgs.earthquake,
   wildfire.perimeters.nifc, wildfire.locations.nifc, cyclones.nhc-at.noaa, cyclones.nhc-ep.noaa, cyclones.nhc-cp.noaa
