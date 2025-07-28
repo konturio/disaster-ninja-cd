@@ -53,7 +53,7 @@
                       - hwn02.k8s-01.kontur.io
 
     - <<: *base
-      name: hwn04
+      name: gpu01
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -62,9 +62,9 @@
                   - key: kubernetes.io/hostname
                     operator: In
                     values:
-                      - hwn04.k8s-01.kontur.io
+                      - gpu01.k8s-01.kontur.io
       tolerations:
-        - key: "prevent-new-pods"
+        - key: "nvidia.com/gpu"
           operator: "Exists"
           effect: "NoSchedule"
       
