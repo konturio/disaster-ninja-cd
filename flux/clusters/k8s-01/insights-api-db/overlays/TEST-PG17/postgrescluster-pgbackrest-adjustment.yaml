@@ -1,6 +1,7 @@
+# 4h is the biggest WAL archivation lag we observed; 4h=14400s
 - op: add
   path: /spec/backups/pgbackrest/global/archive-timeout
-  value: '1200'
+  value: '14400'
 
 - op: add
   path: /spec/backups/pgbackrest/global/process-max
