@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: release-2.53.0.123104a.1
+    tag: revert-1161-codex-investigate-ci-cache-for-build-speedup.b291a35.1
 replicaCount: 2
 envName: dev
 ingressHosts:
