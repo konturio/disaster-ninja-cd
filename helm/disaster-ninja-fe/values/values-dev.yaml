@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: tmp-pre-docker-layers.1a6ea7b.1
+    tag: release-2.54.0.f5ed86f.1
 replicaCount: 2
 envName: dev
 ingressHosts:
