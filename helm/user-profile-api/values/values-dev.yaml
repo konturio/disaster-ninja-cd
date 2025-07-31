@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: 22365-ups-no-analytics-config-for-risk_compass_trial-role.3e55789.1
+  tag: 22365-ups-no-analytics-config-for-risk_compass_trial-role.e1ff0bf.1
   pullSecretName: none
   usePullSecret: false
 
