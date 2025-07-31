@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: main.0cc4f48.1
+    tag: revert-cached-docker-layers.b291a35.1
 replicaCount: 2
 envName: test
 ingressHosts:
