@@ -29,6 +29,7 @@ resources:
     memory: 16Gi
 
 taskTimeout: 48h
-maxParallelTasks: 12
+# decreasing maxParallelTasks helps to reduce IO/MEM load in insights database, but slowers new indicator processing
+maxParallelTasks: 8
 runCorrelations: false
 insightsApiUrl: http://dev-insights-api.dev-insights-api.svc:8625/insights-api
