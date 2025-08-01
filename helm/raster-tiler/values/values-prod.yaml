@@ -25,7 +25,7 @@ num_cpus: 24
 createResource:
   ingress: true
   defaultSecrets: false
-  deploymentLivenessProbe: true
+  deploymentLivenessProbe: false
 isOfflineInstallation: false
 probeInitialDelaySeconds: 90
 
