@@ -115,6 +115,7 @@ spec:
             - containerPort: {{ .Values.port }}
               name: http
               protocol: TCP
+          {{- if .Values.createResource.deploymentReadinessProbe }}
           readinessProbe:
             failureThreshold: 3
             httpGet:
@@ -125,6 +126,7 @@ spec:
             periodSeconds: 15
             successThreshold: 1
             timeoutSeconds: 3
+          {{- end }}  
           resources:
             limits:
               memory: {{ .Values.resources.limits.memory | quote }}
