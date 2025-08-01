@@ -22,7 +22,8 @@ storageType: pvc
 createResource:
   ingress: false
   defaultSecrets: false
-  deploymentLivenessProbe: true
+  deploymentLivenessProbe: false
+  deploymentReadinessProbe: false
 isOfflineInstallation: false
 probeInitialDelaySeconds: 30
 
