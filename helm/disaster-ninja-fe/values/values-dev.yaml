@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: main.edd51d5.1
+    tag: 22412-make-axis-group-mutually-exclusive.55efb0d.1
 replicaCount: 2
 envName: dev
 ingressHosts:
