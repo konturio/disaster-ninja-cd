@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  tag: 0.22.3
+  tag: 0.22.4
 
 envName: prod
 ingressHost: prod-titiler.k8s-01.konturlabs.com
