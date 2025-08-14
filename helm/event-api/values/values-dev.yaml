@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: master.7c69b899.1
+  tag: codex-update-data-normalization-process.11fba889.1
   pullSecretName: none
   usePullSecret: false
 
