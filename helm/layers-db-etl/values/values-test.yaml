@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: codex/investigate-layer-activation-errors.a9a26e6.1
+  tag: codex-update-insights_axis_to_univariate-script.d143177.1
   usePullSecret: false
   pullSecretName: none
 
