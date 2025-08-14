@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: codex-update-insights_axis_to_univariate-script.bcec572.1
+  tag: main.718192c.1
   usePullSecret: false
   pullSecretName: none
 
