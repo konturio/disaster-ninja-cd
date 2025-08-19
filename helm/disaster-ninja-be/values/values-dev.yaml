@@ -18,7 +18,7 @@ replicas: 1
 
 image:
   be:
-    tag: codex-reduce-duplicate-slack-notifications.b5a3fed.1
+    tag: release-0.40.2.100a3bc.1
 
 keycloakUrl: 'https://dev-keycloak.k8s-01.konturlabs.com'
 keycloakRealm: dev
