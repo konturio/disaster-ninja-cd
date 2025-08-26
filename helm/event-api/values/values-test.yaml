@@ -63,3 +63,5 @@ normalizationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, storms.no
 
 eventCombinationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, storms.noaa, wildfire.calfire, usgs.earthquake,
   wildfire.perimeters.nifc, wildfire.locations.nifc, cyclones.nhc-at.noaa, cyclones.nhc-ep.noaa, cyclones.nhc-cp.noaa
+
+enrichmentThreads: 5
