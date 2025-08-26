@@ -50,6 +50,7 @@ data:
   scheduler.stormsNoaaImport.enable: {{ .Values.stormsNoaaImportEnable | quote }}
   scheduler.tornadoJapanMaImport.enabled: {{ .Values.tornadoJapanMaImportEnabled | quote }}
   scheduler.eventExpiration.enable: {{ .Values.eventExpirationEnable | quote }}
+  enrichmentExecutor.poolSize: {{ .Values.enrichmentThreads | quote }}
   server.servlet.context-path: /events
   #do not use uppercase var names for hikari properties otherwise startup fails with smth like 'The configuration of the pool is sealed once started.'
   spring.datasource.hikari.maximum-pool-size: {{ .Values.databaseMaximumPoolSize | quote }}
