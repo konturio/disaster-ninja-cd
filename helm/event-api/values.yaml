@@ -114,4 +114,6 @@ normalizationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, pdcSqs, p
 eventCombinationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, storms.noaa, wildfire.calfire,
   wildfire.perimeters.nifc, wildfire.locations.nifc, cyclones.nhc-at.noaa, cyclones.nhc-ep.noaa, cyclones.nhc-cp.noaa
 
+enrichmentThreads: 5
+
 k8s_cluster_flavor: default # value may be substituted in a Flux pipeline
