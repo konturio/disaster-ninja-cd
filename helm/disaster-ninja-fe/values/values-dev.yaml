@@ -6,7 +6,7 @@ image:
   fe:
     repository: ghcr.io/konturio/disaster-ninja-fe
     algorithm: ""
-    tag: release-2.55.0.7ed4ea5.1
+    tag: fix-forced-normalization-in-mcda.dbb980e.1
 replicaCount: 2
 envName: dev
 ingressHosts:
