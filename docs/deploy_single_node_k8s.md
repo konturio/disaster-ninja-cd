@@ -29,6 +29,13 @@ cd provisioning
 ansible-playbook -i inventory/k8s-inventory-prod.yml k8s-worker-hetzner-robot.yml -l k8s-01.local
 ```
 
+Initialize cluster:
+```bash
+export POD_CIDR=192.168.0.0/16
+export NODE_IP=<IP>
+kubeadm init --apiserver-advertise-address="${NODE_IP}" --pod-network-cidr="${POD_CIDR}"
+```
+
 ---
 
 ## 2. Configure kubectl for the current user
