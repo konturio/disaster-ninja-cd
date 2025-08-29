@@ -84,6 +84,8 @@ kubectl get svc whoami -o wide
 curl -s https://fluxcd.io/install.sh | sudo FLUX_VERSION=2.1.2 bash
 flux check --pre
 kubectl create ns flux-system
+flux install
+kubectl get pods -n flux-system # check
 ```
 
 ```yaml
