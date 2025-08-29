@@ -86,6 +86,11 @@ flux check --pre
 kubectl create ns flux-system
 flux install
 kubectl get pods -n flux-system # check
+
+kubectl -n flux-system create secret generic disaster-ninja-cd-auth \
+  --from-file=identity=$HOME/.ssh/<key> \
+  --from-file=identity.pub=$HOME/.ssh/<key>.pub \
+  --from-file=known_hosts=./known_hosts
 ```
 
 ```yaml
