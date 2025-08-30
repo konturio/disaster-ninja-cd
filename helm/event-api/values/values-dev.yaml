@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: master.78375a4.1
+  tag: master.cadb093.1
   pullSecretName: none
   usePullSecret: false
 replicas: 1
