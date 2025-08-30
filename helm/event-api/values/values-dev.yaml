@@ -2,15 +2,13 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  tag: master.d31963c2.1
+  tag: master.44dd526.1
   pullSecretName: none
   usePullSecret: false
-
 replicas: 1
 envName: dev
 ingressHost: dev-event-api.k8s-01.konturlabs.com
 ingressClass: ingress-nginx
-
 createResource:
   defaultSecrets: false
   ingress: true
@@ -22,44 +20,27 @@ probeInitialDelaySeconds: 15
 probeInitialDelaySecondsRedis: 15
 usePgDataSecret: true
 databaseSecretName: db-event-api-pg17-pguser-event-api
-
 databaseHost: db-event-api-pg17-primary.dev-event-api.svc
 databaseUser: event-api
 databaseName: event-api
 databasePort: 5432
-
 alertingTime: 10m
-
 jwtIssuerUri: 'https://dev-keycloak.k8s-01.konturlabs.com/realms/dev'
 jwtJwkSetUri: 'https://dev-keycloak.k8s-01.konturlabs.com/realms/dev/protocol/openid-connect/certs'
-
 profiles: dev, cacheDisabled
-
 otlpTracesExporter: otlp
 otlpTracesPort: 4317
-
 konturApiUrl: 'https://test-api02.konturlabs.com/'
-
 konturAppsUrl: 'https://test-apps02.konturlabs.com/'
-
 pdcUrl: 'https://testdisasteraware.pdc.org'
 pdcMapSrvUrl: 'https://testapps.pdc.org'
 pdcUser: eventapi
-
 staticdataS3Folder: TEST DEV/
-
 humanitarianCrisisS3Folder: kontur_events/TEST DEV/
-
 awsSqsUrl: 'https://sqs.us-west-1.amazonaws.com/001426858141/SNS_messages_from_pdc-test-publiccloud-sns.fifo'
 awsSqsDlqUrl: 'https://sqs.us-west-1.amazonaws.com/001426858141/SNS_messages_from_pdc-test-publiccloud-sns_DLQ.fifo'
 awsSqsEnabled: true
-
 feignUserAgent: Event API DEV
-
-normalizationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, storms.noaa, wildfire.calfire, usgs.earthquake,
-  wildfire.perimeters.nifc, wildfire.locations.nifc, cyclones.nhc-at.noaa, cyclones.nhc-ep.noaa, cyclones.nhc-cp.noaa
-
-eventCombinationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, storms.noaa, wildfire.calfire, usgs.earthquake,
-  wildfire.perimeters.nifc, wildfire.locations.nifc, cyclones.nhc-at.noaa, cyclones.nhc-ep.noaa, cyclones.nhc-cp.noaa
-
+normalizationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, storms.noaa, wildfire.calfire, usgs.earthquake, wildfire.perimeters.nifc, wildfire.locations.nifc, cyclones.nhc-at.noaa, cyclones.nhc-ep.noaa, cyclones.nhc-cp.noaa
+eventCombinationProviders: gdacsAlert, gdacsAlertGeometry, kontur.events, storms.noaa, wildfire.calfire, usgs.earthquake, wildfire.perimeters.nifc, wildfire.locations.nifc, cyclones.nhc-at.noaa, cyclones.nhc-ep.noaa, cyclones.nhc-cp.noaa
 enrichmentThreads: 10
