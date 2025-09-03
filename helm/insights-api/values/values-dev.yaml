@@ -28,9 +28,12 @@ resources:
   redis:
     requests:
       cpu: 100m
-      memory: 1Gi
+      memory: 6Gi
     limits:
-      memory: 16G
+      memory: 16Gi
+redisConfig:
+  maxmemory: 5gb
+
 #NEON data:
 #databaseHost: ep-twilight-cake-951994.cloud.neon.tech
 #databaseName: main

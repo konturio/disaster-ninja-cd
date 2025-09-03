@@ -31,9 +31,12 @@ resources:
   redis:
     requests:
       cpu: 100m
-      memory: 1Gi
+      memory: 6Gi
     limits:
-      memory: 16G
+      memory: 16Gi
+
+redisConfig:
+  maxmemory: 5gb
 
 databaseHost: db-insights-api-pg17-primary.test-insights-api.svc
 databaseHostSecondary: db-insights-api-pg17-primary.test-insights-api.svc
