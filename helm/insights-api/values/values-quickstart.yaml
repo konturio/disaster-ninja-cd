@@ -33,9 +33,9 @@ resources:
   redis:
     requests:
       cpu: 100m
-      memory: 128Mi
+      memory: 1Gi
     limits:
-      memory: 768Mi
+      memory: 2Gi
 
 databaseHost: host.docker.internal
 databasePort: 5432
