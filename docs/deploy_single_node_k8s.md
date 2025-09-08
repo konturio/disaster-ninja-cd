@@ -131,7 +131,52 @@ flux get kustomizations -A
 
 ---
 
-## 7. Reconcile
+## 7. Install PGO v5.7.4
+
+```yaml
+cat <<'EOF' | kubectl apply -f -
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: crunchy-oci
+  namespace: flux-system
+spec:
+  type: oci
+  interval: 30m
+  url: oci://registry.developers.crunchydata.com/crunchydata
+EOF
+
+
+cat <<'EOF' | kubectl apply -f -
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pgo
+  namespace: flux-system
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: pgo
+      version: "5.7.4"
+      sourceRef:
+        kind: HelmRepository
+        name: crunchy-oci
+        namespace: flux-system
+  targetNamespace: postgres-operator
+  install:
+    createNamespace: true
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+EOF 
+
+kubectl -n flux-system wait helmrelease/pgo --for=condition=Ready --timeout
+```
+
+---
+
+## 8. Reconcile
 
 ```bash
 flux reconcile source git -n flux-system kontur-platform
