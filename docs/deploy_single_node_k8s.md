@@ -16,7 +16,7 @@
 
 ```bash
 apt update && apt install -y git vim curl wget ansible
-git clone https://github.com/konturio/puppetmaster2022.git && cd puppetmaster2022.git 
+git clone https://github.com/konturio/puppetmaster2022.git && cd puppetmaster2022
 git checkout k8s-setup
 ```
 Adjust interface names, IPs, etc: 
