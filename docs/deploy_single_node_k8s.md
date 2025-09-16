@@ -15,7 +15,8 @@
 ## 1. Provisioning via ansible
 
 ```bash
-git clone https://github.com/konturio/puppetmaster2022.git && cd puppetmaster2022.git 
+apt update && apt install -y git vim curl wget ansible
+git clone https://github.com/konturio/puppetmaster2022.git && cd puppetmaster2022
 git checkout k8s-setup
 ```
 Adjust interface names, IPs, etc: 
@@ -87,6 +88,11 @@ kubectl create ns flux-system
 flux install
 kubectl get pods -n flux-system # check
 
+ssh-keyscan github.com > known_hosts
+kubectl -n flux-system create secret generic flux-system \
+  --from-file=identity=$HOME/.ssh/<key> \
+  --from-file=identity.pub=$HOME/.ssh/<key>.pub \
+  --from-file=known_hosts=./known_hosts
 kubectl -n flux-system create secret generic disaster-ninja-cd-auth \
   --from-file=identity=$HOME/.ssh/<key> \
   --from-file=identity.pub=$HOME/.ssh/<key>.pub \
